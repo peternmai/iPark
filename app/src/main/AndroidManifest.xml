@@ -15,8 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FoundSpaceAndReserve" />
-        <activity android:name=".GiveParkingNumber"></activity>
+        <activity android:name=".FoundSpaceAndReserve"></activity>
     </application>
 
 </manifest>
