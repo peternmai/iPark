@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">iPark</string>
+    <string name="reserve">Reserve</string>
+    <string name="cancel">Cancel</string>
+    <string name="there_are_available_spaces">There are # available spaces</string>
 </resources>
