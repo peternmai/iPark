@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">iPark</string>
+<<<<<<< HEAD
     <string name="title_activity_clockin">Clockin</string>
     <string name="title_activity_clock_in">ClockIn</string>
+=======
+    <string name="reserve">Reserve</string>
+    <string name="cancel">Cancel</string>
+    <string name="there_are_available_spaces">There are # available spaces</string>
+>>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be
 </resources>
