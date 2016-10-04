@@ -11,16 +11,6 @@
     tools:context="ucsd.cse110fa16.group14.ipark.GiveParkingNumber">
 
     <TextView
-        android:text="Here is your parking number:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="83dp"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="@android:style/TextAppearance.Material.Large" />
-
-    <TextView
         android:text="15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,5 +18,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="155dp"
         android:id="@+id/textView3"
-        android:textAppearance="@android:style/TextAppearance.Material.Large" />
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textAllCaps="true"
+        android:textStyle="normal|bold"
+        android:textSize="36sp"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:text="Here is your parking number:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="162dp"
+        android:id="@+id/textView2"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
