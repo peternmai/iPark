@@ -15,6 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ClockIn"
+            android:label="@string/title_activity_clock_in"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

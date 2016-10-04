@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">iPark</string>
+    <string name="title_activity_clockin">Clockin</string>
+    <string name="title_activity_clock_in">ClockIn</string>
 </resources>
