@@ -15,16 +15,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!-- <<<<<<< HEAD -->
+        <!-- <<<<<<< HEAD -->
         <activity
             android:name=".ClockIn"
             android:label="@string/title_activity_clock_in"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-<!--======= -->
-<!--        <activity android:name=".FoundSpaceAndReserve" /> -->
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- ======= -->
+        <!-- <activity android:name=".FoundSpaceAndReserve" /> -->
         <activity android:name=".MakeReservation" />
-        <activity android:name=".GiveParkingNum"></activity>
-<!-->>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be -->
+        <activity android:name=".GiveParkingNum" />
+        <!-- >>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be -->
+        <activity android:name=".Payment"></activity>
     </application>
 
 </manifest>
