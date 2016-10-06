@@ -10,12 +10,55 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.Payment">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="(Estimated) Clock-out TIme"
+        android:ems="10"
+        android:layout_below="@+id/editText6"
+        android:layout_alignEnd="@+id/editText6"
+        android:layout_marginTop="27dp"
+        android:id="@+id/editText7" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Total to Pay"
+        android:ems="10"
+        android:layout_below="@+id/editText7"
+        android:layout_alignStart="@+id/editText7"
+        android:layout_marginTop="42dp"
+        android:id="@+id/editText8" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Clock-in Time"
+        android:ems="10"
+        android:layout_marginTop="51dp"
+        android:id="@+id/editText6"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <Button
         android:text="PAY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
-        android:layout_marginBottom="99dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/editText8"
+        android:layout_alignStart="@+id/editText8"
+        android:layout_marginTop="58dp" />
+
+    <Button
+        android:text="Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignEnd="@+id/editText8"
+        android:layout_marginEnd="14dp"
+        android:id="@+id/button7" />
+
 </RelativeLayout>

@@ -67,7 +67,6 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:text="REGISTRATION FORM"
-        android:textSize="20sp"
         android:background="@android:color/background_light"
         android:ems="10"
         android:id="@+id/editText9"
