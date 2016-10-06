@@ -24,6 +24,7 @@
         <!-- <activity android:name=".FoundSpaceAndReserve" /> -->
         <activity android:name=".MakeReservation" />
         <activity android:name=".GiveParkingNum" />
+        <activity android:name =".DriverRegistration" />
         <!-- >>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be -->
         <activity android:name=".Payment"></activity>
     </application>
