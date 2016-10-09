@@ -26,7 +26,8 @@
         <activity android:name=".Clockin" />
         <activity android:name=".activity_review" />
         <activity android:name=".CountDownCheckOut" />
-        <activity android:name=".comment"></activity>
+        <activity android:name=".comment" />
+        <activity android:name=".Reservation"></activity>
     </application>
 
 </manifest>
