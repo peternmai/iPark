@@ -1,6 +1,7 @@
 package ucsd.cse110fa16.group14.ipark;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.view.View;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,7 +11,8 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import java.util.HashMap;
 import java.util.Map;
-
+import android.view.WindowManager;
+import android.view.Display;
 /**
  * Created by jasonallen on 10/8/16.
  */
@@ -29,16 +31,19 @@ public class MapInteractive extends View {
     //different color states of parking spots
     Paint[] paints = new Paint[4];// green, yellow, red, white;
 
+    //screen dimensions
+    int screenHeight;
+    int screenWidth;
     //determine the size of the rectangles
-    int width = 100;
-    int height = 180;
-    int gap = 10;
+    int width;
+    int height;
+    int gap;
 
     //holds the index of the color of the rectangle
     int colorIndex = 0;
     //top left space's position
-    int x_tl = 150;
-    int y_tl = 150;
+    int x_tl;
+    int y_tl;
 
     int numSpaces = 80;
 
@@ -51,6 +56,20 @@ public class MapInteractive extends View {
     public MapInteractive(Context context) {
         super(context);
 
+
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        screenHeight = size.y;
+        screenWidth = size.x;
+
+        y_tl = screenHeight/25;
+        x_tl = screenWidth/25;
+
+        width = screenWidth /15;
+        height = screenHeight /20;
+        gap = screenWidth/ 50;
         setBackgroundColor(Color.LTGRAY);
 
         //initialize the paint colors
@@ -81,7 +100,7 @@ public class MapInteractive extends View {
 
             //10 spaces per row
             if((i+1)%10== 0) {
-                x_tl = 150;
+                x_tl = screenWidth/25;
                 y_tl += height + gap;
 
                 //20 spaces per group
@@ -108,9 +127,6 @@ public class MapInteractive extends View {
 
             canvas.drawRect(key, paint);
         }
-
-        // for( Rect r : rectangle)
-        //   canvas.drawRect(r, white);
     }
 
     @Override
