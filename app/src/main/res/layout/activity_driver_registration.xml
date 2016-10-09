@@ -62,20 +62,6 @@
         android:layout_below="@+id/userName"
         android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="REGISTRATION FORM"
-        android:background="@android:color/background_light"
-        android:ems="10"
-        android:id="@+id/editText9"
-        android:selectAllOnFocus="false"
-        android:layout_marginTop="29dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="55dp" />
-
     <Button
         android:text="SUBMIT"
         android:layout_width="150dp"
@@ -97,5 +83,18 @@
         android:layout_alignBottom="@+id/button4"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="27dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="REGISTRATION FORM"
+        android:background="@android:color/background_light"
+        android:ems="10"
+        android:id="@+id/editText9"
+        android:selectAllOnFocus="false"
+        android:layout_marginTop="29dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
