@@ -26,8 +26,8 @@
         <activity android:name=".CountDownCheckOut" />
         <activity android:name=".comment" />
         <activity android:name=".Settings" />
-
         <activity android:name=".Reservation"></activity>
+
     </application>
 
 </manifest>
