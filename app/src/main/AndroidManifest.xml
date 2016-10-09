@@ -18,8 +18,6 @@
         <!-- <<<<<<< HEAD -->
         <!-- ======= -->
         <!-- <activity android:name=".FoundSpaceAndReserve" /> -->
-        <activity android:name=".MakeReservation" />
-        <activity android:name=".GiveParkingNum" />
         <activity android:name=".DriverRegistration" />
         <!-- >>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be -->
         <activity android:name=".Payment" />
@@ -27,6 +25,8 @@
         <activity android:name=".activity_review" />
         <activity android:name=".CountDownCheckOut" />
         <activity android:name=".comment" />
+        <activity android:name=".Settings" />
+
         <activity android:name=".Reservation"></activity>
     </application>
 
