@@ -11,25 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.MapDirectional">
 
-    <ImageView
-        android:layout_width="100px"
-        android:layout_height="600px"
-        app:srcCompat="@mipmap/Map"
-        android:id="@+id/imageView3"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="REPORT ILLEGAL PARKING"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button13"
-        android:layout_below="@+id/imageView3"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:text="EMERGENCY CALL"
         android:layout_width="wrap_content"
@@ -38,12 +19,30 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
+    <ImageView
+        android:layout_width="1000px"
+        android:layout_height="1000px"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageView4"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="37dp"
+        android:layout_alignBottom="@+id/button13"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="REPORT ILLEGAL PARKING"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button13"
+        android:layout_above="@+id/button15"
+        android:layout_centerHorizontal="true" />
+
     <Button
         android:text="CHECK OUT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button15"
         android:layout_above="@+id/button14"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
