@@ -18,7 +18,10 @@
         <!-- <<<<<<< HEAD -->
         <!-- ======= -->
         <!-- <activity android:name=".FoundSpaceAndReserve" /> -->
+
         <activity android:name=".GiveParkingNum" />
+=======
+>>>>>>> eb8032b66679fcf03e3814a021385066d00f1194
         <activity android:name=".DriverRegistration" />
         <!-- >>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be -->
         <activity android:name=".Payment" />
@@ -26,12 +29,16 @@
         <activity android:name=".activity_review" />
         <activity android:name=".CountDownCheckOut" />
         <activity android:name=".comment" />
+
         <activity android:name=".Reservation" />
 
         <activity android:name=".MapDirectional" />
         <activity android:name=".ReportIllegal"></activity>
 =======
+=======
+>>>>>>> eb8032b66679fcf03e3814a021385066d00f1194
         <activity android:name=".Settings" />
+        <activity android:name=".Reservation"></activity>
 
 >>>>>> c3c46e69f0fd1c9a0cc8db677be1d7424240b537
     </application>

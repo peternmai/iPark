@@ -10,6 +10,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.Clockin">
 
+    <Button
+        android:text="CONFIRM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button6"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="66dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:hint="Clock-in Time"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:hint="Estimated Clock-out Time"
+        android:layout_below="@+id/editText3"
+        android:layout_alignStart="@+id/editText3" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,40 +47,87 @@
         android:ems="20"
         android:id="@+id/editText"
         android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
-        android:layout_marginTop="111dp"
-        android:layout_marginStart="141dp"
+        android:layout_marginTop="17dp"
+        android:textAlignment="center"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
-    <EditText
+    <TextView
+        android:text="14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
+        android:layout_below="@+id/textView15"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:id="@+id/textView16"
+        android:textAppearance="@android:style/TextAppearance.Material.Display2"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:text="Your parking number is:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:id="@+id/textView15"
+        android:textSize="18sp"
         android:layout_below="@+id/editText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:id="@+id/editText3"
-        android:hint="Clock-in Time" />
+android:layout_height="wrap_content"
 
-    <EditText
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/editText3"
-        android:id="@+id/editText5"
-        android:hint="Estimated Clock-out Time" />
 
-    <Button
-        android:text="CONFIRM"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText5"
-        android:layout_centerHorizontal="true"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_height="wrap_content"< android:layout_width="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content" />< android:layout_width="wrap_content" /><<<<< HEAD
         android:layout_marginTop="38dp"
-        android:id="@+id/button6" />
+        android:id="@+id/button6"
+    android:layout_height="wrap_content" />
 
     <Button
         android:text="Log Out"
@@ -62,4 +138,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="9dp" />
+=======
+        android:textColor="@android:color/black" />
+>>>>>>> eb8032b66679fcf03e3814a021385066d00f1194
 </RelativeLayout>
