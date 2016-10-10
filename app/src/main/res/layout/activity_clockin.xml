@@ -71,63 +71,8 @@
         android:id="@+id/textView15"
         android:textSize="18sp"
         android:layout_below="@+id/editText"
-        android:layout_centerHorizontal="true"
-android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
 
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_height="wrap_content"< android:layout_width="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content"="wrap_content" />< android:layout_width="wrap_content" /><<<<< HEAD
-        android:layout_marginTop="38dp"
-        android:id="@+id/button6"
-    android:layout_height="wrap_content" />
 
     <Button
         android:text="Log Out"
@@ -137,8 +82,6 @@ android:layout_height="wrap_content"
         android:id="@+id/button12"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="9dp" />
-=======
+        android:layout_marginEnd="9dp"
         android:textColor="@android:color/black" />
->>>>>>> eb8032b66679fcf03e3814a021385066d00f1194
 </RelativeLayout>
