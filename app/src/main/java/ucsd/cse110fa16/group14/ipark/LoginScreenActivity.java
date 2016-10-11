@@ -13,16 +13,27 @@ public class LoginScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
 
-        Button regButton = (Button) findViewById(R.id.registerButton);
+        Button ownerButton = (Button) findViewById(R.id.ownerButton);
+        Button userButton = (Button) findViewById(R.id.userButton);
 
-        regButton.setOnClickListener(new View.OnClickListener() {
+        ownerButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginScreenActivity.this, DriverRegistration.class);
+                Intent intent = new Intent(LoginScreenActivity.this, NavigationMenu.class);
                 startActivity(intent);
             }
         });
+
+        userButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginScreenActivity.this, LoginPage.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }

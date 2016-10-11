@@ -7,5 +7,11 @@
     <string name="reserve">Reserve</string>
     <string name="cancel">Cancel</string>
     <string name="there_are_available_spaces">There are # available spaces</string>
+    <string name="title_activity_navigation_menu">NavigationMenu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
     >>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be
 </resources>

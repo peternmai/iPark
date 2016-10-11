@@ -22,17 +22,20 @@
         <activity android:name=".DriverRegistration" />
         <!-- >>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be -->
         <activity android:name=".Payment" />
+        <activity android:name=".LoginPage" />
         <activity android:name=".Clockin" />
         <activity android:name=".activity_review" />
         <activity android:name=".CountDownCheckOut" />
         <activity android:name=".comment" />
-
         <activity android:name=".Reservation" />
-
         <activity android:name=".MapDirectional" />
         <activity android:name=".ReportIllegal">
-        <activity android:name=".Settings" /></activity>
-
+            <activity android:name=".Settings" />
+        </activity>
+        <activity
+            android:name=".NavigationMenu"
+            android:label="@string/title_activity_navigation_menu"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
