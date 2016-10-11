@@ -42,37 +42,6 @@
         android:layout_below="@+id/lastName"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/userName"
-        android:hint="Username"
-        android:layout_below="@+id/emailAddress"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/userPassword"
-        android:hint="Password"
-        android:layout_below="@+id/userName"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="SUBMIT"
-        android:layout_width="150dp"
-        android:textSize ="20sp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button4"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/userPassword"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="23dp" />
-
     <Button
         android:text="RESET"
         android:layout_width="150dp"
@@ -96,5 +65,46 @@
         android:layout_marginTop="29dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="SUBMIT"
+        android:layout_width="150dp"
+        android:textSize ="20sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:layout_marginTop="69dp"
+        android:layout_below="@+id/userPassword"
+        android:layout_toStartOf="@+id/resetButton" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/userName"
+        android:hint="Username"
+        android:layout_below="@+id/emailAddress"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="39dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/userPassword"
+        android:hint="Password"
+        android:layout_below="@+id/userName"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Driver's License #"
+        android:ems="10"
+        android:id="@+id/editText11"
+        android:layout_below="@+id/emailAddress"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

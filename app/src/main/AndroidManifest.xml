@@ -35,7 +35,8 @@
         <activity
             android:name=".NavigationMenu"
             android:label="@string/title_activity_navigation_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RecieveReports"></activity>
     </application>
 
 </manifest>
