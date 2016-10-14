@@ -27,6 +27,7 @@
         <activity android:name=".activity_review" />
         <activity android:name=".CountDownCheckOut" />
         <activity android:name=".CommentBoss" />
+        <activity android:name=".BossEmergency" />
         <activity android:name=".comment" />
         <activity android:name=".Reservation" />
         <activity android:name=".MapDirectional" />

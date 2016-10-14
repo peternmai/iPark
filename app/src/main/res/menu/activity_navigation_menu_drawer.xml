@@ -29,7 +29,7 @@
                 android:title="Report" />
             <item
                 android:id="@+id/nav_sixth_layout"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@mipmap/sos"
                 android:title="Emergency" />
 
         </menu>

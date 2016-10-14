@@ -13,9 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import Fragments.FifthFragment;
 import Fragments.FirstFragment;
+import Fragments.FourthFragment;
 import Fragments.MainFragment;
 import Fragments.SecondFragment;
+import Fragments.SixthFragment;
 import Fragments.ThirdFragment;
 
 public class NavigationMenu extends AppCompatActivity
@@ -108,6 +111,24 @@ public class NavigationMenu extends AppCompatActivity
             fragManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new ThirdFragment())
+                    .commit();
+        }
+        {
+            fragManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new FourthFragment())
+                    .commit();
+        }
+        {
+            fragManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new FifthFragment())
+                    .commit();
+        }
+        {
+            fragManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new SixthFragment())
                     .commit();
         }
 
