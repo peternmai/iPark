@@ -150,4 +150,12 @@
         android:layout_centerInParent="false"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:text="MAP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ParkingRate"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/mapButton" />
+
 </RelativeLayout>

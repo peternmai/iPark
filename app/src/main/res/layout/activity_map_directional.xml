@@ -27,22 +27,22 @@
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:layout_marginBottom="37dp"
-        android:layout_alignBottom="@+id/button13"
+        android:layout_alignBottom="@+id/illegalButton"
         android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="REPORT ILLEGAL PARKING"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button13"
-        android:layout_above="@+id/button15"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="CHECK OUT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button15"
+        android:id="@+id/checkoutButton"
         android:layout_above="@+id/button14"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="REPORT ILLEGAL PARKING"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/illegalButton"
+        android:layout_above="@+id/checkoutButton"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

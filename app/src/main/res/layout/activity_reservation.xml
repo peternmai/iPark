@@ -17,16 +17,16 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="151dp"
-        android:id="@+id/button10" />
+        android:id="@+id/reserveButton" />
 
     <Button
         android:text="Cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/button10"
+        android:layout_alignEnd="@+id/reserveButton"
         android:layout_marginBottom="53dp"
-        android:id="@+id/button11" />
+        android:id="@+id/cancelButton" />
 
     <TextView
         android:text="There are # available spaces."

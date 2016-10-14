@@ -47,7 +47,7 @@
         android:text="PAY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
+        android:id="@+id/payButton"
         android:layout_below="@+id/editText8"
         android:layout_alignStart="@+id/editText8"
         android:layout_marginTop="58dp" />
@@ -56,9 +56,9 @@
         android:text="Edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button2"
+        android:layout_alignBottom="@+id/payButton"
         android:layout_alignEnd="@+id/editText8"
         android:layout_marginEnd="14dp"
-        android:id="@+id/button7" />
+        android:id="@+id/editButton" />
 
 </RelativeLayout>

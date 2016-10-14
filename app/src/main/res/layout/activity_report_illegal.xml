@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:id="@+id/button16"
+        android:id="@+id/reportButton"
         android:layout_below="@+id/textView17"
         android:layout_alignStart="@+id/textView15" />
 
@@ -55,8 +55,8 @@
         android:text="CANCEL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button16"
+        android:layout_alignBottom="@+id/reportButton"
         android:layout_alignEnd="@+id/textView17"
         android:layout_marginEnd="14dp"
-        android:id="@+id/button17" />
+        android:id="@+id/cancel" />
 </RelativeLayout>
