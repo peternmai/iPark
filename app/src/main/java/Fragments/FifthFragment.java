@@ -10,17 +10,17 @@ import android.view.ViewGroup;
 import ucsd.cse110fa16.group14.ipark.R;
 
 /**
- * Created by Mag on 10/10/2016.
+ * Created by Mag on 10/13/2016.
  */
 
-public class ThirdFragment extends Fragment {
+public class FifthFragment extends Fragment{
 
     View myView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.activity_comment_boss,container,false);
+        myView = inflater.inflate(R.layout.activity_login_page,container,false);
         return myView;
     }
 }

@@ -5,19 +5,32 @@
         <item
             android:id="@+id/nav_first_layout"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Login" />
+            android:title="MAP" />
         <item
             android:id="@+id/nav_second_layout"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Register" />
+            android:title="SETTINGS" />
         <item
             android:id="@+id/nav_third_layout"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Clock in" />
+            android:title="REVIEW"
+            />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="NOTIFICATION">
         <menu>
+            <item
+                android:id="@+id/nav_fourth_layout"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Compose" />
+            <item
+                android:id="@+id/nav_fifth_layout"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Report" />
+            <item
+                android:id="@+id/nav_sixth_layout"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Emergency" />
 
         </menu>
     </item>

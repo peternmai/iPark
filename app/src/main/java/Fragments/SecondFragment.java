@@ -20,7 +20,7 @@ public class SecondFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.activity_driver_registration,container,false);
+        myView = inflater.inflate(R.layout.activity_settings,container,false);
         return myView;
     }
 }
