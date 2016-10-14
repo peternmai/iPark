@@ -10,15 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.Clockin">
 
-    <Button
-        android:text="CONFIRM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/confirmButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="66dp" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,4 +74,21 @@
         android:layout_marginEnd="9dp"
         android:textColor="@android:color/black"
         android:layout_alignParentTop="true" />
+
+    <Button
+        android:text="CONFIRM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirmButton"
+        android:layout_below="@+id/editText5"
+        android:layout_toStartOf="@+id/textView16"
+        android:layout_marginTop="62dp" />
+
+    <Button
+        android:text="REPORT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/confirmButton"
+        android:layout_toEndOf="@+id/textView16"
+        android:id="@+id/button6" />
 </RelativeLayout>

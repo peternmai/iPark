@@ -135,27 +135,38 @@
         android:text="CheckOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ParkingRate"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp"
-        android:id="@+id/CheckoutButton" />
-
-    <Button
-        android:text="Request More Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/CheckoutButton"
-        android:layout_marginTop="17dp"
-        android:id="@+id/MoreTimeButton"
-        android:layout_centerInParent="false"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="19dp"
+        android:id="@+id/CheckoutButton"
+        android:layout_below="@+id/ParkingRateInfo"
+        android:layout_toStartOf="@+id/EndTime" />
 
     <Button
         android:text="MAP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ParkingRate"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/mapButton" />
+        android:id="@+id/mapButton"
+        android:layout_marginStart="23dp"
+        android:layout_alignBaseline="@+id/CheckoutButton"
+        android:layout_alignBottom="@+id/CheckoutButton"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="REPORT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button12"
+        android:layout_below="@+id/MoreTimeButton"
+        android:layout_toStartOf="@+id/CheckoutButton"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:text="Request More Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:id="@+id/MoreTimeButton"
+        android:layout_centerInParent="false"
+        android:layout_below="@+id/CheckoutButton"
+        android:layout_alignEnd="@+id/ParkingRateInfo" />
 
 </RelativeLayout>
