@@ -112,20 +112,17 @@ public class NavigationMenu extends AppCompatActivity
                     .replace(R.id.content_frame
                             , new ThirdFragment())
                     .commit();
-        }
-        {
+        } else if(id == R.id.nav_fourth_layout) {
             fragManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new FourthFragment())
                     .commit();
-        }
-        {
+        } else if(id == R.id.nav_first_layout) {
             fragManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new FifthFragment())
                     .commit();
-        }
-        {
+        } else if (id == R.id.nav_sixth_layout) {
             fragManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new SixthFragment())
