@@ -20,7 +20,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginScreenActivity.this, NavigationMenu.class);
+                Intent intent = new Intent(LoginScreenActivity.this, BossLogin.class);
                 startActivity(intent);
             }
         });

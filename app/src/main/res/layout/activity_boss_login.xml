@@ -39,5 +39,5 @@
         android:layout_below="@+id/editText13"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="57dp"
-        android:id="@+id/button19" />
+        android:id="@+id/boss_login_button" />
 </RelativeLayout>
