@@ -18,6 +18,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         Button emergencyButt = (Button) findViewById(R.id.emer);
         // we need to figure out how to report emergency, add that activity
         Button mapButt = (Button) findViewById(R.id.button8);
+        Button emergButton = (Button) findViewById(R.id.emer);
 
         checkoutButt.setOnClickListener(new View.OnClickListener() {
 
@@ -42,6 +43,15 @@ public class CountDownCheckOut extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, MapDirectional.class);
+                startActivity(intent);
+            }
+        });
+
+        emergButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CountDownCheckOut.this, BossEmergency.class);
                 startActivity(intent);
             }
         });
