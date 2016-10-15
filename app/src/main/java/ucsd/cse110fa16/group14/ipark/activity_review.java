@@ -13,8 +13,8 @@ public class activity_review extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
-        Button commentButt = (Button) findViewById(R.id.commentButton);
-        Button nopButt = (Button) findViewById(R.id.nopButton);
+        Button commentButt = (Button) findViewById(R.id.button);
+        Button nopButt = (Button) findViewById(R.id.button3);
 
         commentButt.setOnClickListener(new View.OnClickListener() {
 

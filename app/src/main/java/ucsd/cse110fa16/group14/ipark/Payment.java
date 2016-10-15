@@ -13,8 +13,8 @@ public class Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-        Button payButt = (Button) findViewById(R.id.payButton);
-        Button editButt = (Button) findViewById(R.id.editButton);
+        Button payButt = (Button) findViewById(R.id.button);
+        Button cancelButt = (Button) findViewById(R.id.button3);
 
         payButt.setOnClickListener(new View.OnClickListener() {
 
@@ -25,7 +25,7 @@ public class Payment extends AppCompatActivity {
             }
         });
 
-        editButt.setOnClickListener(new View.OnClickListener() {
+        cancelButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

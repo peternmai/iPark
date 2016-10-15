@@ -13,9 +13,11 @@ public class CountDownCheckOut extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count_down_check_out);
 
-        Button checkoutButt = (Button) findViewById(R.id.CheckoutButton);
-        Button moreTimeButt = (Button) findViewById(R.id.MoreTimeButton);
-        Button mapButt = (Button) findViewById(R.id.mapButton);
+        Button checkoutButt = (Button) findViewById(R.id.button6);
+        Button reportButt = (Button) findViewById(R.id.button2);
+        Button emergencyButt = (Button) findViewById(R.id.emer);
+        // we need to figure out how to report emergency, add that activity
+        Button mapButt = (Button) findViewById(R.id.button8);
 
         checkoutButt.setOnClickListener(new View.OnClickListener() {
 
@@ -26,7 +28,7 @@ public class CountDownCheckOut extends AppCompatActivity {
             }
         });
 
-        moreTimeButt.setOnClickListener(new View.OnClickListener() {
+        reportButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

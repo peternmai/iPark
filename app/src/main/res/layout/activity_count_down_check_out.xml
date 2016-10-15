@@ -75,10 +75,10 @@
         android:text="EMERGENCY"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/MoreTimeButton"
         android:layout_centerInParent="false"
         android:layout_below="@+id/button2"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:id="@+id/emer" />
 
     <Button
         android:text="REPORT"
@@ -113,24 +113,20 @@
         android:textSize="40sp"
         android:textAlignment="center" />
 
-    <TextView
-        android:text="map"
-        android:layout_width="60dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="33dp"
-        android:id="@+id/textView27"
-        android:layout_height="30dp"
-        android:textColor="#404040"
+    <Button
+        android:text="Map"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView26"
+        android:id="@+id/button8"
         android:textAlignment="center"
-        android:textSize="24sp"
-        android:layout_below="@+id/textView26" />
+        android:layout_alignParentEnd="true" />
 
     <View
-        android:layout_width="60dp"
         android:layout_height="1dp"
-        android:background="#202020"
+        android:background="#606060"
         android:id="@+id/view1"
-        android:layout_below="@+id/textView27"
-        android:layout_alignStart="@+id/textView27" />
+        android:layout_width="match_parent"
+        android:layout_above="@+id/button2" />
 
 </RelativeLayout>

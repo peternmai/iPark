@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class Clockin extends AppCompatActivity {
 
@@ -13,8 +14,9 @@ public class Clockin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clockin);
 
-        Button confirmButt = (Button) findViewById(R.id.confirmButton);
-        Button logoutButt = (Button) findViewById(R.id.logoutButton);
+        Button confirmButt = (Button) findViewById(R.id.button);
+        Button logoutButt = (Button) findViewById(R.id.button7);
+        Button reset = (Button)findViewById(R.id.button3);
 
         confirmButt.setOnClickListener(new View.OnClickListener() {
 
@@ -31,6 +33,19 @@ public class Clockin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Clockin.this, LoginPage.class);
                 startActivity(intent);
+            }
+        });
+
+        final EditText startTime = (EditText)findViewById(R.id.editText2);
+        final EditText endTime = (EditText)findViewById(R.id.editText3);
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTime.setText("");
+                endTime.setText("");
+
+
             }
         });
 
