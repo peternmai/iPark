@@ -11,57 +11,41 @@
     tools:context="ucsd.cse110fa16.group14.ipark.LoginPage">
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="106dp"
         android:id="@+id/userName"
+        android:background="@drawable/lighter_border"
         android:inputType="textPersonName"
         android:hint="Username"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="12dp" />
+        android:layout_alignParentTop="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginStart="12dp"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="10dp" />
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:inputType="textPassword"
         android:ems="10"
+        android:background="@drawable/lighter_border"
         android:id="@+id/password"
         android:hint="Password"
         android:layout_below="@+id/userName"
-        android:layout_alignStart="@+id/userName" />
+        android:layout_alignStart="@+id/userName"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"
+        android:paddingLeft="10dp" />
 
     <CheckBox
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/checkBox2"
         android:layout_below="@+id/password"
-        android:layout_alignStart="@+id/password" />
-
-    <Button
-        android:text="LOGIN"
+        android:layout_alignStart="@+id/password"
+        android:text="Remember me"
         android:layout_width="150dp"
-        android:textSize ="20sp"
-        android:layout_height="wrap_content"
-        android:id="@+id/loginButton"
-        android:layout_below="@+id/checkBox2"
-        android:layout_alignStart="@+id/checkBox2"
-        android:layout_marginTop="16dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/background_light"
-        android:text="Remember me?"
-        android:ems="9"
-        android:id="@+id/editText4"
-        android:inputType="text"
-        android:textSize="16sp"
-        android:layout_alignBaseline="@+id/checkBox2"
-        android:layout_alignBottom="@+id/checkBox2"
-        android:layout_toEndOf="@+id/checkBox2"
-        android:layout_marginStart="16dp" />
+        tools:ignore="HardcodedText" />
 
     <Button
         android:text="REGISTER"
@@ -72,6 +56,37 @@
         android:layout_alignBaseline="@+id/loginButton"
         android:layout_alignBottom="@+id/loginButton"
         android:layout_toEndOf="@+id/loginButton"
-        android:layout_marginStart="31dp" />
+        android:layout_marginStart="31dp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:text="LOGIN"
+        android:layout_width="150dp"
+        android:textSize ="20sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginButton"
+        android:layout_marginTop="46dp"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/checkBox2"
+        android:layout_alignStart="@+id/checkBox2" />
+
+    <CheckBox
+        android:text="Forget password?"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/password"
+        android:layout_toEndOf="@+id/checkBox2"
+        android:layout_width="200dp" />
+
+    <CheckBox
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox3"
+        android:text="Admin"
+        tools:ignore="HardcodedText"
+        android:layout_width="80dp"
+        android:layout_alignBaseline="@+id/userName"
+        android:layout_alignBottom="@+id/userName"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
