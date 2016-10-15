@@ -62,111 +62,75 @@
         android:id="@+id/EndTime"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-    <TextView
-        android:text="Status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/EndTime"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:id="@+id/Status"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
-
-    <TextView
-        android:text="Parking Spot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ParkingSpot"
-        android:layout_below="@+id/Status"
-        android:layout_toEndOf="@+id/StartTime"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:text="Time Elapse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignEnd="@+id/ParkingSpot"
-        android:id="@+id/TimeElapse"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/ParkingSpot" />
-
-    <TextView
-        android:text="Parking Rate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TimeElapse"
-        android:layout_alignEnd="@+id/TimeElapse"
-        android:id="@+id/ParkingRate"
-        android:layout_marginTop="5dp" />
-
-    <TextView
-        android:text="85"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/TimeElapse"
-        android:layout_toEndOf="@+id/ParkingSpot"
-        android:layout_marginStart="19dp"
-        android:id="@+id/ParkingSpotInfo"
-        android:layout_below="@+id/Status"
-        android:layout_marginTop="0dp"
-        android:layout_alignTop="@+id/ParkingSpot" />
-
-    <TextView
-        android:text="01:40:57"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/TimeElapse"
-        android:layout_alignStart="@+id/ParkingSpotInfo"
-        android:id="@+id/TimeElapseInfo"
-        android:layout_below="@+id/ParkingSpotInfo"
-        android:layout_marginTop="0dp" />
-
-    <TextView
-        android:text="$2.50/hr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ParkingRate"
-        android:layout_alignStart="@+id/TimeElapseInfo"
-        android:id="@+id/ParkingRateInfo" />
-
     <Button
         android:text="CheckOut"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:id="@+id/CheckoutButton"
-        android:layout_below="@+id/ParkingRateInfo"
-        android:layout_toStartOf="@+id/EndTime" />
+        android:id="@+id/button6"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="66dp" />
 
     <Button
-        android:text="MAP"
-        android:layout_width="wrap_content"
+        android:text="EMERGENCY"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/mapButton"
-        android:layout_marginStart="23dp"
-        android:layout_alignBaseline="@+id/CheckoutButton"
-        android:layout_alignBottom="@+id/CheckoutButton"
+        android:id="@+id/MoreTimeButton"
+        android:layout_centerInParent="false"
+        android:layout_below="@+id/button2"
         android:layout_alignParentStart="true" />
 
     <Button
         android:text="REPORT"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:id="@+id/button12"
-        android:layout_below="@+id/MoreTimeButton"
-        android:layout_toStartOf="@+id/CheckoutButton"
-        android:layout_marginTop="12dp" />
+        android:id="@+id/button2"
+        android:layout_alignBaseline="@+id/button6"
+        android:layout_alignBottom="@+id/button6"
+        android:layout_toEndOf="@+id/button6" />
 
-    <Button
-        android:text="Request More Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:id="@+id/MoreTimeButton"
-        android:layout_centerInParent="false"
-        android:layout_below="@+id/CheckoutButton"
-        android:layout_alignEnd="@+id/ParkingRateInfo" />
+    <TextView
+        android:text="PARKING NUMBER"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/StartTime"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:id="@+id/textView25"
+        android:textColor="#404040"
+        android:textSize="25sp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="#170"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/textView25"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:id="@+id/textView26"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="map"
+        android:layout_width="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="33dp"
+        android:id="@+id/textView27"
+        android:layout_height="30dp"
+        android:textColor="#404040"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_below="@+id/textView26" />
+
+    <View
+        android:layout_width="60dp"
+        android:layout_height="1dp"
+        android:background="#202020"
+        android:id="@+id/view1"
+        android:layout_below="@+id/textView27"
+        android:layout_alignStart="@+id/textView27" />
 
 </RelativeLayout>
