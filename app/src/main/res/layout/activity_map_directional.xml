@@ -22,7 +22,7 @@
     <ImageView
         android:layout_width="1000px"
         android:layout_height="1000px"
-        app:srcCompat="@mipmap/ic_launcher"
+        app:srcCompat="@mipmap/map"
         android:id="@+id/imageView4"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"

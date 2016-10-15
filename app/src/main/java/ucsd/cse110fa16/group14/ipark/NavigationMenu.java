@@ -89,12 +89,9 @@ public class NavigationMenu extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-
-
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         android.app.FragmentManager fragManager = getFragmentManager();
-
 
 
         if (id == R.id.nav_first_layout) {

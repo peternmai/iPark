@@ -20,7 +20,7 @@ public class FirstFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.activity_login_page,container,false);
+        myView = inflater.inflate(R.layout.activity_boss_map,container,false);
         return myView;
     }
 }
