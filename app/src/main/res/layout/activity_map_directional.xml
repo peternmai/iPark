@@ -13,36 +13,54 @@
 
     <Button
         android:text="EMERGENCY CALL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:id="@+id/button14"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:background="#990000" />
+
+    <Button
+        android:text="REPORT"
+        android:id="@+id/button9"
+        android:layout_alignBaseline="@+id/editText"
+        android:layout_alignBottom="@+id/editText"
+        android:layout_alignParentEnd="true"
+        android:layout_height="50dp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_width="100dp"
+        android:layout_alignEnd="@+id/editText"
+        android:layout_alignParentBottom="false"
+        android:layout_below="@+id/imageView4" />
+
+    <EditText
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:hint="  Enter illegal parking #"
+        android:background="@drawable/lighter_border"
+        android:layout_height="45dp"
+        android:layout_width="250dp"
+        android:layout_above="@+id/button14"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp" />
 
     <ImageView
-        android:layout_width="1000px"
-        android:layout_height="1000px"
         app:srcCompat="@mipmap/map"
         android:id="@+id/imageView4"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:layout_marginBottom="37dp"
-        android:layout_alignBottom="@+id/illegalButton"
+
+        android:layout_width="match_parent"
+        android:layout_height="700px"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="CHECK OUT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkoutButton"
-        android:layout_above="@+id/button14"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="REPORT ILLEGAL PARKING"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/illegalButton"
-        android:layout_above="@+id/checkoutButton"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>

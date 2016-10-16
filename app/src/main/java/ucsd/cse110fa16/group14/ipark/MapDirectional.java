@@ -15,10 +15,10 @@ public class MapDirectional extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_directional);
 
-        Button illegalButt = (Button) findViewById(R.id.illegalButton);
-        Button checkoutButt = (Button) findViewById(R.id.checkoutButton);
+        //Button illegalButt = (Button) findViewById(R.id.illegalButton);
+        //Button checkoutButt = (Button) findViewById(R.id.checkoutButton);
 
-        illegalButt.setOnClickListener(new View.OnClickListener() {
+        /*illegalButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -34,6 +34,6 @@ public class MapDirectional extends AppCompatActivity {
                 Intent intent = new Intent(MapDirectional.this, activity_review.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 }
