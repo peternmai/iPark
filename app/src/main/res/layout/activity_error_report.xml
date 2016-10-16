@@ -30,15 +30,6 @@
         android:layout_below="@+id/textView20"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:text="MAP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button20"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="91dp" />
-
     <TextView
         android:text="Closest available parking space is:"
         android:layout_width="wrap_content"
@@ -50,12 +41,21 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="20"
+        android:text="P207"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
         android:id="@+id/textView23"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:layout_below="@+id/textView22"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="CHECK IN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button20"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/textView23"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
