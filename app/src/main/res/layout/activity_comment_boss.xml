@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ucsd.cse110fa16.group14.ipark.CommentBoss">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="380dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/scroll">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:id="@+id/relative"
+            android:layout_below="@+id/button15">
+
 
     <TextView
         android:text="how is cse 110 parking lot?"
         android:layout_width="match_parent"
         android:background="@drawable/lighter_border"
-        android:layout_below="@+id/button15"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:id="@+id/textView30"
@@ -184,16 +193,18 @@
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
         android:layout_below="@+id/textView28" />
+        </RelativeLayout>
+
+    </ScrollView>
 
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentTop="true"
+        android:id="@+id/radioGroup"
         android:layout_toEndOf="@+id/button15"
-        android:layout_above="@+id/textView30">
-
-
+        >
 
         <RadioButton
             android:text="Date"
@@ -234,23 +245,22 @@
         android:textSize="18sp"
         tools:ignore="HardcodedText"
         android:textAllCaps="false"
-        android:layout_below="@+id/textView35"
-        android:layout_alignStart="@+id/textView35"
+        android:layout_below="@+id/scroll"
+        android:layout_alignStart="@+id/scroll"
         android:layout_marginStart="40dp" />
+
 
     <Button
         android:text="next "
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-
         android:id="@+id/cancelButton"
         android:textSize="18sp"
         android:textAlignment="center"
         tools:ignore="HardcodedText"
         android:textAllCaps="false"
-        android:layout_below="@+id/textView35"
-        android:layout_alignEnd="@+id/textView35"
-        android:layout_marginEnd="40dp" />
-</RelativeLayout>
+        android:layout_marginEnd="40dp"
+        android:layout_below="@+id/scroll"
+        android:layout_alignEnd="@+id/scroll" />
 
-</ScrollView>
+</RelativeLayout>
