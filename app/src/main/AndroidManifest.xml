@@ -45,7 +45,8 @@
         <activity android:name=".ForgotPassword_1" />
         <activity android:name=".AccessCode" />
         <activity android:name=".NewPasswordRequest" />
-        <activity android:name=".RecieveNewParking"></activity>
+        <activity android:name=".RecieveNewParking" />
+        <activity android:name=".Resume"></activity>
     </application>
 
 </manifest>
