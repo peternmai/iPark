@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context="ucsd.cse110fa16.group14.ipark.CommentBoss">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="76dp"
+        android:id="@+id/editText20"
+        android:hint="my" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:layout_below="@+id/editText20"
+        android:layout_alignEnd="@+id/editText20"
+        android:layout_marginTop="89dp"
+        android:id="@+id/editText24"
+        android:hint="11:00" />
 </RelativeLayout>

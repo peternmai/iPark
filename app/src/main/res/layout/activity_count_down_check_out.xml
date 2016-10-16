@@ -19,7 +19,8 @@
         android:id="@+id/TimeRemainingTitle"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="20sp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:text="03:50:03"
@@ -31,7 +32,8 @@
         android:id="@+id/Timer"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textSize="80dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        tools:ignore="HardcodedText,SpUsage" />
 
     <ProgressBar
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
@@ -42,7 +44,8 @@
         android:id="@+id/ProgressBar"
         android:max="@android:integer/config_longAnimTime"
         android:progress="@android:integer/config_shortAnimTime"
-        android:progressTint="?attr/actionModeSplitBackground" />
+        android:progressTint="?attr/actionModeSplitBackground"
+        tools:ignore="UnusedAttribute" />
 
     <TextView
         android:text="12:21 PM"
@@ -51,7 +54,8 @@
         android:layout_below="@+id/ProgressBar"
         android:layout_alignParentStart="true"
         android:id="@+id/StartTime"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:text="6:00 PM"
@@ -60,7 +64,8 @@
         android:layout_below="@+id/ProgressBar"
         android:layout_alignParentEnd="true"
         android:id="@+id/EndTime"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:text="CheckOut"
@@ -69,7 +74,8 @@
         android:id="@+id/button6"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="66dp" />
+        android:layout_marginBottom="66dp"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:text="EMERGENCY"
@@ -78,7 +84,8 @@
         android:layout_centerInParent="false"
         android:layout_below="@+id/button2"
         android:layout_alignParentStart="true"
-        android:id="@+id/emer" />
+        android:id="@+id/emer"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:text="REPORT"
@@ -87,7 +94,8 @@
         android:id="@+id/button2"
         android:layout_alignBaseline="@+id/button6"
         android:layout_alignBottom="@+id/button6"
-        android:layout_toEndOf="@+id/button6" />
+        android:layout_toEndOf="@+id/button6"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:text="PARKING NUMBER"
@@ -99,10 +107,11 @@
         android:id="@+id/textView25"
         android:textColor="#404040"
         android:textSize="25sp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        tools:ignore="HardcodedText" />
 
     <TextView
-        android:text="#170"
+        android:text="G107"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_below="@+id/textView25"
@@ -111,16 +120,19 @@
         android:id="@+id/textView26"
         android:textColor="#000000"
         android:textSize="40sp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:text="Map"
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView26"
         android:id="@+id/button8"
         android:textAlignment="center"
-        android:layout_alignParentEnd="true" />
+        android:layout_above="@+id/view1"
+        android:layout_alignParentEnd="true"
+        tools:ignore="HardcodedText" />
 
     <View
         android:layout_height="1dp"
