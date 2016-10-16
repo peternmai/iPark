@@ -6,57 +6,41 @@
     android:layout_height="match_parent"
     tools:context="ucsd.cse110fa16.group14.ipark.CommentBoss">
 
-    <TextView
-        android:text="Your comment won't be seen by anyone except xx parking company"
-        android:layout_width="match_parent"
-        android:id="@+id/textView6"
+
+    <Button
+        android:text="Sorted by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_height="50dp"
-        android:textSize="16sp"
-        android:textColor="#000000"
-        tools:ignore="HardcodedText" />
+        android:id="@+id/button15"
+        android:textAllCaps="false" />
 
-    <EditText
+    <RadioButton
+        android:text="Length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/radioButton"
+        android:layout_toEndOf="@+id/radioButton"
+        android:layout_marginStart="26dp"
+        android:id="@+id/radioButton2" />
+
+    <RadioButton
+        android:text="Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:id="@+id/radioButton"
+        android:layout_alignBaseline="@+id/button15"
+        android:layout_alignBottom="@+id/button15"
+        android:layout_toEndOf="@+id/button15" />
+
+    <TextView
+        android:text="TextView"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:inputType="text|textCapCharacters|textCapWords|textCapSentences|textAutoCorrect|textAutoComplete|textMultiLine|textImeMultiLine|textEmailAddress|textEmailSubject|textPersonName|textPostalAddress"
-        android:text="Your opinion matters..."
-        android:ems="10"
+        android:layout_below="@+id/button15"
         android:layout_centerHorizontal="true"
-        android:id="@+id/editText10"
-        android:background="@drawable/my_border"
-        android:layout_below="@+id/textView6"
-        android:paddingStart="10dp"
-        android:paddingTop="10dp"
         android:layout_marginTop="10dp"
-        android:fadingEdge="horizontal"
-        android:gravity="top|fill_horizontal"
-        android:textColor="#606060"
-        android:paddingBottom="10dp"
-        android:paddingEnd="10dp"
-        tools:ignore="HardcodedText,LabelFor" />
-
-    <Button
-        android:text="SUBMIT"
-        android:layout_height="100dp"
-        android:layout_below="@+id/editText10"
-        android:layout_alignParentStart="true"
-        android:id="@+id/submitButton"
-        android:layout_width="180dp"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:text="CANCEL"
-        android:layout_width="180dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/editText10"
-        android:layout_toEndOf="@+id/submitButton"
-        android:id="@+id/cancelButton"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        tools:ignore="HardcodedText" />
-
+        android:id="@+id/textView27"
+        android:layout_height="30dp" />
 </RelativeLayout>

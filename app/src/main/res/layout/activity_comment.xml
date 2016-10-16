@@ -26,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:inputType="text|textCapCharacters|textCapWords|textCapSentences|textAutoCorrect|textAutoComplete|textMultiLine|textImeMultiLine|textEmailAddress|textEmailSubject|textPersonName|textPostalAddress"
-        android:text="Your opinion matters..."
         android:ems="10"
         android:layout_centerHorizontal="true"
         android:id="@+id/editText10"
@@ -40,7 +39,8 @@
         android:textColor="#606060"
         android:paddingBottom="10dp"
         android:paddingEnd="10dp"
-        tools:ignore="HardcodedText,LabelFor" />
+        tools:ignore="HardcodedText,LabelFor"
+        android:hint="Your opinion matters..." />
 
     <Button
         android:text="SUBMIT"
