@@ -1,31 +1,26 @@
 package ucsd.cse110fa16.group14.ipark;
 
 import android.content.Context;
-import android.graphics.Point;
-import android.util.AttributeSet;
-import android.view.View;
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.AttributeSet;
+import android.view.Display;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
+
 import java.util.HashMap;
 import java.util.Map;
-import android.view.WindowManager;
-import android.view.Display;
+
 /**
- * Created by jasonallen on 10/8/16.
+ * Created by Peter on 10/16/2016.
  */
 
-
-/*In calling view or activity:
-*  MapInteractive mp;
-*  mp = new MapInteractive(this);
-*  setContentView(mp);*/
-
-public class MapInteractive extends View {
-
+// This is the map for user. It should allow them to view the map status but not change the status.
+public class UserMapInteractive extends View {
 
     //Canvas
     Canvas cv;
@@ -117,17 +112,17 @@ public class MapInteractive extends View {
     }
 
 
-    public MapInteractive(Context context) {
+    public UserMapInteractive(Context context) {
         super(context);
         init(context);
     }
 
-    public MapInteractive(Context context, AttributeSet attrs) {
+    public UserMapInteractive(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public MapInteractive(Context context, AttributeSet attrs, int defStyle) {
+    public UserMapInteractive(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context);
     }
@@ -147,28 +142,7 @@ public class MapInteractive extends View {
 
     @Override
     public  boolean onTouchEvent(MotionEvent event) {
-        float x = event.getX();
-        float y = event.getY();
-
-        switch (event.getAction()) {
-
-            case MotionEvent.ACTION_DOWN:
-
-                for(Rect rect : rectangle){
-
-                    if(rect.contains((int)x,(int)y)){
-                        System.out.println("Touched Rectangle, change color");
-                        changeRectColor(rect);
-                    }
-                }
-
-                break;
-
-            case MotionEvent.ACTION_UP:
-
-                System.out.println("Touched up");
-                break;
-        }
+        // Do nothing for now
 
         return true;
 

@@ -51,15 +51,11 @@
         android:layout_marginBottom="13dp"
         android:layout_toLeftOf="@+id/button9" />
 
-    <ImageView
-        app:srcCompat="@mipmap/map"
-        android:id="@+id/imageView4"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-
+    <ucsd.cse110fa16.group14.ipark.UserMapInteractive
         android:layout_width="match_parent"
-        android:layout_height="700px"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button9" />
 
 </RelativeLayout>
