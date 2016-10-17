@@ -12,6 +12,8 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
 import android.view.WindowManager;
 import android.view.Display;
 /**
@@ -89,6 +91,8 @@ public class MapInteractive extends View {
         paints[3].setColor(Color.YELLOW);
         paints[3].setStyle(Paint.Style.FILL);
 
+        Random rand = new Random();
+
         //initialize the rectangles & map
         for(int i = 0; i < numSpaces; i++) {
 
@@ -109,7 +113,7 @@ public class MapInteractive extends View {
                 }
             }
 
-            recCol.put(r, paints[0]);
+            recCol.put(r, paints[ rand.nextInt(4) ]);
         }
 
 

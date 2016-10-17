@@ -1,5 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import java.util.Random;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -84,6 +85,8 @@ public class UserMapInteractive extends View {
         paints[3].setColor(Color.YELLOW);
         paints[3].setStyle(Paint.Style.FILL);
 
+        Random rand = new Random();
+
         //initialize the rectangles & map
         for(int i = 0; i < numSpaces; i++) {
 
@@ -104,7 +107,7 @@ public class UserMapInteractive extends View {
                 }
             }
 
-            recCol.put(r, paints[0]);
+            recCol.put(r, paints[ rand.nextInt(4) ]);
         }
 
 
