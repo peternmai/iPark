@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
+import com.firebase.client.Firebase;
 
 /**
  * Created by Mag on 10/10/2016.
@@ -27,6 +27,9 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+        Firebase.setAndroidContext(this);
+        Firebase iPark = new Firebase("https://ipark-e243b.firebaseio.com");
 
         Button registerButton = (Button) findViewById(R.id.registerButton);
         Button loginButton = (Button) findViewById(R.id.loginButton);
