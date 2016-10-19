@@ -25,7 +25,7 @@ public class Driver {
         }
 
         public String getLastName() {
-            return this.getLastName();
+            return this.lastName;
         }
 
     }
