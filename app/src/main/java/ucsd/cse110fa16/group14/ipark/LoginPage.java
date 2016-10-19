@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 /**
@@ -29,6 +30,7 @@ public class LoginPage extends AppCompatActivity {
 
         Button registerButton = (Button) findViewById(R.id.registerButton);
         Button loginButton = (Button) findViewById(R.id.loginButton);
+        CheckBox forgotPassword = (CheckBox) findViewById(R.id.checkBox);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -48,9 +50,10 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-
-
-
+        if(forgotPassword.isChecked()){
+            Intent intent = new Intent(LoginPage.this, ForgotPassword_1.class);
+            startActivity(intent);
+        }
 
     }
 }
