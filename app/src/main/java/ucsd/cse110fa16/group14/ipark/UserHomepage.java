@@ -24,6 +24,7 @@ public class UserHomepage extends AppCompatActivity {
         ImageButton viewMapButt = (ImageButton) findViewById(R.id.viewMap);
         ImageButton emergencyButt = (ImageButton) findViewById(R.id.emergency);
         ImageButton personalInfoButt = (ImageButton) findViewById(R.id.personalInfo);
+        ImageButton reviewHistoryButt = (ImageButton) findViewById(R.id.reviewHistory);
 
         logoutButt.setOnClickListener(new View.OnClickListener() {
 
@@ -75,6 +76,15 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, PersonalInfo.class);
+                startActivity(intent);
+            }
+        });
+
+        reviewHistoryButt.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserHomepage.this, UserReviewHistory.class);
                 startActivity(intent);
             }
         });

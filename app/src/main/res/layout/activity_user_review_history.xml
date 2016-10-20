@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ucsd.cse110fa16.group14.ipark.UserReviewHistory">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/scroll">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:id="@+id/relative"
+            android:layout_below="@+id/button15">
+
+            <TextView
+                android:text="10/01/16                          G1"
+                android:layout_width="270dp"
+                android:textSize="16dp"
+                android:layout_height="25dp"
+                android:background="@drawable/lighter_border"
+                android:layout_marginTop="28dp"
+                android:textColor="#CCE5FF"
+                android:id="@+id/textView60"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_marginStart="37dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:text="Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textStyle="bold"
+        android:textSize="17dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="23dp"
+        android:id="@+id/textView58" />
+
+    <TextView
+        android:text="Parking Spot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="17dp"
+        android:layout_marginEnd="53dp"
+        android:id="@+id/textView59"
+        android:layout_alignBaseline="@+id/textView58"
+        android:layout_alignBottom="@+id/textView58"
+        android:layout_alignEnd="@+id/cancelButton" />
+
+    <TextView
+        android:text="10/02/16                          G1"
+        android:layout_width="270dp"
+        android:textSize="16dp"
+        android:layout_height="25dp"
+        android:background="@drawable/lighter_border"
+        android:layout_marginTop="72dp"
+        android:textColor="#CCE5FF"
+        android:id="@+id/textView61"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_below="@+id/textView58"
+        android:layout_alignStart="@+id/textView58" />
+
+    <TextView
+        android:text="10/03/16                          G2"
+        android:layout_width="270dp"
+        android:textSize="16dp"
+        android:layout_height="25dp"
+        android:background="@drawable/lighter_border"
+        android:layout_marginTop="26dp"
+        android:textColor="#CCE5FF"
+        android:id="@+id/textView64"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_below="@+id/textView61"
+        android:layout_alignStart="@+id/textView61" />
+
+    <TextView
+        android:text="10/04/16                          M23"
+        android:layout_width="270dp"
+        android:textSize="16dp"
+        android:layout_height="25dp"
+        android:background="@drawable/lighter_border"
+        android:textColor="#CCE5FF"
+        android:id="@+id/textView65"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_below="@+id/textView64"
+        android:layout_alignStart="@+id/textView64"
+        android:layout_marginTop="26dp" />
+
+    <TextView
+        android:text="10/06/16                          R11"
+        android:layout_width="270dp"
+        android:textSize="16dp"
+        android:layout_height="25dp"
+        android:background="@drawable/lighter_border"
+        android:textColor="#CCE5FF"
+        android:id="@+id/textView66"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_below="@+id/textView65"
+        android:layout_alignStart="@+id/textView65"
+        android:layout_marginTop="28dp" />
+
+    <TextView
+        android:text="10/07/16                          G17"
+        android:layout_width="270dp"
+        android:textSize="16dp"
+        android:layout_height="25dp"
+        android:background="@drawable/lighter_border"
+        android:textColor="#CCE5FF"
+        android:id="@+id/textView67"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_below="@+id/textView66"
+        android:layout_alignStart="@+id/textView66"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:text="10/10/16                          G1"
+        android:layout_width="270dp"
+        android:textSize="16dp"
+        android:layout_height="25dp"
+        android:background="@drawable/lighter_border"
+        android:textColor="#CCE5FF"
+        android:id="@+id/textView69"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_below="@+id/textView67"
+        android:layout_alignStart="@+id/textView67"
+        android:layout_marginTop="24dp" />
+
+    <Button
+        android:text="next "
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelButton"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        tools:ignore="HardcodedText"
+        android:textAllCaps="false"
+        android:layout_below="@+id/scroll"
+        android:layout_alignEnd="@+id/textView69" />
+
+    <Button
+        android:text="Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/homeButton"
+        android:layout_below="@+id/scroll"
+        android:layout_alignStart="@+id/textView69" />
+
+
+</RelativeLayout>
