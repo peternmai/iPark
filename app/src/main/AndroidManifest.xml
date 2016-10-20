@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ucsd.cse110fa16.group14.ipark">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +26,9 @@
         <!-- >>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be -->
         <activity android:name=".Payment" />
         <activity android:name=".LoginPage" />
+        <activity android:name = ".UserHomepage" />
+        <activity android:name = ".UserReviewHistory" />
+        <activity android:name=".PersonalInfo" />
         <activity android:name=".Clockin" />
         <activity android:name=".activity_review" />
         <activity android:name=".CountDownCheckOut" />
@@ -47,7 +53,9 @@
         <activity android:name=".NewPasswordRequest" />
         <activity android:name=".RecieveNewParking" />
         <activity android:name=".Resume" />
+
         <activity android:name=".History_2_user"></activity>
+
     </application>
 
 </manifest>

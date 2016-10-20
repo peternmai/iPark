@@ -48,8 +48,8 @@
         android:textSize ="20sp"
         android:layout_height="wrap_content"
         android:id="@+id/resetButton"
-        android:layout_alignBaseline="@+id/button4"
-        android:layout_alignBottom="@+id/button4"
+        android:layout_alignBaseline="@+id/submit_registration"
+        android:layout_alignBottom="@+id/submit_registration"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="27dp" />
 
@@ -71,7 +71,7 @@
         android:layout_width="150dp"
         android:textSize ="20sp"
         android:layout_height="wrap_content"
-        android:id="@+id/button4"
+        android:id="@+id/submit_registration"
         android:layout_marginTop="69dp"
         android:layout_below="@+id/userPassword"
         android:layout_toStartOf="@+id/resetButton" />

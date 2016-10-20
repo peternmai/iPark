@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.CheckBox;
+import com.firebase.client.Firebase;
 
 /**
  * Created by Mag on 10/10/2016.
@@ -27,8 +28,12 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
+        Firebase.setAndroidContext(this);
+        Firebase iPark = new Firebase("https://ipark-e243b.firebaseio.com");
+
         Button registerButton = (Button) findViewById(R.id.registerButton);
         Button loginButton = (Button) findViewById(R.id.loginButton);
+        CheckBox forgotPassword = (CheckBox) findViewById(R.id.checkBox);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -43,14 +48,15 @@ public class LoginPage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, Clockin.class);
+                Intent intent = new Intent(LoginPage.this, UserHomepage.class);
                 startActivity(intent);
             }
         });
 
-
-
-
+        if(forgotPassword.isChecked()){
+            Intent intent = new Intent(LoginPage.this, ForgotPassword_1.class);
+            startActivity(intent);
+        }
 
     }
 }

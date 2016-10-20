@@ -27,16 +27,18 @@
 
     <Button
         android:text="REPORT"
-        android:id="@+id/button9"
+        android:id="@+id/send"
+        android:layout_alignBaseline="@+id/editText"
+        android:layout_alignBottom="@+id/editText"
+        android:layout_alignParentEnd="true"
         android:layout_height="50dp"
         android:textColor="#000000"
         android:textAlignment="center"
         android:textSize="18sp"
         android:layout_width="100dp"
+        android:layout_alignEnd="@+id/editText"
         android:layout_alignParentBottom="false"
-        android:layout_below="@+id/imageView4"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBaseline="@+id/editText" />
+        android:layout_below="@+id/imageView4" />
 
     <EditText
         android:inputType="numberDecimal"
@@ -48,14 +50,17 @@
         android:layout_width="250dp"
         android:layout_above="@+id/button14"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="13dp"
-        android:layout_toLeftOf="@+id/button9" />
+        android:layout_marginBottom="13dp" />
 
-    <ucsd.cse110fa16.group14.ipark.UserMapInteractive
+    <ImageView
+        app:srcCompat="@mipmap/map"
+        android:id="@+id/imageView4"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="700px"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/button9" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
