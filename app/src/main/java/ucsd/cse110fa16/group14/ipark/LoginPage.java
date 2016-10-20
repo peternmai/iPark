@@ -48,7 +48,7 @@ public class LoginPage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, Clockin.class);
+                Intent intent = new Intent(LoginPage.this, UserHomepage.class);
                 startActivity(intent);
             }
         });
