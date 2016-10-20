@@ -27,7 +27,7 @@
 
     <ImageButton
         app:srcCompat="@mipmap/reserve_button"
-        android:id="@+id/personalInfoButt"
+        android:id="@+id/reserveButton"
         android:adjustViewBounds="true"
         android:padding="0dp"
         android:scaleType="fitCenter"
@@ -37,17 +37,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reserve Spot"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:id="@+id/textView37"
-        android:layout_below="@+id/personalInfoButt"
-        android:layout_alignEnd="@+id/personalInfoButt" />
-
     <ImageButton
         app:srcCompat="@mipmap/check_status"
         android:adjustViewBounds="true"
@@ -56,7 +45,7 @@
         tools:background="@android:color/background_light"
         android:layout_height="120dp"
         android:scaleType="fitCenter"
-        android:id="@+id/imageButton3"
+        android:id="@+id/checkStatus"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
@@ -70,17 +59,6 @@
         android:id="@+id/text2"
         android:layout_below="@+id/butt2"
         android:layout_alignEnd="@+id/butt2" />
-
-    <TextView
-        android:text="Check Status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:id="@+id/textView38"
-        android:layout_below="@+id/imageButton3"
-        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="Report Vehicle"
@@ -137,7 +115,7 @@
         android:textSize="15dp"
         android:textStyle="bold"
         android:layout_alignBottom="@+id/textView40"
-        android:layout_alignStart="@+id/imageButton4"
+        android:layout_alignStart="@+id/viewMap"
         android:layout_marginStart="11dp"
         android:id="@+id/textView41" />
 
@@ -149,7 +127,7 @@
         tools:background="@android:color/background_light"
         android:layout_height="120dp"
         android:scaleType="fitCenter"
-        android:id="@+id/imageButton4"
+        android:id="@+id/viewMap"
         android:layout_above="@+id/textView41"
         android:layout_alignParentEnd="true" />
 
@@ -162,7 +140,7 @@
         android:scaleType="fitCenter"
         app:srcCompat="@mipmap/emergency_button"
         android:layout_marginTop="27dp"
-        android:id="@+id/imageButton7"
+        android:id="@+id/emergency"
         android:layout_below="@+id/textView39"
         android:layout_alignStart="@+id/textView39" />
 
@@ -174,8 +152,8 @@
         android:textSize="15dp"
         android:textStyle="bold"
         android:id="@+id/textView42"
-        android:layout_below="@+id/imageButton7"
-        android:layout_alignEnd="@+id/imageButton7" />
+        android:layout_below="@+id/emergency"
+        android:layout_alignEnd="@+id/emergency" />
 
     <ImageButton
         app:srcCompat="@mipmap/logout_button"
@@ -186,7 +164,7 @@
         android:layout_height="120dp"
         android:scaleType="fitCenter"
         android:id="@+id/logoutButton"
-        android:layout_alignTop="@+id/imageButton7"
+        android:layout_alignTop="@+id/emergency"
         android:layout_alignParentEnd="true" />
 
     <TextView
@@ -199,6 +177,28 @@
         android:layout_alignBottom="@+id/textView42"
         android:layout_alignStart="@+id/textView41"
         android:id="@+id/textView43" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reserve Spot"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView37"
+        android:layout_below="@+id/reserveButton"
+        android:layout_alignEnd="@+id/reserveButton" />
+
+    <TextView
+        android:text="Check Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView38"
+        android:layout_below="@+id/checkStatus"
+        android:layout_alignStart="@+id/textView41" />
 
 
 </RelativeLayout>
