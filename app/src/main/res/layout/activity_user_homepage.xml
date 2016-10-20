@@ -15,7 +15,7 @@
 
     <ImageButton
         app:srcCompat="@mipmap/personal_info"
-        android:id="@+id/butt2"
+        android:id="@+id/personalInfo"
         android:adjustViewBounds="true"
         android:padding="0dp"
         android:scaleType="fitCenter"
@@ -57,8 +57,8 @@
         android:textSize="15dp"
         android:textStyle="bold"
         android:id="@+id/text2"
-        android:layout_below="@+id/butt2"
-        android:layout_alignEnd="@+id/butt2" />
+        android:layout_below="@+id/personalInfo"
+        android:layout_alignEnd="@+id/personalInfo" />
 
     <TextView
         android:text="Report Vehicle"
