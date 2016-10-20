@@ -16,14 +16,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:id="@+id/button5"
-        android:layout_below="@+id/button4"
-        android:layout_alignStart="@+id/button4" />
+        android:layout_below="@+id/submit_registration"
+        android:layout_alignStart="@+id/submit_registration" />
 
     <Button
         android:text="Default Pay Options"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button4"
+        android:id="@+id/submit_registration"
         android:elevation="0dp"
         android:layout_marginTop="128dp"
         android:layout_alignParentTop="true"

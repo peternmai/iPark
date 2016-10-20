@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.firebase.client.Firebase;
+
 public class DriverRegistration extends AppCompatActivity {
     @Override
     protected void onPause() {
@@ -23,7 +25,11 @@ public class DriverRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_registration);
 
+        Firebase.setAndroidContext(this);
+
+        Button submit = (Button) findViewById(R.id.submit_registration);
         Button reset = (Button)findViewById(R.id.resetButton);
+
         final EditText firstName = (EditText)findViewById(R.id.firstName);
         final EditText lastName = (EditText)findViewById(R.id.lastName);
         final EditText email = (EditText)findViewById(R.id.emailAddress);
@@ -41,5 +47,26 @@ public class DriverRegistration extends AppCompatActivity {
 
             }
         });
+
+        submit.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                Driver driver = new Driver();
+                driver.setName(firstName,lastName);
+                driver.setEmail(email);
+                driver.setUsername(username);
+                driver.setPassword(password);
+
+                Firebase myFirebaseRef = new Firebase("https://ipark-e243b.firebaseio.com");
+                myFirebaseRef.child(driver.getUsername()).setValue(driver);
+
+                Intent output = new Intent();
+                setResult(RESULT_OK, output);
+                finish();
+            }
+        });
+
+
     }
 }
