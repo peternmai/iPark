@@ -26,9 +26,6 @@
         <!-- >>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be -->
         <activity android:name=".Payment" />
         <activity android:name=".LoginPage" />
-        <activity android:name = ".UserHomepage" />
-        <activity android:name = ".UserReviewHistory" />
-        <activity android:name=".PersonalInfo" />
         <activity android:name=".Clockin" />
         <activity android:name=".activity_review" />
         <activity android:name=".CountDownCheckOut" />
@@ -53,9 +50,7 @@
         <activity android:name=".NewPasswordRequest" />
         <activity android:name=".RecieveNewParking" />
         <activity android:name=".Resume" />
-
-        <activity android:name=".History_2_user"></activity>
-
+        <activity android:name=".OwnerRegistration"></activity>
     </application>
 
 </manifest>
