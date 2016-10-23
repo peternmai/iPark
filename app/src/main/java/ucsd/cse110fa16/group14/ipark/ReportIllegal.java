@@ -35,5 +35,7 @@ public class ReportIllegal extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 }
