@@ -35,9 +35,8 @@
         <activity android:name=".comment" />
         <activity android:name=".Reservation" />
         <activity android:name=".MapDirectional" />
-        <activity android:name=".ReportIllegal">
-            <activity android:name=".Settings" />
-        </activity>
+        <activity android:name=".ReportIllegal"/>
+        <activity android:name=".Settings" />
         <activity
             android:name=".NavigationMenu"
             android:label="@string/title_activity_navigation_menu"
@@ -50,7 +49,9 @@
         <activity android:name=".NewPasswordRequest" />
         <activity android:name=".RecieveNewParking" />
         <activity android:name=".Resume" />
-        <activity android:name=".OwnerRegistration"></activity>
+        <activity android:name=".OwnerRegistration"/>
+        <activity android:name=".UserHomepage">
+        </activity>
     </application>
 
 </manifest>

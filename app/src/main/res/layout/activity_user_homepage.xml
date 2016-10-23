@@ -103,7 +103,7 @@
         tools:background="@android:color/background_light"
         android:layout_height="120dp"
         android:scaleType="fitCenter"
-        android:id="@+id/imageButton2"
+        android:id="@+id/reportvehicle"
         android:layout_above="@+id/textView40"
         android:layout_alignEnd="@+id/textView40" />
 
