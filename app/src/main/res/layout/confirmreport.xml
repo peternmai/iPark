@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="100dp" />
+
+
+    <TextView
+        android:text="Confirmation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="23dp"
+        android:id="@+id/confirmation"
+        android:textAppearance="@android:style/TextAppearance.Material.Display1"
+        android:layout_below="@+id/image"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/dialog_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Thank you for reporting! You received $3."
+        android:layout_weight="1"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/confirmation"
+        android:layout_alignStart="@+id/confirmation" />
+
+    <Button
+        android:id="@+id/dialog_ok"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.27"
+        android:background="@android:color/white"
+        android:text="ok"
+        android:layout_marginTop="109dp"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
