@@ -35,7 +35,7 @@
         <activity android:name=".comment" />
         <activity android:name=".Reservation" />
         <activity android:name=".MapDirectional" />
-        <activity android:name=".ReportIllegal"/>
+        <activity android:name=".ReportIllegal" />
         <activity android:name=".Settings" />
         <activity
             android:name=".NavigationMenu"
@@ -49,10 +49,10 @@
         <activity android:name=".NewPasswordRequest" />
         <activity android:name=".RecieveNewParking" />
         <activity android:name=".Resume" />
-        <activity android:name=".OwnerRegistration"/>
-        <activity android:name=".UserHomepage"/>
-        <activity android:name=".UserReviewHistory">
-        </activity>
+        <activity android:name=".OwnerRegistration" />
+        <activity android:name=".UserHomepage" />
+        <activity android:name=".UserReviewHistory"></activity>
+        <activity android:name=".MessageUsersActivity"></activity>
     </application>
 
 </manifest>
