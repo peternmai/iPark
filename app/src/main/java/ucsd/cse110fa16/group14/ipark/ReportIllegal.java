@@ -1,13 +1,26 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import static android.R.attr.id;
 
 public class ReportIllegal extends AppCompatActivity {
+    private Context cContext;
+    public void ViewBreakout(Context context) {
+        this.cContext = context;
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -26,13 +39,33 @@ public class ReportIllegal extends AppCompatActivity {
         Button cancelButt = (Button) findViewById(R.id.cancel);
 
 
-
         cancelButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReportIllegal.this, MapDirectional.class);
                 startActivity(intent);
+
+            }
+        });
+
+        reportButt.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+            AlertDialog.Builder confirm = new AlertDialog.Builder(ReportIllegal.this);
+            confirm.setMessage("Thank you for reporting! You have received $3.")
+                   .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                       @Override
+                       public void onClick(DialogInterface dialog, int which) {
+                           Intent intent = new Intent(ReportIllegal.this, UserReviewHistory.class);
+                           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                           startActivity(intent);
+                       }
+                   });
+                AlertDialog alert = confirm.create();
+                alert.setTitle("Confirmation");
+                alert.show();
             }
         });
     }

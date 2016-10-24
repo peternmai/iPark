@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_message_users"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ucsd.cse110fa16.group14.ipark.MessageUsersActivity">
+
+    <TextView
+        android:text="Compose Message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView56"
+        android:textStyle="normal|bold"
+        android:textSize="25sp" />
+
+    <CheckBox
+        android:text="Reserved Parking User"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox6"
+        android:layout_below="@+id/checkBox4"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:text="Illegal Paraking User"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox7"
+        android:layout_below="@+id/checkBox5"
+        android:layout_alignStart="@+id/checkBox4" />
+
+    <CheckBox
+        android:text="Upcoming Arrival"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox5"
+        android:layout_below="@+id/checkBox6"
+        android:layout_alignStart="@+id/checkBox6" />
+
+    <CheckBox
+        android:text="Staff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox8"
+        android:layout_below="@+id/checkBox7"
+        android:layout_alignStart="@+id/checkBox7" />
+
+    <CheckBox
+        android:text="Regular Parked Users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox4"
+        android:layout_below="@+id/textView57"
+        android:layout_alignStart="@+id/checkBox6" />
+
+    <TextView
+        android:text="Select Audience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/textView57"
+        android:layout_below="@+id/textView56"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/msgCancel" />
+
+    <Button
+        android:text="Send"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/msgSend"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:inputType="textMultiLine|textLongMessage"
+        android:ems="10"
+        android:id="@+id/editText27"
+        android:layout_height="150dp"
+        android:textAlignment="textStart"
+        android:backgroundTint="?attr/colorButtonNormal"
+        android:hint="Enter Message Here"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:singleLine="false"
+        android:selectAllOnFocus="false"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_below="@+id/checkBox8"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

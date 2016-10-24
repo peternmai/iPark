@@ -11,6 +11,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.MapDirectional">
 
+    <ucsd.cse110fa16.group14.ipark.UserMapInteractive
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/editText" />
+
     <Button
         android:text="EMERGENCY CALL"
         android:layout_width="match_parent"
@@ -51,16 +56,5 @@
         android:layout_above="@+id/button14"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="13dp" />
-
-    <ImageView
-        app:srcCompat="@mipmap/map"
-        android:id="@+id/imageView4"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-
-        android:layout_width="match_parent"
-        android:layout_height="700px"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
