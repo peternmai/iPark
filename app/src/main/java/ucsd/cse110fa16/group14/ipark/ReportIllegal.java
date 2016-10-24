@@ -39,13 +39,13 @@ public class ReportIllegal extends AppCompatActivity {
         Button cancelButt = (Button) findViewById(R.id.cancel);
 
 
-
         cancelButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReportIllegal.this, MapDirectional.class);
                 startActivity(intent);
+
             }
         });
 
@@ -53,20 +53,19 @@ public class ReportIllegal extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-                LayoutInflater inflate = getLayoutInflater();
-                View alertLayout = inflate.inflate(R.layout.confirmreport, null);
-                AlertDialog.Builder confirm = new AlertDialog.Builder(ReportIllegal.this);
-                    confirm.setTitle(R.id.confirmation);
-                    confirm.setPositiveButton(R.id.dialog_ok, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                        Intent intent = new Intent(ReportIllegal.this, UserReviewHistory.class);
-                        startActivity(intent);
-                    }
-                });
+            AlertDialog.Builder confirm = new AlertDialog.Builder(ReportIllegal.this);
+            confirm.setMessage("Thank you for reporting! You have received $3.")
+                   .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                       @Override
+                       public void onClick(DialogInterface dialog, int which) {
+                           Intent intent = new Intent(ReportIllegal.this, UserReviewHistory.class);
+                           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                           startActivity(intent);
+                       }
+                   });
                 AlertDialog alert = confirm.create();
+                alert.setTitle("Confirmation");
                 alert.show();
-                alert.setContentView(R.layout.confirmreport);
             }
         });
     }
