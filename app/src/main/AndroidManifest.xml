@@ -50,7 +50,8 @@
         <activity android:name=".RecieveNewParking" />
         <activity android:name=".Resume" />
         <activity android:name=".OwnerRegistration"/>
-        <activity android:name=".UserHomepage">
+        <activity android:name=".UserHomepage"/>
+        <activity android:name=".History_2_user">
         </activity>
     </application>
 

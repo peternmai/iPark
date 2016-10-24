@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class History_2_user extends ListActivity {
 
@@ -14,10 +15,12 @@ public class History_2_user extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_2_user);
 
-        String[] transactions = {"Illegal Parking Reported", "Parked at #14 (2hrs)", "Parked at #20 (3hrs)"};
+        //ListView trns = (ListView)findViewById(R.id.l);
+        String[] transactions = new String[]{ "Illegal Parking: 24", "Illegal Parking: 25", "Illegal Parking: 40"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getListView().getContext(),
-                android.R.layout.simple_list_item_1, transactions);
+            android.R.layout.simple_list_item_1, transactions);
         getListView().setAdapter(adapter);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
