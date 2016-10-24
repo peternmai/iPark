@@ -31,5 +31,9 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     testCompile 'junit:junit:4.12'
     compile 'com.firebase:firebase-client-android:2.5.0+'
+
+    compile 'com.google.firebase:firebase-database:9.6.0'
+    compile 'com.google.firebase:firebase-crash:9.6.0'
+    compile 'com.google.firebase:firebase-auth:9.6.0'
 }
 apply plugin: 'com.google.gms.google-services'
