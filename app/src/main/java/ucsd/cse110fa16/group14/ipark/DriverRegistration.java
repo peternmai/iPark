@@ -25,8 +25,6 @@ public class DriverRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_registration);
 
-        Firebase.setAndroidContext(this);
-
         Button submit = (Button) findViewById(R.id.submit_registration);
         Button reset = (Button)findViewById(R.id.resetButton);
 
@@ -52,7 +50,7 @@ public class DriverRegistration extends AppCompatActivity {
 
             @Override
             public void onClick(View v){
-                Driver driver = new Driver();
+                User driver = new User("driver");
                 driver.setName(firstName,lastName);
                 driver.setEmail(email);
                 driver.setUsername(username);
