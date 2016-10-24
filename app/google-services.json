@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "483490640416",
+    "firebase_url": "https://ipark-e243b.firebaseio.com",
+    "project_id": "ipark-e243b",
+    "storage_bucket": "ipark-e243b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483490640416:android:ef32119f93890164",
+        "android_client_info": {
+          "package_name": "ucsd.cse110fa16.group14.ipark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483490640416-rq93c2r2r5mr6oibf1qmo9pit3e50f14.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ucsd.cse110fa16.group14.ipark",
+            "certificate_hash": "3473A75621F64B4DB79FBDFCFB670C76BA7E56F0"
+          }
+        },
+        {
+          "client_id": "483490640416-vb1d286mjb2vonlv4cpn40vgkg8ldnfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7rZGYLFgCMB4vgl5QFMT-fSynW_tVKTY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483490640416-vb1d286mjb2vonlv4cpn40vgkg8ldnfe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
