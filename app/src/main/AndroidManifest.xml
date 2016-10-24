@@ -6,12 +6,12 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".iPark"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".iPark">
+        android:theme="@style/AppTheme">
         <activity android:name=".LoginScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,17 +50,13 @@
         <activity android:name=".NewPasswordRequest" />
         <activity android:name=".RecieveNewParking" />
         <activity android:name=".Resume" />
-
-        <activity android:name=".OwnerRegistration"/>
-        <activity android:name=".UserHomepage"/>
-        <activity android:name=".History_2_user">
-        </activity>
-
-
-
-        <activity android:name=".UserReviewHistory"></activity>
-        <activity android:name=".MessageUsersActivity"></activity>
-
+        <activity android:name=".OwnerRegistration" />
+        <activity android:name=".UserHomepage" />
+        <activity android:name=".History_2_user" />
+        <activity android:name=".UserReviewHistory" />
+        <activity android:name=".MessageUsersActivity" />
+        <activity android:name=".InvalidEmail" />
+        <activity android:name=".InvalidUsername"></activity>
     </application>
 
 </manifest>
