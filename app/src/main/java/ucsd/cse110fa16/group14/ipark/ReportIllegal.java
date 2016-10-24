@@ -1,5 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -59,7 +60,7 @@ public class ReportIllegal extends AppCompatActivity {
                     confirm.setTitle(R.id.confirmation);
                     confirm.setPositiveButton(R.id.dialog_ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                         Intent intent = new Intent(cContext, UserReviewHistory.class);
+                        Intent intent = new Intent(ReportIllegal.this, UserReviewHistory.class);
                         startActivity(intent);
                     }
                 });

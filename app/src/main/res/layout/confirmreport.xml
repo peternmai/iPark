@@ -4,13 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
-
+    tools:context=".ReportIllegal"
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="100dp" />
-
 
     <TextView
         android:text="Confirmation"
@@ -42,7 +41,6 @@
         android:background="@android:color/white"
         android:text="ok"
         android:layout_marginTop="109dp"
-        android:layout_below="@+id/linearLayout2"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
