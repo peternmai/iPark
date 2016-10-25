@@ -3,13 +3,26 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="MAIN FRAGMENT!!!! Hello there. What should go on this page? To see sidebar menu, click on the left upper corner."
-        android:textSize="20dp"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ucsd.cse110fa16.group14.ipark.BossMap">
+
+
+    <ucsd.cse110fa16.group14.ipark.MapInteractive
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/textView9" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView29" />
+
+    <TextView
+        android:text="Click to change parking spot status. Long press to change parking spot rate.\n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView29"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="center" />
 </RelativeLayout>
 
 </FrameLayout>
