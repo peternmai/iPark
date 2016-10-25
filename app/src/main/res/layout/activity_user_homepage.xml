@@ -61,17 +61,6 @@
         android:layout_alignEnd="@+id/personalInfo" />
 
     <TextView
-        android:text="Report Vehicle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:layout_alignBottom="@+id/textView39"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView40" />
-
-    <TextView
         android:text="Review History"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,89 +84,6 @@
         android:layout_below="@+id/text2"
         android:layout_alignParentStart="true" />
 
-    <ImageButton
-        app:srcCompat="@mipmap/report_vehicle"
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        tools:background="@android:color/background_light"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        android:id="@+id/reportvehicle"
-        android:layout_above="@+id/textView40"
-        android:layout_alignEnd="@+id/textView40" />
-
-    <TextView
-        android:text="View Map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:layout_alignBottom="@+id/textView40"
-        android:layout_alignStart="@+id/viewMap"
-        android:layout_marginStart="11dp"
-        android:id="@+id/textView41" />
-
-    <ImageButton
-        app:srcCompat="@mipmap/map_button"
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        tools:background="@android:color/background_light"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        android:id="@+id/viewMap"
-        android:layout_above="@+id/textView41"
-        android:layout_alignParentEnd="true" />
-
-    <ImageButton
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        tools:background="@android:color/background_light"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@mipmap/emergency_button"
-        android:layout_marginTop="27dp"
-        android:id="@+id/emergency"
-        android:layout_below="@+id/textView39"
-        android:layout_alignStart="@+id/textView39" />
-
-    <TextView
-        android:text="Emergency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:id="@+id/textView42"
-        android:layout_below="@+id/emergency"
-        android:layout_alignEnd="@+id/emergency" />
-
-    <ImageButton
-        app:srcCompat="@mipmap/logout_button"
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        tools:background="@android:color/background_light"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        android:id="@+id/logoutButton"
-        android:layout_alignTop="@+id/emergency"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:layout_alignBottom="@+id/textView42"
-        android:layout_alignStart="@+id/textView41"
-        android:id="@+id/textView43" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -198,7 +104,78 @@
         android:textStyle="bold"
         android:id="@+id/textView38"
         android:layout_below="@+id/checkStatus"
-        android:layout_alignStart="@+id/textView41" />
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        app:srcCompat="@mipmap/logout_button"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:layout_width="110dp"
+        tools:background="@android:color/background_light"
+        android:layout_height="120dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/logoutButton"
+        android:layout_above="@+id/textView43"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:layout_width="110dp"
+        tools:background="@android:color/background_light"
+        android:layout_height="120dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@mipmap/emergency_button"
+        android:id="@+id/emergency"
+        android:layout_above="@+id/textView41"
+        android:layout_alignStart="@+id/textView38" />
+
+    <ImageButton
+        app:srcCompat="@mipmap/map_button"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:layout_width="110dp"
+        tools:background="@android:color/background_light"
+        android:layout_height="120dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/viewMap"
+        android:layout_alignTop="@+id/reviewHistory"
+        android:layout_alignEnd="@+id/textView37" />
+
+    <TextView
+        android:text="Emergency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView42"
+        android:layout_below="@+id/emergency"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView43"
+        android:layout_marginBottom="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/textView41"
+        android:layout_marginStart="17dp" />
+
+    <TextView
+        android:text="Map/Report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView41"
+        android:layout_below="@+id/viewMap"
+        android:layout_alignEnd="@+id/viewMap" />
 
 
 </RelativeLayout>
