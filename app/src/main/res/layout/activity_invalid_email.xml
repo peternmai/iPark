@@ -111,7 +111,7 @@
         android:text="Sorry, this email has already been used.\nPlease try again with a different email."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView57"
+        android:id="@+id/invalidEmailTV"
         android:layout_below="@+id/userPassword"
         android:layout_alignParentStart="true"
         android:layout_marginTop="12dp"

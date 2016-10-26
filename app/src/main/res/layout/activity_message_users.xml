@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textView56"
+        android:id="@+id/invalidUsernameTV"
         android:textStyle="normal|bold"
         android:textSize="25sp" />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/checkBox4"
-        android:layout_below="@+id/textView57"
+        android:layout_below="@+id/invalidEmailTV"
         android:layout_alignStart="@+id/checkBox6" />
 
     <TextView
@@ -66,8 +66,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
-        android:id="@+id/textView57"
-        android:layout_below="@+id/textView56"
+        android:id="@+id/invalidEmailTV"
+        android:layout_below="@+id/invalidUsernameTV"
         android:layout_centerHorizontal="true" />
 
     <Button

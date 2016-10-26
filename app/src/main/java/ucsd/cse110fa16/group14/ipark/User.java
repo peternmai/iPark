@@ -54,11 +54,11 @@ public class User {
         }
     }
 
-
+/*
     protected void setName(String firstName, String lastName) {
         this.name = new Name(firstName, lastName);
     }
-
+*/
     protected void setName(EditText firstName, EditText lastName){
         this.name = new Name(firstName.getText().toString(), lastName.getText().toString());
     }
@@ -70,11 +70,11 @@ public class User {
     protected String getEmail() {
         return this.email;
     }
-
+/*
     protected void setEmail(String email){
         this.email= email;
     }
-
+*/
     protected void setEmail(EditText email){
         this.email = email.getText().toString();
     }
@@ -83,10 +83,11 @@ public class User {
         return this.license;
     }
 
+    /*
     protected void setLicense(String license){
         this.license = license;
     }
-
+*/
     protected void setLicense(EditText license){
         this.license = license.getText().toString();
     }
@@ -94,11 +95,11 @@ public class User {
     protected String getUsername() {
         return this.username;
     }
-
+/*
     protected void setUsername(String username){
         this.username = username;
     }
-
+*/
     protected void setUsername(EditText username){
         String userNameString = username.getText().toString();
         this.username = userNameString;
@@ -107,11 +108,11 @@ public class User {
     protected String getPassword() {
         return this.password;
     }
-
+/*
     protected void setPassword(String password){
         this.password = password;
     }
-
+*/
     protected void setPassword(EditText password){
         this.password = password.getText().toString();
     }

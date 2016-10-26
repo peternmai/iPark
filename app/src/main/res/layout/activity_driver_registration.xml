@@ -66,16 +66,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:text="SUBMIT"
-        android:layout_width="150dp"
-        android:textSize ="20sp"
-        android:layout_height="wrap_content"
-        android:id="@+id/submit_registration"
-        android:layout_marginTop="69dp"
-        android:layout_below="@+id/userPassword"
-        android:layout_toStartOf="@+id/resetButton" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,5 +96,43 @@
         android:layout_below="@+id/emailAddress"
         android:layout_alignParentStart="true"
         android:hint="Driver's License #" />
+
+    <TextView
+        android:text="Sorry, this username is already taken.\nPlease try again with a different username."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:id="@+id/invalidUsernameTV"
+        android:textColor="@android:color/holo_red_light"
+        android:layout_below="@+id/userPassword"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Sorry, this email has already been used.\nPlease try again with a different email."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/invalidEmailTV"
+        android:layout_below="@+id/userPassword"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:textColor="@android:color/holo_red_light" />
+
+    <Button
+        android:text="SUBMIT"
+        android:layout_width="150dp"
+        android:textSize ="20sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/submit_registration"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/resetButton" />
+
+    <CheckBox
+        android:text="I'm not a robot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notARobot"
+        android:layout_above="@+id/resetButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="12dp" />
 
 </RelativeLayout>

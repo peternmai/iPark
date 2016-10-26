@@ -112,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:id="@+id/textView56"
+        android:id="@+id/invalidUsernameTV"
         android:textColor="@android:color/holo_red_light"
         android:layout_below="@+id/userPassword"
         android:layout_alignParentStart="true" />
