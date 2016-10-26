@@ -35,7 +35,7 @@ public class DriverRegistration extends AppCompatActivity {
     private static HashSet<String> emails = new HashSet<>();
     protected static HashMap<String, String> uMapEmail = new HashMap<>();
     private FirebaseAuth auth;
-    private boolean authCreated = false;
+    private boolean authCreated;
 
     @Override
     protected void onPause() {
@@ -86,6 +86,7 @@ public class DriverRegistration extends AppCompatActivity {
                 invalidUser.setText("");
                 invalidEmail.setText("");
                 notRobot.setChecked(false);
+                submit.setEnabled(false);
             }
         });
 
@@ -112,18 +113,15 @@ public class DriverRegistration extends AppCompatActivity {
                     invalidEmail.setText(msg2);
                     invalidUser.setText("");
                 } else {
+                    notRobot.setChecked(false);
+                    submit.setEnabled(false);
+                    String finalMsg = "Congratulations!!! Your account has been created.";
+                    invalidUser.setText(finalMsg);
+                    FirebaseAuth.getInstance().signOut();
                     createAccount(driver.getEmail(), driver.getPassword());
-                    if (authCreated) {
-                        myFirebaseRef.child(driver.getUsername()).setValue(driver);
-                        notRobot.setChecked(false);
-                        submit.setEnabled(false);
-                        String finalMsg = "Congratulations!!! Your account has been created.";
-                        invalidUser.setText(finalMsg);
-                    } else {
-                        String finalMsg = "Sorry, you have an invalid email or the password is too short. Please try again.";
-                        invalidUser.setText(finalMsg);
-                        notRobot.setChecked(false);
-                    }
+                    myFirebaseRef.child(driver.getUsername()).setValue(driver);
+                    Intent intent = new Intent(DriverRegistration.this, LoginPage.class);
+                    startActivity(intent);
                 }
                 //Intent output = new Intent();
                 //setResult(RESULT_OK, output);
@@ -200,7 +198,8 @@ public class DriverRegistration extends AppCompatActivity {
         }
     }
 
-    private void createAccount(String mail, String pass) {
+
+    private boolean createAccount(String mail, String pass) {
         if (TextUtils.isEmpty(mail) || TextUtils.isEmpty(pass)) {
             Toast.makeText(DriverRegistration.this, "Please enter username and password.", Toast.LENGTH_LONG).show();
         } else {
@@ -210,18 +209,16 @@ public class DriverRegistration extends AppCompatActivity {
                     if (!task.isSuccessful()) {
                         Toast.makeText(DriverRegistration.this, "Error signing up", Toast.LENGTH_LONG).show();
                         authCreated = false;
+                        FirebaseAuth.getInstance().signOut();
                     } else {
                         Toast.makeText(DriverRegistration.this, "Signing up successful", Toast.LENGTH_LONG).show();
                         authCreated = true;
                         FirebaseAuth.getInstance().signOut();
-                        Intent intent = new Intent(DriverRegistration.this, LoginPage.class);
-                        startActivity(intent);
                     }
                 }
             });
         }
-
-
+        return authCreated;
     }
 }
 
