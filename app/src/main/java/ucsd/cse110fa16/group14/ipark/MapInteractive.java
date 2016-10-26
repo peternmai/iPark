@@ -3,29 +3,24 @@ package ucsd.cse110fa16.group14.ipark;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Point;
-import android.os.Handler;
-import android.text.InputType;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
+import android.os.Handler;
+import android.text.InputType;
+import android.util.AttributeSet;
+import android.view.Display;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import android.view.WindowManager;
-import android.view.Display;
-import android.widget.EditText;
-
-import org.w3c.dom.Text;
-
-import static android.support.v4.app.ActivityCompat.startActivity;
 import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
 
 /**

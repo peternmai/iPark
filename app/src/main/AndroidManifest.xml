@@ -50,13 +50,10 @@
         <activity android:name=".NewPasswordRequest" />
         <activity android:name=".RecieveNewParking" />
         <activity android:name=".Resume" />
-        <activity android:name=".OwnerRegistration" />
         <activity android:name=".UserHomepage" />
         <activity android:name=".History_2_user" />
         <activity android:name=".UserReviewHistory" />
         <activity android:name=".MessageUsersActivity" />
-        <activity android:name=".InvalidEmail" />
-        <activity android:name=".InvalidUsername"></activity>
     </application>
 
 </manifest>

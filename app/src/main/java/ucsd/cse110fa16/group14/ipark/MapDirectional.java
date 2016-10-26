@@ -1,13 +1,8 @@
 package ucsd.cse110fa16.group14.ipark;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
-import java.util.Map;
+import android.support.v7.app.AppCompatActivity;
 
 public class MapDirectional extends AppCompatActivity {
     @Override

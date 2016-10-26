@@ -1,6 +1,5 @@
 package ucsd.cse110fa16.group14.ipark;
 
-import java.util.Random;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,6 +14,7 @@ import android.view.WindowManager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by Peter on 10/16/2016.
@@ -60,12 +60,12 @@ public class UserMapInteractive extends View {
         screenHeight = size.y;
         screenWidth = size.x;
 
-        y_tl = screenHeight/25;
-        x_tl = screenWidth/25;
+        y_tl = screenHeight / 25;
+        x_tl = screenWidth / 25;
 
-        width = screenWidth /15;
-        height = screenHeight /20;
-        gap = screenWidth/ 50;
+        width = screenWidth / 15;
+        height = screenHeight / 20;
+        gap = screenWidth / 50;
         setBackgroundColor(Color.LTGRAY);
 
         //initialize the paint colors
@@ -88,7 +88,7 @@ public class UserMapInteractive extends View {
         Random rand = new Random();
 
         //initialize the rectangles & map
-        for(int i = 0; i < numSpaces; i++) {
+        for (int i = 0; i < numSpaces; i++) {
 
             Rect r = new Rect();
             r.set(x_tl + gap, y_tl, x_tl + width, y_tl + height);
@@ -97,19 +97,18 @@ public class UserMapInteractive extends View {
             x_tl += width + gap;
 
             //10 spaces per row
-            if((i+1)%10== 0) {
-                x_tl = screenWidth/25;
+            if ((i + 1) % 10 == 0) {
+                x_tl = screenWidth / 25;
                 y_tl += height + gap;
 
                 //20 spaces per group
-                if((i+1)%20 == 0) {
+                if ((i + 1) % 20 == 0) {
                     y_tl += 40;
                 }
             }
 
-            recCol.put(r, paints[ rand.nextInt(4) ]);
+            recCol.put(r, paints[rand.nextInt(4)]);
         }
-
 
 
     }
@@ -131,11 +130,11 @@ public class UserMapInteractive extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas){
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         cv = canvas;
 
-        for(Map.Entry<Rect, Paint> r : recCol.entrySet()) {
+        for (Map.Entry<Rect, Paint> r : recCol.entrySet()) {
             Rect key = r.getKey();
             Paint paint = r.getValue();
 
@@ -144,7 +143,7 @@ public class UserMapInteractive extends View {
     }
 
     @Override
-    public  boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event) {
         // Do nothing for now
 
         return true;
@@ -156,10 +155,10 @@ public class UserMapInteractive extends View {
         Paint p = recCol.get(r);
 
         //index in array of paint
-        int idx= 0;
+        int idx = 0;
         int newIdx;
-        for(int i = 0; i < paints.length; i++) {
-            if(paints[i] == p ) {
+        for (int i = 0; i < paints.length; i++) {
+            if (paints[i] == p) {
                 idx = i;
             }
         }

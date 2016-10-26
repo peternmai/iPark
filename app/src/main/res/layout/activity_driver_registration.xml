@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText11"
+        android:id="@+id/license"
         android:layout_below="@+id/emailAddress"
         android:layout_alignParentStart="true"
         android:hint="Driver's License #" />
