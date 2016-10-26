@@ -24,7 +24,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="20dp"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        android:onClick="showDialog" />
 
     <Button
         android:text="CLEAR"
