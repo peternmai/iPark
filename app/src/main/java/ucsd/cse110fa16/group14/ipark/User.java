@@ -76,7 +76,7 @@ public class User {
         }
     */
     protected void setEmail(EditText email) {
-        this.email = email.getText().toString();
+        this.email = email.getText().toString().toLowerCase();
     }
 
     protected String getLicense() {
@@ -103,7 +103,7 @@ public class User {
     */
     protected void setUsername(EditText username) {
         String userNameString = username.getText().toString();
-        this.username = userNameString;
+        this.username = userNameString.toLowerCase();
     }
 
     protected String getPassword() {

@@ -24,7 +24,7 @@ public class ForgotPassword_1 extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password_1);
 
         Button sendButton = (Button) findViewById(R.id.send);
-        EditText backToLogin = (EditText) findViewById(R.id.editText9);
+        EditText backToLogin = (EditText) findViewById(R.id.editText8);
 
         sendButton.setOnClickListener(new View.OnClickListener(){
             @Override

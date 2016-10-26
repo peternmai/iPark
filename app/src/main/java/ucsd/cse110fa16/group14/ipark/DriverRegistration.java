@@ -71,6 +71,7 @@ public class DriverRegistration extends AppCompatActivity {
                 clear(editTexts1);
                 invalidUser.setText("");
                 invalidEmail.setText("");
+                notRobot.setChecked(false);
             }
         });
 
