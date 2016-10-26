@@ -12,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -116,19 +115,15 @@ public class LoginPage extends AppCompatActivity {
     private void signIn() {
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
-        if (!(DriverRegistration.uMapEmail.containsKey(username))) {
-            Toast.makeText(LoginPage.this, "Invalid Username.", Toast.LENGTH_LONG).show();
-            usernameField.setText("");
-            passwordField.setText("");
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+            Toast.makeText(LoginPage.this, "Please enter your username and password.", Toast.LENGTH_LONG).show();
         } else {
-            String email = DriverRegistration.uMapEmail.get(username);
-            if (email == null) {
+            if (!(DriverRegistration.uMapEmail.containsKey(username))) {
                 Toast.makeText(LoginPage.this, "Invalid Username.", Toast.LENGTH_LONG).show();
-            }
-
-            if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-                Toast.makeText(LoginPage.this, "Please enter your username and password.", Toast.LENGTH_LONG).show();
+                usernameField.setText("");
+                passwordField.setText("");
             } else {
+                String email = DriverRegistration.uMapEmail.get(username);
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -145,4 +140,6 @@ public class LoginPage extends AppCompatActivity {
             }
         }
     }
+
 }
+
