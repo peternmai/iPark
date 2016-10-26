@@ -5,17 +5,23 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * Created by Mag on 10/19/2016.
  */
 
 public class UserHomepage extends AppCompatActivity {
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
 
+        auth = FirebaseAuth.getInstance();
         ImageButton logoutButt = (ImageButton) findViewById(R.id.logoutButton);
         ImageButton reserveButt = (ImageButton) findViewById(R.id.reserveButton);
         ImageButton checkStatusButt = (ImageButton) findViewById(R.id.checkStatus);
@@ -29,6 +35,8 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, LoginPage.class);
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(UserHomepage.this, "Successfully logged out", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

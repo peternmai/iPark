@@ -35,5 +35,6 @@ dependencies {
     compile 'com.google.firebase:firebase-database:9.6.0'
     compile 'com.google.firebase:firebase-crash:9.6.0'
     compile 'com.google.firebase:firebase-auth:9.6.0'
+    compile 'com.google.firebase:firebase-auth:9.6.0'
 }
 apply plugin: 'com.google.gms.google-services'
