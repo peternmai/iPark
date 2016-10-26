@@ -24,6 +24,7 @@ import java.util.Iterator;
 public class DriverRegistration extends AppCompatActivity {
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     private static HashSet<String> users = new HashSet<>();
+    private static HashSet<String> emails = new HashSet<>();
 
 
     @Override
@@ -92,6 +93,9 @@ public class DriverRegistration extends AppCompatActivity {
                 if (users.contains(driver.getUsername())) {
                     invalidEmail.setText("");
                     invalidUser.setText(msg1);
+                } else if (emails.contains(driver.getEmail())) {
+                    invalidEmail.setText(msg2);
+                    invalidUser.setText("");
                 } else {
                     myFirebaseRef.child(driver.getUsername()).setValue(driver);
                     EditText[] editTexts1 = {firstName, lastName, email, username, password, license};
@@ -126,9 +130,25 @@ public class DriverRegistration extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterable<DataSnapshot> usernames = dataSnapshot.getChildren();
                 Iterator<DataSnapshot> iterator = usernames.iterator();
+
+                //Getting usernames
                 while (iterator.hasNext()) {
-                    String uname = iterator.next().getKey();
+                    DataSnapshot node = iterator.next();
+                    String uname = node.getKey();
                     users.add(uname);
+
+                    Iterable<DataSnapshot> userInfo = node.getChildren();
+                    Iterator<DataSnapshot> iterator1 = userInfo.iterator();
+
+                    //Getting emails
+                    while (iterator1.hasNext()) {
+                        DataSnapshot innerNode = iterator1.next();
+                        String innerKey = innerNode.getKey();
+                        if(innerKey.equals("email")){
+                            String mail = innerNode.getValue(String.class);
+                            emails.add(mail);
+                        }
+                    }
                 }
             }
 
