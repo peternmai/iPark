@@ -69,6 +69,8 @@ public class DriverRegistration extends AppCompatActivity {
             public void onClick(View v) {
                 EditText[] editTexts1 = {firstName, lastName, email, username, password, license};
                 clear(editTexts1);
+                invalidUser.setText("");
+                invalidEmail.setText("");
             }
         });
 
@@ -84,6 +86,7 @@ public class DriverRegistration extends AppCompatActivity {
                 driver.setEmail(email);
                 driver.setUsername(username);
                 driver.setPassword(password);
+                driver.setLicense(license);
 
                 if (users.contains(driver.getUsername())) {
                     invalidEmail.setText("");
@@ -91,12 +94,13 @@ public class DriverRegistration extends AppCompatActivity {
                 } else {
                     myFirebaseRef.child(driver.getUsername()).setValue(driver);
                     EditText[] editTexts1 = {firstName, lastName, email, username, password, license};
-                    clear(editTexts1);
+                    notRobot.setChecked(false);
+                    submit.setEnabled(false);
+                    String finalMsg = "Congratulations!!! Your account has been created.";
+                    invalidUser.setText(finalMsg);
                 }
                 Intent output = new Intent();
                 setResult(RESULT_OK, output);
-                String finalMsg = "Congratulations!!! Your account has been created.";
-                invalidUser.setText(finalMsg);
             }
         });
 
