@@ -1,12 +1,12 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -32,6 +32,7 @@ public class DriverRegistration extends AppCompatActivity {
     protected static HashMap<String, String> uMapEmail = new HashMap<>();
     private FirebaseAuth auth;
     private User newUser;
+    private ProgressDialog progress;
 
     @Override
     protected void onPause() {
@@ -50,6 +51,7 @@ public class DriverRegistration extends AppCompatActivity {
         setContentView(R.layout.activity_driver_registration);
 
         auth = FirebaseAuth.getInstance();
+        progress = new ProgressDialog(this);
 
         final Button submit = (Button) findViewById(R.id.submit_registration);
         Button reset = (Button) findViewById(R.id.resetButton);
@@ -70,10 +72,13 @@ public class DriverRegistration extends AppCompatActivity {
         final EditText license = (EditText) findViewById(R.id.license);
 
 
+        //Get data from Firebase
         getData();
 
+        //Turn off the submit button at first
         submit.setEnabled(false);
 
+        //Resets the text fields, buttons, and the checkbox.
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +92,7 @@ public class DriverRegistration extends AppCompatActivity {
         });
 
 
+        //Process the input and create a new user.
         submit.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -120,20 +126,21 @@ public class DriverRegistration extends AppCompatActivity {
                     invalidUser.setText(msg1);
                     notRobot.setChecked(false);
                     submit.setEnabled(false);
-                } else {
+                } else { //Valid info is presented
                     notRobot.setChecked(false);
                     submit.setEnabled(false);
                     String finalMsg = "Congratulations!!! Your account has been created.";
                     invalidUser.setText(finalMsg);
-                    FirebaseAuth.getInstance().signOut();
                     createAccount(newUser.getEmail(), newUser.getPassword());
                     Intent output = new Intent();
                     setResult(RESULT_OK, output);
+                    output.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     finish();
                 }
             }
         });
 
+        //Check if all text fields are full.
         notRobot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,8 +155,12 @@ public class DriverRegistration extends AppCompatActivity {
     }
 
 
+    /**
+     * Get the user names from firebase database and store it locally.
+     */
     protected void getData() {
 
+        //Getting all the usernames
         Firebase userReference = new Firebase("https://ipark-e243b.firebaseio.com/Users");
 
         userReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
@@ -182,12 +193,17 @@ public class DriverRegistration extends AppCompatActivity {
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-                Log.w("loadPost:onCancelled", firebaseError.toException());
+                Toast.makeText(DriverRegistration.this, "Could not connect to the database", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    protected boolean isEmpty(EditText[] editTexts) {
+    /**
+     * Helper method to see if all text fields are empty
+     * @param editTexts array of text fields
+     * @return true if all text fields in the array are empty
+     */
+    private boolean isEmpty(EditText[] editTexts) {
 
         for (int i = 0; i < editTexts.length; i++) {
             if (editTexts[i].getText().toString().equals("")) {
@@ -197,27 +213,37 @@ public class DriverRegistration extends AppCompatActivity {
         return false;
     }
 
-    protected void clear(EditText[] editTexts) {
+    /**
+     * Helper method to clear all the textfields
+     * @param editTexts array that needs to be cleared
+     */
+    private void clear(EditText[] editTexts) {
         for (int i = 0; i < editTexts.length; i++) {
             editTexts[i].setText("");
         }
     }
 
-
+    /**
+     * Creates an account in firebase database as well as gives access to login.
+     * @param mail email to use
+     * @param pass password to use
+     */
     private void createAccount(String mail, String pass) {
         final Firebase myFirebaseRef = new Firebase("https://ipark-e243b.firebaseio.com/Users");
 
         if (TextUtils.isEmpty(mail) || TextUtils.isEmpty(pass)) {
             Toast.makeText(DriverRegistration.this, "Please enter username and password.", Toast.LENGTH_LONG).show();
         } else {
+            progress.show();
+            progress.setMessage("Signing in....");
             auth.createUserWithEmailAndPassword(mail, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
                         Toast.makeText(DriverRegistration.this, "Error signing up", Toast.LENGTH_LONG).show();
-                        FirebaseAuth.getInstance().signOut();
                     } else {
-                        Toast.makeText(DriverRegistration.this, "Signing up successful", Toast.LENGTH_LONG).show();
+                        progress.dismiss();
+                        Toast.makeText(DriverRegistration.this, "Sign up successful", Toast.LENGTH_LONG).show();
                         myFirebaseRef.child(newUser.getUsername()).setValue(newUser);
                     }
                 }

@@ -1,5 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,8 +29,10 @@ public class LoginPage extends AppCompatActivity {
     private Button registerButton;
     private Button loginButton;
     private CheckBox forgotPassword;
+    private ProgressDialog progress;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
+
 
     @Override
     protected void onPause() {
@@ -63,7 +66,6 @@ public class LoginPage extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-
         registerButton = (Button) findViewById(R.id.registerButton);
         loginButton = (Button) findViewById(R.id.loginButton);
 
@@ -72,14 +74,17 @@ public class LoginPage extends AppCompatActivity {
 
         forgotPassword = (CheckBox) findViewById(R.id.checkBox);
 
+        progress = new ProgressDialog(this);
+
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                //User is singed in
                 if (firebaseAuth.getCurrentUser() != null) {
                     Intent intent = new Intent(LoginPage.this, UserHomepage.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
-
             }
         };
 
@@ -88,10 +93,12 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginPage.this, DriverRegistration.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
 
+        //Sign in when log in button is pressed
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -112,27 +119,37 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
+    /**
+     * Takes the user name from the text field as an input
+     * and looks for the corresponding email in the database.
+     * Then it logs in using the email found and the password
+     * entered in the text field.
+     */
     private void signIn() {
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-            Toast.makeText(LoginPage.this, "Please enter your username and password.", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginPage.this, "Please enter your username and password", Toast.LENGTH_LONG).show();
         } else {
             if (!(DriverRegistration.uMapEmail.containsKey(username))) {
-                Toast.makeText(LoginPage.this, "Invalid Username.", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginPage.this, "Invalid Username", Toast.LENGTH_LONG).show();
                 usernameField.setText("");
                 passwordField.setText("");
             } else {
                 String email = DriverRegistration.uMapEmail.get(username);
+                progress.show();
+                progress.setMessage("Signing in....");
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
-                            Toast.makeText(LoginPage.this, "Invalid password. Please try again.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginPage.this, "Invalid password.\nPlease try again.", Toast.LENGTH_LONG).show();
                             passwordField.setText("");
                         } else {
-                            Toast.makeText(LoginPage.this, "Signing in successful", Toast.LENGTH_LONG).show();
+                            progress.dismiss();
+                            Toast.makeText(LoginPage.this, "Sign in successful", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(LoginPage.this, UserHomepage.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                         }
                     }

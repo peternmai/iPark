@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 
 public class UserHomepage extends AppCompatActivity {
-    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,8 @@ public class UserHomepage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, LoginPage.class);
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(UserHomepage.this, "Successfully logged out", Toast.LENGTH_LONG).show();
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Toast.makeText(UserHomepage.this, "Logout Successful", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
