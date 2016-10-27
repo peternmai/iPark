@@ -132,10 +132,6 @@ public class DriverRegistration extends AppCompatActivity {
                     String finalMsg = "Congratulations!!! Your account has been created.";
                     invalidUser.setText(finalMsg);
                     createAccount(newUser.getEmail(), newUser.getPassword());
-                    Intent output = new Intent();
-                    setResult(RESULT_OK, output);
-                    output.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    finish();
                 }
             }
         });
@@ -242,9 +238,13 @@ public class DriverRegistration extends AppCompatActivity {
                     if (!task.isSuccessful()) {
                         Toast.makeText(DriverRegistration.this, "Error signing up", Toast.LENGTH_LONG).show();
                     } else {
-                        progress.dismiss();
                         Toast.makeText(DriverRegistration.this, "Sign up successful", Toast.LENGTH_LONG).show();
                         myFirebaseRef.child(newUser.getUsername()).setValue(newUser);
+                        progress.dismiss();
+                        Intent intent = new Intent(DriverRegistration.this,LoginPage.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        setResult(RESULT_OK, intent);
+                        finish();
                     }
                 }
             });

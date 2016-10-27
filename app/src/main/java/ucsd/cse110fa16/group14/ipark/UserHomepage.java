@@ -15,6 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class UserHomepage extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,8 @@ public class UserHomepage extends AppCompatActivity {
         ImageButton emergencyButt = (ImageButton) findViewById(R.id.emergency);
         ImageButton personalInfoButt = (ImageButton) findViewById(R.id.personalInfo);
         ImageButton reviewHistoryButt = (ImageButton) findViewById(R.id.reviewHistory);
+
+        mAuth = FirebaseAuth.getInstance();
 
         logoutButt.setOnClickListener(new View.OnClickListener() {
 
