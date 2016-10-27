@@ -26,6 +26,17 @@ public class User {
         }
     }
 
+    public User(String firstName, String lastName, String email, String license, String username, String password, boolean owner){
+        Name name = new Name(firstName,lastName);
+        this.name = name;
+        this.email = email;
+        this.license = license;
+        this.username = username;
+        this.password = password;
+        this.owner = owner;
+    }
+
+
     protected class Name {
         String firstName;
         String lastName;
