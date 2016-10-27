@@ -129,8 +129,6 @@ public class DriverRegistration extends AppCompatActivity {
                 } else { //Valid info is presented
                     notRobot.setChecked(false);
                     submit.setEnabled(false);
-                    String finalMsg = "Congratulations!!! Your account has been created.";
-                    invalidUser.setText(finalMsg);
                     createAccount(newUser.getEmail(), newUser.getPassword());
                 }
             }
@@ -236,6 +234,7 @@ public class DriverRegistration extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
+                        progress.dismiss();
                         Toast.makeText(DriverRegistration.this, "Error signing up", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(DriverRegistration.this, "Sign up successful", Toast.LENGTH_LONG).show();
