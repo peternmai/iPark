@@ -29,7 +29,8 @@
         <activity android:name=".LoginPage" />
         <activity android:name=".Clockin" />
         <activity android:name=".activity_review" />
-        <activity android:name=".CountDownCheckOut" />
+        <activity android:name=".CountDownCheckOut"/>
+
         <activity android:name=".CommentBoss" />
         <activity android:name=".BossEmergency" />
         <activity android:name=".BossMap" />
