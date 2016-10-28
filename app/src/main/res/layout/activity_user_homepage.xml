@@ -202,5 +202,33 @@
         android:layout_centerHorizontal="true"
         android:background="#FFFFFF" />
 
+    <ImageButton
+        app:srcCompat="@mipmap/help"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:layout_width="110dp"
+        android:layout_height="120dp"
+        tools:background="#FFFFFF"
+        android:background="#FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/reserveButton"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:id="@+id/textView56"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignStart="@+id/textView38"
+        android:layout_marginStart="18dp" />
+
 
 </RelativeLayout>
