@@ -45,7 +45,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         Button mapButt = (Button) findViewById(R.id.button8);
         Button emergButton = (Button) findViewById(R.id.emer);
 
-        Button help = (Button) findViewById(R.id.button4);
+        Button help = (Button) findViewById(R.id.button16);
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

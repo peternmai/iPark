@@ -29,8 +29,7 @@
         <activity android:name=".LoginPage" />
         <activity android:name=".Clockin" />
         <activity android:name=".activity_review" />
-        <activity android:name=".CountDownCheckOut"/>
-
+        <activity android:name=".CountDownCheckOut" />
         <activity android:name=".CommentBoss" />
         <activity android:name=".BossEmergency" />
         <activity android:name=".BossMap" />
@@ -55,6 +54,7 @@
         <activity android:name=".History_2_user" />
         <activity android:name=".UserReviewHistory" />
         <activity android:name=".MessageUsersActivity" />
+        <activity android:name=".HELP_USER"></activity>
     </application>
 
 </manifest>
