@@ -13,6 +13,118 @@
     tools:context="ucsd.cse110fa16.group14.ipark.UserHomepage">
 
 
+    <TextView
+        android:text="History"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView39"
+        android:layout_below="@+id/reviewHistory"
+        android:layout_alignEnd="@+id/reviewHistory"
+        android:textColor="#404040"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView38"
+        android:layout_below="@+id/checkStatus"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="center"
+        android:textColor="#404040" />
+
+    <ImageButton
+        app:srcCompat="@mipmap/logout_button"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:layout_width="110dp"
+        tools:background="@android:color/background_light"
+        android:layout_height="120dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/logoutButton"
+        android:layout_above="@+id/textView43"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView42"
+        android:layout_below="@+id/emergency"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="center"
+        android:textColor="#404040" />
+
+    <TextView
+        android:text="Map/Report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView41"
+        android:layout_below="@+id/viewMap"
+        android:layout_alignEnd="@+id/viewMap"
+        android:textAlignment="center"
+        android:textColor="#202020" />
+
+    <ImageButton
+        app:srcCompat="@mipmap/check_status"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:layout_width="110dp"
+        tools:background="@android:color/background_light"
+        android:layout_height="120dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/checkStatus"
+        android:layout_alignTop="@+id/viewMap"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:layout_width="110dp"
+        tools:background="@android:color/background_light"
+        android:layout_height="120dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@mipmap/emergency_button"
+        android:id="@+id/emergency"
+        android:layout_below="@+id/textView39" />
+
+    <TextView
+        android:text="Emergency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView43"
+        android:layout_below="@+id/emergency"
+        android:layout_alignEnd="@+id/emergency"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent" />
+
+    <ImageButton
+        app:srcCompat="@mipmap/map_button"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:layout_width="110dp"
+        tools:background="@android:color/background_light"
+        android:layout_height="120dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/viewMap"
+        android:layout_alignTop="@+id/reviewHistory"
+        android:layout_alignEnd="@+id/textView37" />
+
     <ImageButton
         app:srcCompat="@mipmap/personal_info"
         android:id="@+id/personalInfo"
@@ -37,39 +149,31 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageButton
-        app:srcCompat="@mipmap/check_status"
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        tools:background="@android:color/background_light"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        android:id="@+id/checkStatus"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Personal Info"
+        android:text="Profile"
         android:ems="6"
         android:textSize="15dp"
         android:textStyle="bold"
         android:id="@+id/text2"
+        android:textAlignment="center"
+        android:textColor="#404040"
         android:layout_below="@+id/personalInfo"
         android:layout_alignEnd="@+id/personalInfo" />
 
     <TextView
-        android:text="Review History"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Reserve"
         android:ems="6"
         android:textSize="15dp"
         android:textStyle="bold"
-        android:id="@+id/textView39"
-        android:layout_below="@+id/reviewHistory"
-        android:layout_alignEnd="@+id/reviewHistory" />
+        android:id="@+id/textView37"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:layout_below="@+id/reserveButton"
+        android:layout_alignStart="@+id/reserveButton" />
 
     <ImageButton
         app:srcCompat="@mipmap/review_history"
@@ -80,102 +184,8 @@
         android:layout_height="120dp"
         android:scaleType="fitCenter"
         android:id="@+id/reviewHistory"
-        android:layout_marginTop="28dp"
         android:layout_below="@+id/text2"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reserve Spot"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:id="@+id/textView37"
-        android:layout_below="@+id/reserveButton"
-        android:layout_alignEnd="@+id/reserveButton" />
-
-    <TextView
-        android:text="Check Status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:id="@+id/textView38"
-        android:layout_below="@+id/checkStatus"
-        android:layout_alignParentEnd="true" />
-
-    <ImageButton
-        app:srcCompat="@mipmap/logout_button"
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        tools:background="@android:color/background_light"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        android:id="@+id/logoutButton"
-        android:layout_above="@+id/textView43"
-        android:layout_alignParentEnd="true" />
-
-    <ImageButton
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        tools:background="@android:color/background_light"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@mipmap/emergency_button"
-        android:id="@+id/emergency"
-        android:layout_above="@+id/textView41"
-        android:layout_alignStart="@+id/textView38" />
-
-    <ImageButton
-        app:srcCompat="@mipmap/map_button"
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        tools:background="@android:color/background_light"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        android:id="@+id/viewMap"
-        android:layout_alignTop="@+id/reviewHistory"
-        android:layout_alignEnd="@+id/textView37" />
-
-    <TextView
-        android:text="Emergency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:id="@+id/textView42"
-        android:layout_below="@+id/emergency"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:id="@+id/textView43"
-        android:layout_marginBottom="23dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/textView41"
-        android:layout_marginStart="17dp" />
-
-    <TextView
-        android:text="Map/Report"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:id="@+id/textView41"
-        android:layout_below="@+id/viewMap"
-        android:layout_alignEnd="@+id/viewMap" />
 
 
 </RelativeLayout>
