@@ -38,7 +38,7 @@ public class Payment extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Payment.this, Clockin.class);
+                Intent intent = new Intent(Payment.this, UserHomepage.class);
                 startActivity(intent);
             }
         });

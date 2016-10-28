@@ -111,7 +111,8 @@
         android:layout_below="@+id/emergency"
         android:layout_alignEnd="@+id/emergency"
         android:textAlignment="center"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        tools:ignore="HardcodedText" />
 
     <ImageButton
         app:srcCompat="@mipmap/map_button"

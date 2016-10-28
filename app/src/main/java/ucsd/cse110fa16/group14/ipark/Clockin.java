@@ -46,9 +46,10 @@ public class Clockin extends AppCompatActivity {
 
         Button logoutButt = (Button) findViewById(R.id.button7);
         Button reset = (Button)findViewById(R.id.button3);
-        //relativeLayout = (RelativeLayout) findViewById(R.id.relative);
-
+        Button help = (Button) findViewById(R.id.button4);
         Button confirmButt = (Button) findViewById(R.id.button);
+
+
         confirmButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,8 +77,6 @@ public class Clockin extends AppCompatActivity {
                 alert.show();
 
 
-
-
             }
             //@Override
             //public void onClick(View v) {
@@ -89,7 +88,8 @@ public class Clockin extends AppCompatActivity {
             //}
         });
 
-        Button help = (Button) findViewById(R.id.button4);
+
+
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,8 +109,10 @@ public class Clockin extends AppCompatActivity {
                 hlp.setNegativeButton("No", null);
                 AlertDialog alertDialog = hlp.create();
                 alertDialog.show();
+
             }
         });
+
 
 
         logoutButt.setOnClickListener(new View.OnClickListener() {
@@ -119,8 +121,10 @@ public class Clockin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Clockin.this, LoginPage.class);
                 startActivity(intent);
+
             }
         });
+
 
         final EditText startTime = (EditText)findViewById(R.id.editText2);
         final EditText endTime = (EditText)findViewById(R.id.editText3);
