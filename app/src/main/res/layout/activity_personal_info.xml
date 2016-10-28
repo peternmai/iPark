@@ -73,7 +73,7 @@
 
     <Button
         android:text="HOME"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="58dp"
         android:id="@+id/button19"
@@ -81,13 +81,91 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="28dp" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText11"
+        android:text="first"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textView44"
+        android:layout_alignBottom="@+id/textView44"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText25"
+        android:text="last"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textView45"
+        android:layout_alignBottom="@+id/textView45"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText28"
+        android:text="a1234567"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textView47"
+        android:layout_alignBottom="@+id/textView47"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText9"
+        android:text="account"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textView48"
+        android:layout_alignBottom="@+id/textView48"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText29"
+        android:text="123456"
+        android:layout_alignBaseline="@+id/textView49"
+        android:layout_alignBottom="@+id/textView49"
+        android:layout_alignStart="@+id/editText9"
+        android:textAlignment="textStart"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText30"
+        android:layout_alignBaseline="@+id/textView46"
+        android:layout_alignBottom="@+id/textView46"
+        android:layout_alignStart="@+id/editText25"
+        android:text="hhh@ucsd.edu"
+        android:textAlignment="textStart"
+        android:textSize="20sp" />
+
     <Button
         android:text="UPDATE"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:id="@+id/button21"
         android:layout_alignBaseline="@+id/button19"
         android:layout_alignBottom="@+id/button19"
-        android:layout_alignEnd="@+id/textView49" />
+        android:layout_alignStart="@+id/textView49" />
 
 </RelativeLayout>

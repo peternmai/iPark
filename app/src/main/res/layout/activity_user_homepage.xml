@@ -223,12 +223,12 @@
         android:layout_height="wrap_content"
         android:ems="6"
         android:textSize="15dp"
-        android:textColor="#000000"
+        android:textColor="#404040"
         android:textStyle="bold"
         android:id="@+id/textView56"
+        android:textAlignment="center"
         android:layout_below="@+id/imageButton"
-        android:layout_alignStart="@+id/textView38"
-        android:layout_marginStart="18dp" />
+        android:layout_alignStart="@+id/textView38" />
 
 
 </RelativeLayout>

@@ -44,7 +44,7 @@ public class Clockin extends AppCompatActivity {
         setContentView(R.layout.activity_clockin);
 
 
-        Button logoutButt = (Button) findViewById(R.id.button7);
+        Button homeButt = (Button) findViewById(R.id.button7);
         Button reset = (Button)findViewById(R.id.button3);
         Button help = (Button) findViewById(R.id.button4);
         Button confirmButt = (Button) findViewById(R.id.button);
@@ -56,7 +56,7 @@ public class Clockin extends AppCompatActivity {
 
                 AlertDialog.Builder altial = new AlertDialog.Builder(Clockin.this);
                 altial.setMessage("$2.50/hr").setCancelable(false)
-                        .setPositiveButton("Okay, charge me!", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Deal!", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(Clockin.this, Payment.class);
@@ -115,11 +115,11 @@ public class Clockin extends AppCompatActivity {
 
 
 
-        logoutButt.setOnClickListener(new View.OnClickListener() {
+        homeButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Clockin.this, LoginPage.class);
+                Intent intent = new Intent(Clockin.this, UserHomepage.class);
                 startActivity(intent);
 
             }
