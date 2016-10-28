@@ -29,8 +29,12 @@
         <activity android:name=".LoginPage" />
         <activity android:name=".Clockin" />
         <activity android:name=".activity_review" />
+<<<<<<< HEAD
         <activity android:name=".CountDownCheckOut"/>
         <activity android:name=".PersonalInfo"/>
+=======
+        <activity android:name=".CountDownCheckOut" />
+>>>>>>> d616484625deada12c4b671e2a9ea916f5f9369b
         <activity android:name=".CommentBoss" />
         <activity android:name=".BossEmergency" />
         <activity android:name=".BossMap" />
@@ -55,6 +59,7 @@
         <activity android:name=".History_2_user" />
         <activity android:name=".UserReviewHistory" />
         <activity android:name=".MessageUsersActivity" />
+        <activity android:name=".HELP_USER"></activity>
     </application>
 
 </manifest>

@@ -138,7 +138,7 @@
         android:layout_centerInParent="false"
         android:id="@+id/emer"
         tools:ignore="HardcodedText"
-        android:backgroundTint="#ED4337"
+        android:backgroundTint="#d75349"
         android:layout_below="@+id/button2"
         android:layout_alignParentStart="true" />
 
