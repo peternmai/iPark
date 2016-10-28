@@ -45,6 +45,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         Button help = (Button) findViewById(R.id.button16);
 
 
+        /* information page */
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +72,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         });
 
 
+        /* check out and go to review */
         checkoutButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -82,6 +84,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         });
 
 
+        /* report your own spot */
         reportButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -93,6 +96,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         });
 
 
+        /* go to map */
         mapButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -103,6 +107,8 @@ public class CountDownCheckOut extends AppCompatActivity {
             }
         });
 
+
+        /* emergency call */
         emergencyButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
