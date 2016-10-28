@@ -31,14 +31,10 @@
         android:id="@+id/editText10"
         android:background="@drawable/my_border"
         android:layout_below="@+id/textView6"
-        android:paddingStart="10dp"
-        android:paddingTop="10dp"
         android:layout_marginTop="10dp"
         android:fadingEdge="horizontal"
         android:gravity="top|fill_horizontal"
-        android:textColor="#606060"
-        android:paddingBottom="10dp"
-        android:paddingEnd="10dp"
+        android:textColor="#202020"
         tools:ignore="HardcodedText,LabelFor"
         android:hint="Your opinion matters..." />
 

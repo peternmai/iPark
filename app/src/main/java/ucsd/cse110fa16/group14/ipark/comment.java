@@ -29,7 +29,7 @@ public class comment extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(comment.this, Clockin.class);
+                Intent intent = new Intent(comment.this, UserHomepage.class);
                 startActivity(intent);
             }
         });
@@ -38,7 +38,7 @@ public class comment extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(comment.this, activity_review.class);
+                Intent intent = new Intent(comment.this, UserHomepage.class);
                 startActivity(intent);
             }
         });

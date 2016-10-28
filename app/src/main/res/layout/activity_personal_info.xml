@@ -28,7 +28,7 @@
         android:layout_alignStart="@+id/textView44" />
 
     <TextView
-        android:text="Email Address: "
+        android:text="Email: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -39,15 +39,15 @@
         android:id="@+id/textView46" />
 
     <TextView
-        android:text="Driver's License #:"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView46"
         android:textStyle="bold"
         android:textSize="20dp"
         android:layout_alignStart="@+id/textView46"
         android:layout_marginTop="25dp"
-        android:id="@+id/textView47" />
+        android:id="@+id/textView47"
+        android:text="License  " />
 
     <TextView
         android:text="Username: "
@@ -99,32 +99,13 @@
         android:id="@+id/textView54" />
 
     <TextView
-        android:text="************"
+        android:text="123456"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="19dp"
         android:layout_alignBottom="@+id/textView49"
         android:layout_toEndOf="@+id/textView47"
         android:id="@+id/textView55" />
-
-    <TextView
-        android:text="Hello Kitty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView50"
-        android:textSize="19dp"
-        android:layout_alignBaseline="@+id/textView44"
-        android:layout_alignBottom="@+id/textView44"
-        android:layout_toEndOf="@+id/textView46" />
-
-    <TextView
-        android:text="D1234566"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:id="@+id/textView53"
-        android:layout_alignBottom="@+id/textView47"
-        android:layout_alignEnd="@+id/textView55" />
 
     <Button
         android:text="UPDATE INFO"
@@ -143,5 +124,25 @@
         android:layout_alignTop="@+id/button19"
         android:layout_alignStart="@+id/textView55"
         android:id="@+id/button21" />
+
+    <TextView
+        android:text="Hello Kitty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView50"
+        android:textSize="19dp"
+        android:layout_marginStart="76dp"
+        android:layout_alignBaseline="@+id/textView44"
+        android:layout_alignBottom="@+id/textView44"
+        android:layout_toEndOf="@+id/textView44" />
+
+    <TextView
+        android:text="D1234566"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:id="@+id/textView53"
+        android:layout_above="@+id/textView48"
+        android:layout_alignStart="@+id/textView52" />
 
 </RelativeLayout>

@@ -8,7 +8,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ucsd.cse110fa16.group14.ipark.LoginPage">
+    tools:context="ucsd.cse110fa16.group14.ipark.LoginPage"
+    android:screenOrientation="portrait"
+    android:windowSoftInputMode="adjustResize|stateHidden" >
 
     <EditText
         android:ems="10"
@@ -49,18 +51,6 @@
         tools:ignore="HardcodedText" />
 
     <Button
-        android:text="REGISTER"
-        android:layout_width="150dp"
-        android:textSize ="20sp"
-        android:layout_height="wrap_content"
-        android:id="@+id/registerButton"
-        android:layout_alignBaseline="@+id/loginButton"
-        android:layout_alignBottom="@+id/loginButton"
-        android:layout_toEndOf="@+id/loginButton"
-        android:layout_marginStart="31dp"
-        tools:ignore="HardcodedText" />
-
-    <Button
         android:text="LOGIN"
         android:layout_width="150dp"
         android:textSize ="20sp"
@@ -90,4 +80,17 @@
         android:layout_alignBottom="@+id/userName"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:text="REGISTER"
+        android:layout_width="150dp"
+        android:textSize ="20sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/registerButton"
+        tools:ignore="HardcodedText"
+        android:layout_marginEnd="15dp"
+        android:layout_alignBaseline="@+id/loginButton"
+        android:layout_alignBottom="@+id/loginButton"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
+

@@ -10,7 +10,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ucsd.cse110fa16.group14.ipark.Clockin">
+    tools:context="ucsd.cse110fa16.group14.ipark.Clockin"
+    android:screenOrientation="portrait"
+    android:windowSoftInputMode="adjustResize|stateHidden" >
 
     <Button
         android:text="CONFIRM"
