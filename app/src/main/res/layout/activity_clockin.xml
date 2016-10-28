@@ -109,6 +109,13 @@
         tools:ignore="HardcodedText"
         android:layout_alignParentStart="false" />
 
+    <Button
+        android:text="help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/button4" />
 
 
 </RelativeLayout>

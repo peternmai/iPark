@@ -77,16 +77,6 @@
         tools:ignore="HardcodedText"
         android:layout_width="160dp" />
 
-    <Button
-        android:text="EMERGENCY"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="false"
-        android:layout_below="@+id/button2"
-        android:layout_alignParentStart="true"
-        android:id="@+id/emer"
-        tools:ignore="HardcodedText" />
-
     <TextView
         android:text="PARKING NUMBER"
         android:layout_width="match_parent"
@@ -140,5 +130,25 @@
         android:layout_alignBaseline="@+id/button6"
         android:layout_alignBottom="@+id/button6"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="EMERGENCY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:id="@+id/emer"
+        tools:ignore="HardcodedText"
+        android:backgroundTint="#ED4337"
+        android:layout_below="@+id/button2"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Help?"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/button16"
+        android:layout_alignBaseline="@+id/button8"
+        android:layout_alignBottom="@+id/button8"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
