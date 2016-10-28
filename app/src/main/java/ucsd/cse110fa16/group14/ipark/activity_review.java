@@ -38,7 +38,7 @@ public class activity_review extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_review.this, Clockin.class);
+                Intent intent = new Intent(activity_review.this, UserHomepage.class);
                 startActivity(intent);
             }
         });

@@ -42,5 +42,27 @@ public class PersonalInfo extends AppCompatActivity {
 
             }
         });
+
+
+        /* update user info */
+        updateButt.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                update();
+
+                /* Will take care of this later
+                if (forgotPassword.isChecked()) {
+                    Intent intent = new Intent(LoginPage.this, ForgotPassword_1.class);
+                    startActivity(intent);
+                }
+                */
+
+            }
+        });
     }
+
+    /* the private update function */
+    private void update(){}
 }

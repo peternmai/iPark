@@ -158,7 +158,8 @@ public class LoginPage extends AppCompatActivity {
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-            Toast.makeText(LoginPage.this, "Please enter your username and password", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginPage.this, "Please enter your username and password",
+                    Toast.LENGTH_LONG).show();
         } else {
             if (!(DriverRegistration.uMapEmail.containsKey(username))) {
                 Toast.makeText(LoginPage.this, "Invalid Username", Toast.LENGTH_LONG).show();
@@ -173,11 +174,13 @@ public class LoginPage extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
                             progress.dismiss();
-                            Toast.makeText(LoginPage.this, "Invalid password.\nPlease try again.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginPage.this, "Invalid password.\nPlease try again.",
+                                    Toast.LENGTH_LONG).show();
                             passwordField.setText("");
                         } else {
                             progress.dismiss();
-                            Toast.makeText(LoginPage.this, "Sign in successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginPage.this, "Sign in successful",
+                                    Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(LoginPage.this, UserHomepage.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                             startActivity(intent);
