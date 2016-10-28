@@ -30,6 +30,7 @@ public class UserHomepage extends AppCompatActivity {
         ImageButton emergencyButt = (ImageButton) findViewById(R.id.emergency);
         ImageButton personalInfoButt = (ImageButton) findViewById(R.id.personalInfo);
         ImageButton reviewHistoryButt = (ImageButton) findViewById(R.id.reviewHistory);
+        ImageButton helpButt = (ImageButton) findViewById(R.id.imageButton);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -95,6 +96,15 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, UserReviewHistory.class);
+                startActivity(intent);
+            }
+        });
+
+        helpButt.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserHomepage.this, HELP_USER.class);
                 startActivity(intent);
             }
         });
