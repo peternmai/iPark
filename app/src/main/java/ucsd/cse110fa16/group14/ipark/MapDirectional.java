@@ -1,8 +1,10 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -52,12 +54,37 @@ public class MapDirectional extends AppCompatActivity {
         /* report illegal parking of other spots */
         reportButt.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MapDirectional.this, ReportIllegal.class);
-                startActivity(intent);
+                // should set the corresponding parking spot to red
+                // TO DO
 
-            }
+
+
+                // then add this log to history
+                // TO DO
+
+
+
+                // and then pop out a window indicating success report
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder respond = new AlertDialog.Builder(MapDirectional.this);
+                    respond.setTitle("Successful Report");
+                    respond.setMessage("\t\t\t\tYour report has been successfully recorded.\n" +
+                            "\t\t\t\tA reward will soon be delivered to your account.\n" +
+                            "\t\t\t\tYou can view this activity in account history now.\n" );
+                    respond.setPositiveButton("Done", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which){
+                            dialog.cancel();
+                        }
+                    });
+
+                    AlertDialog alertDialog = respond.create();
+                    alertDialog.show();
+
+                }
+
+
         });
 
 

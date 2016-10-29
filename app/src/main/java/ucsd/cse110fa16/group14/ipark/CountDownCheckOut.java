@@ -49,18 +49,17 @@ public class CountDownCheckOut extends AppCompatActivity {
 
 
         /* information page */
-
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder hlp = new AlertDialog.Builder(CountDownCheckOut.this);
                 hlp.setTitle("Help Information");
-                hlp.setMessage("Timer will start when at the time you put for Clock In.\n" +
-                        "Click 'CHECKOUT' at any time to sign out and end your reservation.\n"+
-                        "Click 'REPORT' to report illegal parking if there is a car in your spot. " +
-                        "You will recieve a new parking space\n"
-                        + " 'MAP' will give you a map of where your space is.\n" +
-                        " 'EMERGENCY' is to call the police in case of an emergency.");
+                hlp.setMessage("\t\t\t\tTimer starts at the arrival time entered before.\n" +
+                        "\t\t\t\tClick 'CHECKOUT' to sign out and end your reservation.\n"+
+                        "\t\t\t\tClick 'REPORT' if there is a car in your spot, " +
+                        "and you will receive a new parking space.\n"
+                        + "\t\t\t\tClick 'MAP' to view the map of parking lot.\n" +
+                        "\t\t\t\tClick 'EMERGENCY' in case of any emergency.");
                 hlp.setPositiveButton("Done", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which){
@@ -68,7 +67,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                     }
                 });
 
-                hlp.setNegativeButton("No", null);
+                //hlp.setNegativeButton("No", null);
                 AlertDialog alertDialog = hlp.create();
                 alertDialog.show();
 
@@ -93,9 +92,29 @@ public class CountDownCheckOut extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CountDownCheckOut.this, ReportIllegal.class);
-                startActivity(intent);
+                AlertDialog.Builder respond = new AlertDialog.Builder(CountDownCheckOut.this);
+                respond.setTitle("Successful Report");
+                respond.setMessage("\t\t\t\tYour report has been successfully recorded.\n" +
+                        "\t\t\t\tA new parking spot has been assigned to you. " +
+                        "We apologize for the inconvenience.\n" +
+                        "\t\t\t\tA reward will soon be delivered to your account.\n" +
+                        "\t\t\t\tYou can view this activity in account history now.\n" );
+                respond.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                        // need to assign the user another parking number from the system
+                        // TO DO
+
+
+                        dialog.cancel();
+                    }
+
+                });
+
+
+                AlertDialog alertDialog = respond.create();
+                alertDialog.show();
             }
         });
 
