@@ -177,8 +177,38 @@ public class CountDownCheckOut extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
-                startActivity(intent);
+                if( bundle.getInt("departHour") == 0 && bundle.getInt("departMin") == 0 ) {
+                    AlertDialog.Builder respond = new AlertDialog.Builder(CountDownCheckOut.this);
+                    respond.setTitle("Have not placed an order");
+                    respond.setMessage("Receipt cannot be generated prior to placing an order" );
+                    respond.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+
+                    });
+                    AlertDialog alertDialog = respond.create();
+                    alertDialog.show();
+                }
+                else {
+                    Date date = new Date();                               // given date
+                    Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
+                    calendar.setTime(date);                               // assigns calendar to given date
+
+                    Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
+                    intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                    if( getCurrentTimeInSec() >= endTimeInSec ) {
+                        intent.putExtra("departHour", bundle.getInt("departHour"));
+                        intent.putExtra("departMin", bundle.getInt("departMin"));
+                    }
+                    else {
+                        intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
+                        intent.putExtra("departMin", calendar.get(Calendar.MINUTE));
+                    }
+                    startActivity(intent);
+                }
 
             }
         });
