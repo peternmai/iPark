@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_clockin"
+    android:id="@+id/activity_choose_departure_time"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ucsd.cse110fa16.group14.ipark.Clockin"
-    android:screenOrientation="portrait"
-    android:windowSoftInputMode="adjustResize|stateHidden">
+    tools:context="ucsd.cse110fa16.group14.ipark.ChooseDepartureTimeActivity">
 
     <Button
         android:text="Home"
@@ -39,11 +35,11 @@
         android:textSize="18sp" />
 
     <TextView
-        android:text="ARRIVAL TIME"
+        android:text="DEPARTURE TIME"
         android:layout_width="match_parent"
         android:id="@+id/textView9"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textAlignment="center"
         android:layout_height="50dp"
         android:paddingTop="10dp"
@@ -64,22 +60,22 @@
         tools:ignore="HardcodedText"
         android:onClick="showDialog"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true" />
 
-    <NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/min"
-        android:layout_marginEnd="22dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true" />
+    <Button
+        android:text="PREVIOUS"
+        android:layout_width="160dp"
+        android:layout_height="75dp"
+        android:id="@+id/previous"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:textSize="18sp" />
 
     <TextView
         android:text=":"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView51"
+        android:id="@+id/textView52"
         android:textSize="40sp"
         android:layout_centerVertical="true"
         android:layout_toStartOf="@+id/min"
@@ -88,20 +84,26 @@
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/min"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/hour"
-        android:layout_centerInParent="false"
-        android:layout_alignBaseline="@+id/min"
-        android:layout_alignBottom="@+id/min"
-        android:layout_toStartOf="@+id/textView51"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/textView52"
         android:layout_marginRight="5dp" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/amPM"
+        android:layout_marginStart="22dp"
         android:layout_alignBaseline="@+id/min"
         android:layout_alignBottom="@+id/min"
         android:layout_toEndOf="@+id/min" />
-
 
 </RelativeLayout>

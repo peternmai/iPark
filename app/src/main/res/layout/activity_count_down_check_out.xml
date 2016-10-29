@@ -42,8 +42,6 @@
         android:layout_below="@+id/Timer"
         android:layout_centerHorizontal="true"
         android:id="@+id/ProgressBar"
-        android:max="@android:integer/config_longAnimTime"
-        android:progress="@android:integer/config_shortAnimTime"
         android:progressTint="?attr/actionModeSplitBackground"
         tools:ignore="UnusedAttribute" />
 

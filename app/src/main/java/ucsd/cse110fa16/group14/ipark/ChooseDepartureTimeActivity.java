@@ -1,5 +1,7 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,24 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.TimePicker;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import static android.media.CamcorderProfile.get;
+public class ChooseDepartureTimeActivity extends AppCompatActivity {
 
-public class Clockin extends AppCompatActivity {
-
-    /*private PopupWindow popupWindow;
-    private LayoutInflater layoutInflater;
-    private RelativeLayout relativeLayout;
-*/
-    private int min, hour, curMin, curHour, ampm;
-
-    public void dialogEvent(View view) {
-
-    }
+    private int min, hour, ampm;
 
     @Override
     protected void onPause() {
@@ -38,20 +31,19 @@ public class Clockin extends AppCompatActivity {
         editor.commit();
     }
 
-    @Override
-    public void onBackPressed() {
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clockin);
-
+        setContentView(R.layout.activity_choose_departure_time);
 
         Button homeButt = (Button) findViewById(R.id.button7);
         Button help = (Button) findViewById(R.id.button4);
         Button nextButt = (Button) findViewById(R.id.next);
+        Button prevButt = (Button) findViewById(R.id.previous);
+
+        // Get values stored from enter arrival time activity
+        final Bundle bundle = getIntent().getExtras();
 
         NumberPicker hourNumPick = (NumberPicker) findViewById(R.id.hour);
         NumberPicker minNumPick = (NumberPicker) findViewById(R.id.min) ;
@@ -104,7 +96,7 @@ public class Clockin extends AppCompatActivity {
             }
         });
 
-        // Check to see if time entered is valid before continuing (after current time)
+        // Check to ensure time enter is valid before going (after start time)
         nextButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,20 +112,15 @@ public class Clockin extends AppCompatActivity {
                 if( (ampm == 2) && (hour != 12) )
                     hourEntered += 12;
 
-                Date date = new Date();                               // given date
-                Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
-                calendar.setTime(date);                               // assigns calendar to given date
-                curHour = calendar.get(Calendar.HOUR_OF_DAY);         // gets hour in 24h format
-                curMin  = calendar.get(Calendar.MINUTE);              // get cur minute
-
-                System.out.println("Current Time: " + curHour + ":" + curMin);
+                System.out.println("Current Time: " + bundle.getInt("arriveHour") + ":" + bundle.getInt("arriveMin"));
                 System.out.println("Entered Time: " + hourEntered + ":" + minEntered);
 
-                if( hourEntered < curHour ) {
-                    AlertDialog.Builder invalidTimeAlert = new AlertDialog.Builder(Clockin.this);
+                // Ensure hour is after arrive hour
+                if( hourEntered < bundle.getInt("arriveHour") ) {
+                    AlertDialog.Builder invalidTimeAlert = new AlertDialog.Builder(ChooseDepartureTimeActivity.this);
                     invalidTimeAlert.setTitle("Invalid Time");
                     invalidTimeAlert.setMessage(
-                            "Arrival time may not be before the current time.");
+                            "Departure time may not be before the arrival time.");
                     invalidTimeAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener(){
                         @Override
                         public void onClick(DialogInterface dialog, int which){
@@ -143,11 +130,12 @@ public class Clockin extends AppCompatActivity {
                     AlertDialog alertDialog = invalidTimeAlert.create();
                     alertDialog.show();
                 }
-                else if ( (hourEntered == curHour) && (minEntered < curMin) ) {
-                    AlertDialog.Builder invalidTimeAlert = new AlertDialog.Builder(Clockin.this);
+                // If hour equal arrive hour, then after arrive minute
+                else if ( (hourEntered == bundle.getInt("arriveHour")) && (minEntered <= bundle.getInt("arriveMin")) ) {
+                    AlertDialog.Builder invalidTimeAlert = new AlertDialog.Builder(ChooseDepartureTimeActivity.this);
                     invalidTimeAlert.setTitle("Invalid Time");
                     invalidTimeAlert.setMessage(
-                            "Arrival time may not be before the current time.");
+                            "Departure time may not be before the arrival time.");
                     invalidTimeAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener(){
                         @Override
                         public void onClick(DialogInterface dialog, int which){
@@ -157,18 +145,21 @@ public class Clockin extends AppCompatActivity {
                     AlertDialog alertDialog = invalidTimeAlert.create();
                     alertDialog.show();
                 }
+                // Else accept response
                 else {
-                    Intent intent = new Intent(Clockin.this, ChooseDepartureTimeActivity.class);
-                    intent.putExtra("arriveHour", hourEntered);
-                    intent.putExtra("arriveMin", minEntered);
+                    Intent intent = new Intent(ChooseDepartureTimeActivity.this, Payment.class);
+                    intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                    intent.putExtra("departHour", hourEntered);
+                    intent.putExtra("departMin", minEntered);
                     startActivity(intent);
                 }
 
             }
             //@Override
             //public void onClick(View v) {
-              //Intent intent = new Intent(Clockin.this, Payment.class);
-              //startActivity(intent);
+            //Intent intent = new Intent(Clockin.this, Payment.class);
+            //startActivity(intent);
 
 
 
@@ -180,18 +171,20 @@ public class Clockin extends AppCompatActivity {
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder hlp = new AlertDialog.Builder(Clockin.this);
+                AlertDialog.Builder hlp = new AlertDialog.Builder(ChooseDepartureTimeActivity.this);
                 hlp.setTitle("Help Information");
                 hlp.setMessage(
-                        "Please choose the time you expect to arrive. " +
-                        "Arrival time may not be before the current time." +
-                        "Press next once you are finished.");
-                hlp.setPositiveButton("Ok", new DialogInterface.OnClickListener(){
+                        "Please choose your expected departure time.\n" +
+                        "Departure time cannot be before the arrival time or after midnight.\n" +
+                                "Hit next once you're done.");
+                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which){
                         dialog.cancel();
                     }
                 });
+
+                hlp.setNegativeButton("No", null);
                 AlertDialog alertDialog = hlp.create();
                 alertDialog.show();
 
@@ -204,40 +197,21 @@ public class Clockin extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Clockin.this, UserHomepage.class);
+                Intent intent = new Intent(ChooseDepartureTimeActivity.this, UserHomepage.class);
                 startActivity(intent);
 
             }
         });
 
+        prevButt.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+
+            }
+        });
     }
 
-    /*public void showDialog(View v) {
 
-                AlertDialog.Builder altial = new AlertDialog.Builder(Clockin.this);
-                altial.setMessage("$2.50/hr").setCancelable(false)
-                        .setPositiveButton("Okay, charge me!", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(Clockin.this, Payment.class);
-                                startActivity(intent);
-
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert = altial.create();
-                alert.setTitle("Current Rate:");
-                alert.show();
-
-
-
-
-        }*/
 }

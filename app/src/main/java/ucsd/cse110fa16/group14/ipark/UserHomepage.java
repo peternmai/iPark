@@ -60,6 +60,21 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, CountDownCheckOut.class);
+
+                final Bundle bundle = getIntent().getExtras();
+                Intent thisIntent = getIntent();
+                if(thisIntent.hasExtra("arriveHour") && thisIntent.hasExtra("departHour")) {
+                    intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                    intent.putExtra("departHour", bundle.getInt("departHour"));
+                    intent.putExtra("departMin", bundle.getInt("departMin"));
+                }
+                else {
+                    intent.putExtra("arriveHour", 0);
+                    intent.putExtra("arriveMin", 0);
+                    intent.putExtra("departHour", 0);
+                    intent.putExtra("departMin", 0);
+                }
                 startActivity(intent);
             }
         });
@@ -108,5 +123,11 @@ public class UserHomepage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

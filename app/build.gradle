@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "ucsd.cse110fa16.group14.ipark"
-        minSdkVersion 19
+        minSdkVersion 23
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -32,9 +32,9 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     compile 'com.firebase:firebase-client-android:2.5.0+'
-    compile 'com.google.firebase:firebase-database:9.8.0'
-    compile 'com.google.firebase:firebase-crash:9.8.0'
-    compile 'com.google.firebase:firebase-auth:9.8.0'
-    compile 'com.google.firebase:firebase-auth:9.8.0'
+    compile 'com.google.firebase:firebase-database:9.6.0'
+    compile 'com.google.firebase:firebase-crash:9.6.0'
+    compile 'com.google.firebase:firebase-auth:9.6.0'
+    compile 'com.google.firebase:firebase-auth:9.6.0'
 }
 apply plugin: 'com.google.gms.google-services'
