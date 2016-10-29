@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * Created by Mag on 10/19/2016.
@@ -28,8 +29,36 @@ public class PersonalInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
 
+        // home button and update button
         Button homeButt  = (Button) findViewById(R.id.button19);
         Button updateButt  = (Button) findViewById(R.id.button21);
+
+        // editText field, first and last name, email, license, username and password
+        EditText firstName = (EditText)findViewById(R.id.editText11);
+        EditText lastName = (EditText)findViewById(R.id.editText25);
+        EditText email = (EditText)findViewById(R.id.editText30);
+        EditText license = (EditText)findViewById(R.id.editText28);
+        EditText userName = (EditText)findViewById(R.id.editText9);
+        EditText password = (EditText)findViewById(R.id.editText29);
+
+        /* set the cursor at the end of text */
+        int textLength = firstName.getText().length();
+        firstName.setSelection(textLength, textLength);
+
+        textLength = lastName.getText().length();
+        lastName.setSelection(textLength, textLength);
+
+        textLength = email.getText().length();
+        email.setSelection(textLength, textLength);
+
+        textLength = license.getText().length();
+        license.setSelection(textLength, textLength);
+
+        textLength = userName.getText().length();
+        userName.setSelection(textLength, textLength);
+
+        textLength = password.getText().length();
+        password.setSelection(textLength, textLength);
 
 
         /* return to home page */
