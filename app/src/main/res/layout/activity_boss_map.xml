@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:id="@+id/activity_boss_map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,21 +11,40 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.BossMap">
 
-    <ucsd.cse110fa16.group14.ipark.MapInteractive
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView29" />
-
-    <TextView
-        android:text="Click to change parking spot status. Long press to change parking spot rate.\n"
-        android:layout_width="wrap_content"
+    <Button
         android:layout_height="wrap_content"
+        android:id="@+id/help"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView29"
+        android:background="@mipmap/help"
+        tools:ignore="HardcodedText"
+        android:layout_width="50dp" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:textAlignment="center" />
+        tools:ignore="HardcodedText"
+        android:id="@+id/status"
+        android:background="@android:drawable/sym_def_app_icon" />
+
+    <Button
+        android:text="test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button24"
+        android:layout_above="@+id/map"
+        tools:ignore="HardcodedText" />
+
+    <ucsd.cse110fa16.group14.ipark.MapInteractive
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@+id/help"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="43dp"
+        android:id="@+id/map" />
 
 
 </RelativeLayout>

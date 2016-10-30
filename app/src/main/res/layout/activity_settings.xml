@@ -11,21 +11,11 @@
     tools:context="ucsd.cse110fa16.group14.ipark.Settings">
 
     <Button
-        android:text="Manual Pay Options"
-        android:layout_width="match_parent"
+        android:text="Button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:id="@+id/button5"
-        android:layout_below="@+id/submit_registration"
-        android:layout_alignStart="@+id/submit_registration" />
-
-    <Button
-        android:text="Default Pay Options"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/submit_registration"
-        android:elevation="0dp"
-        android:layout_marginTop="128dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="61dp"
+        android:id="@+id/button5" />
 </RelativeLayout>
