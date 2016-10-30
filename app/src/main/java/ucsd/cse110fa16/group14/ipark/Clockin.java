@@ -49,7 +49,7 @@ public class Clockin extends AppCompatActivity {
         setContentView(R.layout.activity_clockin);
 
 
-        Button homeButt = (Button) findViewById(R.id.button7);
+        Button homeButt = (Button) findViewById(R.id.button8);
         Button help = (Button) findViewById(R.id.button4);
         Button nextButt = (Button) findViewById(R.id.next);
 
