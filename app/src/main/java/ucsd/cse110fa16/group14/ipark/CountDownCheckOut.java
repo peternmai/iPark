@@ -55,8 +55,9 @@ public class CountDownCheckOut extends AppCompatActivity {
         Button checkoutButt = (Button) findViewById(R.id.button6);
         Button reportButt = (Button) findViewById(R.id.button2);
         Button emergencyButt = (Button) findViewById(R.id.emer);
-        Button mapButt = (Button) findViewById(R.id.button8);
+        Button mapButt = (Button) findViewById(R.id.button22);
         Button help = (Button) findViewById(R.id.button16);
+        Button homeButt = (Button) findViewById(R.id.button17);
 
         // Get values passed on from previous activity
         final Bundle bundle = getIntent().getExtras();
@@ -270,6 +271,16 @@ public class CountDownCheckOut extends AppCompatActivity {
         });
 
 
+        /* go back to home page */
+        homeButt.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 

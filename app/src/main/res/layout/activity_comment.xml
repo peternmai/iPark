@@ -25,7 +25,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:inputType="text|textCapCharacters|textCapWords|textCapSentences|textAutoCorrect|textAutoComplete|textMultiLine|textImeMultiLine|textEmailAddress|textEmailSubject|textPersonName|textPostalAddress"
+        android:inputType="text|textAutoCorrect|textAutoComplete|textMultiLine|textImeMultiLine|textEmailAddress|textEmailSubject|textPersonName|textPostalAddress"
         android:ems="10"
         android:layout_centerHorizontal="true"
         android:id="@+id/editText10"
