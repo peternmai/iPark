@@ -78,7 +78,7 @@
         android:layout_below="@+id/viewMap"
         android:layout_alignEnd="@+id/viewMap"
         android:textAlignment="center"
-        android:textColor="#202020"
+        android:textColor="#404040"
         tools:ignore="HardcodedText" />
 
     <ImageButton
@@ -117,7 +117,7 @@
         android:layout_below="@+id/emergency"
         android:layout_alignEnd="@+id/emergency"
         android:textAlignment="center"
-        android:textColor="@color/colorAccent"
+        android:textColor="#CC0000"
         tools:ignore="HardcodedText" />
 
     <ImageButton
@@ -157,7 +157,7 @@
         android:textStyle="bold"
         android:id="@+id/textView37"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#404040"
         android:layout_below="@+id/reserveButton"
         android:layout_alignStart="@+id/reserveButton"
         tools:ignore="HardcodedText" />
