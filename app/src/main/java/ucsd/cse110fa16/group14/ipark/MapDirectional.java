@@ -8,6 +8,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
+import android.content.Context;
+
 
 public class MapDirectional extends AppCompatActivity {
     @Override
@@ -33,7 +36,7 @@ public class MapDirectional extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MapDirectional.this, BossEmergency.class);
+                Intent intent = new Intent(MapDirectional.this, Emergency.class);
                 startActivity(intent);
 
             }
@@ -67,6 +70,11 @@ public class MapDirectional extends AppCompatActivity {
                 // and then pop out a window indicating success report
                 @Override
                 public void onClick(View v) {
+
+                    InputMethodManager inputManager = (InputMethodManager)
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow((null == getCurrentFocus()) ?
+                            null : getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     AlertDialog.Builder respond = new AlertDialog.Builder(MapDirectional.this);
                     respond.setTitle("Successful Report");
                     respond.setMessage("\t\t\t\tYour report has been successfully recorded.\n" +

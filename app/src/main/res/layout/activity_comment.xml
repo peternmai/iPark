@@ -39,25 +39,25 @@
         android:hint="Your opinion matters..." />
 
     <Button
-        android:text="SUBMIT"
-        android:layout_height="100dp"
-        android:layout_below="@+id/editText10"
-        android:layout_alignParentStart="true"
-        android:id="@+id/submitButton"
-        android:layout_width="180dp"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        tools:ignore="HardcodedText" />
-
-    <Button
         android:text="CANCEL"
-        android:layout_width="180dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/editText10"
-        android:layout_toEndOf="@+id/submitButton"
         android:id="@+id/cancelButton"
         android:textSize="24sp"
         android:textAlignment="center"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="SUBMIT"
+        android:id="@+id/submitButton"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:ignore="HardcodedText"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

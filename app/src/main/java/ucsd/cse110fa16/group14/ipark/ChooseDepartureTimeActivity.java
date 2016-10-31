@@ -184,7 +184,7 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                     }
                 });
 
-                hlp.setNegativeButton("No", null);
+                //hlp.setNegativeButton("No", null);
                 AlertDialog alertDialog = hlp.create();
                 alertDialog.show();
 

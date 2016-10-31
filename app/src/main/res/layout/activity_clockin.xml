@@ -64,21 +64,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:text="ARRIVAL TIME"
-        android:layout_width="match_parent"
-        android:id="@+id/textView9"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        android:layout_height="50dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        tools:ignore="HardcodedText"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp" />
-
     <Button
         android:text="NEXT"
         android:id="@+id/next"
@@ -110,6 +95,20 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:background="#8D5B68" />
+
+    <TextView
+        android:text="ARRIVAL TIME"
+        android:layout_width="match_parent"
+        android:id="@+id/textView9"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        tools:ignore="HardcodedText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
