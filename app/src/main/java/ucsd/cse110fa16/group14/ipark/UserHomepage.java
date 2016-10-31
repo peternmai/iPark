@@ -92,7 +92,7 @@ public class UserHomepage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserHomepage.this, BossEmergency.class);
+                Intent intent = new Intent(UserHomepage.this, Emergency.class);
                 startActivity(intent);
             }
         });
