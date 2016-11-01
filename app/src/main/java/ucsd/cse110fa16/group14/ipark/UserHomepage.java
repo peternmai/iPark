@@ -1,7 +1,9 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -38,11 +40,32 @@ public class UserHomepage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserHomepage.this, LoginPage.class);
-                FirebaseAuth.getInstance().signOut();
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                Toast.makeText(UserHomepage.this, "Logout Successful", Toast.LENGTH_LONG).show();
-                startActivity(intent);
+
+                AlertDialog.Builder Quest = new AlertDialog.Builder(UserHomepage.this);
+                Quest.setTitle("Log out");
+                Quest.setMessage(
+                        "Are you sure to log out?");
+                Quest.setPositiveButton("Cancel", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){
+                        dialog.cancel();
+                    }
+                });
+                Quest.setNegativeButton("Log out", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(UserHomepage.this, LoginPage.class);
+                        FirebaseAuth.getInstance().signOut();
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Toast.makeText(UserHomepage.this, "Logout Successful", Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+
+                    }
+                });
+                AlertDialog alertDialog = Quest.create();
+                alertDialog.show();
+
+
             }
         });
 

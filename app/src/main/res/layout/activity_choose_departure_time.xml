@@ -46,7 +46,7 @@
         android:layout_toEndOf="@+id/min" />
 
     <Button
-        android:text="HOME"
+        android:text="Cancel"
         android:id="@+id/button7"
         android:textSize="18sp"
         android:layout_width="100dp"

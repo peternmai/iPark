@@ -10,6 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.LoginPage"
     android:screenOrientation="portrait"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
     android:windowSoftInputMode="adjustResize|stateHidden" >
 
     <EditText
@@ -44,11 +46,12 @@
     <CheckBox
         android:layout_height="wrap_content"
         android:id="@+id/checkBox2"
-        android:layout_below="@+id/password"
-        android:layout_alignStart="@+id/password"
         android:text="Remember me"
-        android:layout_width="150dp"
-        tools:ignore="HardcodedText" />
+        android:layout_width="wrap_content"
+        tools:ignore="HardcodedText"
+        android:layout_above="@+id/password"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp" />
 
     <Button
         android:text="LOGIN"
@@ -56,41 +59,29 @@
         android:textSize ="20sp"
         android:layout_height="wrap_content"
         android:id="@+id/loginButton"
-        android:layout_marginTop="46dp"
         tools:ignore="HardcodedText"
-        android:layout_below="@+id/checkBox2"
-        android:layout_alignStart="@+id/checkBox2" />
-
-    <CheckBox
-        android:text="Forget password?"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
-        tools:ignore="HardcodedText"
+        android:layout_marginTop="64dp"
         android:layout_below="@+id/password"
-        android:layout_toEndOf="@+id/checkBox2"
-        android:layout_width="200dp" />
-
-    <CheckBox
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox3"
-        android:text="Admin"
-        tools:ignore="HardcodedText"
-        android:layout_width="80dp"
-        android:layout_alignBaseline="@+id/userName"
-        android:layout_alignBottom="@+id/userName"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="REGISTER"
-        android:layout_width="150dp"
-        android:textSize ="20sp"
+        android:text="Forget password?"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/registerButton"
-        tools:ignore="HardcodedText"
-        android:layout_marginEnd="15dp"
-        android:layout_alignBaseline="@+id/loginButton"
-        android:layout_alignBottom="@+id/loginButton"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/button26"
+        android:layout_below="@+id/password"
+        android:layout_centerHorizontal="true"
+        android:background="#FCF9F9"
+        android:textAllCaps="false" />
+
+    <Button
+        android:text="Reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginButton"
+        android:layout_toStartOf="@+id/checkBox2"
+        android:layout_marginTop="45dp"
+        android:id="@+id/registerButton" />
 
 </RelativeLayout>
 

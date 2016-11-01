@@ -75,6 +75,7 @@ public class MapDirectional extends AppCompatActivity {
                             getSystemService(Context.INPUT_METHOD_SERVICE);
                     inputManager.hideSoftInputFromWindow((null == getCurrentFocus()) ?
                             null : getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
                     AlertDialog.Builder respond = new AlertDialog.Builder(MapDirectional.this);
                     respond.setTitle("Successful Report");
                     respond.setMessage("\t\t\t\tYour report has been successfully recorded.\n" +

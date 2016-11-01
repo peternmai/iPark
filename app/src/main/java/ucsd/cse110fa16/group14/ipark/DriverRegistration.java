@@ -25,6 +25,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import android.view.inputmethod.InputMethodManager;
+import android.content.Context;
+
+
+
 public class DriverRegistration extends AppCompatActivity {
 
     private static HashSet<String> users = new HashSet<>();
@@ -70,6 +75,68 @@ public class DriverRegistration extends AppCompatActivity {
         final EditText username = (EditText) findViewById(R.id.userName);
         final EditText password = (EditText) findViewById(R.id.userPassword);
         final EditText license = (EditText) findViewById(R.id.license);
+
+
+        firstName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+
+        lastName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+
+        email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+
+
+        username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+
+        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+
+        license.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
 
 
         //Get data from Firebase
@@ -148,6 +215,11 @@ public class DriverRegistration extends AppCompatActivity {
 
     }
 
+    private void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
     /**
      * Get the user names from firebase database and store it locally.

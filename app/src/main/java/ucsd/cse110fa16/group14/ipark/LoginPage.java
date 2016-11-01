@@ -1,6 +1,7 @@
 package ucsd.cse110fa16.group14.ipark;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -28,7 +30,7 @@ public class LoginPage extends AppCompatActivity {
     private EditText passwordField;
     private Button registerButton;
     private Button loginButton;
-    private CheckBox forgotPassword;
+    //private CheckBox forgotPassword;
     private ProgressDialog progress;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
@@ -101,7 +103,7 @@ public class LoginPage extends AppCompatActivity {
         usernameField = (EditText) findViewById(R.id.userName);
         passwordField = (EditText) findViewById(R.id.password);
 
-        forgotPassword = (CheckBox) findViewById(R.id.checkBox);
+        //forgotPassword = (CheckBox) findViewById(R.id.checkBox);
 
         progress = new ProgressDialog(this);
 
@@ -146,6 +148,32 @@ public class LoginPage extends AppCompatActivity {
         });
 
 
+        usernameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+
+
+        passwordField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+    }
+
+    private void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     /**
