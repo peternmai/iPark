@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:layout_height="match_parent"
     tools:context="ucsd.cse110fa16.group14.ipark.PersonalInfo"
     >
 
@@ -82,86 +85,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="28dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText11"
-        android:text="first"
-        android:textAlignment="textStart"
-        android:textSize="20sp"
-        android:layout_alignBaseline="@+id/textView44"
-        android:layout_alignBottom="@+id/textView44"
-        android:layout_alignParentEnd="true"
-        tools:ignore="HardcodedText,LabelFor" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText25"
-        android:text="last"
-        android:textAlignment="textStart"
-        android:textSize="20sp"
-        android:layout_alignBaseline="@+id/textView45"
-        android:layout_alignBottom="@+id/textView45"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText28"
-        android:text="a1234567"
-        android:textAlignment="textStart"
-        android:textSize="20sp"
-        android:layout_alignBaseline="@+id/textView47"
-        android:layout_alignBottom="@+id/textView47"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText9"
-        android:text="account"
-        android:textAlignment="textStart"
-        android:textSize="20sp"
-        android:layout_alignBaseline="@+id/textView48"
-        android:layout_alignBottom="@+id/textView48"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/editText29"
-        android:text="123456"
-        android:layout_alignBaseline="@+id/textView49"
-        android:layout_alignBottom="@+id/textView49"
-        android:layout_alignStart="@+id/editText9"
-        android:textAlignment="textStart"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/editText30"
-        android:layout_alignBaseline="@+id/textView46"
-        android:layout_alignBottom="@+id/textView46"
-        android:layout_alignStart="@+id/editText25"
-        android:text="hhh@ucsd.edu"
-        android:textAlignment="textStart"
-        android:textSize="20sp" />
-
     <Button
         android:text="UPDATE"
         android:layout_width="160dp"
@@ -170,5 +93,81 @@
         android:layout_alignBaseline="@+id/button19"
         android:layout_alignBottom="@+id/button19"
         android:layout_alignStart="@+id/textView49" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password"
+        android:text="123456"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText"
+        android:layout_alignBaseline="@+id/textView49"
+        android:layout_alignBottom="@+id/textView49"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/help"
+        android:background="@mipmap/help"
+        android:layout_width="50dp" />
+
+    <TextView
+        android:text="first"
+        android:layout_width="200dp"
+        android:layout_alignTop="@+id/textView44"
+        android:layout_alignStart="@+id/password"
+        android:id="@+id/first"
+        android:layout_height="40dp"
+        android:textColor="#202020"
+        android:textSize="20sp" />
+
+    <TextView
+        android:text="last"
+        android:layout_width="200dp"
+        android:id="@+id/last"
+        android:layout_height="40dp"
+        android:textColor="#202020"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textView45"
+        android:layout_alignBottom="@+id/textView45"
+        android:layout_alignStart="@+id/first" />
+
+    <TextView
+        android:text="cse110@ucsd.edu"
+        android:layout_width="200dp"
+        android:id="@+id/email"
+        android:layout_height="40dp"
+        android:textColor="#202020"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textView46"
+        android:layout_alignBottom="@+id/textView46"
+        android:layout_alignStart="@+id/last" />
+
+    <TextView
+        android:text="12345678"
+        android:layout_width="200dp"
+        android:id="@+id/license"
+        android:layout_height="40dp"
+        android:textColor="#202020"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textView47"
+        android:layout_alignBottom="@+id/textView47"
+        android:layout_alignStart="@+id/email" />
+
+    <TextView
+        android:text="username"
+        android:layout_width="200dp"
+        android:id="@+id/username"
+        android:layout_height="40dp"
+        android:textColor="#202020"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textView48"
+        android:layout_alignBottom="@+id/textView48"
+        android:layout_alignStart="@+id/password" />
 
 </RelativeLayout>

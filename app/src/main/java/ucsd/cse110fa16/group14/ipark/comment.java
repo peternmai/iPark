@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.content.Context;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 public class comment extends AppCompatActivity {
     @Override
@@ -21,6 +24,8 @@ public class comment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
+
+        final EditText userComment = (EditText) findViewById(R.id.userComment);
 
         Button submitButt = (Button) findViewById(R.id.submitButton);
         Button cancelButton = (Button) findViewById(R.id.cancelButton);
@@ -43,5 +48,19 @@ public class comment extends AppCompatActivity {
             }
         });
 
+
+        userComment.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
