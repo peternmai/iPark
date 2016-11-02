@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import java.security.acl.Owner;
+
 public class LoginScreenActivity extends AppCompatActivity {
 
     @Override
@@ -20,7 +22,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginScreenActivity.this, BossLogin.class);
+                Intent intent = new Intent(LoginScreenActivity.this, OwnerHomepage.class);
                 startActivity(intent);
             }
         });
