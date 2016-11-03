@@ -10,6 +10,8 @@ import java.security.acl.Owner;
 
 public class LoginScreenActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +19,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
         Button ownerButton = (Button) findViewById(R.id.ownerButton);
         Button userButton = (Button) findViewById(R.id.userButton);
+        Button registerButton = (Button) findViewById(R.id.register);
 
         ownerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -37,6 +40,16 @@ public class LoginScreenActivity extends AppCompatActivity {
         });
 
 
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginScreenActivity.this, DriverRegistration.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
 
     }
 }

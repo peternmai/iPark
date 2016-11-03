@@ -2,10 +2,12 @@ package ucsd.cse110fa16.group14.ipark;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -28,8 +30,9 @@ public class LoginPage extends AppCompatActivity {
 
     private EditText usernameField;
     private EditText passwordField;
-    private Button registerButton;
+    private Button backButton;
     private Button loginButton;
+    private Button help;
     //private CheckBox forgotPassword;
     private ProgressDialog progress;
     private FirebaseAuth auth;
@@ -97,8 +100,10 @@ public class LoginPage extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        registerButton = (Button) findViewById(R.id.registerButton);
+        //registerButton = (Button) findViewById(R.id.registerButton);
         loginButton = (Button) findViewById(R.id.loginButton);
+        help = (Button) findViewById(R.id.help);
+        backButton = (Button) findViewById(R.id.back);
 
         usernameField = (EditText) findViewById(R.id.userName);
         passwordField = (EditText) findViewById(R.id.password);
@@ -119,12 +124,12 @@ public class LoginPage extends AppCompatActivity {
             }
         };
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, DriverRegistration.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intent = new Intent(LoginPage.this, LoginScreenActivity.class);
+
                 startActivity(intent);
             }
         });
@@ -143,6 +148,34 @@ public class LoginPage extends AppCompatActivity {
                     startActivity(intent);
                 }
                 */
+
+            }
+        });
+
+        /* information page */
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder hlp = new AlertDialog.Builder(LoginPage.this);
+                hlp.setTitle("Help Information");
+                hlp.setMessage("\t\t\t\tIn case of forgetting password, please " +
+                        "click \"Fotget password\" to get a new one.\n"
+                     //   "\t\t\t\tClick 'CHECKOUT' to sign out and end your reservation.\n"+
+                       // "\t\t\t\tClick 'REPORT' if there is a car in your spot, " +
+                        //"and you will receive a new parking space.\n"
+                        //+ "\t\t\t\tClick 'MAP' to view the map of parking lot.\n" +
+                      //  "\t\t\t\tClick 'EMERGENCY' in case of any emergency."
+                );
+                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){
+                        dialog.cancel();
+                    }
+                });
+
+                //hlp.setNegativeButton("No", null);
+                AlertDialog alertDialog = hlp.create();
+                alertDialog.show();
 
             }
         });

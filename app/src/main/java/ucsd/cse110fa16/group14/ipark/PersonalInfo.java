@@ -66,7 +66,6 @@ public class PersonalInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                update();
 
                 /* Will take care of this later
                 if (forgotPassword.isChecked()) {
@@ -74,6 +73,28 @@ public class PersonalInfo extends AppCompatActivity {
                     startActivity(intent);
                 }
                 */
+
+
+                AlertDialog.Builder confirm = new AlertDialog.Builder(PersonalInfo.this);
+                confirm.setTitle("Confirm new password");
+                confirm.setMessage("\t\t\t\tTimer starts at the arrival time entered before.\n" +
+                        "\t\t\t\tClick 'CHECKOUT' to sign out and end your reservation.\n"+
+                        "\t\t\t\tClick 'REPORT' if there is a car in your spot, " +
+                        "and you will receive a new parking space.\n"
+                        + "\t\t\t\tClick 'MAP' to view the map of parking lot.\n" +
+                        "\t\t\t\tClick 'EMERGENCY' in case of any emergency.");
+                confirm.setPositiveButton("Done", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){
+                        dialog.cancel();
+                    }
+                });
+
+                //hlp.setNegativeButton("No", null);
+                AlertDialog alertDialog = confirm.create();
+                alertDialog.show();
+
+
 
             }
         });
