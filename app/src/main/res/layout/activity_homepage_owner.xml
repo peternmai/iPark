@@ -30,8 +30,8 @@
         android:layout_toEndOf="@+id/settings" />
 
     <TextView
-        android:text="Settings"
-        android:layout_width="wrap_content"
+        android:text="Price Setting"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textStyle="bold"
@@ -39,20 +39,8 @@
         android:ems="5"
         android:id="@+id/textView55"
         android:layout_below="@+id/settings"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="Reviews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="#404040"
-        android:ems="5"
-        android:layout_alignBottom="@+id/textView55"
-        android:layout_toEndOf="@+id/settings"
-        android:layout_marginStart="15dp"
-        android:id="@+id/textView68" />
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
 
     <ImageButton
         android:adjustViewBounds="true"
@@ -67,8 +55,8 @@
         android:layout_toStartOf="@+id/textView68" />
 
     <TextView
-        android:text="Compose "
-        android:layout_width="wrap_content"
+        android:text="Compose"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textStyle="bold"
@@ -76,11 +64,12 @@
         android:ems="4"
         android:layout_below="@+id/compose"
         android:layout_alignStart="@+id/textView54"
-        android:id="@+id/textView70" />
+        android:id="@+id/textView70"
+        android:textAlignment="center" />
 
     <TextView
         android:text="Report"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textStyle="bold"
@@ -88,11 +77,11 @@
         android:ems="4"
         android:layout_below="@+id/report"
         android:layout_alignStart="@+id/textView55"
-        android:id="@+id/textView71" />
+        android:id="@+id/textView71"
+        android:textAlignment="center" />
 
     <TextView
         android:text="Emergency"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textStyle="bold"
@@ -100,19 +89,9 @@
         android:ems="5"
         android:layout_alignBottom="@+id/textView71"
         android:layout_alignStart="@+id/textView68"
-        android:id="@+id/textView72" />
-
-    <TextView
-        android:text="View Map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="#404040"
-        android:ems="5"
-        android:id="@+id/textView54"
-        android:layout_below="@+id/map1"
-        android:layout_alignEnd="@+id/map1" />
+        android:id="@+id/textView72"
+        android:layout_width="110dp"
+        android:textAlignment="center" />
 
     <ImageButton
         android:adjustViewBounds="true"
@@ -122,7 +101,7 @@
         android:scaleType="fitCenter"
         android:background="#FFFFFF"
         app:srcCompat="@mipmap/compose"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="24dp"
         android:id="@+id/compose"
         android:layout_below="@+id/textView54"
         android:layout_alignEnd="@+id/textView54" />
@@ -139,19 +118,6 @@
         android:layout_above="@+id/textView72"
         android:layout_toEndOf="@+id/report" />
 
-    <TextView
-        android:text="Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="#404040"
-        android:ems="5"
-        android:layout_below="@+id/logout"
-        android:layout_alignStart="@+id/textView72"
-        android:layout_marginStart="11dp"
-        android:id="@+id/textView73" />
-
     <ImageButton
         android:adjustViewBounds="true"
         android:padding="0dp"
@@ -166,6 +132,46 @@
         android:layout_alignParentTop="true"
         android:layout_toStartOf="@+id/settings" />
 
+    <TextView
+        android:text="Map"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#404040"
+        android:ems="5"
+        android:id="@+id/textView54"
+        android:textAlignment="center"
+        android:layout_below="@+id/map1"
+        android:layout_alignStart="@+id/map1" />
+
+    <TextView
+        android:text="Reviews"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#404040"
+        android:ems="5"
+        android:id="@+id/textView68"
+        android:textAlignment="center"
+        android:layout_alignBaseline="@+id/textView55"
+        android:layout_alignBottom="@+id/textView55"
+        android:layout_toEndOf="@+id/settings" />
+
+    <TextView
+        android:text="Logout"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#404040"
+        android:ems="5"
+        android:id="@+id/textView73"
+        android:textAlignment="center"
+        android:layout_below="@+id/logout"
+        android:layout_alignStart="@+id/logout" />
+
     <ImageButton
         android:adjustViewBounds="true"
         android:padding="0dp"
@@ -175,7 +181,7 @@
         android:background="#FFFFFF"
         app:srcCompat="@mipmap/logout_button"
         android:id="@+id/logout"
-        android:layout_below="@+id/textView72"
-        android:layout_toEndOf="@+id/report"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/textView71"
+        android:layout_toEndOf="@+id/textView71" />
 </RelativeLayout>

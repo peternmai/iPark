@@ -29,15 +29,6 @@
         android:id="@+id/status"
         android:background="@android:drawable/sym_def_app_icon" />
 
-    <Button
-        android:text="test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/button24"
-        android:layout_above="@+id/map"
-        tools:ignore="HardcodedText" />
-
     <ucsd.cse110fa16.group14.ipark.MapInteractive
         android:layout_width="match_parent"
         android:layout_height="400dp"

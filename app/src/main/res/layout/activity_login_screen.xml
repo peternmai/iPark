@@ -11,31 +11,24 @@
     tools:context="ucsd.cse110fa16.group14.ipark.LoginScreenActivity">
 
     <Button
-        android:text="OWNER ENTER"
+        android:text="LOGIN"
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="117dp"
-        android:id="@+id/ownerButton"
+        android:id="@+id/login"
         android:layout_alignParentTop="true" />
 
     <Button
-        android:text="USER ENTER"
+        android:text="REGISTER"
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/userButton"
-        android:layout_below="@+id/ownerButton"
+        android:id="@+id/register"
+        android:layout_below="@+id/login"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp" />
 
-    <Button
-        android:text="Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/register" />
 </RelativeLayout>
