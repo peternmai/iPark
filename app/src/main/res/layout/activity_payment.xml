@@ -76,13 +76,12 @@
         android:text="06:00 PM" />
 
     <TextView
-        android:text="$12"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_below="@+id/MessageTotaltoPay"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:id="@+id/textView20"
+        android:id="@+id/totalToPay"
         android:textColor="#000000"
         android:textAlignment="center"
         android:textSize="40sp" />
