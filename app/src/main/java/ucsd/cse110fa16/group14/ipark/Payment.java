@@ -31,15 +31,26 @@ public class Payment extends AppCompatActivity {
 
         Button payButt = (Button) findViewById(R.id.button);
         Button cancelButt = (Button) findViewById(R.id.button3);
+        int totHours = 0;
+        int totMins = 0;
+        double rate = 2.50;
+        double totPay = 0.00;
 
         // Get values passed on from previous activity
         final Bundle bundle = getIntent().getExtras();
 
+        // Calculate total time parked and total to pay
+        totHours = bundle.getInt("departHour") - bundle.getInt("arriveHour");
+        totMins = bundle.getInt("departMin") - bundle.getInt("arriveMin");
+        totPay = ((double)(totHours + ((double)((double)totMins/60.0))))*rate;
+
         TextView startTimeText = (TextView) findViewById(R.id.startTimeText);
         TextView endTimeText = (TextView) findViewById(R.id.endTimeText);
+        TextView totalPayText = (TextView) findViewById(R.id.totalToPay);
 
         startTimeText.setText( generateTimeText( bundle.getInt("arriveHour"), bundle.getInt("arriveMin") ));
         endTimeText.setText( generateTimeText( bundle.getInt("departHour"), bundle.getInt("departMin") ));
+        totalPayText.setText( String.format("$%.2f", totPay) );
 
 
         payButt.setOnClickListener(new View.OnClickListener() {

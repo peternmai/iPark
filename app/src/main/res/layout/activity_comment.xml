@@ -9,6 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
     tools:context="ucsd.cse110fa16.group14.ipark.comment">
 
     <TextView
@@ -28,7 +30,7 @@
         android:inputType="text|textAutoCorrect|textAutoComplete|textMultiLine|textImeMultiLine|textEmailAddress|textEmailSubject|textPersonName|textPostalAddress"
         android:ems="10"
         android:layout_centerHorizontal="true"
-        android:id="@+id/editText10"
+        android:id="@+id/userComment"
         android:background="@drawable/my_border"
         android:layout_below="@+id/textView6"
         android:layout_marginTop="10dp"

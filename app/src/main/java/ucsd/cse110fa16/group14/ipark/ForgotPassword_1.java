@@ -24,11 +24,16 @@ public class ForgotPassword_1 extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password_1);
 
         Button sendButton = (Button) findViewById(R.id.send);
-        EditText backToLogin = (EditText) findViewById(R.id.editText8);
+        Button backToLogin = (Button) findViewById(R.id.back);
 
         sendButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
+                // should pop up a window to enter verification code, then direct to next page
+                // TO DO
+
+
                 Intent intent = new Intent(ForgotPassword_1.this, NewPasswordRequest.class);
                 startActivity(intent);
             }

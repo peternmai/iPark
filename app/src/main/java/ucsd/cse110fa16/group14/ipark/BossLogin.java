@@ -29,7 +29,7 @@ public class BossLogin extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BossLogin.this, NavigationMenu.class);
+                Intent intent = new Intent(BossLogin.this, CountDownCheckOut.class);
                 startActivity(intent);
             }
         });

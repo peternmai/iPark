@@ -1,10 +1,12 @@
 package ucsd.cse110fa16.group14.ipark;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -60,6 +62,7 @@ public class DriverRegistration extends AppCompatActivity {
 
         final Button submit = (Button) findViewById(R.id.submit_registration);
         Button reset = (Button) findViewById(R.id.resetButton);
+        Button help = (Button) findViewById(R.id.help);
         final TextView invalidUser = (TextView) findViewById(R.id.invalidUsernameTV);
         final TextView invalidEmail = (TextView) findViewById(R.id.invalidEmailTV);
         final CheckBox notRobot = (CheckBox) findViewById(R.id.notARobot);
@@ -158,6 +161,29 @@ public class DriverRegistration extends AppCompatActivity {
             }
         });
 
+        /* information page */
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder hlp = new AlertDialog.Builder(DriverRegistration.this);
+                hlp.setTitle("Help Information");
+                hlp.setMessage("\t\t\t\tAll information provided will be kept confidential.\n" +
+                        "\t\t\t\tPlease enter a valid email and driver license.\n"+
+                        "\t\t\t\tA valid password will be at least of length six.\n" +
+                        "\t\t\t\tPlease click \"I'm not a robot\" before submit.");
+                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){
+                        dialog.cancel();
+                    }
+                });
+
+                //hlp.setNegativeButton("No", null);
+                AlertDialog alertDialog = hlp.create();
+                alertDialog.show();
+
+            }
+        });
 
         //Process the input and create a new user.
         submit.setOnClickListener(new View.OnClickListener() {
