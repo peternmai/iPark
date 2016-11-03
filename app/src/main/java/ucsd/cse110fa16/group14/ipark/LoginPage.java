@@ -251,12 +251,6 @@ public class LoginPage extends AppCompatActivity {
     private void signIn() {
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
-
-        if(username.equals("admin") && password.equals("123456")){
-            Intent ownerIntent = new Intent(LoginPage.this, OwnerHomepage.class);
-            ownerIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(ownerIntent);
-        }
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
             Toast.makeText(LoginPage.this, "Please enter your username and password",
                     Toast.LENGTH_LONG).show();
@@ -266,7 +260,7 @@ public class LoginPage extends AppCompatActivity {
                 usernameField.setText("");
                 passwordField.setText("");
             } else {
-                String email = DriverRegistration.uMapEmail.get(username);
+                final String email = DriverRegistration.uMapEmail.get(username);
                 progress.show();
                 progress.setMessage("Signing in....");
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -281,8 +275,12 @@ public class LoginPage extends AppCompatActivity {
                             progress.dismiss();
                             Toast.makeText(LoginPage.this, "Sign in successful",
                                     Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginPage.this, UserHomepage.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            Intent intent;
+                            if(email.equals("www123@gmail.com")){
+                                intent = new Intent(LoginPage.this, OwnerHomepage.class);
+                            } else {
+                                intent = new Intent(LoginPage.this, UserHomepage.class);
+                            }
                             startActivity(intent);
                         }
                     }
