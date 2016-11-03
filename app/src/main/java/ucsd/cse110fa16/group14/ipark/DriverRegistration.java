@@ -80,7 +80,7 @@ public class DriverRegistration extends AppCompatActivity {
         final EditText license = (EditText) findViewById(R.id.license);
 
 
-        firstName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        /*firstName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
@@ -109,6 +109,16 @@ public class DriverRegistration extends AppCompatActivity {
             }
         });
 
+        license.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+        */
+
 
 
         username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -131,14 +141,7 @@ public class DriverRegistration extends AppCompatActivity {
         });
 
 
-        license.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    hideKeyboard(v);
-                }
-            }
-        });
+
 
 
 

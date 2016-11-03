@@ -66,7 +66,15 @@ public class LoginPage extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 //User is singed in
                 if (firebaseAuth.getCurrentUser() != null) {
-                    Intent intent = new Intent(LoginPage.this, UserHomepage.class);
+                    String username = firebaseAuth.getCurrentUser().getEmail();
+                    String admin = "www123@gmail.com";
+
+                    /*Intent intent = username.equals("admin") ?
+                            new Intent(LoginPage.this, OwnerHomepage.class):
+                            new Intent(LoginPage.this, UserHomepage.class) ;*/
+                    Intent intent;
+                    if(username.equals(admin)) intent = new Intent(LoginPage.this, OwnerHomepage.class);
+                    else intent = new Intent(LoginPage.this, UserHomepage.class) ;
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -121,7 +129,17 @@ public class LoginPage extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 //User is singed in
                 if (firebaseAuth.getCurrentUser() != null) {
-                    Intent intent = new Intent(LoginPage.this, UserHomepage.class);
+
+                    String username = firebaseAuth.getCurrentUser().getEmail();
+                    String admin = "www123@gmail.com";
+                    /*Intent intent = username.equals("admin") ?
+                            new Intent(LoginPage.this, OwnerHomepage.class):
+                            new Intent(LoginPage.this, UserHomepage.class) ;*/
+
+                    Intent intent;
+                    if(username.equals(admin)) intent = new Intent(LoginPage.this, OwnerHomepage.class);
+                    else intent = new Intent(LoginPage.this, UserHomepage.class) ;
+
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -196,14 +214,14 @@ public class LoginPage extends AppCompatActivity {
         });
 
 
-        usernameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        /*usernameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     hideKeyboard(v);
                 }
             }
-        });
+        });*/
 
 
 
@@ -233,6 +251,12 @@ public class LoginPage extends AppCompatActivity {
     private void signIn() {
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
+
+        if(username.equals("admin") && password.equals("123456")){
+            Intent ownerIntent = new Intent(LoginPage.this, OwnerHomepage.class);
+            ownerIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(ownerIntent);
+        }
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
             Toast.makeText(LoginPage.this, "Please enter your username and password",
                     Toast.LENGTH_LONG).show();
