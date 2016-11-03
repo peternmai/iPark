@@ -13,8 +13,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +35,7 @@ public class LoginPage extends AppCompatActivity {
     private Button loginButton;
     private Button help;
     private Button forgetButt;
+    private TextView forgotPass;
     //private CheckBox rememberMe;
     private ProgressDialog progress;
     private FirebaseAuth auth;
@@ -66,7 +67,16 @@ public class LoginPage extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 //User is singed in
                 if (firebaseAuth.getCurrentUser() != null) {
-                    Intent intent = new Intent(LoginPage.this, UserHomepage.class);
+                    String username = firebaseAuth.getCurrentUser().getEmail();
+                    String admin = "www123@gmail.com";
+
+                    /*Intent intent = username.equals("admin") ?
+                            new Intent(LoginPage.this, OwnerHomepage.class):
+                            new Intent(LoginPage.this, UserHomepage.class) ;*/
+
+                    Intent intent;
+                    if(username.equals(admin)) intent = new Intent(LoginPage.this, OwnerHomepage.class);
+                    else intent = new Intent(LoginPage.this, UserHomepage.class) ;
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -107,8 +117,7 @@ public class LoginPage extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginButton);
         help = (Button) findViewById(R.id.help);
         backButton = (Button) findViewById(R.id.back);
-        forgetButt = (Button) findViewById(R.id.forget);
-
+        forgotPass = (TextView) findViewById(R.id.forgotPass);
         usernameField = (EditText) findViewById(R.id.userName);
         passwordField = (EditText) findViewById(R.id.password);
 
@@ -121,7 +130,17 @@ public class LoginPage extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 //User is singed in
                 if (firebaseAuth.getCurrentUser() != null) {
-                    Intent intent = new Intent(LoginPage.this, UserHomepage.class);
+
+                    String username = firebaseAuth.getCurrentUser().getEmail();
+                    String admin = "www123@gmail.com";
+                    /*Intent intent = username.equals("admin") ?
+                            new Intent(LoginPage.this, OwnerHomepage.class):
+                            new Intent(LoginPage.this, UserHomepage.class) ;*/
+
+                    Intent intent;
+                    if(username.equals(admin)) intent = new Intent(LoginPage.this, OwnerHomepage.class);
+                    else intent = new Intent(LoginPage.this, UserHomepage.class) ;
+
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -156,17 +175,6 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        /* forget password */
-        forgetButt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, ForgotPassword_1.class);
-
-                startActivity(intent);
-            }
-        });
-
-
         /* information page */
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,7 +182,7 @@ public class LoginPage extends AppCompatActivity {
                 AlertDialog.Builder hlp = new AlertDialog.Builder(LoginPage.this);
                 hlp.setTitle("Help Information");
                 hlp.setMessage("\t\t\t\tIn case of forgetting password, please " +
-                        "click \"Fotget password\" to get a new one.\n"
+                        "click \"Forget password\" to get a new one.\n"
                      //   "\t\t\t\tClick 'CHECKOUT' to sign out and end your reservation.\n"+
                        // "\t\t\t\tClick 'REPORT' if there is a car in your spot, " +
                         //"and you will receive a new parking space.\n"
@@ -196,14 +204,14 @@ public class LoginPage extends AppCompatActivity {
         });
 
 
-        usernameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        /*usernameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     hideKeyboard(v);
                 }
             }
-        });
+        });*/
 
 
 
@@ -213,6 +221,15 @@ public class LoginPage extends AppCompatActivity {
                 if (!hasFocus) {
                     hideKeyboard(v);
                 }
+            }
+        });
+
+        /* forget password */
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginPage.this, ForgotPassword_1.class);
+                startActivity(intent);
             }
         });
 
@@ -242,7 +259,7 @@ public class LoginPage extends AppCompatActivity {
                 usernameField.setText("");
                 passwordField.setText("");
             } else {
-                String email = DriverRegistration.uMapEmail.get(username);
+                final String email = DriverRegistration.uMapEmail.get(username);
                 progress.show();
                 progress.setMessage("Signing in....");
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -257,8 +274,12 @@ public class LoginPage extends AppCompatActivity {
                             progress.dismiss();
                             Toast.makeText(LoginPage.this, "Sign in successful",
                                     Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginPage.this, UserHomepage.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            Intent intent;
+                            if(email.equals("www123@gmail.com")){
+                                intent = new Intent(LoginPage.this, OwnerHomepage.class);
+                            } else {
+                                intent = new Intent(LoginPage.this, UserHomepage.class);
+                            }
                             startActivity(intent);
                         }
                     }

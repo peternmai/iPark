@@ -80,11 +80,12 @@
         android:layout_height="80dp"
         android:layout_below="@+id/MessageTotaltoPay"
         android:layout_centerHorizontal="true"
+        android:background="#e6f7ff"
         android:layout_marginTop="10dp"
         android:id="@+id/totalToPay"
         android:textColor="#000000"
         android:textAlignment="center"
-        android:textSize="40sp" />
+        android:textSize="60sp" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -95,7 +96,7 @@
         android:layout_marginTop="0dp" />
 
     <TextView
-        android:text="TOTAL TO PAY"
+        android:text="TOTAL TO PAY:"
         android:layout_width="match_parent"
         android:id="@+id/MessageTotaltoPay"
         android:textAlignment="center"

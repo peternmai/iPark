@@ -62,17 +62,6 @@
         android:background="@mipmap/help" />
 
     <Button
-        android:text="Forget password?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/forget"
-        android:background="?android:attr/windowBackground"
-        android:textAllCaps="false"
-        android:textColor="#0000CC"
-        android:layout_below="@+id/password"
-        android:layout_alignParentEnd="true" />
-
-    <Button
         android:text="BACK"
         android:layout_width="150dp"
         android:textSize="20sp"
@@ -93,6 +82,16 @@
         android:layout_alignBaseline="@+id/back"
         android:layout_alignBottom="@+id/back"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Forgot password?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/forgotPass"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/password"
+        android:layout_alignEnd="@+id/checkBox2"
+        android:textColor="@android:color/holo_blue_dark" />
 
 </RelativeLayout>
 

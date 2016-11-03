@@ -40,17 +40,7 @@ public class BossMap extends AppCompatActivity {
         Button helpButt = (Button) findViewById(R.id.help);
         Button statusButt = (Button) findViewById(R.id.status);
 
-        Button testButt = (Button) findViewById(R.id.button24);
 
-        testButt.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BossMap.this, BossEmergency.class);
-                startActivity(intent);
-
-            }
-        });
 
 
         /* information page */
