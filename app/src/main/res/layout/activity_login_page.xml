@@ -65,7 +65,7 @@
         android:text="Forget password?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button26"
+        android:id="@+id/forget"
         android:background="?android:attr/windowBackground"
         android:textAllCaps="false"
         android:textColor="#0000CC"

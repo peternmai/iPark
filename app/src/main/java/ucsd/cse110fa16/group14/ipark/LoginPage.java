@@ -30,10 +30,12 @@ public class LoginPage extends AppCompatActivity {
 
     private EditText usernameField;
     private EditText passwordField;
+
     private Button backButton;
     private Button loginButton;
     private Button help;
-    //private CheckBox forgotPassword;
+    private Button forgetButt;
+    //private CheckBox rememberMe;
     private ProgressDialog progress;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
@@ -100,10 +102,12 @@ public class LoginPage extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        // the buttons
         //registerButton = (Button) findViewById(R.id.registerButton);
         loginButton = (Button) findViewById(R.id.loginButton);
         help = (Button) findViewById(R.id.help);
         backButton = (Button) findViewById(R.id.back);
+        forgetButt = (Button) findViewById(R.id.forget);
 
         usernameField = (EditText) findViewById(R.id.userName);
         passwordField = (EditText) findViewById(R.id.password);
@@ -151,6 +155,17 @@ public class LoginPage extends AppCompatActivity {
 
             }
         });
+
+        /* forget password */
+        forgetButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginPage.this, ForgotPassword_1.class);
+
+                startActivity(intent);
+            }
+        });
+
 
         /* information page */
         help.setOnClickListener(new View.OnClickListener() {
