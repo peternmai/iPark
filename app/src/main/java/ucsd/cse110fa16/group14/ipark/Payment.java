@@ -8,9 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
+
 import org.w3c.dom.Text;
 
 public class Payment extends AppCompatActivity {
+
 
     @Override
     protected void onPause() {
