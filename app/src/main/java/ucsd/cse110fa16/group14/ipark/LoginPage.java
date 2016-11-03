@@ -117,7 +117,7 @@ public class LoginPage extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginButton);
         help = (Button) findViewById(R.id.help);
         backButton = (Button) findViewById(R.id.back);
-        forgotPass = (TextView) findViewById(R.id.forgotPass);
+        forgotPass = (TextView) findViewById(R.id.forget);
         usernameField = (EditText) findViewById(R.id.userName);
         passwordField = (EditText) findViewById(R.id.password);
 

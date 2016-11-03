@@ -87,11 +87,12 @@
         android:text="Forgot password?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/forgotPass"
+        android:id="@+id/forget"
         android:layout_marginTop="18dp"
         android:layout_below="@+id/password"
         android:layout_alignEnd="@+id/checkBox2"
-        android:textColor="@android:color/holo_blue_dark" />
+        android:textColor="@android:color/holo_blue_dark"
+        android:clickable="false" />
 
 </RelativeLayout>
 
