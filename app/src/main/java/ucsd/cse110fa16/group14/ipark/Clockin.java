@@ -9,19 +9,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.HashMap;
+
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.google.firebase.database.DataSnapshot;
+
 
 import static android.media.CamcorderProfile.get;
 
 public class Clockin extends AppCompatActivity {
 
+    private static HashSet<String> parking = new HashSet<>();
+    private static HashSet<String> spots = new HashSet<>();
+    protected static HashMap<String, String> parkSpotReserve = new HashMap<>();
     /*private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private RelativeLayout relativeLayout;
 */
+
     private int min, hour, curMin, curHour, ampm;
 
     public void dialogEvent(View view) {
@@ -210,6 +223,52 @@ public class Clockin extends AppCompatActivity {
             }
         });
 
+    }
+    protected void getData() {
+
+        //Getting access to the parking lot
+        Firebase parkReference = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
+
+        parkReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> parkingSpots = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpots.iterator();
+
+                //Getting parking spots
+                while (iterator.hasNext()) {
+                    com.firebase.client.DataSnapshot node = iterator.next();
+                    String pspot = node.getKey();
+                    parking.add(pspot);
+
+                    Iterable<com.firebase.client.DataSnapshot> parkingInfo = node.getChildren();
+                    Iterator<com.firebase.client.DataSnapshot> iter = parkingInfo.iterator();
+
+                    //Getting info if reserved or not
+                    while (iter.hasNext()) {
+                        com.firebase.client.DataSnapshot subNode = iter.next();
+                        String subKey = subNode.getKey();
+                        if (subKey.equals("Reserved")) {
+                            String reserve = subNode.getValue(String.class);
+                            parkSpotReserve.put(pspot, reserve);
+                            spots.add(pspot);
+
+
+                        }
+                    }
+
+
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Toast.makeText(Clockin.this, "Could not connect to the database", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     /*public void showDialog(View v) {
