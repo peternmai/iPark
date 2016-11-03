@@ -1,5 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,35 +43,26 @@ public class ForgotPassword_1 extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        sendButton.setOnClickListener(new View.OnClickListener(){
+        sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 String email = emailField.getText().toString();
                 String msg;
-                if(DriverRegistration.uMapEmail.containsValue(email)){
+                if (DriverRegistration.uMapEmail.containsValue(email)) {
                     auth.sendPasswordResetEmail(email);
                     msg = "An email has been sent to you. \n"
-                            +"Please follow the steps in your email to reset your password";
+                            + "Please follow the steps in your email to reset your password";
                     caption.setText(msg);
                     hideKeyboard(v);
                     emailField.setEnabled(false);
                     sendButton.setEnabled(false);
                     Toast.makeText(ForgotPassword_1.this, "Email sent", Toast.LENGTH_LONG).show();
-                }
-                else{
+                } else {
                     msg = "Invalid email. Please try again.";
                     caption.setText(msg);
                     //Hide Keyboard
                     hideKeyboard(v);
                 }
-            }
-        });
-
-        backToLogin.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(ForgotPassword_1.this, LoginPage.class);
-                startActivity(intent);
             }
         });
     }

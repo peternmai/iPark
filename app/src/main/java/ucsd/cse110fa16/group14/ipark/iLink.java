@@ -1,15 +1,24 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.Iterator;
 
 public class iLink {
     private static String usersNode = "https://ipark-e243b.firebaseio.com/Users/";
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
-
+    private static User user;
     private static FirebaseAuth auth;
-    private Firebase parkingRef = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
 
     public static Task changePassword(String username, String newPassword) {
         auth = FirebaseAuth.getInstance();
@@ -56,7 +65,48 @@ public class iLink {
         Firebase reserveRef = new Firebase(parkingLot + spot + "/Reserved");
         reserveRef.setValue(newStatus);
     }
+/*
+    public static User getCurrentUser(){
+        user = new User();
+        auth = FirebaseAuth.getInstance();
+        String name = auth.getCurrentUser().getDisplayName();
+        Firebase userRef = new Firebase(usersNode + name);
 
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Iterable<DataSnapshot> info = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> infoIterator = info.iterator();
+                while(infoIterator.hasNext()){
+                    DataSnapshot node = infoIterator.next();
+                    String vals = node.getKey();
+
+                    switch (vals){
+                        case "email":
+                            user.setStringEmail(node.getValue(String.class));
+                            break;
+                        case "license":
+                            user.setStringLicense(node.getValue(String.class));
+                            break;
+                        case "name":
+                            break;
+                        case "username":
+                            user.setStringUsername(node.getValue(String.class));
+                            break;
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.e("","Error retrieving data");
+            }
+        });
+
+
+        return user;
+    }
+    */
 }
-
-

@@ -8,106 +8,6 @@
     tools:context="ucsd.cse110fa16.group14.ipark.PersonalInfo"
     >
 
-    <TextView
-        android:text="First Name: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
-        android:id="@+id/textView44" />
-
-    <TextView
-        android:text="Last Name: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_marginTop="30dp"
-        android:id="@+id/textView45"
-        android:layout_below="@+id/textView44"
-        android:layout_alignStart="@+id/textView44" />
-
-    <TextView
-        android:text="@string/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_below="@+id/textView45"
-        android:layout_alignStart="@+id/textView45"
-        android:layout_marginTop="30dp"
-        android:id="@+id/textView46" />
-
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView46"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_alignStart="@+id/textView46"
-        android:layout_marginTop="30dp"
-        android:id="@+id/textView47"
-        android:text="License:" />
-
-    <TextView
-        android:text="Username: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView47"
-        android:layout_alignStart="@+id/textView47"
-        android:layout_marginTop="30dp"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:id="@+id/textView48" />
-
-    <TextView
-        android:text="Password:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView48"
-        android:layout_alignStart="@+id/textView48"
-        android:layout_marginTop="30dp"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:id="@+id/textView49" />
-
-    <Button
-        android:text="HOME"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="58dp"
-        android:id="@+id/button19"
-        android:layout_below="@+id/textView49"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="28dp" />
-
-    <Button
-        android:text="UPDATE"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button21"
-        android:layout_alignBaseline="@+id/button19"
-        android:layout_alignBottom="@+id/button19"
-        android:layout_alignStart="@+id/textView49" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password"
-        android:text="123456"
-        android:textAlignment="textStart"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText"
-        android:layout_alignBaseline="@+id/textView49"
-        android:layout_alignBottom="@+id/textView49"
-        android:layout_alignParentEnd="true" />
-
     <Button
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
@@ -116,58 +16,130 @@
         android:background="@mipmap/help"
         android:layout_width="50dp" />
 
-    <TextView
-        android:text="first"
-        android:layout_width="200dp"
-        android:layout_alignTop="@+id/textView44"
-        android:layout_alignStart="@+id/password"
-        android:id="@+id/first"
-        android:layout_height="40dp"
-        android:textColor="#202020"
-        android:textSize="20sp" />
+    <Button
+        android:text="HOME"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button19"
+        android:layout_marginBottom="52dp"
+        android:layout_marginStart="17dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="last"
-        android:layout_width="200dp"
+        android:text="Last Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView46"
+        android:layout_alignStart="@+id/textView46"
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView47"
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="Email: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView47"
+        android:layout_alignStart="@+id/textView47"
+        android:layout_marginTop="27dp"
+        android:id="@+id/textView48"
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="License: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView48"
+        android:layout_alignStart="@+id/textView48"
+        android:layout_marginTop="27dp"
+        android:id="@+id/textView49"
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="Username: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView49"
+        android:layout_alignStart="@+id/textView49"
+        android:layout_marginTop="28dp"
+        android:id="@+id/textView75"
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView47"
+        android:layout_alignStart="@+id/first"
         android:id="@+id/last"
-        android:layout_height="40dp"
-        android:textColor="#202020"
         android:textSize="20sp"
-        android:layout_alignBaseline="@+id/textView45"
-        android:layout_alignBottom="@+id/textView45"
-        android:layout_alignStart="@+id/first" />
+        android:textColor="@android:color/black" />
 
     <TextView
-        android:text="cse110@ucsd.edu"
-        android:layout_width="200dp"
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView48"
+        android:layout_alignStart="@+id/last"
         android:id="@+id/email"
-        android:layout_height="40dp"
-        android:textColor="#202020"
         android:textSize="20sp"
-        android:layout_alignBaseline="@+id/textView46"
-        android:layout_alignBottom="@+id/textView46"
-        android:layout_alignStart="@+id/last" />
+        android:textColor="@android:color/black" />
 
     <TextView
-        android:text="12345678"
-        android:layout_width="200dp"
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView49"
+        android:layout_alignEnd="@+id/email"
         android:id="@+id/license"
-        android:layout_height="40dp"
-        android:textColor="#202020"
         android:textSize="20sp"
-        android:layout_alignBaseline="@+id/textView47"
-        android:layout_alignBottom="@+id/textView47"
-        android:layout_alignStart="@+id/email" />
+        android:textColor="@android:color/black" />
 
     <TextView
-        android:text="username"
-        android:layout_width="200dp"
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView75"
+        android:layout_alignStart="@+id/license"
         android:id="@+id/username"
-        android:layout_height="40dp"
-        android:textColor="#202020"
         android:textSize="20sp"
-        android:layout_alignBaseline="@+id/textView48"
-        android:layout_alignBottom="@+id/textView48"
-        android:layout_alignStart="@+id/password" />
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/first"
+        android:textSize="20sp"
+        android:layout_alignStart="@+id/button21"
+        android:layout_alignTop="@+id/textView46"
+        android:layout_alignBottom="@+id/textView46"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:text="First Name: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView46"
+        android:textSize="20sp"
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/help"
+        android:layout_alignStart="@+id/button19"
+        android:layout_marginTop="19dp" />
+
+    <Button
+        android:text="Change Password"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button21"
+        android:layout_marginEnd="19dp"
+        android:layout_alignBaseline="@+id/button19"
+        android:layout_alignBottom="@+id/button19"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

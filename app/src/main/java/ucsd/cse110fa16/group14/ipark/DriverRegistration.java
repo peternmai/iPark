@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -339,6 +340,16 @@ public class DriverRegistration extends AppCompatActivity {
                         Toast.makeText(DriverRegistration.this, "Error signing up", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(DriverRegistration.this, "Sign up successful", Toast.LENGTH_LONG).show();
+                        UserProfileChangeRequest displayName = new UserProfileChangeRequest.Builder().setDisplayName(newUser.getUsername()).build();
+                        auth.getCurrentUser().updateProfile(displayName).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(!task.isSuccessful()){
+                                    Toast.makeText(DriverRegistration.this,
+                                            "Could not set the display name", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
                         myFirebaseRef.child(newUser.getUsername()).setValue(newUser);
                         progress.dismiss();
                         Intent intent = new Intent(DriverRegistration.this,LoginPage.class);

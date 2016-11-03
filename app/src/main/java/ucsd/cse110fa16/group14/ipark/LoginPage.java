@@ -34,7 +34,6 @@ public class LoginPage extends AppCompatActivity {
     private Button backButton;
     private Button loginButton;
     private Button help;
-    private Button forgetButt;
     private TextView forgotPass;
     //private CheckBox rememberMe;
     private ProgressDialog progress;
