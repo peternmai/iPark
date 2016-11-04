@@ -28,7 +28,6 @@
         android:layout_width="wrap_content"
         android:layout_alignEnd="@+id/editText"
         android:layout_alignParentBottom="false"
-        android:layout_below="@+id/imageView4"
         android:textAllCaps="false" />
 
     <EditText

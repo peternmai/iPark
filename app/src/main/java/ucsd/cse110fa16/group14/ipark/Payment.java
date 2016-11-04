@@ -12,7 +12,12 @@ import com.firebase.client.Firebase;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Payment extends AppCompatActivity {
+
+    private Firebase root;
 
 
     @Override
@@ -28,6 +33,10 @@ public class Payment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+        //**************************************************************
+        root = new Firebase("https://ipark-e243b.firebaseio.com/History");
+        //***************************************************************
 
         Button payButt = (Button) findViewById(R.id.button);
         Button cancelButt = (Button) findViewById(R.id.button3);
@@ -48,15 +57,41 @@ public class Payment extends AppCompatActivity {
         TextView endTimeText = (TextView) findViewById(R.id.endTimeText);
         TextView totalPayText = (TextView) findViewById(R.id.totalToPay);
 
+        final TextView total = (TextView) findViewById(R.id.totalToPay);
+
         startTimeText.setText( generateTimeText( bundle.getInt("arriveHour"), bundle.getInt("arriveMin") ));
         endTimeText.setText( generateTimeText( bundle.getInt("departHour"), bundle.getInt("departMin") ));
         totalPayText.setText( String.format("$%.2f", totPay) );
+
+
 
 
         payButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
+
+                String rate = total.getText().toString();
+                String clockInTime = generateTimeText( bundle.getInt("arriveHour"), bundle.getInt("arriveMin") );
+                String clockOutTime = generateTimeText( bundle.getInt("departHour"), bundle.getInt("departMin") );
+                Date date = new Date();
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                sdf.format(date);
+
+                Firebase hasChild = root.child(date + " " + clockInTime);
+
+                Firebase rateChild = hasChild.child("Rate");
+                Firebase clockInChild = hasChild.child("Clockin");
+                Firebase clockOutChild = hasChild.child("Clockout");
+                Firebase dateChild = hasChild.child("Date");
+
+                rateChild.setValue(rate);
+                clockInChild.setValue(clockInTime);
+                clockOutChild.setValue(clockOutTime);
+                dateChild.setValue(sdf.format(date));
+
 
                 Intent intent = new Intent(Payment.this, CountDownCheckOut.class);
                 intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
