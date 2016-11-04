@@ -29,11 +29,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class CountDownCheckOut extends AppCompatActivity {
 
     private int mProgressStatus;
-    static ArrayList<String> parkingspots = new ArrayList<>();
+    static Stack<String> parkingspots = new Stack<>();
 
     @Override
     protected void onPause() {
@@ -82,6 +83,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         endTimeText.setText( generateTimeText( bundle.getInt("departHour"), bundle.getInt("departMin") ));
 
         getParkingLotData();
+        //pspot.setText(parkingspots.get(0));
 
 
 
@@ -161,7 +163,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         getSpot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pspot.setText(parkingspots.get(0));
+                pspot.setText(parkingspots.pop());
             }
         });
 
@@ -361,7 +363,10 @@ public class CountDownCheckOut extends AppCompatActivity {
                         String innerKey = innerNode.getKey();
                         if (innerKey.equals("Reserved")) {
                             boolean spot = innerNode.getValue(Boolean.class);
-                            parkingspots.add(uname);
+                            //parkingspots.push(uname);
+                            if(spot == false){
+                                parkingspots.push(uname);
+                            }
                             // uMapEmail.put(uname, mail);
                             //emails.add(mail);
                         }
