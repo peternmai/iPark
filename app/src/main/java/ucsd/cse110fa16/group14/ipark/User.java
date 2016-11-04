@@ -26,8 +26,8 @@ public class User {
         }
     }
 
-    public User(String firstName, String lastName, String email, String license, String username, String password, boolean owner){
-        Name name = new Name(firstName,lastName);
+    public User(String firstName, String lastName, String email, String license, String username, String password, boolean owner) {
+        Name name = new Name(firstName, lastName);
         this.name = name;
         this.email = email;
         this.license = license;
@@ -65,9 +65,9 @@ public class User {
     }
 
 
-        protected void setStringName(String firstName, String lastName) {
-            this.name = new Name(firstName, lastName);
-        }
+    protected void setStringName(String firstName, String lastName) {
+        this.name = new Name(firstName, lastName);
+    }
 
     protected void setName(EditText firstName, EditText lastName) {
         this.name = new Name(firstName.getText().toString(), lastName.getText().toString());
@@ -81,10 +81,9 @@ public class User {
         return this.email;
     }
 
-
-        protected void setStringEmail(String email){
-            this.email= email;
-        }
+    protected void setStringEmail(String email) {
+        this.email = email;
+    }
 
     protected void setEmail(EditText email) {
         this.email = email.getText().toString().toLowerCase();
@@ -95,7 +94,7 @@ public class User {
     }
 
 
-    protected void setStringLicense(String license){
+    protected void setStringLicense(String license) {
         this.license = license;
     }
 
@@ -108,9 +107,9 @@ public class User {
     }
 
 
-        protected void setStringUsername(String username){
-            this.username = username;
-        }
+    protected void setStringUsername(String username) {
+        this.username = username;
+    }
 
     protected void setUsername(EditText username) {
         String userNameString = username.getText().toString();

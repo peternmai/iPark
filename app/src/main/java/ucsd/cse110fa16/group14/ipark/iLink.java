@@ -1,24 +1,15 @@
 package ucsd.cse110fa16.group14.ipark;
 
-import android.content.Intent;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-import com.firebase.client.core.Context;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Stack;
 
 public class iLink {
     private static String usersNode = "https://ipark-e243b.firebaseio.com/Users/";
@@ -28,6 +19,7 @@ public class iLink {
     static ArrayList<String> parkingspots = new ArrayList<>();
     static ArrayList<String> avail = new ArrayList<>();
     HashMap<String, Integer> incase = new HashMap<>();
+    String finalVal;
 
     public static Task changePassword(String username, String newPassword) {
         auth = FirebaseAuth.getInstance();
@@ -75,48 +67,80 @@ public class iLink {
         reserveRef.setValue(newStatus);
     }
 
-    public static void Reserve(){
-        Firebase parkinglot = new Firebase(parkingLot);
-        int count;
+    /**
+     * getDataFromFirebase returns a HashMap with the name of the first child node as the key
+     * and the value of the inner child as the value.
+     *
+     * @param mainKey  "Folder" in the firebase you want to access. For example, Users or ParkingLot
+     * @param innerKey specific data you want to access. For example, username or the end time of a parking spot.
+     * @return HashMap with the name of the data we are accessing to as key and the value of what we want as a value.
+     */
+    protected HashMap getDataMapFromFirebase(String mainKey, final String innerKey) {
 
+        //Getting all the usernames
+        Firebase fReference = new Firebase("https://ipark-e243b.firebaseio.com/" + mainKey);
+        final HashMap<String, String> map = new HashMap<>();
 
-        parkinglot.addValueEventListener(new ValueEventListener() {
+        fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> spots = dataSnapshot.getChildren();
-                Iterator<DataSnapshot> spotIter = spots.iterator();
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> mainNodeData = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> iterator = mainNodeData.iterator();
 
-                while (spotIter.hasNext()) {
-                    DataSnapshot node = spotIter.next();
-                    String key = node.getKey();
-                    parkingspots.add(key);
+                //Getting mainNode keys
+                while (iterator.hasNext()) {
+                    com.firebase.client.DataSnapshot node = iterator.next();
+                    String mainNodeKey = node.getKey();
 
-                    Iterable<DataSnapshot> reserved = node.getChildren();
-                    Iterator<DataSnapshot> reserIter = reserved.iterator();
+                    Iterable<com.firebase.client.DataSnapshot> innerNodeData = node.getChildren();
+                    Iterator<com.firebase.client.DataSnapshot> iterator1 = innerNodeData.iterator();
 
-                    /*while (reserIter.hasNext()) {
-                        DataSnapshot snap = reserIter.next();
-                        String status = snap.getKey();
-
-                        if (status.equals("Reserved")) {
-                            Boolean free = snap.getValue(Boolean.class);
-                            if (free.equals(false)) {
-                                avail.add(key);
-                            }
-
+                    //Getting innerNodeKey's value
+                    while (iterator1.hasNext()) {
+                        com.firebase.client.DataSnapshot innerNode = iterator1.next();
+                        String currentKey = innerNode.getKey();
+                        if (currentKey.equals(innerKey)) {
+                            String innerNodeValue = innerNode.getValue(String.class);
+                            map.put(mainNodeKey, innerNodeValue);
                         }
-                    }*/
+                    }
                 }
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+        return map;
+    }
 
+    /**
+     * Takes the root, firstChild, and secondChild and returns the String value of it.
+     * @param root Users, ParkingLot, or History
+     * @param firstChild username, spot, or the whole date/time thing
+     * @param secondChild example: email, username, EndTime, or Clockin
+     * @return the string value of the things. Example Users->admin->email = www123@gmail.com.
+     */
+    protected String getValueFromFirebase(String root, final String firstChild, final String secondChild ) {
+
+        //Getting all the usernames
+        Firebase fReference = new Firebase("https://ipark-e243b.firebaseio.com/" + root+
+                "/"+firstChild+"/"+secondChild);
+        fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                finalVal = dataSnapshot.getValue(String.class);
             }
 
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
         });
-
+        return finalVal;
     }
+}
 /*
     public static User getCurrentUser(){
         user = new User();
@@ -161,4 +185,3 @@ public class iLink {
         return user;
     }
     */
-}
