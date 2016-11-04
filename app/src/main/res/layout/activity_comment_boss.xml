@@ -6,261 +6,72 @@
     android:layout_height="match_parent"
     tools:context="ucsd.cse110fa16.group14.ipark.CommentBoss">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:layout_marginTop="40dp"
-        android:id="@+id/scroll">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:id="@+id/relative"
-            android:layout_below="@+id/button15">
-
-
-    <TextView
-        android:text="how is cse 110 parking lot?"
-        android:layout_width="match_parent"
-        android:background="@drawable/lighter_border"
-
+    <ListView
+        android:id="@+id/list_view2"
+        android:layout_width="350dp"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView30"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:textColor="#404040"
-        android:paddingLeft="10dp"
-        android:backgroundTint="#CCE5FF"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp" />
-
-    <TextView
-        android:text="it's not bad"
-        android:layout_width="match_parent"
-        android:background="@drawable/lighter_border"
-        android:id="@+id/textView27"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:textColor="#404040"
-        android:paddingLeft="10dp"
-        android:backgroundTint="#CCE5FF"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/textView30" />
-
-    <TextView
-        android:text="the app is hard to use :("
-        android:layout_width="match_parent"
-        android:background="@drawable/lighter_border"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView36"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:textColor="#404040"
-        android:paddingLeft="10dp"
-        android:backgroundTint="#CCE5FF"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_below="@+id/textView16"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="it has great security system"
-        android:layout_width="match_parent"
-        android:background="@drawable/lighter_border"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView16"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:textColor="#404040"
-        android:paddingLeft="10dp"
-        android:backgroundTint="#CCE5FF"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_below="@+id/textView27"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="amazing"
-        android:layout_width="match_parent"
-        android:background="@drawable/lighter_border"
-        android:id="@+id/textView28"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:textColor="#404040"
-        android:paddingLeft="10dp"
-        android:backgroundTint="#CCE5FF"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_below="@+id/textView36"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp" />
-
-    <TextView
-        android:text="hard to figure my parking place obviously need to improve the map direction feature"
-        android:layout_width="match_parent"
-        android:background="@drawable/lighter_border"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView32"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:textColor="#404040"
-        android:paddingLeft="10dp"
-        android:backgroundTint="#CCE5FF"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_below="@+id/textView31" />
-
-    <TextView
-        android:text="i doubt this comment won't be seen by anyone"
-        android:layout_width="match_parent"
-        android:background="@drawable/lighter_border"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView33"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:textColor="#404040"
-        android:paddingLeft="10dp"
-        android:backgroundTint="#CCE5FF"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_below="@+id/textView32" />
-
-    <TextView
-        android:text="love it, keep improving"
-        android:layout_width="match_parent"
-        android:background="@drawable/lighter_border"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView34"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:textColor="#404040"
-        android:paddingLeft="10dp"
-        android:backgroundTint="#CCE5FF"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_below="@+id/textView33"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="no comment lol"
-        android:layout_width="match_parent"
-        android:background="@drawable/lighter_border"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView35"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:textColor="#404040"
-        android:paddingLeft="10dp"
-        android:backgroundTint="#CCE5FF"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_below="@+id/textView34" />
-
-    <TextView
-        android:text="never park here again"
-        android:layout_width="match_parent"
-        android:background="@drawable/lighter_border"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView31"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:textColor="#404040"
-        android:paddingLeft="10dp"
-        android:backgroundTint="#CCE5FF"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_below="@+id/textView28" />
-        </RelativeLayout>
-
-    </ScrollView>
+        android:layout_height="370dp" />
 
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_alignParentTop="true"
         android:id="@+id/radioGroup"
-        android:layout_toEndOf="@+id/button15"
         >
 
-        <RadioButton
-            android:text="Date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton"
-            android:layout_alignBaseline="@+id/button15"
-            android:layout_alignBottom="@+id/button15"
-            android:layout_toEndOf="@+id/button15"
-            android:checked="true"
-            android:layout_marginTop="5dp" />
-        <RadioButton
-            android:text="Length"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/radioButton"
-            android:layout_toEndOf="@+id/radioButton"
-            android:id="@+id/radioButton2"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp" />
     </RadioGroup>
 
-    <Button
-        android:text="Sorted by"
+    <RadioButton
+        android:text="Date"
         android:layout_width="wrap_content"
-        android:id="@+id/button15"
-        android:textAllCaps="false"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="wrap_content"
+        android:id="@+id/radioButton7"
+        android:layout_marginStart="25dp"
+        android:layout_alignBaseline="@+id/button26"
+        android:layout_alignBottom="@+id/button26"
+        android:layout_toEndOf="@+id/button26" />
 
     <Button
-        android:text="previous"
+        android:text="Sorted By"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/submitButton"
-        android:layout_width="100dp"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        tools:ignore="HardcodedText"
-        android:textAllCaps="false"
-        android:layout_below="@+id/scroll"
-        android:layout_alignStart="@+id/scroll"
-        android:layout_marginStart="40dp" />
+        android:id="@+id/button26"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignStart="@+id/list_view2"
+        android:layout_marginTop="11dp" />
 
-
-    <Button
-        android:text="next "
-        android:layout_width="100dp"
+    <RadioButton
+        android:text="Length"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cancelButton"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        tools:ignore="HardcodedText"
-        android:textAllCaps="false"
-        android:layout_marginEnd="40dp"
-        android:layout_below="@+id/scroll"
-        android:layout_alignEnd="@+id/scroll" />
+        android:checked="true"
+        android:layout_alignTop="@+id/radioButton7"
+        android:layout_toEndOf="@+id/radioButton7"
+        android:layout_marginStart="22dp"
+        android:id="@+id/radioButton8" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/next"
+        android:background="#FFFFFF"
+        android:layout_marginStart="39dp"
+        android:id="@+id/nextBB"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/radioButton8"
+        android:layout_marginBottom="10dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/home"
+        android:background="#FFFFFF"
+        android:layout_marginEnd="12dp"
+        android:id="@+id/homeBB"
+        android:layout_alignTop="@+id/nextBB"
+        android:layout_alignEnd="@+id/button26" />
+
 
 </RelativeLayout>

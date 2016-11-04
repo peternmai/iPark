@@ -9,8 +9,17 @@ import android.widget.Button;
 import android.content.Context;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RatingBar;
+
+import com.firebase.client.Firebase;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class comment extends AppCompatActivity {
+
+    private Firebase root;
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -25,7 +34,12 @@ public class comment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
+
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Comments");
+
+
         final EditText userComment = (EditText) findViewById(R.id.userComment);
+        final RatingBar rating = (RatingBar) findViewById(R.id.rating);
 
         Button submitButt = (Button) findViewById(R.id.submitButton);
         Button cancelButton = (Button) findViewById(R.id.cancelButton);
@@ -34,6 +48,26 @@ public class comment extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+                String comment = userComment.getText().toString();
+                String rate = String.valueOf(rating.getRating());
+
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                sdf.format(date);
+
+                Firebase hasChild = root.child(date + " ");
+
+                Firebase commentChild = hasChild.child("Comment");
+                Firebase dateChild = hasChild.child("Date");
+                Firebase rateChild = hasChild.child("Rating");
+
+                commentChild.setValue(comment);
+                dateChild.setValue(sdf.format(date));
+                rateChild.setValue(rate);
+
+
+
                 Intent intent = new Intent(comment.this, UserHomepage.class);
                 startActivity(intent);
             }

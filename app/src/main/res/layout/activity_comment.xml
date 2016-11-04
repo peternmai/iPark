@@ -26,7 +26,6 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="350dp"
         android:inputType="text|textAutoCorrect|textAutoComplete|textMultiLine|textImeMultiLine|textEmailAddress|textEmailSubject|textPersonName|textPostalAddress"
         android:ems="10"
         android:layout_centerHorizontal="true"
@@ -38,7 +37,8 @@
         android:gravity="top|fill_horizontal"
         android:textColor="#202020"
         tools:ignore="HardcodedText,LabelFor"
-        android:hint="Your opinion matters..." />
+        android:hint="Your opinion matters..."
+        android:layout_height="250dp" />
 
     <Button
         android:text="CANCEL"
@@ -61,5 +61,23 @@
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rating"
+        android:layout_above="@+id/cancelButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="11dp" />
+
+    <TextView
+        android:text="RATE YOUR PARKING"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="#696969"
+        android:id="@+id/textView45"
+        android:layout_above="@+id/rating"
+        android:layout_toStartOf="@+id/cancelButton" />
 
 </RelativeLayout>
