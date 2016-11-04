@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -66,7 +67,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         Button mapButt = (Button) findViewById(R.id.button22);
         Button help = (Button) findViewById(R.id.button16);
         Button homeButt = (Button) findViewById(R.id.button17);
-
+        Button getSpot = (Button) findViewById(R.id.getSpot);
         // Get values passed on from previous activity
         final Bundle bundle = getIntent().getExtras();
         final Handler mHandler = new Handler();
@@ -80,8 +81,8 @@ public class CountDownCheckOut extends AppCompatActivity {
         startTimeText.setText( generateTimeText( bundle.getInt("arriveHour"), bundle.getInt("arriveMin") ));
         endTimeText.setText( generateTimeText( bundle.getInt("departHour"), bundle.getInt("departMin") ));
 
-        Reserve();
-        pspot.setText(parkingspots.get(0));
+        getParkingLotData();
+
 
 
         // Express current, start, and end time in seconds
@@ -157,6 +158,12 @@ public class CountDownCheckOut extends AppCompatActivity {
         }).start(); */
 
 
+        getSpot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pspot.setText(parkingspots.get(0));
+            }
+        });
 
         /* information page */
         help.setOnClickListener(new View.OnClickListener() {
@@ -328,46 +335,44 @@ public class CountDownCheckOut extends AppCompatActivity {
         return ((curHour * 60) + curMin) * 60 + curSec;
     }
 
-    public static void Reserve(){
-        Firebase parkinglot = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
-        int count;
+    protected void getParkingLotData() {
 
+        //Getting all the usernames
+        Firebase userReference = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
 
-        parkinglot.addValueEventListener(new ValueEventListener() {
+        userReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> spots = dataSnapshot.getChildren();
-                Iterator<DataSnapshot> spotIter = spots.iterator();
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> usernames = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> iterator = usernames.iterator();
 
-                while (spotIter.hasNext()) {
-                    DataSnapshot node = spotIter.next();
-                    String key = node.getKey();
-                    parkingspots.add(key);
+                //Getting usernames
+                while (iterator.hasNext()) {
+                    com.firebase.client.DataSnapshot node = iterator.next();
+                    String uname = node.getKey();
+                    //parkingspots.add(uname);
 
-                    //Iterable<DataSnapshot> reserved = node.getChildren();
-                    //Iterator<DataSnapshot> reserIter = reserved.iterator();
+                    Iterable<com.firebase.client.DataSnapshot> userInfo = node.getChildren();
+                    Iterator<com.firebase.client.DataSnapshot> iterator1 = userInfo.iterator();
 
-                    /*while (reserIter.hasNext()) {
-                        DataSnapshot snap = reserIter.next();
-                        String status = snap.getKey();
-
-                        if (status.equals("Reserved")) {
-                            Boolean free = snap.getValue(Boolean.class);
-                            if (free.equals(false)) {
-                                avail.add(key);
-                            }
-
+                    //Getting emails
+                    while (iterator1.hasNext()) {
+                        com.firebase.client.DataSnapshot innerNode = iterator1.next();
+                        String innerKey = innerNode.getKey();
+                        if (innerKey.equals("Reserved")) {
+                            boolean spot = innerNode.getValue(Boolean.class);
+                            parkingspots.add(uname);
+                            // uMapEmail.put(uname, mail);
+                            //emails.add(mail);
                         }
-                    }*/
+                    }
                 }
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-
+                Toast.makeText(CountDownCheckOut.this, "Could not connect to the database", Toast.LENGTH_LONG).show();
             }
-
         });
-
     }
 }
