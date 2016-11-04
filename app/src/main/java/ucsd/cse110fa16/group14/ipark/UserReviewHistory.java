@@ -73,7 +73,7 @@ public class UserReviewHistory extends AppCompatActivity {
 
 
 
-     /*   Button homeButton = (Button) findViewById(R.id.homeButton);
+       ImageButton homeButton = (ImageButton) findViewById(R.id.homeB);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
 
@@ -82,7 +82,7 @@ public class UserReviewHistory extends AppCompatActivity {
                 Intent intent = new Intent(UserReviewHistory.this, UserHomepage.class);
                 startActivity(intent);
             }
-        });*/
+        });
     }
 }
 
