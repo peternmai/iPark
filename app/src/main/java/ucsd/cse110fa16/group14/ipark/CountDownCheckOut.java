@@ -163,7 +163,9 @@ public class CountDownCheckOut extends AppCompatActivity {
         getSpot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pspot.setText(parkingspots.pop());
+                String spot= parkingspots.pop();
+                pspot.setText(spot);
+                iLink.changeReserveStatus(spot, true);
             }
         });
 
