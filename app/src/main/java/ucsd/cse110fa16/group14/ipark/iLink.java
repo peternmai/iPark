@@ -7,7 +7,6 @@ import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -16,10 +15,7 @@ public class iLink {
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
     private static User user;
     private static FirebaseAuth auth;
-    static ArrayList<String> parkingspots = new ArrayList<>();
-    static ArrayList<String> avail = new ArrayList<>();
-    HashMap<String, Integer> incase = new HashMap<>();
-    String finalVal;
+    private static String finalVal;
 
     public static Task changePassword(String username, String newPassword) {
         auth = FirebaseAuth.getInstance();
@@ -122,7 +118,7 @@ public class iLink {
      * @param secondChild example: email, username, EndTime, or Clockin
      * @return the string value of the things. Example Users->admin->email = www123@gmail.com.
      */
-    protected String getValueFromFirebase(String root, final String firstChild, final String secondChild ) {
+    protected static String getValueFromFirebase(String root, final String firstChild, final String secondChild ) {
 
         //Getting all the usernames
         Firebase fReference = new Firebase("https://ipark-e243b.firebaseio.com/" + root+
