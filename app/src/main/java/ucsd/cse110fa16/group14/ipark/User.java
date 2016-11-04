@@ -64,11 +64,11 @@ public class User {
         }
     }
 
-    /*
-        protected void setName(String firstName, String lastName) {
+
+        protected void setStringName(String firstName, String lastName) {
             this.name = new Name(firstName, lastName);
         }
-    */
+
     protected void setName(EditText firstName, EditText lastName) {
         this.name = new Name(firstName.getText().toString(), lastName.getText().toString());
     }
@@ -81,11 +81,11 @@ public class User {
         return this.email;
     }
 
-    /*
-        protected void setEmail(String email){
+
+        protected void setStringEmail(String email){
             this.email= email;
         }
-    */
+
     protected void setEmail(EditText email) {
         this.email = email.getText().toString().toLowerCase();
     }
@@ -94,11 +94,11 @@ public class User {
         return this.license;
     }
 
-    /*
-    protected void setLicense(String license){
+
+    protected void setStringLicense(String license){
         this.license = license;
     }
-*/
+
     protected void setLicense(EditText license) {
         this.license = license.getText().toString();
     }
@@ -107,11 +107,11 @@ public class User {
         return this.username;
     }
 
-    /*
-        protected void setUsername(String username){
+
+        protected void setStringUsername(String username){
             this.username = username;
         }
-    */
+
     protected void setUsername(EditText username) {
         String userNameString = username.getText().toString();
         this.username = userNameString.toLowerCase();
@@ -136,6 +136,4 @@ public class User {
         else
             return false;
     }
-
-
 }

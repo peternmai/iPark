@@ -34,7 +34,6 @@ public class LoginPage extends AppCompatActivity {
     private Button backButton;
     private Button loginButton;
     private Button help;
-    private Button forgetButt;
     private TextView forgotPass;
     //private CheckBox rememberMe;
     private ProgressDialog progress;
@@ -117,7 +116,7 @@ public class LoginPage extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginButton);
         help = (Button) findViewById(R.id.help);
         backButton = (Button) findViewById(R.id.back);
-        forgotPass = (TextView) findViewById(R.id.forgotPass);
+        forgotPass = (TextView) findViewById(R.id.forget);
         usernameField = (EditText) findViewById(R.id.userName);
         passwordField = (EditText) findViewById(R.id.password);
 
