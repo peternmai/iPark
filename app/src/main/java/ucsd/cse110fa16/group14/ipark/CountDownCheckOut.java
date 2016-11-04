@@ -16,15 +16,23 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 
 public class CountDownCheckOut extends AppCompatActivity {
 
     private int mProgressStatus;
+    static ArrayList<String> parkingspots = new ArrayList<>();
 
     @Override
     protected void onPause() {
@@ -67,9 +75,13 @@ public class CountDownCheckOut extends AppCompatActivity {
         TextView endTimeText = (TextView) findViewById(R.id.EndTime);
         final TextView title = (TextView) findViewById(R.id.TimeRemainingTitle);
         final TextView timerText = (TextView) findViewById(R.id.Timer);
+        final TextView pspot = (TextView) findViewById(R.id.textView26);
 
         startTimeText.setText( generateTimeText( bundle.getInt("arriveHour"), bundle.getInt("arriveMin") ));
         endTimeText.setText( generateTimeText( bundle.getInt("departHour"), bundle.getInt("departMin") ));
+
+        Reserve();
+        pspot.setText(parkingspots.get(0));
 
 
         // Express current, start, and end time in seconds
@@ -314,5 +326,48 @@ public class CountDownCheckOut extends AppCompatActivity {
         long curSec  = calendar.get(Calendar.SECOND);         // get cur second
 
         return ((curHour * 60) + curMin) * 60 + curSec;
+    }
+
+    public static void Reserve(){
+        Firebase parkinglot = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
+        int count;
+
+
+        parkinglot.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> spots = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> spotIter = spots.iterator();
+
+                while (spotIter.hasNext()) {
+                    DataSnapshot node = spotIter.next();
+                    String key = node.getKey();
+                    parkingspots.add(key);
+
+                    //Iterable<DataSnapshot> reserved = node.getChildren();
+                    //Iterator<DataSnapshot> reserIter = reserved.iterator();
+
+                    /*while (reserIter.hasNext()) {
+                        DataSnapshot snap = reserIter.next();
+                        String status = snap.getKey();
+
+                        if (status.equals("Reserved")) {
+                            Boolean free = snap.getValue(Boolean.class);
+                            if (free.equals(false)) {
+                                avail.add(key);
+                            }
+
+                        }
+                    }*/
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        });
+
     }
 }

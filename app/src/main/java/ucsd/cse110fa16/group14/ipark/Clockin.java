@@ -223,53 +223,11 @@ public class Clockin extends AppCompatActivity {
             }
         });
 
-    }
-    protected void getData() {
-
-        //Getting access to the parking lot
-        Firebase parkReference = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
-
-        parkReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
-            @Override
-            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
-                Iterable<com.firebase.client.DataSnapshot> parkingSpots = dataSnapshot.getChildren();
-                Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpots.iterator();
-
-                //Getting parking spots
-                while (iterator.hasNext()) {
-                    com.firebase.client.DataSnapshot node = iterator.next();
-                    String pspot = node.getKey();
-                    parking.add(pspot);
-
-                    Iterable<com.firebase.client.DataSnapshot> parkingInfo = node.getChildren();
-                    Iterator<com.firebase.client.DataSnapshot> iter = parkingInfo.iterator();
-
-                    //Getting info if reserved or not
-                    while (iter.hasNext()) {
-                        com.firebase.client.DataSnapshot subNode = iter.next();
-                        String subKey = subNode.getKey();
-                        if (subKey.equals("Reserved")) {
-                            String reserve = subNode.getValue(String.class);
-                            parkSpotReserve.put(pspot, reserve);
-                            spots.add(pspot);
-
-
-                        }
-                    }
 
 
 
 
-
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                Toast.makeText(Clockin.this, "Could not connect to the database", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
+        }
 
     /*public void showDialog(View v) {
 

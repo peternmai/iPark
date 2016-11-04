@@ -25,6 +25,8 @@ public class UserHomepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
 
+
+
         ImageButton logoutButt = (ImageButton) findViewById(R.id.logoutButton);
         ImageButton reserveButt = (ImageButton) findViewById(R.id.reserveButton);
         ImageButton checkStatusButt = (ImageButton) findViewById(R.id.checkStatus);

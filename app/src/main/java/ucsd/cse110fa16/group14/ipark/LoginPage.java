@@ -109,6 +109,7 @@ public class LoginPage extends AppCompatActivity {
         DriverRegistration data = new DriverRegistration();
         data.getData();
 
+
         auth = FirebaseAuth.getInstance();
 
         // the buttons
