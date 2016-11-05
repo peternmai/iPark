@@ -31,7 +31,7 @@ public class LoginPage extends AppCompatActivity {
     private EditText usernameField;
     private EditText passwordField;
 
-    private Button backButton;
+    private Button registerButton;
     private Button loginButton;
     private Button help;
     private TextView forgotPass;
@@ -117,7 +117,7 @@ public class LoginPage extends AppCompatActivity {
         //registerButton = (Button) findViewById(R.id.registerButton);
         loginButton = (Button) findViewById(R.id.loginButton);
         help = (Button) findViewById(R.id.help);
-        backButton = (Button) findViewById(R.id.back);
+        registerButton = (Button) findViewById(R.id.registerButton);
         forgotPass = (TextView) findViewById(R.id.forget);
         usernameField = (EditText) findViewById(R.id.userName);
         passwordField = (EditText) findViewById(R.id.password);
@@ -149,12 +149,12 @@ public class LoginPage extends AppCompatActivity {
             }
         };
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, LoginScreenActivity.class);
-
+                Intent intent = new Intent(LoginPage.this, DriverRegistration.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
@@ -183,8 +183,9 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder hlp = new AlertDialog.Builder(LoginPage.this);
                 hlp.setTitle("Help Information");
-                hlp.setMessage("\t\t\t\tIn case of forgetting password, please " +
-                                "click \"Forget password\" to get a new one.\n"
+                hlp.setMessage("\t\t\t\tIn case you forgot your password, please " +
+                                "click \"Forgot password\" to reset it.\n"
+                        + "\n Please create a new iPark account if you are a new user."
                         //   "\t\t\t\tClick 'CHECKOUT' to sign out and end your reservation.\n"+
                         // "\t\t\t\tClick 'REPORT' if there is a car in your spot, " +
                         //"and you will receive a new parking space.\n"

@@ -18,16 +18,11 @@
         android:focusableInTouchMode="true" >
 
         <Button
-            android:text="SUBMIT"
-            android:layout_width="150dp"
-            android:textSize ="20sp"
-            android:layout_height="wrap_content"
-            android:id="@+id/submit_registration"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/my_border"
-            android:layout_alignParentEnd="true"
-            tools:ignore="HardcodedText"
-            android:textColor="#202020" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/help"
+            android:background="@mipmap/help"
+            android:layout_alignParentEnd="true" />
 
         <Button
             android:text="RESET"
@@ -36,9 +31,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/resetButton"
             android:background="@drawable/new_border"
+            android:textColor="#FFFFFF"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:textColor="#FFFFFF" />
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:text="SUBMIT"
+            android:layout_width="150dp"
+            android:textSize ="20sp"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit_registration"
+            android:background="@drawable/my_border"
+            tools:ignore="HardcodedText"
+            android:textColor="#202020"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
         <CheckBox
             android:text="I'm not a robot"
@@ -46,14 +53,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/notARobot"
             android:layout_above="@+id/submit_registration"
-            android:layout_alignParentEnd="true" />
-
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/help"
-            android:background="@mipmap/help"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="11dp" />
     </RelativeLayout>
 
     <TextView

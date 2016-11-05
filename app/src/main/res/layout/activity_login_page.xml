@@ -15,22 +15,7 @@
     android:windowSoftInputMode="adjustResize|stateHidden" >
 
     <EditText
-        android:ems="10"
-        android:layout_marginTop="106dp"
-        android:id="@+id/userName"
-        android:background="@drawable/lighter_border"
-        android:inputType="textPersonName"
-        android:hint="Username"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentStart="false"
-        android:layout_marginStart="12dp"
-        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingLeft="10dp" />
-
-    <EditText
-        android:layout_width="match_parent"
+        android:layout_width="322dp"
         android:layout_height="40dp"
         android:inputType="textPassword"
         android:ems="10"
@@ -41,47 +26,18 @@
         android:layout_alignStart="@+id/userName"
         tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"
         android:paddingLeft="10dp"
-        android:layout_marginTop="10dp" />
-
-    <CheckBox
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox2"
-        android:text="Remember me"
-        android:layout_width="wrap_content"
-        tools:ignore="HardcodedText"
-        android:layout_above="@+id/password"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_alignEnd="@+id/userName" />
 
     <Button
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/help"
-        android:background="@mipmap/help" />
-
-    <Button
-        android:text="BACK"
-        android:layout_width="150dp"
-        android:textSize="20sp"
+        android:text="CREATE NEW IPARK ACCOUNT"
+        android:layout_width="322dp"
         android:layout_height="wrap_content"
-        android:id="@+id/back"
-        tools:ignore="HardcodedText"
-        android:layout_marginTop="75dp"
-        android:layout_below="@+id/password"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="LOGIN"
-        android:layout_width="150dp"
-        android:textSize ="20sp"
-        android:layout_height="wrap_content"
-        android:id="@+id/loginButton"
-        tools:ignore="HardcodedText"
-        android:layout_alignBaseline="@+id/back"
-        android:layout_alignBottom="@+id/back"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/password"
+        android:layout_marginBottom="31dp"
+        android:id="@+id/registerButton"
+        android:layout_alignEnd="@+id/loginButton" />
 
     <TextView
         android:text="Forgot password?"
@@ -89,10 +45,54 @@
         android:layout_height="wrap_content"
         android:id="@+id/forget"
         android:layout_marginTop="18dp"
-        android:layout_below="@+id/password"
-        android:layout_alignEnd="@+id/checkBox2"
         android:textColor="@android:color/holo_blue_dark"
-        android:clickable="false" />
+        android:clickable="false"
+        android:layout_below="@+id/loginButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/help"
+        android:background="@mipmap/help"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="LOG IN"
+        android:textSize ="20sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginButton"
+        tools:ignore="HardcodedText"
+        android:layout_width="322dp"
+        android:layout_below="@+id/password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp" />
+
+    <EditText
+        android:ems="10"
+        android:layout_marginTop="49dp"
+        android:id="@+id/userName"
+        android:background="@drawable/lighter_border"
+        android:inputType="textPersonName"
+        android:hint="Username"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"
+        android:layout_width="322dp"
+        android:layout_height="40dp"
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/help"
+        android:layout_alignStart="@+id/loginButton" />
+
+    <CheckBox
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox2"
+        android:text="Remember me"
+        android:layout_width="wrap_content"
+        tools:ignore="HardcodedText"
+        android:layout_alignBaseline="@+id/userName"
+        android:layout_alignBottom="@+id/userName"
+        android:layout_alignEnd="@+id/userName"
+        android:layout_marginEnd="11dp" />
 
 </RelativeLayout>
 
