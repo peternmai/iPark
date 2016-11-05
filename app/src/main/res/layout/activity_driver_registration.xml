@@ -137,7 +137,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/userName"
-        android:hint="Account name"
+        android:hint="Username"
         android:layout_below="@+id/license"
         android:layout_alignStart="@+id/license"
         android:textAlignment="center" />

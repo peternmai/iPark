@@ -72,16 +72,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/nameTV"
-        android:textSize="20sp"
-        android:textColor="@android:color/black"
-        android:layout_above="@+id/textView48"
-        android:layout_toEndOf="@+id/button19"
-        android:text="FirstName LastName" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/license"
         android:text="DMVLic2016"
         android:layout_above="@+id/textView75"
@@ -132,5 +122,16 @@
         android:layout_alignBaseline="@+id/textView75"
         android:layout_alignBottom="@+id/textView75"
         android:layout_alignStart="@+id/license" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameTV"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:text="FirstName LastName"
+        android:layout_above="@+id/textView48"
+        android:layout_toEndOf="@+id/textView75"
+        android:layout_marginStart="11dp" />
 
 </RelativeLayout>
