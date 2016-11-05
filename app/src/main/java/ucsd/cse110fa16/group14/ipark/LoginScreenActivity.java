@@ -9,7 +9,6 @@ import android.widget.Button;
 public class LoginScreenActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +19,6 @@ public class LoginScreenActivity extends AppCompatActivity {
         Button registerButton = (Button) findViewById(R.id.register);
 
 
-
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -29,7 +27,6 @@ public class LoginScreenActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         registerButton.setOnClickListener(new View.OnClickListener() {

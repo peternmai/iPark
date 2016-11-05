@@ -2,14 +2,10 @@ package ucsd.cse110fa16.group14.ipark;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -51,16 +47,16 @@ public class CommentBoss extends AppCompatActivity {
         });
 
         root = new Firebase("https://ipark-e243b.firebaseio.com/Comments");
-        final ArrayAdapter<commentObj> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,list);
+        final ArrayAdapter<commentObj> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
         listView.setAdapter(arrayAdapter);
 
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-               // int ctr = 1;
+                // int ctr = 1;
 
-                for(DataSnapshot child: dataSnapshot.getChildren()) {
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
                     temp = new commentObj();
 
                     //temp.setKey("Comment " );
@@ -100,16 +96,24 @@ class commentObj {
     String key, date, comment, rating;
 
     commentObj() {
-        key = date = comment  = rating = "";
+        key = date = comment = rating = "";
     }
 
-    public void setKey(String key) { this.key = key; }
+    public void setKey(String key) {
+        this.key = key;
+    }
 
-    public void setDate(String date) { this.date = date; }
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-    public void setComment(String comment) {this.comment = comment; }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-    public void setRating(String rating) { this.rating = rating; }
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
 
     @Override
     public String toString() {

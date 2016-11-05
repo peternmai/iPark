@@ -1,6 +1,7 @@
 package ucsd.cse110fa16.group14.ipark;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -27,10 +29,6 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-
-import android.view.inputmethod.InputMethodManager;
-import android.content.Context;
-
 
 
 public class DriverRegistration extends AppCompatActivity {
@@ -121,7 +119,6 @@ public class DriverRegistration extends AppCompatActivity {
         */
 
 
-
         username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -140,10 +137,6 @@ public class DriverRegistration extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
 
 
         //Get data from Firebase
@@ -172,12 +165,12 @@ public class DriverRegistration extends AppCompatActivity {
                 AlertDialog.Builder hlp = new AlertDialog.Builder(DriverRegistration.this);
                 hlp.setTitle("Help Information");
                 hlp.setMessage("\t\t\t\tAll information provided will be kept confidential.\n" +
-                        "\t\t\t\tPlease enter a valid email and driver license.\n"+
+                        "\t\t\t\tPlease enter a valid email and driver license.\n" +
                         "\t\t\t\tA valid password will be at least of length six.\n" +
                         "\t\t\t\tPlease click \"I'm not a robot\" before submit.");
-                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener(){
+                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
@@ -218,7 +211,7 @@ public class DriverRegistration extends AppCompatActivity {
                     invalidUser.setText("");
                     notRobot.setChecked(false);
                     submit.setEnabled(false);
-                } else if(userExists){
+                } else if (userExists) {
                     invalidEmail.setText("");
                     invalidUser.setText(msg1);
                     notRobot.setChecked(false);
@@ -247,7 +240,7 @@ public class DriverRegistration extends AppCompatActivity {
 
     private void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =
-                (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
@@ -296,6 +289,7 @@ public class DriverRegistration extends AppCompatActivity {
 
     /**
      * Helper method to see if all text fields are empty
+     *
      * @param editTexts array of text fields
      * @return true if all text fields in the array are empty
      */
@@ -311,6 +305,7 @@ public class DriverRegistration extends AppCompatActivity {
 
     /**
      * Helper method to clear all the textfields
+     *
      * @param editTexts array that needs to be cleared
      */
     private void clear(EditText[] editTexts) {
@@ -321,6 +316,7 @@ public class DriverRegistration extends AppCompatActivity {
 
     /**
      * Creates an account in firebase database as well as gives access to login.
+     *
      * @param mail email to use
      * @param pass password to use
      */
@@ -345,7 +341,7 @@ public class DriverRegistration extends AppCompatActivity {
                         auth.getCurrentUser().updateProfile(displayName).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(!task.isSuccessful()){
+                                if (!task.isSuccessful()) {
                                     Toast.makeText(DriverRegistration.this,
                                             "Could not set the display name", Toast.LENGTH_LONG).show();
                                 }
@@ -353,7 +349,7 @@ public class DriverRegistration extends AppCompatActivity {
                         });
                         myFirebaseRef.child(newUser.getUsername()).setValue(newUser);
                         progress.dismiss();
-                        Intent intent = new Intent(DriverRegistration.this,LoginPage.class);
+                        Intent intent = new Intent(DriverRegistration.this, LoginPage.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         setResult(RESULT_OK, intent);
                         finish();

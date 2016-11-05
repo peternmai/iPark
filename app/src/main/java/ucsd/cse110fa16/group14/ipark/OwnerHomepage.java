@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
@@ -92,9 +93,9 @@ public class OwnerHomepage extends AppCompatActivity {
                 Quest.setTitle("Log out");
                 Quest.setMessage(
                         "Are you sure to log out?");
-                Quest.setPositiveButton("Cancel", new DialogInterface.OnClickListener(){
+                Quest.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });

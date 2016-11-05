@@ -9,21 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
-import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.HashMap;
-
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.google.firebase.database.DataSnapshot;
-
-
-import static android.media.CamcorderProfile.get;
+import java.util.HashSet;
 
 public class Clockin extends AppCompatActivity {
 
@@ -67,7 +58,7 @@ public class Clockin extends AppCompatActivity {
         Button nextButt = (Button) findViewById(R.id.next);
 
         NumberPicker hourNumPick = (NumberPicker) findViewById(R.id.hour);
-        NumberPicker minNumPick = (NumberPicker) findViewById(R.id.min) ;
+        NumberPicker minNumPick = (NumberPicker) findViewById(R.id.min);
         NumberPicker amPmPick = (NumberPicker) findViewById(R.id.amPM);
         final String[] s = {"AM", "PM"};
 
@@ -90,13 +81,15 @@ public class Clockin extends AppCompatActivity {
         minNumPick.setWrapSelectorWheel(true);
 
         // Initialize start time
-        hour = 1; min = 0; ampm = 1;
+        hour = 1;
+        min = 0;
+        ampm = 1;
 
 
         //Set a value change listener for hourNumPick
         hourNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 hour = newVal;
             }
         });
@@ -104,7 +97,7 @@ public class Clockin extends AppCompatActivity {
         //Set a value change listener for minNumPick
         minNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 min = newVal;
             }
         });
@@ -112,7 +105,7 @@ public class Clockin extends AppCompatActivity {
         //Set a value change listener for minNumPick
         amPmPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 ampm = newVal;                       // 1 = AM, 2 = PM
             }
         });
@@ -126,51 +119,49 @@ public class Clockin extends AppCompatActivity {
                 hourEntered = hour;
                 minEntered = min;
 
-                if( hour == 12  && ampm == 1) {
+                if (hour == 12 && ampm == 1) {
                     hourEntered = 0;
                 }
 
-                if( (ampm == 2) && (hour != 12) )
+                if ((ampm == 2) && (hour != 12))
                     hourEntered += 12;
 
                 Date date = new Date();                               // given date
                 Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
                 calendar.setTime(date);                               // assigns calendar to given date
                 curHour = calendar.get(Calendar.HOUR_OF_DAY);         // gets hour in 24h format
-                curMin  = calendar.get(Calendar.MINUTE);              // get cur minute
+                curMin = calendar.get(Calendar.MINUTE);              // get cur minute
 
                 System.out.println("Current Time: " + curHour + ":" + curMin);
                 System.out.println("Entered Time: " + hourEntered + ":" + minEntered);
 
-                if( hourEntered < curHour ) {
+                if (hourEntered < curHour) {
                     AlertDialog.Builder invalidTimeAlert = new AlertDialog.Builder(Clockin.this);
                     invalidTimeAlert.setTitle("Invalid Time");
                     invalidTimeAlert.setMessage(
                             "Arrival time may not be before the current time.");
-                    invalidTimeAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener(){
+                    invalidTimeAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which){
+                        public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                         }
                     });
                     AlertDialog alertDialog = invalidTimeAlert.create();
                     alertDialog.show();
-                }
-                else if ( (hourEntered == curHour) && (minEntered < curMin) ) {
+                } else if ((hourEntered == curHour) && (minEntered < curMin)) {
                     AlertDialog.Builder invalidTimeAlert = new AlertDialog.Builder(Clockin.this);
                     invalidTimeAlert.setTitle("Invalid Time");
                     invalidTimeAlert.setMessage(
                             "Arrival time may not be before the current time.");
-                    invalidTimeAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener(){
+                    invalidTimeAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which){
+                        public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                         }
                     });
                     AlertDialog alertDialog = invalidTimeAlert.create();
                     alertDialog.show();
-                }
-                else {
+                } else {
                     Intent intent = new Intent(Clockin.this, ChooseDepartureTimeActivity.class);
                     intent.putExtra("arriveHour", hourEntered);
                     intent.putExtra("arriveMin", minEntered);
@@ -180,14 +171,12 @@ public class Clockin extends AppCompatActivity {
             }
             //@Override
             //public void onClick(View v) {
-              //Intent intent = new Intent(Clockin.this, Payment.class);
-              //startActivity(intent);
-
+            //Intent intent = new Intent(Clockin.this, Payment.class);
+            //startActivity(intent);
 
 
             //}
         });
-
 
 
         help.setOnClickListener(new View.OnClickListener() {
@@ -197,11 +186,11 @@ public class Clockin extends AppCompatActivity {
                 hlp.setTitle("Help Information");
                 hlp.setMessage(
                         "Please choose the time you expect to arrive. " +
-                        "Arrival time may not be before the current time." +
-                        "Press next once you are finished.");
-                hlp.setPositiveButton("Ok", new DialogInterface.OnClickListener(){
+                                "Arrival time may not be before the current time." +
+                                "Press next once you are finished.");
+                hlp.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
@@ -210,7 +199,6 @@ public class Clockin extends AppCompatActivity {
 
             }
         });
-
 
 
         homeButt.setOnClickListener(new View.OnClickListener() {
@@ -224,10 +212,7 @@ public class Clockin extends AppCompatActivity {
         });
 
 
-
-
-
-        }
+    }
 
     /*public void showDialog(View v) {
 

@@ -1,8 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +29,7 @@ public class ForgotPassword_1 extends AppCompatActivity {
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,9 +67,9 @@ public class ForgotPassword_1 extends AppCompatActivity {
     }
 
     //Hide Keyboard
-    private void hideKeyboard(View v){
+    private void hideKeyboard(View v) {
         InputMethodManager inputMethodManager =
-                (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 }

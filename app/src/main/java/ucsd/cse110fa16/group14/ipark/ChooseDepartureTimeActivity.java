@@ -1,7 +1,5 @@
 package ucsd.cse110fa16.group14.ipark;
 
-import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,11 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
-import android.widget.TimePicker;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class ChooseDepartureTimeActivity extends AppCompatActivity {
 
@@ -46,7 +39,7 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
         final Bundle bundle = getIntent().getExtras();
 
         NumberPicker hourNumPick = (NumberPicker) findViewById(R.id.hour);
-        NumberPicker minNumPick = (NumberPicker) findViewById(R.id.min) ;
+        NumberPicker minNumPick = (NumberPicker) findViewById(R.id.min);
         NumberPicker amPmPick = (NumberPicker) findViewById(R.id.amPM);
         final String[] s = {"AM", "PM"};
 
@@ -69,13 +62,15 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
         minNumPick.setWrapSelectorWheel(true);
 
         // Initialize start time
-        hour = 1; min = 0; ampm = 1;
+        hour = 1;
+        min = 0;
+        ampm = 1;
 
 
         //Set a value change listener for hourNumPick
         hourNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 hour = newVal;
             }
         });
@@ -83,7 +78,7 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
         //Set a value change listener for minNumPick
         minNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 min = newVal;
             }
         });
@@ -91,7 +86,7 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
         //Set a value change listener for minNumPick
         amPmPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 ampm = newVal;                       // 1 = AM, 2 = PM
             }
         });
@@ -105,25 +100,25 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                 hourEntered = hour;
                 minEntered = min;
 
-                if( hour == 12  && ampm == 1) {
+                if (hour == 12 && ampm == 1) {
                     hourEntered = 0;
                 }
 
-                if( (ampm == 2) && (hour != 12) )
+                if ((ampm == 2) && (hour != 12))
                     hourEntered += 12;
 
                 System.out.println("Current Time: " + bundle.getInt("arriveHour") + ":" + bundle.getInt("arriveMin"));
                 System.out.println("Entered Time: " + hourEntered + ":" + minEntered);
 
                 // Ensure hour is after arrive hour
-                if( hourEntered < bundle.getInt("arriveHour") ) {
+                if (hourEntered < bundle.getInt("arriveHour")) {
                     AlertDialog.Builder invalidTimeAlert = new AlertDialog.Builder(ChooseDepartureTimeActivity.this);
                     invalidTimeAlert.setTitle("Invalid Time");
                     invalidTimeAlert.setMessage(
                             "Departure time may not be before the arrival time.");
-                    invalidTimeAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener(){
+                    invalidTimeAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which){
+                        public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                         }
                     });
@@ -131,14 +126,14 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                     alertDialog.show();
                 }
                 // If hour equal arrive hour, then after arrive minute
-                else if ( (hourEntered == bundle.getInt("arriveHour")) && (minEntered <= bundle.getInt("arriveMin")) ) {
+                else if ((hourEntered == bundle.getInt("arriveHour")) && (minEntered <= bundle.getInt("arriveMin"))) {
                     AlertDialog.Builder invalidTimeAlert = new AlertDialog.Builder(ChooseDepartureTimeActivity.this);
                     invalidTimeAlert.setTitle("Invalid Time");
                     invalidTimeAlert.setMessage(
                             "Departure time may not be before the arrival time.");
-                    invalidTimeAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener(){
+                    invalidTimeAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which){
+                        public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                         }
                     });
@@ -162,10 +157,8 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
             //startActivity(intent);
 
 
-
             //}
         });
-
 
 
         help.setOnClickListener(new View.OnClickListener() {
@@ -175,11 +168,11 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                 hlp.setTitle("Help Information");
                 hlp.setMessage(
                         "Please choose your expected departure time.\n" +
-                        "Departure time cannot be before the arrival time or after midnight.\n" +
+                                "Departure time cannot be before the arrival time or after midnight.\n" +
                                 "Hit next once you're done.");
-                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener(){
+                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
@@ -190,7 +183,6 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         homeButt.setOnClickListener(new View.OnClickListener() {

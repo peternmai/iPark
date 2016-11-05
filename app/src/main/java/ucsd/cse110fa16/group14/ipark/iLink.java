@@ -8,16 +8,13 @@ import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class iLink {
     private static String usersNode = "https://ipark-e243b.firebaseio.com/Users/";
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
-    private static User user;
     private static FirebaseAuth auth;
-    protected static ArrayList<String> personalInfoData;
 
     public static Task changePassword(String username, String newPassword) {
         auth = FirebaseAuth.getInstance();
@@ -75,7 +72,6 @@ public class iLink {
      */
     protected HashMap getDataMapFromFirebase(String mainKey, final String innerKey) {
 
-        //Getting all the usernames
         Firebase fReference = new Firebase("https://ipark-e243b.firebaseio.com/" + mainKey);
         final HashMap<String, String> map = new HashMap<>();
 
@@ -114,31 +110,29 @@ public class iLink {
     }
 
     /**
-     * Takes the root, firstChild, and secondChild and returns the String value of it.
-     * @param root Users, ParkingLot, or History
-     * @param firstChild username, spot, or the whole date/time thing
-     * @param secondChild example: email, username, EndTime, or Clockin
-     * @return the string value of the things. Example Users->admin->email = www123@gmail.com.
+     * Takes the root and child and returns a map with all the information of that child.
+     *
+     * @param root  Users, ParkingLot, or History
+     * @param child username, spot, or the whole date/time thing
+     * @return the map with child's values. Example: (username, admin),(email, www123@gmail.com)
      */
-    protected static HashMap<String,String> getPersonalInfoFromFirebase(String root, final String userName ) {
+    protected static HashMap<String, String> getChildInfo(String root, final String child) {
 
-        String ref = "https://ipark-e243b.firebaseio.com/" + root+
-                "/"+userName+"/";
+        String ref = "https://ipark-e243b.firebaseio.com/" + root +
+                "/" + child + "/";
         Firebase fReference = new Firebase(ref);
-        final HashMap<String,String> map = new HashMap<>();
+        final HashMap<String, String> map = new HashMap<>();
         fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
                 Iterable<com.firebase.client.DataSnapshot> firstChildData = dataSnapshot.getChildren();
                 Iterator<DataSnapshot> iterator = firstChildData.iterator();
 
-                while(iterator.hasNext()){
+                while (iterator.hasNext()) {
                     DataSnapshot data = iterator.next();
                     String key = data.getKey();
-                    if(!key.equals("owner") && !key.equals("password")){
-                        String val = data.getValue(String.class);
-                        map.put(key,val);
-                    }
+                    String val = data.getValue(String.class);
+                    map.put(key, val);
                 }
             }
 
@@ -150,47 +144,3 @@ public class iLink {
         return map;
     }
 }
-/*
-    public static User getCurrentUser(){
-        user = new User();
-        auth = FirebaseAuth.getInstance();
-        String name = auth.getCurrentUser().getDisplayName();
-        Firebase userRef = new Firebase(usersNode + name);
-
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Iterable<DataSnapshot> info = dataSnapshot.getChildren();
-                Iterator<DataSnapshot> infoIterator = info.iterator();
-                while(infoIterator.hasNext()){
-                    DataSnapshot node = infoIterator.next();
-                    String vals = node.getKey();
-
-                    switch (vals){
-                        case "email":
-                            user.setStringEmail(node.getValue(String.class));
-                            break;
-                        case "license":
-                            user.setStringLicense(node.getValue(String.class));
-                            break;
-                        case "name":
-                            break;
-                        case "username":
-                            user.setStringUsername(node.getValue(String.class));
-                            break;
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                Log.e("","Error retrieving data");
-            }
-        });
-
-
-        return user;
-    }
-    */

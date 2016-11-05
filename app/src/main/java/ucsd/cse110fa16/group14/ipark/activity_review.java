@@ -18,6 +18,7 @@ public class activity_review extends AppCompatActivity {
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +33,8 @@ public class activity_review extends AppCompatActivity {
         TextView startTimeText = (TextView) findViewById(R.id.textView8);
         TextView endTimeText = (TextView) findViewById(R.id.textView10);
 
-        startTimeText.setText( generateTimeText( bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
-        endTimeText.setText( generateTimeText( bundle.getInt("departHour"), bundle.getInt("departMin")));
+        startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
+        endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
 
 
         commentButt.setOnClickListener(new View.OnClickListener() {
@@ -62,20 +63,19 @@ public class activity_review extends AppCompatActivity {
 
     private String generateTimeText(int hour, int min) {
         String timeText;
-        String am_pm_Text = (hour < 12)?"AM":"PM";
+        String am_pm_Text = (hour < 12) ? "AM" : "PM";
 
         // Format hour
-        if( hour <= 12 ) {
-            if( hour == 0 )
+        if (hour <= 12) {
+            if (hour == 0)
                 hour += 12;
             timeText = String.format("%02d", hour);
-        }
-        else  {
-            timeText = String.format("%02d", (hour-12) );
+        } else {
+            timeText = String.format("%02d", (hour - 12));
         }
 
         // Add colon, min, and AM/PM sign
-        timeText = ( timeText + ":" + String.format("%02d", min) + " " + am_pm_Text);
+        timeText = (timeText + ":" + String.format("%02d", min) + " " + am_pm_Text);
 
 
         return timeText;

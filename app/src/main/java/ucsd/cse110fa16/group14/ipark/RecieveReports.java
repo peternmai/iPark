@@ -14,6 +14,7 @@ public class RecieveReports extends AppCompatActivity {
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

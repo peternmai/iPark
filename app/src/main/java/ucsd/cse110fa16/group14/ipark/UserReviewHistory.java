@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -48,7 +47,7 @@ public class UserReviewHistory extends AppCompatActivity {
 
                 int ctr = 1;
 
-                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
                     temp = new ResObj();
 
                     temp.setKey("RESERVATION " + ctr + ":");
@@ -72,8 +71,7 @@ public class UserReviewHistory extends AppCompatActivity {
         });
 
 
-
-       ImageButton homeButton = (ImageButton) findViewById(R.id.homeB);
+        ImageButton homeButton = (ImageButton) findViewById(R.id.homeB);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
 

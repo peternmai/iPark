@@ -1,5 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,9 +8,8 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.view.inputmethod.InputMethodManager;
-import android.content.Context;
+import android.widget.Button;
 
 
 public class MapDirectional extends AppCompatActivity {
@@ -22,6 +22,7 @@ public class MapDirectional extends AppCompatActivity {
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,41 +58,39 @@ public class MapDirectional extends AppCompatActivity {
         /* report illegal parking of other spots */
         reportButt.setOnClickListener(new View.OnClickListener() {
 
-                // should set the corresponding parking spot to red
-                // TO DO
+            // should set the corresponding parking spot to red
+            // TO DO
 
 
-
-                // then add this log to history
-                // TO DO
-
+            // then add this log to history
+            // TO DO
 
 
-                // and then pop out a window indicating success report
-                @Override
-                public void onClick(View v) {
+            // and then pop out a window indicating success report
+            @Override
+            public void onClick(View v) {
 
-                    InputMethodManager inputManager = (InputMethodManager)
-                            getSystemService(Context.INPUT_METHOD_SERVICE);
-                    inputManager.hideSoftInputFromWindow((null == getCurrentFocus()) ?
-                            null : getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                InputMethodManager inputManager = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow((null == getCurrentFocus()) ?
+                        null : getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                    AlertDialog.Builder respond = new AlertDialog.Builder(MapDirectional.this);
-                    respond.setTitle("Successful Report");
-                    respond.setMessage("\t\t\t\tYour report has been successfully recorded.\n" +
-                            "\t\t\t\tA reward will soon be delivered to your account.\n" +
-                            "\t\t\t\tYou can view this activity in account history now.\n" );
-                    respond.setPositiveButton("Done", new DialogInterface.OnClickListener(){
-                        @Override
-                        public void onClick(DialogInterface dialog, int which){
-                            dialog.cancel();
-                        }
-                    });
+                AlertDialog.Builder respond = new AlertDialog.Builder(MapDirectional.this);
+                respond.setTitle("Successful Report");
+                respond.setMessage("\t\t\t\tYour report has been successfully recorded.\n" +
+                        "\t\t\t\tA reward will soon be delivered to your account.\n" +
+                        "\t\t\t\tYou can view this activity in account history now.\n");
+                respond.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
 
-                    AlertDialog alertDialog = respond.create();
-                    alertDialog.show();
+                AlertDialog alertDialog = respond.create();
+                alertDialog.show();
 
-                }
+            }
 
 
         });

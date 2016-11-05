@@ -13,18 +13,18 @@ public class ParkingSpot {
     boolean occupied;
     boolean illegal;
 
-    public ParkingSpot(String spotNumber){
+    public ParkingSpot(String spotNumber) {
         parkingNumber = spotNumber;
     }
 
-    public boolean setEnd(String end){
+    public boolean setEnd(String end) {
         if (end == null) return false;
 
         endTime = end;
         return true;
     }
 
-    public boolean setStart(String start){
+    public boolean setStart(String start) {
         if (start == null) return false;
 
         startTime = start;
@@ -38,12 +38,12 @@ public class ParkingSpot {
         return true;
     }
 
-    public boolean setIllegal(boolean ilState){
+    public boolean setIllegal(boolean ilState) {
         illegal = ilState;
         return true;
     }
 
-    public boolean setOccupied(boolean ocState){
+    public boolean setOccupied(boolean ocState) {
         occupied = ocState;
         return true;
     }

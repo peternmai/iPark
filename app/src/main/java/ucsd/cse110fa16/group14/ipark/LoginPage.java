@@ -74,8 +74,9 @@ public class LoginPage extends AppCompatActivity {
                             new Intent(LoginPage.this, UserHomepage.class) ;*/
 
                     Intent intent;
-                    if(username.equals(admin)) intent = new Intent(LoginPage.this, OwnerHomepage.class);
-                    else intent = new Intent(LoginPage.this, UserHomepage.class) ;
+                    if (username.equals(admin))
+                        intent = new Intent(LoginPage.this, OwnerHomepage.class);
+                    else intent = new Intent(LoginPage.this, UserHomepage.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -86,7 +87,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if(authListener !=null){
+        if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
     }
@@ -95,7 +96,7 @@ public class LoginPage extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if(authListener !=null){
+        if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
         auth.signOut();
@@ -138,8 +139,9 @@ public class LoginPage extends AppCompatActivity {
                             new Intent(LoginPage.this, UserHomepage.class) ;*/
 
                     Intent intent;
-                    if(username.equals(admin)) intent = new Intent(LoginPage.this, OwnerHomepage.class);
-                    else intent = new Intent(LoginPage.this, UserHomepage.class) ;
+                    if (username.equals(admin))
+                        intent = new Intent(LoginPage.this, OwnerHomepage.class);
+                    else intent = new Intent(LoginPage.this, UserHomepage.class);
 
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
@@ -182,16 +184,16 @@ public class LoginPage extends AppCompatActivity {
                 AlertDialog.Builder hlp = new AlertDialog.Builder(LoginPage.this);
                 hlp.setTitle("Help Information");
                 hlp.setMessage("\t\t\t\tIn case of forgetting password, please " +
-                        "click \"Forget password\" to get a new one.\n"
-                     //   "\t\t\t\tClick 'CHECKOUT' to sign out and end your reservation.\n"+
-                       // "\t\t\t\tClick 'REPORT' if there is a car in your spot, " +
+                                "click \"Forget password\" to get a new one.\n"
+                        //   "\t\t\t\tClick 'CHECKOUT' to sign out and end your reservation.\n"+
+                        // "\t\t\t\tClick 'REPORT' if there is a car in your spot, " +
                         //"and you will receive a new parking space.\n"
                         //+ "\t\t\t\tClick 'MAP' to view the map of parking lot.\n" +
-                      //  "\t\t\t\tClick 'EMERGENCY' in case of any emergency."
+                        //  "\t\t\t\tClick 'EMERGENCY' in case of any emergency."
                 );
-                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener(){
+                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
@@ -212,7 +214,6 @@ public class LoginPage extends AppCompatActivity {
                 }
             }
         });*/
-
 
 
         passwordField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -237,7 +238,7 @@ public class LoginPage extends AppCompatActivity {
 
     private void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =
-                (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
@@ -275,7 +276,7 @@ public class LoginPage extends AppCompatActivity {
                             Toast.makeText(LoginPage.this, "Sign in successful",
                                     Toast.LENGTH_LONG).show();
                             Intent intent;
-                            if(email.equals("www123@gmail.com")){
+                            if (email.equals("www123@gmail.com")) {
                                 intent = new Intent(LoginPage.this, OwnerHomepage.class);
                             } else {
                                 intent = new Intent(LoginPage.this, UserHomepage.class);

@@ -17,6 +17,7 @@ public class RecieveNewParking extends AppCompatActivity {
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class RecieveNewParking extends AppCompatActivity {
         checkIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(RecieveNewParking.this, Clockin.class);
+                Intent intent = new Intent(RecieveNewParking.this, Clockin.class);
                 startActivity(intent);
             }
         });

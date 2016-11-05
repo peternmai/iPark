@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,6 +27,7 @@ public class Payment extends AppCompatActivity {
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +50,7 @@ public class Payment extends AppCompatActivity {
         // Calculate total time parked and total to pay
         totHours = bundle.getInt("departHour") - bundle.getInt("arriveHour");
         totMins = bundle.getInt("departMin") - bundle.getInt("arriveMin");
-        totPay = ((double)(totHours + ((double)((double)totMins/60.0))))*rate;
+        totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
 
         TextView startTimeText = (TextView) findViewById(R.id.startTimeText);
         TextView endTimeText = (TextView) findViewById(R.id.endTimeText);
@@ -59,11 +58,9 @@ public class Payment extends AppCompatActivity {
 
         final TextView total = (TextView) findViewById(R.id.totalToPay);
 
-        startTimeText.setText( generateTimeText( bundle.getInt("arriveHour"), bundle.getInt("arriveMin") ));
-        endTimeText.setText( generateTimeText( bundle.getInt("departHour"), bundle.getInt("departMin") ));
-        totalPayText.setText( String.format("$%.2f", totPay) );
-
-
+        startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
+        endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
+        totalPayText.setText(String.format("$%.2f", totPay));
 
 
         payButt.setOnClickListener(new View.OnClickListener() {
@@ -73,8 +70,8 @@ public class Payment extends AppCompatActivity {
 
 
                 String rate = total.getText().toString();
-                String clockInTime = generateTimeText( bundle.getInt("arriveHour"), bundle.getInt("arriveMin") );
-                String clockOutTime = generateTimeText( bundle.getInt("departHour"), bundle.getInt("departMin") );
+                String clockInTime = generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"));
+                String clockOutTime = generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin"));
                 Date date = new Date();
 
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -117,20 +114,19 @@ public class Payment extends AppCompatActivity {
     // Take in hour in 24 hour format and minute
     private String generateTimeText(int hour, int min) {
         String timeText;
-        String am_pm_Text = (hour < 12)?"AM":"PM";
+        String am_pm_Text = (hour < 12) ? "AM" : "PM";
 
         // Format hour
-        if( hour <= 12 ) {
-            if( hour == 0 )
+        if (hour <= 12) {
+            if (hour == 0)
                 hour += 12;
             timeText = String.format("%02d", hour);
-        }
-        else  {
-            timeText = String.format("%02d", (hour-12) );
+        } else {
+            timeText = String.format("%02d", (hour - 12));
         }
 
         // Add colon, min, and AM/PM sign
-        timeText = ( timeText + ":" + String.format("%02d", min) + " " + am_pm_Text);
+        timeText = (timeText + ":" + String.format("%02d", min) + " " + am_pm_Text);
 
 
         return timeText;

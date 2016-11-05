@@ -6,19 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Created by Mag on 10/19/2016.
@@ -27,17 +19,7 @@ import java.util.Iterator;
 
 public class PersonalInfo extends AppCompatActivity {
 
-    private TextView name;
-    private TextView license;
-    private TextView email;
-    private TextView uName;
-    private Button homeButt;
-    private Button changePasswordButt;
-    private Button helpButt;
-    private FirebaseAuth auth;
-    ArrayList<String> finalVals = new ArrayList<>();
-    HashMap<String,String> infoMap = UserHomepage.infoMap;
-
+    private HashMap<String, String> infoMap = UserHomepage.infoMap;
 
     @Override
     protected void onPause() {
@@ -54,25 +36,21 @@ public class PersonalInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
 
-        auth = FirebaseAuth.getInstance();
-        Firebase fRef = new Firebase("https://ipark-e243b.firebaseio.com/Users/");
-        name = (TextView) findViewById(R.id.nameTV);
-        email = (TextView) findViewById(R.id.email);
-        license = (TextView) findViewById(R.id.license);
-        uName = (TextView) findViewById(R.id.username);
-        // home button and update button
-        homeButt  = (Button) findViewById(R.id.button19);
-        changePasswordButt  = (Button) findViewById(R.id.button21);
-        helpButt = (Button) findViewById(R.id.help);
+        TextView name = (TextView) findViewById(R.id.nameTV);
+        TextView email = (TextView) findViewById(R.id.email);
+        TextView license = (TextView) findViewById(R.id.license);
+        TextView uName = (TextView) findViewById(R.id.username);
 
-        String name1 = infoMap.get("name");
-        String username1 = infoMap.get("username");
-        String email1 = infoMap.get("email");
-        String license2 = infoMap.get("license");
-        name.setText(name1);
-        email.setText(email1);
-        license.setText(license2);
-        uName.setText(username1);
+        Button homeButt = (Button) findViewById(R.id.button19);
+        Button changePasswordButt = (Button) findViewById(R.id.button21);
+        Button helpButt = (Button) findViewById(R.id.help);
+
+        /** Setting the text view to correspond the correct info **/
+        name.setText(infoMap.get("name"));
+        email.setText(infoMap.get("email"));
+        license.setText(infoMap.get("license"));
+        uName.setText(infoMap.get("username"));
+
 
         /* return to home page */
         homeButt.setOnClickListener(new View.OnClickListener() {
@@ -104,10 +82,10 @@ public class PersonalInfo extends AppCompatActivity {
                 hlp.setMessage("This is your personal info page.\n" +
                         "Please click change password if you would like to change your password.\n"
                         + "Press the home button to go back to your homepage."
-                        );
-                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener(){
+                );
+                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
@@ -119,10 +97,4 @@ public class PersonalInfo extends AppCompatActivity {
             }
         });
     }
-
-
-    /* the private update function */
-    private void update(){}
-
-
 }

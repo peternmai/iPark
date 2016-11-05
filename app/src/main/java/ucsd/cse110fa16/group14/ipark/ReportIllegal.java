@@ -12,6 +12,7 @@ import android.widget.Button;
 
 public class ReportIllegal extends AppCompatActivity {
     private Context cContext;
+
     public void ViewBreakout(Context context) {
         this.cContext = context;
     }
@@ -25,6 +26,7 @@ public class ReportIllegal extends AppCompatActivity {
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,16 +50,16 @@ public class ReportIllegal extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-            AlertDialog.Builder confirm = new AlertDialog.Builder(ReportIllegal.this);
-            confirm.setMessage("Thank you for reporting! You have received $3.")
-                   .setPositiveButton("OK", new DialogInterface.OnClickListener(){
-                       @Override
-                       public void onClick(DialogInterface dialog, int which) {
-                           Intent intent = new Intent(ReportIllegal.this, UserReviewHistory.class);
-                           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                           startActivity(intent);
-                       }
-                   });
+                AlertDialog.Builder confirm = new AlertDialog.Builder(ReportIllegal.this);
+                confirm.setMessage("Thank you for reporting! You have received $3.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(ReportIllegal.this, UserReviewHistory.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                            }
+                        });
                 AlertDialog alert = confirm.create();
                 alert.setTitle("Confirmation");
                 alert.show();

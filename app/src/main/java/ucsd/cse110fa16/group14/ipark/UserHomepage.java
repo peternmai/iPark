@@ -20,14 +20,12 @@ import java.util.HashMap;
 public class UserHomepage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListenter;
-    protected static HashMap<String,String> infoMap= new HashMap<>();
+    protected static HashMap<String, String> infoMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
-
 
 
         ImageButton logoutButt = (ImageButton) findViewById(R.id.logoutButton);
@@ -50,9 +48,9 @@ public class UserHomepage extends AppCompatActivity {
                 Quest.setTitle("Log out");
                 Quest.setMessage(
                         "Are you sure to log out?");
-                Quest.setPositiveButton("Cancel", new DialogInterface.OnClickListener(){
+                Quest.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
@@ -91,13 +89,12 @@ public class UserHomepage extends AppCompatActivity {
 
                 final Bundle bundle = getIntent().getExtras();
                 Intent thisIntent = getIntent();
-                if(thisIntent.hasExtra("arriveHour") && thisIntent.hasExtra("departHour")) {
+                if (thisIntent.hasExtra("arriveHour") && thisIntent.hasExtra("departHour")) {
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
                     intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
                     intent.putExtra("departHour", bundle.getInt("departHour"));
                     intent.putExtra("departMin", bundle.getInt("departMin"));
-                }
-                else {
+                } else {
                     intent.putExtra("arriveHour", 0);
                     intent.putExtra("arriveMin", 0);
                     intent.putExtra("departHour", 0);
@@ -130,7 +127,8 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String currUser = mAuth.getCurrentUser().getDisplayName();
-                infoMap = iLink.getPersonalInfoFromFirebase("Users",currUser);
+                //Get the hashMap with the details of a user
+                infoMap = iLink.getChildInfo("Users", currUser);
                 Intent intent = new Intent(UserHomepage.this, PersonalInfo.class);
                 startActivity(intent);
             }

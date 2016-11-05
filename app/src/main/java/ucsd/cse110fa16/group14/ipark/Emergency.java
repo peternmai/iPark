@@ -23,6 +23,7 @@ public class Emergency extends AppCompatActivity {
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +41,9 @@ public class Emergency extends AppCompatActivity {
                 AlertDialog.Builder hlp = new AlertDialog.Builder(Emergency.this);
                 hlp.setTitle("Emergency Reported");
 
-                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener(){
+                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
@@ -72,10 +73,8 @@ public class Emergency extends AppCompatActivity {
             // TO DO
 
 
-
             // then add this log to history
             // TO DO
-
 
 
             // and then pop out a window indicating success report
@@ -90,9 +89,9 @@ public class Emergency extends AppCompatActivity {
                         "until the police arrive" +
                         "\t\t\t\tIn case of vehicle power failure, " +
                         "the security guard will provide you with a charge");
-                respond.setPositiveButton("I don't like it", new DialogInterface.OnClickListener(){
+                respond.setPositiveButton("I don't like it", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
@@ -105,7 +104,6 @@ public class Emergency extends AppCompatActivity {
 
 
         });
-
 
 
     }

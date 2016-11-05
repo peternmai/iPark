@@ -21,7 +21,7 @@ public class ParkingLot {
     ParkingSpot mySpot;
     FirebaseAuth auth;
 
-    boolean getParkingLotData(){
+    boolean getParkingLotData() {
 
         Firebase fReference = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
 
@@ -55,25 +55,21 @@ public class ParkingLot {
                         if (fieldName.equals("EndTime")) {
                             String fieldVal = innerNode.getValue(String.class);
                             tempSpot.setEnd(fieldVal);
-                        }
-                        else if  (fieldName.equals("StartTime")) {
+                        } else if (fieldName.equals("StartTime")) {
                             String fieldVal = innerNode.getValue(String.class);
                             tempSpot.setStart(fieldVal);
-                        }
-                        else if  (fieldName.equals("Illegal")) {
+                        } else if (fieldName.equals("Illegal")) {
                             boolean fieldVal = innerNode.getValue(Boolean.class);
                             tempSpot.setIllegal(fieldVal);
-                        }
-                        else if  (fieldName.equals("Occupied")) {
+                        } else if (fieldName.equals("Occupied")) {
                             boolean fieldVal = innerNode.getValue(Boolean.class);
                             tempSpot.setOccupied(fieldVal);
-                        }
-                        else if  (fieldName.equals("Account")) {
+                        } else if (fieldName.equals("Account")) {
                             String fieldVal = innerNode.getValue(String.class);
                             if (auth.getCurrentUser() != null) {
                                 String username = auth.getCurrentUser().getUid();
 
-                                if(username.equals(fieldVal)){
+                                if (username.equals(fieldVal)) {
                                     mySpot = tempSpot;
                                 }
                             }
@@ -91,16 +87,15 @@ public class ParkingLot {
         return true;
     }
 
-    boolean pushToFirebase(int spotNumber){
+    boolean pushToFirebase(int spotNumber) {
 
         return true;
 
     }
 
-    boolean switchStatus(int spotNumber){
+    boolean switchStatus(int spotNumber) {
         return true;
     }
-
 
 
 }
