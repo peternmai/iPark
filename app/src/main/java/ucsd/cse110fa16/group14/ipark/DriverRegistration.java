@@ -340,7 +340,8 @@ public class DriverRegistration extends AppCompatActivity {
                         Toast.makeText(DriverRegistration.this, "Error signing up", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(DriverRegistration.this, "Sign up successful", Toast.LENGTH_LONG).show();
-                        UserProfileChangeRequest displayName = new UserProfileChangeRequest.Builder().setDisplayName(newUser.getUsername()).build();
+                        UserProfileChangeRequest displayName = new UserProfileChangeRequest.Builder().
+                                setDisplayName(newUser.getUsername()).build();
                         auth.getCurrentUser().updateProfile(displayName).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {

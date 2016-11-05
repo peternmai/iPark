@@ -6,20 +6,28 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by Mag on 10/19/2016.
+ * Edited by Abhi on 11/4/2016.
  */
 
 public class PersonalInfo extends AppCompatActivity {
 
-    private TextView firstName;
-    private TextView lastName;
+    private TextView name;
     private TextView license;
     private TextView email;
     private TextView uName;
@@ -27,6 +35,9 @@ public class PersonalInfo extends AppCompatActivity {
     private Button changePasswordButt;
     private Button helpButt;
     private FirebaseAuth auth;
+    ArrayList<String> finalVals = new ArrayList<>();
+    HashMap<String,String> infoMap = UserHomepage.infoMap;
+
 
     @Override
     protected void onPause() {
@@ -44,33 +55,24 @@ public class PersonalInfo extends AppCompatActivity {
         setContentView(R.layout.activity_personal_info);
 
         auth = FirebaseAuth.getInstance();
-        firstName = (TextView) findViewById(R.id.first);
-        lastName = (TextView) findViewById(R.id.last);
+        Firebase fRef = new Firebase("https://ipark-e243b.firebaseio.com/Users/");
+        name = (TextView) findViewById(R.id.nameTV);
         email = (TextView) findViewById(R.id.email);
         license = (TextView) findViewById(R.id.license);
         uName = (TextView) findViewById(R.id.username);
-
         // home button and update button
         homeButt  = (Button) findViewById(R.id.button19);
         changePasswordButt  = (Button) findViewById(R.id.button21);
         helpButt = (Button) findViewById(R.id.help);
 
-        // editText password
-        //password = (EditText)findViewById(R.id.password);
-
-        /* set the cursor at the end of text */
-        //int textLength = password.getText().length();
-        //password.setSelection(textLength, textLength);
-
-
-        //Still got work to do
-        /*User user = iLink.getCurrentUser();
-        firstName.setText("Need to figure out");
-        lastName.setText("Need to figure out");
-        email.setText(user.getEmail());
-        license.setText(user.getLicense());
-        license.setText(user.getUsername());
-        */
+        String name1 = infoMap.get("name");
+        String username1 = infoMap.get("username");
+        String email1 = infoMap.get("email");
+        String license2 = infoMap.get("license");
+        name.setText(name1);
+        email.setText(email1);
+        license.setText(license2);
+        uName.setText(username1);
 
         /* return to home page */
         homeButt.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +123,6 @@ public class PersonalInfo extends AppCompatActivity {
 
     /* the private update function */
     private void update(){}
-
 
 
 }
