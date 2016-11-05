@@ -35,18 +35,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true" />
 
-        <Button
-            android:text="SUBMIT"
-            android:layout_width="150dp"
-            android:textSize ="20sp"
-            android:layout_height="wrap_content"
-            android:id="@+id/submit_registration"
-            android:background="@drawable/my_border"
-            tools:ignore="HardcodedText"
-            android:textColor="#202020"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
-
         <CheckBox
             android:text="I'm not a robot"
             android:layout_width="wrap_content"
@@ -55,6 +43,16 @@
             android:layout_above="@+id/submit_registration"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="11dp" />
+
+        <Button
+            android:text="Submit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit_registration"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/lighter_border" />
     </RelativeLayout>
 
     <TextView
