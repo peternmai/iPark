@@ -2,11 +2,13 @@ package ucsd.cse110fa16.group14.ipark;
 
 import android.util.Log;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -15,7 +17,7 @@ public class iLink {
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
     private static User user;
     private static FirebaseAuth auth;
-    private static String finalVal;
+    protected static ArrayList<String> personalInfoData;
 
     public static Task changePassword(String username, String newPassword) {
         auth = FirebaseAuth.getInstance();
@@ -118,15 +120,26 @@ public class iLink {
      * @param secondChild example: email, username, EndTime, or Clockin
      * @return the string value of the things. Example Users->admin->email = www123@gmail.com.
      */
-    protected static String getValueFromFirebase(String root, final String firstChild, final String secondChild ) {
+    protected static HashMap<String,String> getPersonalInfoFromFirebase(String root, final String userName ) {
 
-        //Getting all the usernames
-        Firebase fReference = new Firebase("https://ipark-e243b.firebaseio.com/" + root+
-                "/"+firstChild+"/"+secondChild);
+        String ref = "https://ipark-e243b.firebaseio.com/" + root+
+                "/"+userName+"/";
+        Firebase fReference = new Firebase(ref);
+        final HashMap<String,String> map = new HashMap<>();
         fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
-                finalVal = dataSnapshot.getValue(String.class);
+                Iterable<com.firebase.client.DataSnapshot> firstChildData = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterator = firstChildData.iterator();
+
+                while(iterator.hasNext()){
+                    DataSnapshot data = iterator.next();
+                    String key = data.getKey();
+                    if(!key.equals("owner") && !key.equals("password")){
+                        String val = data.getValue(String.class);
+                        map.put(key,val);
+                    }
+                }
             }
 
             @Override
@@ -134,7 +147,7 @@ public class iLink {
                 Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
             }
         });
-        return finalVal;
+        return map;
     }
 }
 /*

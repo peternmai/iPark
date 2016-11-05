@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.HashMap;
+
 /**
  * Created by Mag on 10/19/2016.
  */
@@ -19,6 +21,7 @@ public class UserHomepage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListenter;
+    protected static HashMap<String,String> infoMap= new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +129,8 @@ public class UserHomepage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                String currUser = mAuth.getCurrentUser().getDisplayName();
+                infoMap = iLink.getPersonalInfoFromFirebase("Users",currUser);
                 Intent intent = new Intent(UserHomepage.this, PersonalInfo.class);
                 startActivity(intent);
             }
