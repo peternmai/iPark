@@ -223,6 +223,8 @@ public class CountDownCheckOut extends AppCompatActivity {
                         intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
                         intent.putExtra("departMin", calendar.get(Calendar.MINUTE));
                     }
+                    String spot = pspot.getText().toString();
+                    iLink.changeReserveStatus(spot, false);
                     startActivity(intent);
                 }
 
