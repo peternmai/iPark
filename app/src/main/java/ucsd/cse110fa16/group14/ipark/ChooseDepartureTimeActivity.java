@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
+
+
 public class ChooseDepartureTimeActivity extends AppCompatActivity {
 
     private int min, hour, ampm;
@@ -23,6 +25,8 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
+
+
 
 
     @Override
@@ -90,6 +94,13 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                 ampm = newVal;                       // 1 = AM, 2 = PM
             }
         });
+
+
+        // disable enter feature of numberPicker
+        hourNumPick.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        minNumPick.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        amPmPick.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+
 
         // Check to ensure time enter is valid before going (after start time)
         nextButt.setOnClickListener(new View.OnClickListener() {

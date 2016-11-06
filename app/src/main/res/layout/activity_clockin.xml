@@ -12,6 +12,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.Clockin"
     android:screenOrientation="portrait"
+
     android:windowSoftInputMode="adjustResize|stateHidden">
 
     <NumberPicker
@@ -21,7 +22,8 @@
         android:layout_marginEnd="22dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:descendantFocusability="blocksDescendants" />
 
     <TextView
         android:text=":"
@@ -43,7 +45,8 @@
         android:layout_alignBottom="@+id/min"
         android:layout_toStartOf="@+id/textView51"
         android:layout_marginRight="5dp"
-        tools:ignore="RtlHardcoded" />
+        tools:ignore="RtlHardcoded"
+        android:descendantFocusability="blocksDescendants" />
 
     <NumberPicker
         android:layout_width="wrap_content"
@@ -51,7 +54,8 @@
         android:id="@+id/amPM"
         android:layout_alignBaseline="@+id/min"
         android:layout_alignBottom="@+id/min"
-        android:layout_toEndOf="@+id/min" />
+        android:layout_toEndOf="@+id/min"
+        android:descendantFocusability="blocksDescendants" />
 
     <Button
         android:layout_width="40dp"
