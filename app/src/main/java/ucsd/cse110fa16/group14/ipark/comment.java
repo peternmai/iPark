@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
@@ -66,6 +67,9 @@ public class comment extends AppCompatActivity {
                 commentChild.setValue(comment);
                 dateChild.setValue(sdf.format(date));
                 rateChild.setValue(rate);
+
+                Toast.makeText(comment.this, "Thank you for your input!",
+                        Toast.LENGTH_LONG).show();
 
 
                 Intent intent = new Intent(comment.this, UserHomepage.class);
