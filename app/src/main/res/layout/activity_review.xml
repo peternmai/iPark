@@ -28,33 +28,6 @@
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:text="START TIME: "
-        android:layout_height="50dp"
-        android:id="@+id/textView4"
-        android:textSize="24sp"
-        android:textAlignment="textStart"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:textColor="#000000"
-        android:paddingLeft="16dp"
-        android:layout_width="170dp"
-        tools:ignore="HardcodedText,RtlSymmetry" />
-
-    <TextView
-        android:text="$10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_marginTop="29dp"
-        tools:layout_height="70dp"
-        android:textColor="#000000"
-        android:textAlignment="center"
-        android:textSize="50sp"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        tools:ignore="HardcodedText" />
-
-    <TextView
         android:text="END TIME: "
         android:layout_height="50dp"
         android:id="@+id/textView3"
@@ -66,60 +39,6 @@
         android:paddingLeft="16dp"
         android:layout_width="170dp"
         tools:ignore="HardcodedText,RtlSymmetry" />
-
-    <TextView
-        android:text="PRICE PER HOUR"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/textView11"
-        android:paddingLeft="16dp"
-        android:textColor="#696969"
-        android:textAlignment="center"
-        android:textSize="21sp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true"
-        tools:ignore="HardcodedText,RtlSymmetry" />
-
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/ratingBar" />
-
-    <TextView
-        android:text="$2.5/hr"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:id="@+id/textView12"
-        android:textColor="#000000"
-        android:textAlignment="center"
-        android:textSize="27sp"
-        android:layout_above="@+id/ratingBar"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp"
-        tools:ignore="HardcodedText" />
-
-    <TextView
-        android:text="RATE YOUR PARKING"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:id="@+id/textView5"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:textColor="#696969"
-        android:layout_alignBottom="@+id/textView12"
-        android:layout_alignParentStart="true"
-        tools:ignore="HardcodedText" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:id="@+id/view1"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
 
     <View
         android:layout_height="1dp"
@@ -146,7 +65,6 @@
         android:textColor="#000000"
         android:textAlignment="viewStart"
 
-        android:text="23:00"
         android:paddingLeft="17dp"
         android:layout_below="@+id/textView4"
         android:layout_alignParentEnd="true"
@@ -155,7 +73,6 @@
         android:layout_height="40dp" />
 
     <TextView
-        android:text="19:00"
         android:id="@+id/textView8"
         android:textAlignment="viewStart"
         android:textSize="25sp"
@@ -196,5 +113,86 @@
         android:layout_height="60dp"
         android:background="#7F00FF"
         android:textColor="#FFFFFF" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:id="@+id/price" />
+
+    <TextView
+        android:text="START TIME: "
+        android:layout_height="50dp"
+        android:id="@+id/textView4"
+        android:textSize="24sp"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:paddingLeft="16dp"
+        android:layout_width="170dp"
+        tools:ignore="HardcodedText,RtlSymmetry"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_marginTop="15dp"
+        tools:layout_height="70dp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/view1"
+        android:layout_alignParentStart="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/view1"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/textView12"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Thank you for parking with us!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:id="@+id/textView12"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="PRICE PER HOUR"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:id="@+id/textView11"
+        android:paddingLeft="16dp"
+        android:textColor="#696969"
+        android:textAlignment="center"
+        android:textSize="21sp"
+        tools:ignore="HardcodedText,RtlSymmetry"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="$2.50/hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:id="@+id/textView5"
+        android:layout_alignBaseline="@+id/textView11"
+        android:layout_alignBottom="@+id/textView11"
+        android:layout_toEndOf="@+id/textView11"
+        android:layout_marginStart="13dp" />
 
 </RelativeLayout>

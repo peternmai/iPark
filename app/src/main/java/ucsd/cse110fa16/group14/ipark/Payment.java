@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -72,10 +73,17 @@ public class Payment extends AppCompatActivity {
                 String rate = total.getText().toString();
                 String clockInTime = generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"));
                 String clockOutTime = generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin"));
-                Date date = new Date();
+                //Date date = new Date();
 
+                //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                //sdf.format(date);
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                sdf.format(date);
+                Date date = null;
+                try {
+                    date = sdf.parse(sdf.format(new Date()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
                 Firebase hasChild = root.child(date + " " + clockInTime);
 
@@ -95,6 +103,7 @@ public class Payment extends AppCompatActivity {
                 intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
                 intent.putExtra("departHour", bundle.getInt("departHour"));
                 intent.putExtra("departMin", bundle.getInt("departMin"));
+                intent.putExtra("rate", rate);
                 startActivity(intent);
             }
         });
