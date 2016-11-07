@@ -109,6 +109,7 @@ public class MapInteractive extends View {
         paints[iLink.ILLEGAL].setStyle(Paint.Style.FILL);
 
         Firebase parkingLotDB = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
+        parkingLotStatus = iLink.getParkingLotStatus();
 
         //initialize the rectangles & map
         for (int i = 0; i < numSpaces; i++) {
