@@ -117,7 +117,7 @@ class commentObj {
 
     @Override
     public String toString() {
-        return String.format("\t\t\t\t\t\t\t\nDATE:  %s\n\tCOMMENT: %s\tRATING: %s\n\t", date, comment, rating);
+        return String.format("\t\t\t\t\t\t\t\nDATE:  %s\n\nCOMMENT: %s\nRATING: %s\n", date, comment, rating);
     }
 
 
