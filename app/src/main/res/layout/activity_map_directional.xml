@@ -31,7 +31,6 @@
         android:textAllCaps="false" />
 
     <EditText
-        android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editText"
         android:hint="  Enter illegal parking #"
@@ -40,7 +39,8 @@
         android:layout_above="@+id/button14"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="13dp"
-        android:layout_width="230dp" />
+        android:layout_width="230dp"
+        android:inputType="number" />
 
     <Button
         android:text="EMERGENCY"

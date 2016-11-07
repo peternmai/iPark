@@ -7,12 +7,18 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -20,8 +26,11 @@ import java.util.Random;
  * Created by Peter on 10/16/2016.
  */
 
+
 // This is the map for user. It should allow them to view the map status but not change the status.
 public class UserMapInteractive extends View {
+
+    private static int[] parkingLotStatus;
 
     //Canvas
     Canvas cv;
@@ -69,23 +78,24 @@ public class UserMapInteractive extends View {
         setBackgroundColor(Color.LTGRAY);
 
         //initialize the paint colors
-        paints[2] = new Paint();
-        paints[2].setColor(Color.RED);
-        paints[2].setStyle(Paint.Style.FILL);
+        paints[iLink.AVAILABLE] = new Paint();
+        paints[iLink.AVAILABLE].setColor(Color.WHITE);
+        paints[iLink.AVAILABLE].setStyle(Paint.Style.FILL);
 
-        paints[1] = new Paint();
-        paints[1].setColor(Color.GREEN);
-        paints[1].setStyle(Paint.Style.FILL);
+        paints[iLink.RESERVED] = new Paint();
+        paints[iLink.RESERVED].setColor(Color.YELLOW);
+        paints[iLink.RESERVED].setStyle(Paint.Style.FILL);
 
-        paints[0] = new Paint();
-        paints[0].setColor(Color.WHITE);
-        paints[0].setStyle(Paint.Style.FILL);
+        paints[iLink.OCCUPIED] = new Paint();
+        paints[iLink.OCCUPIED].setColor(Color.GREEN);
+        paints[iLink.OCCUPIED].setStyle(Paint.Style.FILL);
 
-        paints[3] = new Paint();
-        paints[3].setColor(Color.YELLOW);
-        paints[3].setStyle(Paint.Style.FILL);
+        paints[iLink.ILLEGAL] = new Paint();
+        paints[iLink.ILLEGAL].setColor(Color.RED);
+        paints[iLink.ILLEGAL].setStyle(Paint.Style.FILL);
 
-        Random rand = new Random();
+        Firebase parkingLotDB = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
+        parkingLotStatus = iLink.getParkingLotStatus();
 
         //initialize the rectangles & map
         for (int i = 0; i < numSpaces; i++) {
@@ -107,9 +117,22 @@ public class UserMapInteractive extends View {
                 }
             }
 
-            recCol.put(r, paints[rand.nextInt(4)]);
+            recCol.put(r, paints[ parkingLotStatus[i] ]);
         }
 
+        // Update parking lot status
+        parkingLotDB.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                parkingLotStatus = iLink.getParkingLotStatus();
+                updateMapDisplay();
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
 
     }
 
@@ -150,26 +173,13 @@ public class UserMapInteractive extends View {
 
     }
 
-    void changeRectColor(Rect r) {
+    void updateMapDisplay() {
 
-        Paint p = recCol.get(r);
-
-        //index in array of paint
-        int idx = 0;
-        int newIdx;
-        for (int i = 0; i < paints.length; i++) {
-            if (paints[i] == p) {
-                idx = i;
-            }
+        for( int i = 0; i < numSpaces; i++) {
+            recCol.put(rectangle[i], paints[ parkingLotStatus[i] ]);
+            invalidate();
         }
 
-
-        //bad attempt at hashing
-        newIdx = (idx + 3) % 4;
-
-
-        recCol.put(r, paints[newIdx]);
-        invalidate();
     }
 
 }

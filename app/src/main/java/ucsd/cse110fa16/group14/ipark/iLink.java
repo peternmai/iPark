@@ -1,6 +1,7 @@
 package ucsd.cse110fa16.group14.ipark;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -8,8 +9,12 @@ import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Vector;
 
 public class iLink {
     private static String usersNode = "https://ipark-e243b.firebaseio.com/Users/";
@@ -38,7 +43,7 @@ public class iLink {
     }
 
     public static void changeStartTime(String spot, String newStartTime) {
-        Firebase startTimeRef = new Firebase(usersNode + spot + "/StartTime");
+        Firebase startTimeRef = new Firebase(parkingLot + spot + "/StartTime");
         startTimeRef.setValue(newStartTime);
     }
 
@@ -62,6 +67,89 @@ public class iLink {
         reserveRef.setValue(newStatus);
     }
 
+    private static long curTime;
+    public static int[] spotStatus = new int[80];
+    public static final int AVAILABLE = 0;
+    public static final int RESERVED = 1;
+    public static final int OCCUPIED = 2;
+    public static final int ILLEGAL = 3;
+
+    public static int[] getParkingLotStatus() {
+
+        Date date = new Date();                               // given date
+        Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
+        calendar.setTime(date);                               // assigns calendar to given date
+        curTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
+
+
+        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
+
+        // parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
+        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
+                long startTime = 0;
+                long endTime = 0;
+
+                //Getting individual parking spot
+                for( int index = 0; index < 80; index++) {
+                    com.firebase.client.DataSnapshot node = iterator.next();
+                    //System.out.print(node.getKey());
+
+                    Iterable<com.firebase.client.DataSnapshot> spotInfo = node.getChildren();
+                    Iterator<com.firebase.client.DataSnapshot> iterator1 = spotInfo.iterator();
+
+                    boolean illegal = false;
+                    boolean reserved = false;
+
+                    //Getting start Time
+                    while (iterator1.hasNext()) {
+                        com.firebase.client.DataSnapshot innerNode = iterator1.next();
+                        String innerKey = innerNode.getKey();
+
+                        if (innerKey.equals("StartTime")) {
+                            startTime = innerNode.getValue(long.class);
+                        }
+                        if(innerKey.equals("EndTime")) {
+                            endTime = innerNode.getValue(long.class);
+                        }
+                        if(innerKey.equals("Illegal"))  {
+                            illegal = ((innerNode.getValue(boolean.class)) ? true : false);
+                        }
+                        if(innerKey.equals("Reserved")) {
+                            reserved = ((innerNode.getValue(boolean.class)) ? true : false);
+                        }
+                    }
+
+                    if(illegal)
+                        spotStatus[index] = ILLEGAL;
+                    else if(reserved)
+                        spotStatus[index] = RESERVED;
+                    else {
+                        if (curTime >= startTime && curTime <= endTime)
+                            spotStatus[index] = OCCUPIED;
+                        else
+                            spotStatus[index] = AVAILABLE;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+
+        System.out.print("ParkingLotStatus: ");
+        for(int i = 0; i < 80; i++)
+            System.out.print(spotStatus[i]);
+        System.out.println();
+
+        return spotStatus;
+    }
+
     /**
      * getDataFromFirebase returns a HashMap with the name of the first child node as the key
      * and the value of the inner child as the value.
@@ -70,7 +158,7 @@ public class iLink {
      * @param innerKey specific data you want to access. For example, username or the end time of a parking spot.
      * @return HashMap with the name of the data we are accessing to as key and the value of what we want as a value.
      */
-    protected HashMap getDataMapFromFirebase(String mainKey, final String innerKey) {
+    protected static HashMap getDataMapFromFirebase(String mainKey, final String innerKey) {
 
         Firebase fReference = new Firebase("https://ipark-e243b.firebaseio.com/" + mainKey);
         final HashMap<String, String> map = new HashMap<>();

@@ -70,6 +70,8 @@ public class MapDirectional extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                int [] parkingLotStatus = iLink.getParkingLotStatus();
+
                 InputMethodManager inputManager = (InputMethodManager)
                         getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow((null == getCurrentFocus()) ?
@@ -77,9 +79,9 @@ public class MapDirectional extends AppCompatActivity {
 
                 AlertDialog.Builder respond = new AlertDialog.Builder(MapDirectional.this);
                 respond.setTitle("Successful Report");
-                respond.setMessage("\t\t\t\tYour report has been successfully recorded.\n" +
-                        "\t\t\t\tA reward will soon be delivered to your account.\n" +
-                        "\t\t\t\tYou can view this activity in account history now.\n");
+                respond.setMessage("Your report has been successfully recorded.\n" +
+                        "A reward will soon be delivered to your account.\n" +
+                        "You can view this activity in account history now.\n");
                 respond.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

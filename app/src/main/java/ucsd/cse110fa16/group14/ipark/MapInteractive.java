@@ -11,11 +11,15 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +40,7 @@ import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
 // Map for owner
 public class MapInteractive extends View {
 
+    private static int[] parkingLotStatus;
 
     //Canvas
     Canvas cv;
@@ -87,23 +92,23 @@ public class MapInteractive extends View {
         setBackgroundColor(Color.LTGRAY);
 
         //initialize the paint colors
-        paints[2] = new Paint();
-        paints[2].setColor(Color.RED);
-        paints[2].setStyle(Paint.Style.FILL);
+        paints[iLink.AVAILABLE] = new Paint();
+        paints[iLink.AVAILABLE].setColor(Color.WHITE);
+        paints[iLink.AVAILABLE].setStyle(Paint.Style.FILL);
 
-        paints[1] = new Paint();
-        paints[1].setColor(Color.GREEN);
-        paints[1].setStyle(Paint.Style.FILL);
+        paints[iLink.RESERVED] = new Paint();
+        paints[iLink.RESERVED].setColor(Color.YELLOW);
+        paints[iLink.RESERVED].setStyle(Paint.Style.FILL);
 
-        paints[0] = new Paint();
-        paints[0].setColor(Color.WHITE);
-        paints[0].setStyle(Paint.Style.FILL);
+        paints[iLink.OCCUPIED] = new Paint();
+        paints[iLink.OCCUPIED].setColor(Color.GREEN);
+        paints[iLink.OCCUPIED].setStyle(Paint.Style.FILL);
 
-        paints[3] = new Paint();
-        paints[3].setColor(Color.YELLOW);
-        paints[3].setStyle(Paint.Style.FILL);
+        paints[iLink.ILLEGAL] = new Paint();
+        paints[iLink.ILLEGAL].setColor(Color.RED);
+        paints[iLink.ILLEGAL].setStyle(Paint.Style.FILL);
 
-        Random rand = new Random();
+        Firebase parkingLotDB = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
 
         //initialize the rectangles & map
         for (int i = 0; i < numSpaces; i++) {
@@ -125,8 +130,22 @@ public class MapInteractive extends View {
                 }
             }
 
-            recCol.put(r, paints[rand.nextInt(4)]);
+            recCol.put(r, paints[ parkingLotStatus[i] ]);
         }
+
+        // Update parking lot status
+        parkingLotDB.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                parkingLotStatus = iLink.getParkingLotStatus();
+                updateMapDisplay();
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
 
 
     }
@@ -226,58 +245,16 @@ public class MapInteractive extends View {
                 break;
         }
 
-        /*
-        switch(event.getAction() ) {
-            case MotionEvent.ACTION_DOWN:
-
-                for(Rect rect : rectangle){
-
-                    if(rect.contains((int)x,(int)y)){
-                        System.out.println("Touched Rectangle, change color");
-                        changeRectColor(rect);
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
-
-                        builder.setTitle("Advance Setting");
-
-                        final EditText input = new EditText(activityContext);
-                        input.setInputType(InputType.TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL );
-                        builder.setView(input);
-
-                        builder.setMessage("Current Rate:  $2.50/hr\n" +
-                                           "Enter New Parking Rate:");
-                        builder.setCancelable(false);
-                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Todo: handle the OK
-
-                            }
-                        });
-                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-
-                        AlertDialog alertDialog = builder.create();
-                        alertDialog.show();
-                    }
-                }
-
-
-                break;
-
-            case MotionEvent.ACTION_UP:
-
-                System.out.println("Touched up");
-                break;
-        }
-        */
-
-
         return true;
+
+    }
+
+    void updateMapDisplay() {
+
+        for( int i = 0; i < numSpaces; i++) {
+            recCol.put(rectangle[i], paints[ parkingLotStatus[i] ]);
+            invalidate();
+        }
 
     }
 
