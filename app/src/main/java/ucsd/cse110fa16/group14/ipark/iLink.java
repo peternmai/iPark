@@ -1,6 +1,7 @@
 package ucsd.cse110fa16.group14.ipark;
 
 import android.util.Log;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Vector;
 
 public class iLink {
@@ -42,17 +44,17 @@ public class iLink {
         return task;
     }
 
-    public static void changeStartTime(String spot, String newStartTime) {
+    public static void changeStartTime(String spot, long newStartTime) {
         Firebase startTimeRef = new Firebase(parkingLot + spot + "/StartTime");
         startTimeRef.setValue(newStartTime);
     }
 
-    public static void changeEndTime(String spot, String newEndTime) {
+    public static void changeEndTime(String spot, long newEndTime) {
         Firebase endTimeRef = new Firebase(parkingLot + spot + "/EndTime");
         endTimeRef.setValue(newEndTime);
     }
 
-    public static void changePrice(String spot, String newPrice) {
+    public static void changePrice(String spot, long newPrice) {
         Firebase priceRef = new Firebase(parkingLot + spot + "/Price");
         priceRef.setValue(newPrice);
     }
@@ -67,12 +69,55 @@ public class iLink {
         reserveRef.setValue(newStatus);
     }
 
+    /**
+     * Returns a random spot that is available as a string. Eg. "Spot051". If all spots are full, it
+     * will return null
+     */
+    public static String getSpot(int startTime, int endTime) {
+
+        getParkingLotStatus();
+        Vector<String> spotsAvailable = new Vector<String>();
+        for(int i = 0; i < NUM_SPOTS; i++) {
+            if( spotStatus[i] == AVAILABLE ) {
+                spotsAvailable.add( "Spot" + String.format("%03d", i) );
+            }
+        }
+
+        if( spotsAvailable.size() == 0 )
+            return null;
+
+        Random rand = new Random();
+        int spotAssign = rand.nextInt( spotsAvailable.size() );
+
+        return spotsAvailable.elementAt( spotAssign );
+    }
+
+    // TODO: This function inserts a new data field rather than updates
+    public static boolean reportOther(int spot) {
+
+        // If reporting invalid spot, return false
+        if( spot < 0 || spot >= NUM_SPOTS )
+            return false;
+
+        // Can only report parking spots that should be open
+        getParkingLotStatus();
+        String spotText = "Spot" + String.format("%03d", spot);
+        System.out.println(spotText);
+        if( spotStatus[spot] == AVAILABLE ) {
+            changeLegalStatus(spotText, true);
+            return true;
+        }
+        else
+            return false;
+    }
+
     private static long curTime;
     public static int[] spotStatus = new int[80];
     public static final int AVAILABLE = 0;
     public static final int RESERVED = 1;
     public static final int OCCUPIED = 2;
     public static final int ILLEGAL = 3;
+    public static final int NUM_SPOTS = 80;
 
     public static int[] getParkingLotStatus() {
 
@@ -94,7 +139,7 @@ public class iLink {
                 long endTime = 0;
 
                 //Getting individual parking spot
-                for( int index = 0; index < 80; index++) {
+                for( int index = 0; index < NUM_SPOTS; index++) {
                     com.firebase.client.DataSnapshot node = iterator.next();
                     //System.out.print(node.getKey());
 
@@ -143,7 +188,7 @@ public class iLink {
         });
 
         System.out.print("ParkingLotStatus: ");
-        for(int i = 0; i < 80; i++)
+        for(int i = 0; i < NUM_SPOTS; i++)
             System.out.print(spotStatus[i]);
         System.out.println();
 

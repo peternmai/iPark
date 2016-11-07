@@ -79,7 +79,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
 
         getParkingLotData();
-        //pspot.setText(parkingspots.get(0));
+        pspot.setText(bundle.getString("spotAssign"));
 
 
         // Express current, start, and end time in seconds
@@ -154,14 +154,17 @@ public class CountDownCheckOut extends AppCompatActivity {
         }).start(); */
 
 
+
         getSpot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String spot = parkingspots.pop();
                 pspot.setText(spot);
+                System.out.println(spot);
                 iLink.changeReserveStatus(spot, true);
             }
         });
+
 
         /* information page */
         help.setOnClickListener(new View.OnClickListener() {
@@ -208,7 +211,8 @@ public class CountDownCheckOut extends AppCompatActivity {
                     });
                     AlertDialog alertDialog = respond.create();
                     alertDialog.show();
-                } else {
+                }
+                else {
                     Date date = new Date();                               // given date
                     Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
                     calendar.setTime(date);                               // assigns calendar to given date
@@ -226,7 +230,8 @@ public class CountDownCheckOut extends AppCompatActivity {
                         intent.putExtra("rate", bundle.getInt("rate"));
                     }
                     String spot = pspot.getText().toString();
-                    iLink.changeReserveStatus(spot, false);
+                    // TODO: This will add a new field rather than replace
+                    //iLink.changeReserveStatus(spot, false);
                     startActivity(intent);
                 }
 
@@ -239,29 +244,67 @@ public class CountDownCheckOut extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder respond = new AlertDialog.Builder(CountDownCheckOut.this);
-                respond.setTitle("Successful Report");
-                respond.setMessage("Your report has been successfully recorded.\n" +
-                        "A new parking spot has been assigned to you. " +
-                        "We apologize for the inconvenience.\n" +
-                        "A reward will soon be delivered to your account.\n" +
-                        "You can view this activity in account history now.\n");
-                respond.setPositiveButton("Done", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                        // need to assign the user another parking number from the system
-                        // TO DO
+                final String newSpotAssign = iLink.getSpot( (int)startTimeInSec/60, (int)endTimeInSec/60);
+
+                if( newSpotAssign == null ) {
+                    AlertDialog.Builder respond = new AlertDialog.Builder(CountDownCheckOut.this);
+                    respond.setTitle("Successful Report | No Spots Available");
+                    respond.setMessage("Your report has been successfully recorded.\n" +
+                            "However, we could not get you a new spot as our parking lot is full." +
+                            "We apologize for the inconvenience.\n\n" +
+                            "A reward will soon be delivered to your account.\n" +
+                            "You can view this activity in account history now.\n");
+                    respond.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
+                            intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                            intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                            intent.putExtra("departHour", bundle.getInt("arriveHour"));
+                            intent.putExtra("departMin", bundle.getInt("arriveMin"));
+                            intent.putExtra("rate", 0);
+                            startActivity(intent);
+
+                            dialog.cancel();
+                        }
+
+                    });
 
 
-                        dialog.cancel();
-                    }
+                    AlertDialog alertDialog = respond.create();
+                    alertDialog.show();
+                }
+                else {
 
-                });
+                    AlertDialog.Builder respond = new AlertDialog.Builder(CountDownCheckOut.this);
+                    respond.setTitle("Successful Report");
+                    respond.setMessage("Your report has been successfully recorded.\n" +
+                            "A new parking spot has been assigned to you. " +
+                            "We apologize for the inconvenience.\n" +
+                            "A reward will soon be delivered to your account.\n" +
+                            "You can view this activity in account history now.\n");
+                    respond.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            pspot.setText( newSpotAssign );
+                            // TODO: These makes a new member on firebase
+                            // iLink.changeLegalStatus( newSpotAssign, true );
+                            // iLink.changeStartTime( newSpotAssign, startTimeInSec/60 );
+                            // iLink.changeStartTime( newSpotAssign, endTimeInSec/60 );
 
 
-                AlertDialog alertDialog = respond.create();
-                alertDialog.show();
+                            dialog.cancel();
+                        }
+
+                    });
+
+
+                    AlertDialog alertDialog = respond.create();
+                    alertDialog.show();
+                }
             }
         });
 
@@ -334,6 +377,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         return ((curHour * 60) + curMin) * 60 + curSec;
     }
 
+
     protected void getParkingLotData() {
 
         //Getting all the usernames
@@ -377,4 +421,5 @@ public class CountDownCheckOut extends AppCompatActivity {
             }
         });
     }
+
 }

@@ -1,8 +1,10 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -75,36 +77,62 @@ public class Payment extends AppCompatActivity {
                 String clockOutTime = generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin"));
                 //Date date = new Date();
 
-                //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                //sdf.format(date);
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                Date date = null;
-                try {
-                    date = sdf.parse(sdf.format(new Date()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                int clockInTimeInt = bundle.getInt("arriveHour") * 60 + bundle.getInt("arriveMin");
+                int clockOutTimeInt = bundle.getInt("departHour") * 60 + bundle.getInt("departMin");
+
+                String spotAssign = iLink.getSpot(clockInTimeInt, clockOutTimeInt);
+
+                if( spotAssign == null ) {
+                    AlertDialog.Builder respond = new AlertDialog.Builder(Payment.this);
+                    respond.setTitle("PARKING LOT FULL");
+                    respond.setMessage("Sorry, all spots are currently full. Please try again later.");
+                    respond.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    AlertDialog alertDialog = respond.create();
+                    alertDialog.show();
                 }
+                else {
 
-                Firebase hasChild = root.child(date + " " + clockInTime);
+                    //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    //sdf.format(date);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Date date = null;
+                    try {
+                        date = sdf.parse(sdf.format(new Date()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
 
-                Firebase rateChild = hasChild.child("Rate");
-                Firebase clockInChild = hasChild.child("Clockin");
-                Firebase clockOutChild = hasChild.child("Clockout");
-                Firebase dateChild = hasChild.child("Date");
+                    Firebase hasChild = root.child(date + " " + clockInTime);
 
-                rateChild.setValue(rate);
-                clockInChild.setValue(clockInTime);
-                clockOutChild.setValue(clockOutTime);
-                dateChild.setValue(sdf.format(date));
+                    Firebase rateChild = hasChild.child("Rate");
+                    Firebase clockInChild = hasChild.child("Clockin");
+                    Firebase clockOutChild = hasChild.child("Clockout");
+                    Firebase dateChild = hasChild.child("Date");
 
+                    rateChild.setValue(rate);
+                    clockInChild.setValue(clockInTime);
+                    clockOutChild.setValue(clockOutTime);
+                    dateChild.setValue(sdf.format(date));
 
-                Intent intent = new Intent(Payment.this, CountDownCheckOut.class);
-                intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
-                intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
-                intent.putExtra("departHour", bundle.getInt("departHour"));
-                intent.putExtra("departMin", bundle.getInt("departMin"));
-                intent.putExtra("rate", rate);
-                startActivity(intent);
+                    // TODO: Needs to change this. It makes a new object on firebase
+                    // iLink.changeStartTime( spotAssign, clockInTimeInt );
+                    // iLink.changeEndTime( spotAssign, clockOutTimeInt );
+
+                    Intent intent = new Intent(Payment.this, CountDownCheckOut.class);
+                    intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                    intent.putExtra("departHour", bundle.getInt("departHour"));
+                    intent.putExtra("departMin", bundle.getInt("departMin"));
+                    intent.putExtra("spotAssign", spotAssign);
+                    intent.putExtra("rate", rate);
+                    startActivity(intent);
+                }
             }
         });
 
