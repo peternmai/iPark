@@ -23,7 +23,6 @@ public class activity_review extends AppCompatActivity {
 
 
     private Firebase root;
-    Payment object = new Payment();
 
     @Override
     protected void onPause() {

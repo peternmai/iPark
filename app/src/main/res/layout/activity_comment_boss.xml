@@ -7,13 +7,6 @@
     tools:context="ucsd.cse110fa16.group14.ipark.CommentBoss">
 
 
-    <ListView
-        android:id="@+id/list_view2"
-        android:layout_width="350dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_height="370dp" />
-
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,35 +15,6 @@
         >
 
     </RadioGroup>
-
-    <RadioButton
-        android:text="Date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioButton7"
-        android:layout_marginStart="25dp"
-        android:layout_alignBaseline="@+id/button26"
-        android:layout_alignBottom="@+id/button26"
-        android:layout_toEndOf="@+id/button26" />
-
-    <Button
-        android:text="Sorted By"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button26"
-        android:layout_below="@+id/radioGroup"
-        android:layout_alignStart="@+id/list_view2"
-        android:layout_marginTop="11dp" />
-
-    <RadioButton
-        android:text="Length"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:layout_alignTop="@+id/radioButton7"
-        android:layout_toEndOf="@+id/radioButton7"
-        android:layout_marginStart="22dp"
-        android:id="@+id/radioButton8" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -72,6 +36,14 @@
         android:id="@+id/homeBB"
         android:layout_alignTop="@+id/nextBB"
         android:layout_alignEnd="@+id/button26" />
+
+    <ListView
+        android:id="@+id/list_view2"
+        android:layout_width="350dp"
+        android:layout_height="370dp"
+        android:layout_marginBottom="31dp"
+        android:layout_above="@+id/nextBB"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
