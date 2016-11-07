@@ -104,7 +104,7 @@ public class iLink {
         String spotText = "Spot" + String.format("%03d", spot);
         System.out.println(spotText);
         if( spotStatus[spot] == AVAILABLE ) {
-            changeLegalStatus(spotText, true);
+            //TODO: changeLegalStatus(spotText, true);
             return true;
         }
         else
