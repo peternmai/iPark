@@ -169,12 +169,4 @@
         android:textAllCaps="false"
         android:background="#99FF99" />
 
-    <Button
-        android:text="Get A Spot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView26"
-        android:layout_alignStart="@+id/button22"
-        android:id="@+id/getSpot" />
-
 </RelativeLayout>
