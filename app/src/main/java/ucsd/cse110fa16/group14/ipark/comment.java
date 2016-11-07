@@ -64,7 +64,11 @@ public class comment extends AppCompatActivity {
                 Firebase dateChild = hasChild.child("Date");
                 Firebase rateChild = hasChild.child("Rating");
 
-                commentChild.setValue(comment);
+                if(comment.isEmpty()) {
+                    commentChild.setValue("No comment left by the user.");
+                } else {
+                    commentChild.setValue(comment);
+                }
                 dateChild.setValue(sdf.format(date));
                 rateChild.setValue(rate);
 
