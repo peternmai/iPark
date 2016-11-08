@@ -20,6 +20,7 @@ import java.util.Date;
 public class comment extends AppCompatActivity {
 
     private Firebase root;
+    Firebase hasChild;
 
     @Override
     protected void onPause() {
@@ -58,11 +59,12 @@ public class comment extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 sdf.format(date);
 
-                Firebase hasChild = root.child(date + " ");
+                hasChild = root.child(date + " ");
 
                 Firebase commentChild = hasChild.child("Comment");
                 Firebase dateChild = hasChild.child("Date");
                 Firebase rateChild = hasChild.child("Rating");
+                Firebase keyChild = hasChild.child("Key");
 
                 if(comment.isEmpty()) {
                     commentChild.setValue("No comment left by the user.");
@@ -71,6 +73,7 @@ public class comment extends AppCompatActivity {
                 }
                 dateChild.setValue(sdf.format(date));
                 rateChild.setValue(rate);
+                keyChild.setValue(date + " ");
 
                 Toast.makeText(comment.this, "Thank you for your input!",
                         Toast.LENGTH_LONG).show();
