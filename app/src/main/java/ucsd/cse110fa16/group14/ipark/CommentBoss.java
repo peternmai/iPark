@@ -75,6 +75,7 @@ public class CommentBoss extends AppCompatActivity {
                     temp.setDate(child.child("Date").getValue(String.class));
                     temp.setComment(child.child("Comment").getValue(String.class));
                     temp.setRating(child.child("Rating").getValue(String.class));
+                    temp.setUser(child.child("User").getValue(String.class));
 
                     list.add(temp);
 
@@ -137,10 +138,10 @@ public class CommentBoss extends AppCompatActivity {
 
 class commentObj {
 
-    String key, date, comment, rating;
+    String key, date, comment, rating, user;
 
     commentObj() {
-        key = date = comment = rating = "";
+        key = date = comment = rating = user = "";
     }
 
     public void setKey(String key) {
@@ -160,8 +161,10 @@ class commentObj {
         this.rating = rating;
     }
 
+    public void setUser(String user) { this.user = user; }
+
     @Override
     public String toString() {
-        return String.format("\t\t\t\t\t\t\t\nDATE:  %s\n\nCOMMENT: %s\nRATING: %s\n", date, comment, rating);
+        return String.format("\nUSER:  %s\t\t\t\t\t\t\t\tDATE:  %s\n\nCOMMENT: %s\nRATING: %s\n", user, date, comment, rating);
     }
 }

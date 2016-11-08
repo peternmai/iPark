@@ -51,6 +51,7 @@ public class Clockin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clockin);
+        final Bundle bundle = getIntent().getExtras();
 
 
         Button homeButt = (Button) findViewById(R.id.button8);
@@ -165,6 +166,7 @@ public class Clockin extends AppCompatActivity {
                     Intent intent = new Intent(Clockin.this, ChooseDepartureTimeActivity.class);
                     intent.putExtra("arriveHour", hourEntered);
                     intent.putExtra("arriveMin", minEntered);
+                    intent.putExtra("Username", bundle.getString("Username"));
                     startActivity(intent);
                 }
 
@@ -206,6 +208,7 @@ public class Clockin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Clockin.this, UserHomepage.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }

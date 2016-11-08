@@ -35,6 +35,7 @@ public class PersonalInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
+        final Bundle bundle = getIntent().getExtras();
 
         TextView name = (TextView) findViewById(R.id.nameTV);
         TextView email = (TextView) findViewById(R.id.email);
@@ -58,6 +59,7 @@ public class PersonalInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PersonalInfo.this, UserHomepage.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });
@@ -69,6 +71,7 @@ public class PersonalInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PersonalInfo.this, ForgotPassword_1.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });

@@ -29,6 +29,8 @@ public class Emergency extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency);
 
+        final Bundle bundle = getIntent().getExtras();
+
         Button sendButt = (Button) findViewById(R.id.button25);
         Button cancelButt = (Button) findViewById(R.id.button23);
         Button helpButt = (Button) findViewById(R.id.button28);
@@ -60,6 +62,7 @@ public class Emergency extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Emergency.this, UserHomepage.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }

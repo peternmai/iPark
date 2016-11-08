@@ -55,6 +55,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
         intent.putExtra("departHour", bundle.getInt("departHour"));
         intent.putExtra("departMin", bundle.getInt("departMin"));
+        intent.putExtra("Username", bundle.getString("Username"));
         startActivity(intent);
     }
 
@@ -227,6 +228,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                     Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
                     intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                    intent.putExtra("Username", bundle.getString("Username"));
 
                     int tempDephHour, tempDepMin;
                     int totHours, totMins;
@@ -306,6 +308,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                             intent.putExtra("departHour", bundle.getInt("arriveHour"));
                             intent.putExtra("departMin", bundle.getInt("arriveMin"));
                             intent.putExtra("rate", 0);
+                            intent.putExtra("Username", bundle.getString("Username"));
                             startActivity(intent);
 
                             dialog.cancel();
@@ -356,6 +359,7 @@ public class CountDownCheckOut extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, MapDirectional.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }
@@ -368,6 +372,7 @@ public class CountDownCheckOut extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, Emergency.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }
@@ -380,6 +385,7 @@ public class CountDownCheckOut extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }

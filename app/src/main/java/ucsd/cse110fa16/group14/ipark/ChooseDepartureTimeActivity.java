@@ -158,6 +158,7 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                     intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
                     intent.putExtra("departHour", hourEntered);
                     intent.putExtra("departMin", minEntered);
+                    intent.putExtra("Username", bundle.getString("Username"));
                     startActivity(intent);
                 }
 
@@ -201,6 +202,7 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChooseDepartureTimeActivity.this, UserHomepage.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }

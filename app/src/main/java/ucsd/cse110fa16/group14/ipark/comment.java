@@ -37,6 +37,8 @@ public class comment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
+        final Bundle bundle = getIntent().getExtras();
+
 
         root = new Firebase("https://ipark-e243b.firebaseio.com/Comments");
 
@@ -65,6 +67,7 @@ public class comment extends AppCompatActivity {
                 Firebase dateChild = hasChild.child("Date");
                 Firebase rateChild = hasChild.child("Rating");
                 Firebase keyChild = hasChild.child("Key");
+                Firebase userChild = hasChild.child("User");
 
                 if(comment.isEmpty()) {
                     commentChild.setValue("No comment left by the user.");
@@ -74,12 +77,14 @@ public class comment extends AppCompatActivity {
                 dateChild.setValue(sdf.format(date));
                 rateChild.setValue(rate);
                 keyChild.setValue(date + " ");
+                userChild.setValue(bundle.getString("Username"));
 
                 Toast.makeText(comment.this, "Thank you for your input!",
                         Toast.LENGTH_LONG).show();
 
 
                 Intent intent = new Intent(comment.this, UserHomepage.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });
@@ -89,6 +94,7 @@ public class comment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(comment.this, UserHomepage.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });

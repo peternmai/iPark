@@ -32,6 +32,8 @@ public class UserReviewHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_review_history);
 
+        final Bundle bundle = getIntent().getExtras();
+
         listView = (ListView) findViewById(R.id.list_view);
         //home = (ImageButton) findViewById(R.id.home);
 
@@ -78,6 +80,7 @@ public class UserReviewHistory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserReviewHistory.this, UserHomepage.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });

@@ -131,6 +131,7 @@ public class Payment extends AppCompatActivity {
                     intent.putExtra("departMin", bundle.getInt("departMin"));
                     intent.putExtra("spotAssign", spotAssign);
                     intent.putExtra("rate", rate);
+                    intent.putExtra("Username", bundle.getString("Username"));
                     startActivity(intent);
                 }
             }
@@ -141,6 +142,7 @@ public class Payment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Payment.this, UserHomepage.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });

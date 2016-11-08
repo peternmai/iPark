@@ -81,6 +81,7 @@ public class activity_review extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity_review.this, comment.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });
@@ -90,6 +91,7 @@ public class activity_review extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity_review.this, UserHomepage.class);
+                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });
