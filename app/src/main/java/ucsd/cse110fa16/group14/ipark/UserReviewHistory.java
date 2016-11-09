@@ -25,7 +25,6 @@ public class UserReviewHistory extends AppCompatActivity {
     private ListView listView;
     private ArrayList<ResObj> list = new ArrayList<>();
     private ResObj temp;
-    ImageButton home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +34,12 @@ public class UserReviewHistory extends AppCompatActivity {
         final Bundle bundle = getIntent().getExtras();
 
         listView = (ListView) findViewById(R.id.list_view);
-        //home = (ImageButton) findViewById(R.id.home);
 
-        root = new Firebase("https://ipark-e243b.firebaseio.com/History");
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+bundle.getString("Username")+"/History");
 
         final ArrayAdapter<ResObj> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
         listView.setAdapter(arrayAdapter);
-        //*
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -57,6 +54,7 @@ public class UserReviewHistory extends AppCompatActivity {
                     temp.setRate(child.child("Rate").getValue(String.class));
                     temp.setClockIn(child.child("Clockin").getValue(String.class));
                     temp.setClockOut(child.child("Clockout").getValue(String.class));
+                    temp.setUser(child.child("User").getValue(String.class));
 
                     list.add(temp);
 
@@ -89,11 +87,11 @@ public class UserReviewHistory extends AppCompatActivity {
 
 class ResObj {
 
-    String key, date, clockIn, clockOut, rate;
+    String key, date, clockIn, clockOut, rate, user;
 
     ResObj() {
 
-        key = date = clockIn = clockOut = rate = "";
+        key = date = clockIn = clockOut = rate = user = "";
     }
 
     public void setKey(String key) {
@@ -115,6 +113,8 @@ class ResObj {
     public void setRate(String rate) {
         this.rate = rate;
     }
+
+    public void setUser(String user) { this.user = user; }
 
     @Override
     public String toString() {
