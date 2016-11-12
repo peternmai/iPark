@@ -10,11 +10,14 @@ import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
@@ -22,6 +25,24 @@ public class iLink {
     private static String usersNode = "https://ipark-e243b.firebaseio.com/Users/";
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
     private static FirebaseAuth auth;
+    private static int gap = 0;
+
+    private static boolean checkSpotAvailability(String curDataStr, long startTime, long endTime ){
+        if (curDataStr == null || startTime < 0 || endTime < 0)
+            return false;
+        if (curDataStr == "")
+            return true;
+        List<String> split = new ArrayList<String>(Arrays.asList(curDataStr.split("\\s+")));
+
+        for (int i = 0; i < split.size(); i=i+3){
+            long sTime = Long.parseLong(split.get(i)) + gap;
+            long eTime = Long.parseLong(split.get(i + 2)) + gap;
+            if (sTime == startTime || (sTime < startTime && eTime > startTime) ||
+                    (sTime < endTime && eTime > endTime) || (sTime > startTime && sTime < endTime))
+                return false;
+        }
+        return true;
+    }
 
     public static Task changePassword(String username, String newPassword) {
         auth = FirebaseAuth.getInstance();
