@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +21,8 @@ import java.util.Date;
 public class comment extends AppCompatActivity {
 
     private Firebase root;
+    Firebase hasChild;
+    private static FirebaseAuth auth;
 
     @Override
     protected void onPause() {
@@ -36,8 +39,11 @@ public class comment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
+        final Bundle bundle = getIntent().getExtras();
 
         root = new Firebase("https://ipark-e243b.firebaseio.com/Comments");
+        auth = FirebaseAuth.getInstance();
+        final String userName = auth.getCurrentUser().getDisplayName();
 
 
         final EditText userComment = (EditText) findViewById(R.id.userComment);
@@ -58,15 +64,23 @@ public class comment extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 sdf.format(date);
 
-                Firebase hasChild = root.child(date + " ");
+                hasChild = root.child(date + " ");
 
                 Firebase commentChild = hasChild.child("Comment");
                 Firebase dateChild = hasChild.child("Date");
                 Firebase rateChild = hasChild.child("Rating");
+                Firebase keyChild = hasChild.child("Key");
+                Firebase userChild = hasChild.child("User");
 
-                commentChild.setValue(comment);
+                if(comment.isEmpty()) {
+                    commentChild.setValue("No comment left by the user.");
+                } else {
+                    commentChild.setValue(comment);
+                }
                 dateChild.setValue(sdf.format(date));
                 rateChild.setValue(rate);
+                keyChild.setValue(date + " ");
+                userChild.setValue(userName);
 
                 Toast.makeText(comment.this, "Thank you for your input!",
                         Toast.LENGTH_LONG).show();

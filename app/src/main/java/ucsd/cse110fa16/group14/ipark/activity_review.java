@@ -13,6 +13,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +24,8 @@ public class activity_review extends AppCompatActivity {
 
 
     private Firebase root;
-    Payment object = new Payment();
+    private static FirebaseAuth auth;
+
 
     @Override
     protected void onPause() {
@@ -39,7 +41,10 @@ public class activity_review extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
-        root = new Firebase("https://ipark-e243b.firebaseio.com/History");
+
+        auth = FirebaseAuth.getInstance();
+        final String userName = auth.getCurrentUser().getDisplayName();
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName+"/History");
 
         Button commentButt = (Button) findViewById(R.id.button);
         Button nopButt = (Button) findViewById(R.id.button3);

@@ -15,9 +15,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -31,6 +36,8 @@ public class CountDownCheckOut extends AppCompatActivity {
 
     private int mProgressStatus;
     static Stack<String> parkingspots = new Stack<>();
+    Firebase root;
+    private static FirebaseAuth auth;
 
     @Override
     protected void onPause() {
@@ -74,6 +81,10 @@ public class CountDownCheckOut extends AppCompatActivity {
         final TextView title = (TextView) findViewById(R.id.TimeRemainingTitle);
         final TextView timerText = (TextView) findViewById(R.id.Timer);
         final TextView pspot = (TextView) findViewById(R.id.textView26);
+
+        auth = FirebaseAuth.getInstance();
+        final String userName = auth.getCurrentUser().getDisplayName();
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName+"/History");
 
         startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
         endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
@@ -155,7 +166,9 @@ public class CountDownCheckOut extends AppCompatActivity {
 
 
 
-        /*getSpot.setOnClickListener(new View.OnClickListener() {
+
+       /* getSpot.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 String spot = parkingspots.pop();
@@ -220,19 +233,53 @@ public class CountDownCheckOut extends AppCompatActivity {
                     Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
                     intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
-                    if (getCurrentTimeInSec() >= endTimeInSec) {
-                        intent.putExtra("departHour", bundle.getInt("departHour"));
-                        intent.putExtra("departMin", bundle.getInt("departMin"));
-                        intent.putExtra("rate", bundle.getInt("rate"));
+
+                    int tempDephHour, tempDepMin;
+                    int totHours, totMins;
+                    double totPay, rate;
+                    rate = 2.5;
+
+                    if(startTimeInSec > getCurrentTimeInSec() ) {
+
+                        Toast.makeText(CountDownCheckOut.this, "You're too early!",
+                                Toast.LENGTH_LONG).show();
                     } else {
-                        intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
-                        intent.putExtra("departMin", calendar.get(Calendar.MINUTE));
-                        intent.putExtra("rate", bundle.getInt("rate"));
+                        if (getCurrentTimeInSec() >= endTimeInSec) {
+                            intent.putExtra("departHour", bundle.getInt("departHour"));
+                            intent.putExtra("departMin", bundle.getInt("departMin"));
+                            intent.putExtra("rate", bundle.getInt("rate"));
+                        } else {
+
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                            date = null;
+                            try {
+                                date = sdf.parse(sdf.format(new Date()));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);
+                            tempDepMin = calendar.get(Calendar.MINUTE);
+
+                            root.child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockout").setValue(
+                                    generateTimeText(tempDephHour, tempDepMin));
+
+                            intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
+                            intent.putExtra("departMin", calendar.get(Calendar.MINUTE));
+
+                            // Calculate total time parked and total to pay
+                            totHours = tempDephHour - bundle.getInt("arriveHour");
+                            totMins = tempDepMin - bundle.getInt("arriveMin");
+                            totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
+                            root.child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Rate").setValue(String.format("$%.2f", totPay));
+
+                            intent.putExtra("rate", String.format("$%.2f", totPay));
+                        }
+                        String spot = pspot.getText().toString();
+                        // TODO: This will add a new field rather than replace
+                        //iLink.changeReserveStatus(spot, false);
+                        startActivity(intent);
                     }
-                    String spot = pspot.getText().toString();
-                    // TODO: This will add a new field rather than replace
-                    //iLink.changeReserveStatus(spot, false);
-                    startActivity(intent);
                 }
 
             }

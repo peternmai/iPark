@@ -29,6 +29,8 @@ public class MapDirectional extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_directional);
 
+        final Bundle bundle = getIntent().getExtras();
+
         Button emergencyButt = (Button) findViewById(R.id.button9);
         Button homeButt = (Button) findViewById(R.id.button14);
         Button reportButt = (Button) findViewById(R.id.send);

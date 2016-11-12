@@ -263,9 +263,12 @@ public class iLink {
 
                 while (iterator.hasNext()) {
                     DataSnapshot data = iterator.next();
-                    String key = data.getKey();
-                    String val = data.getValue(String.class);
-                    map.put(key, val);
+
+                    if (data.getKey() != "History") {
+                        String key = data.getKey();
+                        String val = data.getValue(String.class);
+                        map.put(key, val);
+                    }
                 }
             }
 

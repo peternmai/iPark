@@ -51,6 +51,7 @@ public class Clockin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clockin);
+        final Bundle bundle = getIntent().getExtras();
 
 
         Button homeButt = (Button) findViewById(R.id.button8);

@@ -26,7 +26,12 @@ public class UserHomepage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
+        final Bundle bundle = getIntent().getExtras();
+       // final String username = getIntent().hasExtra("Username")?bundle.getString("Username"):"abhi";
 
+
+        //Toast.makeText(UserHomepage.this, bundle.getString("Username"),
+        //        Toast.LENGTH_LONG).show();
 
         ImageButton logoutButt = (ImageButton) findViewById(R.id.logoutButton);
         ImageButton reserveButt = (ImageButton) findViewById(R.id.reserveButton);
@@ -87,7 +92,7 @@ public class UserHomepage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, CountDownCheckOut.class);
 
-                final Bundle bundle = getIntent().getExtras();
+
                 Intent thisIntent = getIntent();
                 if (thisIntent.hasExtra("arriveHour") && thisIntent.hasExtra("departHour")) {
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
@@ -130,6 +135,8 @@ public class UserHomepage extends AppCompatActivity {
                 //Get the hashMap with the details of a user
                 infoMap = iLink.getChildInfo("Users", currUser);
                 Intent intent = new Intent(UserHomepage.this, PersonalInfo.class);
+             //   Toast.makeText(UserHomepage.this, currUser,
+             //           Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

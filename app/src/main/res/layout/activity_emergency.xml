@@ -9,19 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ucsd.cse110fa16.group14.ipark.comment">
-
-    <Button
-        android:text="Send"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginBottom="45dp"
-        android:id="@+id/button25"
-        android:textColor="#FFFFFF"
-        android:background="#660000" />
+    tools:context="ucsd.cse110fa16.group14.ipark.Emergency">
 
     <Button
         android:text="Cancel"
@@ -34,30 +22,19 @@
         android:layout_marginEnd="31dp"
         android:background="#FFFF00" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView53"
-        android:textStyle="italic"
-        android:textSize="16sp"
-        android:layout_above="@+id/button25"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="47dp"
-        android:text="      Your safety is our main concern!\n                                                              Group 14" />
-
     <RadioGroup
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/radioGroup"
+        android:id="@+id/emergencyRadioGroup"
         android:layout_above="@+id/textView53"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="31dp">
+        android:layout_marginBottom="40dp">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fire"
-            android:id="@+id/radioButton"
+            android:id="@+id/fire"
             android:layout_gravity="top|left"
             android:checked="false"
             android:textSize="25dp" />
@@ -67,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Personal safety"
-            android:id="@+id/radioButton4"
+            android:id="@+id/personalSafety"
             android:checked="false"
             android:textSize="25dp" />
 
@@ -75,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Property loss"
-            android:id="@+id/radioButton2"
+            android:id="@+id/propertyLoss"
             android:checked="false"
             android:textSize="25dp" />
 
@@ -85,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Engine off"
-            android:id="@+id/radioButton3"
+            android:id="@+id/engineOff"
             android:checked="false"
             android:textSize="25dp" />
 
@@ -115,5 +92,39 @@
         android:layout_alignBottom="@+id/textView50"
         android:layout_alignParentEnd="true"
         android:layout_width="40dp" />
+
+    <Button
+        android:text="Send"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginBottom="17dp"
+        android:id="@+id/button25"
+        android:textColor="#FFFFFF"
+        android:background="#660000"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView53"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:layout_marginBottom="86dp"
+        android:text="      Your safety is our main concern!\n                                                              Group 14"
+        android:layout_above="@+id/button23"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:inputType="text"
+        android:ems="10"
+        android:layout_marginBottom="22dp"
+        android:id="@+id/parkingNumber"
+        android:hint="ENTIER PARKING NUMBER"
+        android:layout_height="60dp"
+        android:layout_above="@+id/button23"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

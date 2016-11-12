@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import java.util.Date;
 public class Payment extends AppCompatActivity {
 
     private Firebase root;
+    private static FirebaseAuth auth;
 
 
     @Override
@@ -36,8 +38,13 @@ public class Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        // Get values passed on from previous activity
+        final Bundle bundle = getIntent().getExtras();
+
         //**************************************************************
-        root = new Firebase("https://ipark-e243b.firebaseio.com/History");
+        auth = FirebaseAuth.getInstance();
+        final String userName = auth.getCurrentUser().getDisplayName();
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName);
         //***************************************************************
 
         Button payButt = (Button) findViewById(R.id.button);
@@ -47,13 +54,10 @@ public class Payment extends AppCompatActivity {
         double rate = 2.50;
         double totPay = 0.00;
 
-        // Get values passed on from previous activity
-        final Bundle bundle = getIntent().getExtras();
-
         // Calculate total time parked and total to pay
         totHours = bundle.getInt("departHour") - bundle.getInt("arriveHour");
         totMins = bundle.getInt("departMin") - bundle.getInt("arriveMin");
-        totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
+        totPay = (totHours + (double) totMins / 60.0) * rate;
 
         TextView startTimeText = (TextView) findViewById(R.id.startTimeText);
         TextView endTimeText = (TextView) findViewById(R.id.endTimeText);
@@ -108,17 +112,21 @@ public class Payment extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    Firebase hasChild = root.child(date + " " + clockInTime);
+                    Firebase histChild = root.child("History");
+
+                    Firebase hasChild = histChild.child(date + " " + clockInTime);
 
                     Firebase rateChild = hasChild.child("Rate");
                     Firebase clockInChild = hasChild.child("Clockin");
                     Firebase clockOutChild = hasChild.child("Clockout");
                     Firebase dateChild = hasChild.child("Date");
+                    Firebase userChild = hasChild.child("User");
 
                     rateChild.setValue(rate);
                     clockInChild.setValue(clockInTime);
                     clockOutChild.setValue(clockOutTime);
                     dateChild.setValue(sdf.format(date));
+                    userChild.setValue(userName);
 
                     // TODO: Needs to change this. It makes a new object on firebase
                     // iLink.changeStartTime( spotAssign, clockInTimeInt );
@@ -131,6 +139,7 @@ public class Payment extends AppCompatActivity {
                     intent.putExtra("departMin", bundle.getInt("departMin"));
                     intent.putExtra("spotAssign", spotAssign);
                     intent.putExtra("rate", rate);
+
                     startActivity(intent);
                 }
             }

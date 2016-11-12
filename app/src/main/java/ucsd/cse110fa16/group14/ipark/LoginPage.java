@@ -250,7 +250,7 @@ public class LoginPage extends AppCompatActivity {
      * entered in the text field.
      */
     private void signIn() {
-        String username = usernameField.getText().toString();
+        final String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
             Toast.makeText(LoginPage.this, "Please enter your username and password",
@@ -282,6 +282,8 @@ public class LoginPage extends AppCompatActivity {
                             } else {
                                 intent = new Intent(LoginPage.this, UserHomepage.class);
                             }
+
+                            intent.putExtra("Username", username);
                             startActivity(intent);
                         }
                     }

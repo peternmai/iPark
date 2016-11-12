@@ -1,14 +1,34 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListView;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * Created by Mag on 10/13/2016.
  */
 
 public class BossEmergency extends AppCompatActivity {
+
+    private Firebase root;
+    private ListView listView;
+    private ArrayList<commentBoss> list = new ArrayList<>();
+    private commentBoss temp;
+    ImageButton home;
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -24,6 +44,76 @@ public class BossEmergency extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boss_emergency);
 
+        home = (ImageButton) findViewById(R.id.homeBBB);
+        listView = (ListView) findViewById(R.id.list_view_emergency);
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Emergency");
+        final ArrayAdapter<commentBoss> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+
+        listView.setAdapter(arrayAdapter);
+
+        root.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // int ctr = 1;
+
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    temp = new commentBoss();
+
+                    temp.setDate(child.child("Date").getValue(String.class));
+                    temp.setEmergencyType(child.child("EmergencyType").getValue(String.class));
+                    temp.setParkingSpot(child.child("ParkingNumber").getValue(String.class));
+                    temp.setUser(child.child("User").getValue(String.class));
+
+                    list.add(temp);
+                    arrayAdapter.notifyDataSetChanged();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BossEmergency.this, OwnerHomepage.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
+
+class commentBoss{
+
+    String date, emergencyType, parkingSpot, user;
+
+    commentBoss() {
+        date = emergencyType = parkingSpot = user = "";
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setEmergencyType(String comment) {
+        this.emergencyType = comment;
+    }
+
+    public void setParkingSpot(String rating) {
+        this.parkingSpot = rating;
+    }
+
+    public void setUser(String user) { this.user = user; }
+
+    @Override
+    public String toString() {
+        return String.format("\nUSER:  %s\t\t\t\t\t\t\t\tDATE:  %s\n\nEMERGENCY TYPE: %s\nPARKING SPOT: %s\n", user, date, emergencyType, parkingSpot);
+    }
+}
+

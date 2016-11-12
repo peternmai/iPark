@@ -5,16 +5,22 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import org.w3c.dom.Comment;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Mag on 10/13/2016.
@@ -59,15 +65,21 @@ public class CommentBoss extends AppCompatActivity {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     temp = new commentObj();
 
+                    //****************************************************
+                    temp.setKey(child.child("Key").getValue(String.class));
+                    //*****************************************************
+
                     //temp.setKey("Comment " );
                     temp.setDate(child.child("Date").getValue(String.class));
                     temp.setComment(child.child("Comment").getValue(String.class));
                     temp.setRating(child.child("Rating").getValue(String.class));
+                    temp.setUser(child.child("User").getValue(String.class));
 
                     list.add(temp);
 
                     //ctr++;
                     arrayAdapter.notifyDataSetChanged();
+
                 }
             }
 
@@ -75,8 +87,39 @@ public class CommentBoss extends AppCompatActivity {
             public void onCancelled(FirebaseError firebaseError) {
 
             }
+
+
+
         });
-    }
+
+
+/*
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Date date = new Date();
+                //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                //Firebase hasChild = root.child(sdf.format(date));
+
+
+                root.child(list.get(i).getKey()).removeValue();
+                list.remove(i);
+
+                //Toast.makeText(CommentBoss.this, list.get(i).getKey() + "_" + list.get(i).toString(),
+                //        Toast.LENGTH_LONG).show();
+
+                arrayAdapter.notifyDataSetChanged();
+
+                return true;
+            }
+        });
+
+*/
+
+   }
+    //root.child("Key").removeValue();
+
 
 
     @Override
@@ -93,15 +136,16 @@ public class CommentBoss extends AppCompatActivity {
 
 class commentObj {
 
-    String key, date, comment, rating;
+    String key, date, comment, rating, user;
 
     commentObj() {
-        key = date = comment = rating = "";
+        key = date = comment = rating = user = "";
     }
 
     public void setKey(String key) {
         this.key = key;
     }
+    public String getKey() { return this.key; }
 
     public void setDate(String date) {
         this.date = date;
@@ -115,10 +159,10 @@ class commentObj {
         this.rating = rating;
     }
 
+    public void setUser(String user) { this.user = user; }
+
     @Override
     public String toString() {
-        return String.format("\t\t\t\t\t\t\t\nDATE:  %s\n\tCOMMENT: %s\tRATING: %s\n\t", date, comment, rating);
+        return String.format("\nUSER:  %s\t\t\t\t\t\t\t\tDATE:  %s\n\nCOMMENT: %s\nRATING: %s\n", user, date, comment, rating);
     }
-
-
 }
