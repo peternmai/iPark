@@ -130,6 +130,7 @@ public class Payment extends AppCompatActivity {
 
                     // TODO: Needs to change this. It makes a new object on firebase
                     iLink.setOrder(spotAssign, clockInTimeInt, clockOutTimeInt);
+
                     //iLink.changeStartTime( spotAssign, clockInTimeInt );
                     //iLink.changeEndTime( spotAssign, clockOutTimeInt );
 
