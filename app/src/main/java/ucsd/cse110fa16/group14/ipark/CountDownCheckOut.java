@@ -19,6 +19,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,6 +37,7 @@ public class CountDownCheckOut extends AppCompatActivity {
     private int mProgressStatus;
     static Stack<String> parkingspots = new Stack<>();
     Firebase root;
+    private static FirebaseAuth auth;
 
     @Override
     protected void onPause() {
@@ -55,7 +57,6 @@ public class CountDownCheckOut extends AppCompatActivity {
         intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
         intent.putExtra("departHour", bundle.getInt("departHour"));
         intent.putExtra("departMin", bundle.getInt("departMin"));
-        intent.putExtra("Username", bundle.getString("Username"));
         startActivity(intent);
     }
 
@@ -81,7 +82,9 @@ public class CountDownCheckOut extends AppCompatActivity {
         final TextView timerText = (TextView) findViewById(R.id.Timer);
         final TextView pspot = (TextView) findViewById(R.id.textView26);
 
-        root = new Firebase("https://ipark-e243b.firebaseio.com/History");
+        auth = FirebaseAuth.getInstance();
+        final String userName = auth.getCurrentUser().getDisplayName();
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName+"/History");
 
         startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
         endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
@@ -228,7 +231,6 @@ public class CountDownCheckOut extends AppCompatActivity {
                     Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
                     intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
-                    intent.putExtra("Username", bundle.getString("Username"));
 
                     int tempDephHour, tempDepMin;
                     int totHours, totMins;
@@ -308,7 +310,6 @@ public class CountDownCheckOut extends AppCompatActivity {
                             intent.putExtra("departHour", bundle.getInt("arriveHour"));
                             intent.putExtra("departMin", bundle.getInt("arriveMin"));
                             intent.putExtra("rate", 0);
-                            intent.putExtra("Username", bundle.getString("Username"));
                             startActivity(intent);
 
                             dialog.cancel();
@@ -359,7 +360,6 @@ public class CountDownCheckOut extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, MapDirectional.class);
-                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }
@@ -372,7 +372,6 @@ public class CountDownCheckOut extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, Emergency.class);
-                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }
@@ -385,7 +384,6 @@ public class CountDownCheckOut extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
-                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }

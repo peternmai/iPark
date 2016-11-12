@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class comment extends AppCompatActivity {
 
     private Firebase root;
     Firebase hasChild;
+    private static FirebaseAuth auth;
 
     @Override
     protected void onPause() {
@@ -39,8 +41,9 @@ public class comment extends AppCompatActivity {
 
         final Bundle bundle = getIntent().getExtras();
 
-
         root = new Firebase("https://ipark-e243b.firebaseio.com/Comments");
+        auth = FirebaseAuth.getInstance();
+        final String userName = auth.getCurrentUser().getDisplayName();
 
 
         final EditText userComment = (EditText) findViewById(R.id.userComment);
@@ -77,14 +80,13 @@ public class comment extends AppCompatActivity {
                 dateChild.setValue(sdf.format(date));
                 rateChild.setValue(rate);
                 keyChild.setValue(date + " ");
-                userChild.setValue(bundle.getString("Username"));
+                userChild.setValue(userName);
 
                 Toast.makeText(comment.this, "Thank you for your input!",
                         Toast.LENGTH_LONG).show();
 
 
                 Intent intent = new Intent(comment.this, UserHomepage.class);
-                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });
@@ -94,7 +96,6 @@ public class comment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(comment.this, UserHomepage.class);
-                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });

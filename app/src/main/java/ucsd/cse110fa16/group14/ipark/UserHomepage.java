@@ -27,7 +27,7 @@ public class UserHomepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
         final Bundle bundle = getIntent().getExtras();
-        final String username = getIntent().hasExtra("Username")?bundle.getString("Username"):"abhi";
+       // final String username = getIntent().hasExtra("Username")?bundle.getString("Username"):"abhi";
 
 
         //Toast.makeText(UserHomepage.this, bundle.getString("Username"),
@@ -82,7 +82,6 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, Clockin.class);
-                intent.putExtra("Username",username);
                 startActivity(intent);
             }
         });
@@ -100,13 +99,11 @@ public class UserHomepage extends AppCompatActivity {
                     intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
                     intent.putExtra("departHour", bundle.getInt("departHour"));
                     intent.putExtra("departMin", bundle.getInt("departMin"));
-                    intent.putExtra("Username", username);
                 } else {
                     intent.putExtra("arriveHour", 0);
                     intent.putExtra("arriveMin", 0);
                     intent.putExtra("departHour", 0);
                     intent.putExtra("departMin", 0);
-                    intent.putExtra("Username", username);
                 }
                 startActivity(intent);
             }
@@ -117,7 +114,6 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, MapDirectional.class);
-                intent.putExtra("Username", username);
                 startActivity(intent);
             }
         });
@@ -127,7 +123,6 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, Emergency.class);
-                intent.putExtra("Username",username);
                 startActivity(intent);
             }
         });
@@ -140,7 +135,8 @@ public class UserHomepage extends AppCompatActivity {
                 //Get the hashMap with the details of a user
                 infoMap = iLink.getChildInfo("Users", currUser);
                 Intent intent = new Intent(UserHomepage.this, PersonalInfo.class);
-                intent.putExtra("Username", username);
+             //   Toast.makeText(UserHomepage.this, currUser,
+             //           Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
@@ -150,7 +146,6 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, UserReviewHistory.class);
-                intent.putExtra("Username", username);
                 startActivity(intent);
             }
         });
@@ -160,7 +155,6 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, HELP_USER.class);
-                intent.putExtra("Username", username);
                 startActivity(intent);
             }
         });

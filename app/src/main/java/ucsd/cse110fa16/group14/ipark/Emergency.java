@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +28,7 @@ public class Emergency extends AppCompatActivity {
     Firebase hasChild;
     RadioGroup radioGroup;
     RadioButton selected;
+    private static FirebaseAuth auth;
 
     @Override
     protected void onPause() {
@@ -52,6 +54,8 @@ public class Emergency extends AppCompatActivity {
 
         radioGroup = (RadioGroup) findViewById(R.id.emergencyRadioGroup);
         final EditText parkingNum = (EditText)findViewById(R.id.parkingNumber);
+        auth = FirebaseAuth.getInstance();
+        final String userName = auth.getCurrentUser().getDisplayName();
 
 
         /* emergency sent */
@@ -91,7 +95,7 @@ public class Emergency extends AppCompatActivity {
                 emergencyType.setValue(selectedbButton);
                 dateChild.setValue(sdf.format(date));
                 parkingNumChild.setValue(parkingNumber);
-                userChild.setValue(bundle.getString("Username"));
+                userChild.setValue(userName);
                 //////////////////////////////////////////////////////////
 
             }
@@ -103,7 +107,6 @@ public class Emergency extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Emergency.this, UserHomepage.class);
-                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }

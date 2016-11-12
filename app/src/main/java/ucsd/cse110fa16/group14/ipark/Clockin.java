@@ -166,7 +166,6 @@ public class Clockin extends AppCompatActivity {
                     Intent intent = new Intent(Clockin.this, ChooseDepartureTimeActivity.class);
                     intent.putExtra("arriveHour", hourEntered);
                     intent.putExtra("arriveMin", minEntered);
-                    intent.putExtra("Username", bundle.getString("Username"));
                     startActivity(intent);
                 }
 
@@ -208,7 +207,6 @@ public class Clockin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Clockin.this, UserHomepage.class);
-                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
 
             }

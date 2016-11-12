@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import java.util.Date;
 public class Payment extends AppCompatActivity {
 
     private Firebase root;
+    private static FirebaseAuth auth;
 
 
     @Override
@@ -40,7 +42,9 @@ public class Payment extends AppCompatActivity {
         final Bundle bundle = getIntent().getExtras();
 
         //**************************************************************
-        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+bundle.getString("Username"));
+        auth = FirebaseAuth.getInstance();
+        final String userName = auth.getCurrentUser().getDisplayName();
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName);
         //***************************************************************
 
         Button payButt = (Button) findViewById(R.id.button);
@@ -122,7 +126,7 @@ public class Payment extends AppCompatActivity {
                     clockInChild.setValue(clockInTime);
                     clockOutChild.setValue(clockOutTime);
                     dateChild.setValue(sdf.format(date));
-                    userChild.setValue(bundle.getString("Username"));
+                    userChild.setValue(userName);
 
                     // TODO: Needs to change this. It makes a new object on firebase
                     // iLink.changeStartTime( spotAssign, clockInTimeInt );
@@ -136,7 +140,6 @@ public class Payment extends AppCompatActivity {
                     intent.putExtra("spotAssign", spotAssign);
                     intent.putExtra("rate", rate);
 
-                    intent.putExtra("Username", bundle.getString("Username"));
                     startActivity(intent);
                 }
             }
@@ -147,7 +150,6 @@ public class Payment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Payment.this, UserHomepage.class);
-                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });

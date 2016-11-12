@@ -12,6 +12,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,7 @@ public class UserReviewHistory extends AppCompatActivity {
     private ListView listView;
     private ArrayList<ResObj> list = new ArrayList<>();
     private ResObj temp;
+    private static FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,11 @@ public class UserReviewHistory extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.list_view);
 
-        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+bundle.getString("Username")+"/History");
+        auth = FirebaseAuth.getInstance();
+        String userName = auth.getCurrentUser().getDisplayName();
+        //Task task = auth.getCurrentUser().updatePassword(newPassword);
+        //root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+bundle.getString("Username")+"/History");
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName+"/History");
 
         final ArrayAdapter<ResObj> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
@@ -78,7 +85,6 @@ public class UserReviewHistory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserReviewHistory.this, UserHomepage.class);
-                intent.putExtra("Username", bundle.getString("Username"));
                 startActivity(intent);
             }
         });
