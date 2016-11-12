@@ -131,9 +131,13 @@ public class iLink {
         endTimeRef.setValue(newEndTime);
     }
 
-    public static void setOrder(String spot, long start, long end) {
-        Firebase startTimeRef = new Firebase(parkingLot + spot + "/Schedule");
-        //startTimeRef.setValue();
+    public static void setOrder(String spot,  long startTime, long endTime) {
+        Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
+        auth = FirebaseAuth.getInstance();
+        String userName = auth.getCurrentUser().getDisplayName();
+
+        // TODO: need to get the schedule of spot
+        //scheduleRef.setValue(generateNewInsertSpotReservationData(schedule, startTime,userName,endTime ));
     }
 
     public static void changePrice(String spot, long newPrice) {
