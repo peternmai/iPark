@@ -57,7 +57,7 @@ public class Payment extends AppCompatActivity {
         // Calculate total time parked and total to pay
         totHours = bundle.getInt("departHour") - bundle.getInt("arriveHour");
         totMins = bundle.getInt("departMin") - bundle.getInt("arriveMin");
-        totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
+        totPay = (totHours + (double) totMins / 60.0) * rate;
 
         TextView startTimeText = (TextView) findViewById(R.id.startTimeText);
         TextView endTimeText = (TextView) findViewById(R.id.endTimeText);
