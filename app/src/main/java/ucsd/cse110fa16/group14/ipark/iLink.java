@@ -139,9 +139,11 @@ public class iLink {
         Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
         auth = FirebaseAuth.getInstance();
         String userName = auth.getCurrentUser().getDisplayName();
+        HashMap<String, String> spotInfo = getChildInfo( "ParkingLot", spot);
+        String schedule = spotInfo.get("Schedule");
 
         // TODO: need to get the schedule of spot
-        //scheduleRef.setValue(generateNewInsertSpotReservationData(schedule, startTime,userName,endTime ));
+        scheduleRef.setValue(generateNewInsertSpotReservationData(schedule, startTime,userName,endTime ));
     }
 
     public static void changePrice(String spot, long newPrice) {
