@@ -129,8 +129,9 @@ public class Payment extends AppCompatActivity {
                     userChild.setValue(userName);
 
                     // TODO: Needs to change this. It makes a new object on firebase
-                    // iLink.changeStartTime( spotAssign, clockInTimeInt );
-                    // iLink.changeEndTime( spotAssign, clockOutTimeInt );
+                    iLink.setOrder(spotAssign, clockInTimeInt, clockOutTimeInt);
+                    //iLink.changeStartTime( spotAssign, clockInTimeInt );
+                    //iLink.changeEndTime( spotAssign, clockOutTimeInt );
 
                     Intent intent = new Intent(Payment.this, CountDownCheckOut.class);
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));

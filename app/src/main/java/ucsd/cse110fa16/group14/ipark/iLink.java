@@ -54,6 +54,11 @@ public class iLink {
         endTimeRef.setValue(newEndTime);
     }
 
+    public static void setOrder(String spot, long start, long end) {
+        Firebase startTimeRef = new Firebase(parkingLot + spot + "/Schedule");
+        //startTimeRef.setValue();
+    }
+
     public static void changePrice(String spot, long newPrice) {
         Firebase priceRef = new Firebase(parkingLot + spot + "/Price");
         priceRef.setValue(newPrice);
@@ -75,7 +80,7 @@ public class iLink {
      */
     public static String getSpot(int startTime, int endTime) {
 
-        getParkingLotStatus();
+        getParkingLotStatus(startTime, endTime);
         Vector<String> spotsAvailable = new Vector<String>();
         for(int i = 0; i < NUM_SPOTS; i++) {
             if( spotStatus[i] == AVAILABLE ) {
@@ -100,7 +105,7 @@ public class iLink {
             return false;
 
         // Can only report parking spots that should be open
-        getParkingLotStatus();
+        //getParkingLotStatus();
         String spotText = "Spot" + String.format("%03d", spot);
         System.out.println(spotText);
         if( spotStatus[spot] == AVAILABLE ) {
@@ -118,47 +123,66 @@ public class iLink {
     public static final int OCCUPIED = 2;
     public static final int ILLEGAL = 3;
     public static final int NUM_SPOTS = 80;
+    public static final int STARTINDEX = 0;
+    public static final int ENDINDEX = 2;
 
-    public static int[] getParkingLotStatus() {
+    public static int[] getParkingLotStatus(final long startTime, final long endTime) {
 
-        Date date = new Date();                               // given date
+        /*Date date = new Date();                               // given date
         Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
         calendar.setTime(date);                               // assigns calendar to given date
-        curTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
+        curTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);*/
 
 
+        // initialize the parking lot status
+        for (int i = 0; i < NUM_SPOTS; i++){
+            spotStatus[i] = OCCUPIED;
+        }
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
 
         // parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
         parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
-            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot)
+            {
                 Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
                 Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
-                long startTime = 0;
-                long endTime = 0;
+                //long startTime = 0;
+                //long endTime = 0;
 
                 //Getting individual parking spot
-                for( int index = 0; index < NUM_SPOTS; index++) {
+                for( int count = 0; count < NUM_SPOTS; count++)
+                {
+
+                    // the index of this spot
+                    int index;
                     com.firebase.client.DataSnapshot node = iterator.next();
+                    // get the index from "SpotXXX"
+                    index = Integer.valueOf(node.getKey().substring(4, 8));
                     //System.out.print(node.getKey());
 
+                    // get the field variables of spot
                     Iterable<com.firebase.client.DataSnapshot> spotInfo = node.getChildren();
                     Iterator<com.firebase.client.DataSnapshot> iterator1 = spotInfo.iterator();
 
                     boolean illegal = false;
                     boolean reserved = false;
+                    String schedule = null;
 
                     //Getting start Time
                     while (iterator1.hasNext()) {
                         com.firebase.client.DataSnapshot innerNode = iterator1.next();
                         String innerKey = innerNode.getKey();
 
-                        if (innerKey.equals("StartTime")) {
+                        /*if (innerKey.equals("StartTime")) {
                             startTime = innerNode.getValue(long.class);
                         }
                         if(innerKey.equals("EndTime")) {
                             endTime = innerNode.getValue(long.class);
+                        }*/
+
+                        if (innerKey.equals("Schedule"))  {
+                            schedule = innerNode.getValue(String.class);
                         }
                         if(innerKey.equals("Illegal"))  {
                             illegal = ((innerNode.getValue(boolean.class)) ? true : false);
@@ -172,11 +196,57 @@ public class iLink {
                         spotStatus[index] = ILLEGAL;
                     else if(reserved)
                         spotStatus[index] = RESERVED;
-                    else {
-                        if (curTime >= startTime && curTime <= endTime)
-                            spotStatus[index] = OCCUPIED;
-                        else
+                    else
+                    {
+
+                        if (schedule == null) {
                             spotStatus[index] = AVAILABLE;
+                            continue;
+                        }
+                        // parse the Schedule into "startTime/spot/endTime"
+                        String[] orders = schedule.split("[ ]+");
+                        // create an 2D array of start and end time;
+                        int[][] startAndEnd = new int[orders.length][2];
+
+                        // read all the orders of this spot into 2D array
+                        for(int i = 0; i < orders.length; i++)
+                        {
+
+                            String[] orderInfo = orders[i].split("[/]");
+                            int orderStartTime = Integer.parseInt(orderInfo[STARTINDEX]);
+                            int orderEndTime = Integer.parseInt(orderInfo[ENDINDEX]);
+                            startAndEnd[i][0] = orderStartTime;
+                            startAndEnd[i][1] = orderEndTime;
+
+                        }
+
+                        //check availability
+                        for (int i = 0; i < orders.length; i++)
+                        {
+                            if(endTime <= startAndEnd[i][0])
+                            {
+                                if (i == 0)
+                                {
+                                    spotStatus[index] = AVAILABLE;
+                                    break;
+                                }
+                                else if(startTime >= startAndEnd[i-1][1])
+                                {
+                                    spotStatus[index] = AVAILABLE;
+                                    break;
+                                }
+                            }
+                            else if(startTime >= startAndEnd[i][1])
+                            {
+                                if (i == orders.length - 1 )
+                                {
+                                    spotStatus[index] = AVAILABLE;
+                                    break;
+                                }
+                            }
+
+                        }
+
                     }
                 }
             }
