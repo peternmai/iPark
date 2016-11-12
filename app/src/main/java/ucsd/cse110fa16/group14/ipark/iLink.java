@@ -26,17 +26,73 @@ public class iLink {
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
     private static FirebaseAuth auth;
     private static int gap = 0;
+    private static int eStep = 2;
+    private static int sStep = 3;
+
+    private static String generateNewInsertSpotReservationData( String curDataStr, long startTime, String userName, long endTime ){
+        if (curDataStr == null || startTime < 0 || endTime < 0 || userName == "" || userName == null)
+            return curDataStr;
+
+        // add reservation in beginning
+        if (curDataStr == ""){
+            curDataStr = curDataStr + "" + startTime + " " + userName + " " + endTime;
+            return curDataStr;
+        }
+
+        List<String> split = new ArrayList<String>(Arrays.asList(curDataStr.split("\\s+")));
+
+        int beg = -1;
+
+        // find space to put in reservation
+        for (int i = 0; i < split.size(); i = i + sStep) {
+            if (i == 0){
+                long csTime = Long.parseLong(split.get(0));
+                if (csTime > startTime && csTime >= endTime){
+                    beg = 0;
+                    break;
+                }
+            }
+            long peTime = Long.parseLong(split.get(i + eStep));
+            if ((i + sStep) >= split.size()){
+                beg = i + sStep;
+                break;
+            }
+            long nsTime = Long.parseLong(split.get(i + sStep));
+            if (peTime + gap <= startTime && nsTime >= endTime){
+                beg = i + sStep;
+                break;
+            }
+        }
+
+        // add reservation
+        if (beg >= 0){
+            split.add(beg, "" + startTime);
+            split.add(beg + 1, "" + userName);
+            split.add(beg + eStep, "" + endTime);
+            //create string
+            StringBuilder sb = new StringBuilder();
+            for (String s : split) {
+                sb.append(s);
+                sb.append(" ");
+            }
+            sb.deleteCharAt(sb.length()-1);
+            return sb.toString();
+        }
+        return curDataStr;
+    }
 
     private static boolean checkSpotAvailability(String curDataStr, long startTime, long endTime ){
         if (curDataStr == null || startTime < 0 || endTime < 0)
             return false;
+        // no one reserve that specific spot
         if (curDataStr == "")
             return true;
         List<String> split = new ArrayList<String>(Arrays.asList(curDataStr.split("\\s+")));
 
+        // check if spot is available
         for (int i = 0; i < split.size(); i=i+3){
             long sTime = Long.parseLong(split.get(i)) + gap;
-            long eTime = Long.parseLong(split.get(i + 2)) + gap;
+            long eTime = Long.parseLong(split.get(i + eStep)) + gap;
             if (sTime == startTime || (sTime < startTime && eTime > startTime) ||
                     (sTime < endTime && eTime > endTime) || (sTime > startTime && sTime < endTime))
                 return false;
