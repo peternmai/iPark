@@ -37,5 +37,14 @@
         android:layout_marginTop="43dp"
         android:id="@+id/map" />
 
+    <Button
+        android:text="Change Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:id="@+id/priceChanger"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

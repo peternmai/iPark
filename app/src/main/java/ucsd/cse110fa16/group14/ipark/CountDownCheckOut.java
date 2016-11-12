@@ -64,7 +64,7 @@ public class CountDownCheckOut extends AppCompatActivity {
         Button mapButt = (Button) findViewById(R.id.button22);
         Button help = (Button) findViewById(R.id.button16);
         Button homeButt = (Button) findViewById(R.id.button17);
-        Button getSpot = (Button) findViewById(R.id.getSpot);
+        //Button getSpot = (Button) findViewById(R.id.getSpot);
         // Get values passed on from previous activity
         final Bundle bundle = getIntent().getExtras();
         final Handler mHandler = new Handler();
@@ -155,7 +155,7 @@ public class CountDownCheckOut extends AppCompatActivity {
 
 
 
-        getSpot.setOnClickListener(new View.OnClickListener() {
+        /*getSpot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String spot = parkingspots.pop();
@@ -163,7 +163,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                 System.out.println(spot);
                 iLink.changeReserveStatus(spot, true);
             }
-        });
+        });*/
 
 
         /* information page */
