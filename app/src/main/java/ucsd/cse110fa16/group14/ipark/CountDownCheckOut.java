@@ -65,8 +65,8 @@ public class CountDownCheckOut extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count_down_check_out);
 
-        Button checkoutButt = (Button) findViewById(R.id.button6);
-        Button reportButt = (Button) findViewById(R.id.button2);
+        final Button checkoutButt = (Button) findViewById(R.id.button6);
+        final Button reportButt = (Button) findViewById(R.id.button2);
         Button emergencyButt = (Button) findViewById(R.id.emer);
         Button mapButt = (Button) findViewById(R.id.button22);
         Button help = (Button) findViewById(R.id.button16);
@@ -114,9 +114,11 @@ public class CountDownCheckOut extends AppCompatActivity {
                     millisUntilFinished -= (endTimeInSec - startTimeInSec) * 1000;
                     title.setText("Time Until Start");
                     timerText.setTextColor(Color.RED);
+                    reportButt.setVisibility(View.GONE);
                 } else {
                     title.setText("Time Remaining");
                     timerText.setTextColor(Color.BLUE);
+                    reportButt.setVisibility(View.VISIBLE);
                     mProgress.setProgress(0);
                 }
 
