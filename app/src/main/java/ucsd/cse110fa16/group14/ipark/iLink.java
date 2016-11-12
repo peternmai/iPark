@@ -25,7 +25,7 @@ public class iLink {
     private static String usersNode = "https://ipark-e243b.firebaseio.com/Users/";
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
     private static FirebaseAuth auth;
-    private int gap = 0;
+    private static int gap = 0;
 
     private static boolean checkSpotAvailability(String curDataStr, long startTime, long endTime ){
         if (curDataStr == null || startTime < 0 || endTime < 0)
