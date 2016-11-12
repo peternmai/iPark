@@ -55,8 +55,6 @@ public class CommentBoss extends AppCompatActivity {
         root = new Firebase("https://ipark-e243b.firebaseio.com/Comments");
         final ArrayAdapter<commentObj> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
-
-
         listView.setAdapter(arrayAdapter);
 
         root.addValueEventListener(new ValueEventListener() {
