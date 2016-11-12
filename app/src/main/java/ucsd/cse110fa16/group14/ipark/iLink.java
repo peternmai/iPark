@@ -25,9 +25,13 @@ public class iLink {
     private static String usersNode = "https://ipark-e243b.firebaseio.com/Users/";
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
     private static FirebaseAuth auth;
-    private static int gap = 0;
+    private static long gap = 0;
     private static int eStep = 2;
     private static int sStep = 3;
+
+    public static void setGap(long newGap){
+        gap = newGap;
+    }
 
     private static String generateNewInsertSpotReservationData( String curDataStr, long startTime, String userName, long endTime ){
         if (curDataStr == null || startTime < 0 || endTime < 0 || userName == "" || userName == null)
