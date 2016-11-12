@@ -17,6 +17,9 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -95,7 +98,11 @@ public class UserMapInteractive extends View {
         paints[iLink.ILLEGAL].setStyle(Paint.Style.FILL);
 
         Firebase parkingLotDB = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
-        parkingLotStatus = iLink.getParkingLotStatus();
+        Date date = new Date();                               // given date
+        Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
+        calendar.setTime(date);                               // assigns calendar to given date
+        long curTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
+        parkingLotStatus = iLink.getParkingLotStatus(curTime, curTime);
 
         //initialize the rectangles & map
         for (int i = 0; i < numSpaces; i++) {
@@ -124,7 +131,11 @@ public class UserMapInteractive extends View {
         parkingLotDB.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
-                parkingLotStatus = iLink.getParkingLotStatus();
+                Date date = new Date();                               // given date
+                Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
+                calendar.setTime(date);                               // assigns calendar to given date
+                long curTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
+                parkingLotStatus = iLink.getParkingLotStatus(curTime, curTime);
                 updateMapDisplay();
             }
 
