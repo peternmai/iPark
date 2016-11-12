@@ -7,6 +7,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.firebase.client.Firebase;
 
@@ -37,7 +39,7 @@ public class BossMap extends AppCompatActivity {
         // help button and status of the parking lot
         Button helpButt = (Button) findViewById(R.id.help);
         Button statusButt = (Button) findViewById(R.id.status);
-
+        Button priceChanger = (Button) findViewById(R.id.priceChanger);
 
 
 
@@ -101,5 +103,33 @@ public class BossMap extends AppCompatActivity {
 
             }
         });
+
+        /* change the price */
+        priceChanger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder pC = new AlertDialog.Builder(BossMap.this);
+                pC.setTitle("Change Price");
+                final EditText input = new EditText(BossMap.this);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                input.setLayoutParams(lp);
+                //pC.setMessage("");
+                pC.setPositiveButton("Set", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.cancel();
+                    }
+                });
+
+
+                AlertDialog alertDialog = pC.create();
+                alertDialog.show();
+
+            }
+        });
+
     }
 }

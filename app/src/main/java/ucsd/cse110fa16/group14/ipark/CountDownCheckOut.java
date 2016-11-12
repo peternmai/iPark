@@ -166,7 +166,9 @@ public class CountDownCheckOut extends AppCompatActivity {
 
 
 
+
        /* getSpot.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 String spot = parkingspots.pop();
