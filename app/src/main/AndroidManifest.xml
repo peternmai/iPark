@@ -47,7 +47,7 @@
         <activity android:name=".RecieveReports" />
         <activity android:name=".BossLogin" />
         <activity android:name=".ErrorReport" />
-        <activity android:name=".ForgotPassword_1" />
+        <activity android:name=".ForgotPassword" />
         <activity android:name=".RecieveNewParking" />
         <activity android:name=".Resume" />
         <activity android:name=".UserHomepage" />

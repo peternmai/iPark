@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ForgotPassword_1 extends AppCompatActivity {
+public class ForgotPassword extends AppCompatActivity {
     private Button sendButton;
     private EditText emailField;
     private TextView caption;
@@ -32,7 +32,7 @@ public class ForgotPassword_1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password_1);
+        setContentView(R.layout.activity_forgot_password);
 
         sendButton = (Button) findViewById(R.id.send);
         emailField = (EditText) findViewById(R.id.emailField);
@@ -53,7 +53,7 @@ public class ForgotPassword_1 extends AppCompatActivity {
                     hideKeyboard(v);
                     emailField.setEnabled(false);
                     sendButton.setEnabled(false);
-                    Toast.makeText(ForgotPassword_1.this, "Email sent", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ForgotPassword.this, "Email sent", Toast.LENGTH_LONG).show();
                 } else {
                     msg = "Invalid email. Please try again.";
                     caption.setText(msg);
