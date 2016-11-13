@@ -11,33 +11,15 @@
     tools:context="ucsd.cse110fa16.group14.ipark.Settings">
 
     <TextView
-        android:text="Current Price:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="84dp"
-        android:id="@+id/textView31"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView31"
-        android:layout_toEndOf="@+id/textView31"
-        android:layout_marginStart="39dp"
-        android:id="@+id/currentPrice" />
-
-    <TextView
         android:text="New Price: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="45dp"
         android:id="@+id/textView33"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_below="@+id/textView31"
-        android:layout_alignStart="@+id/textView31" />
+        android:layout_below="@+id/currentPrice"
+        android:layout_toStartOf="@+id/NEWPRICE"
+        android:layout_marginEnd="13dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -46,8 +28,16 @@
         android:ems="10"
         android:id="@+id/NEWPRICE"
         android:hint="Desired New Price"
-        android:layout_alignBaseline="@+id/textView33"
+        android:background="@drawable/lighter_border"
         android:layout_alignBottom="@+id/textView33"
-        android:layout_toEndOf="@+id/textView31"
-        android:background="@drawable/lighter_border" />
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="CHANGE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:id="@+id/change"
+        android:layout_below="@+id/textView33"
+        android:layout_toEndOf="@+id/textView33" />
 </RelativeLayout>

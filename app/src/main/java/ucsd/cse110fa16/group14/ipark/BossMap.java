@@ -39,7 +39,7 @@ public class BossMap extends AppCompatActivity {
         // help button and status of the parking lot
         Button helpButt = (Button) findViewById(R.id.help);
         Button statusButt = (Button) findViewById(R.id.status);
-        Button priceChanger = (Button) findViewById(R.id.priceChanger);
+        //Button priceChanger = (Button) findViewById(R.id.priceChanger);
 
 
 
@@ -114,7 +114,7 @@ public class BossMap extends AppCompatActivity {
         });
 
         /*change the price */
-        priceChanger.setOnClickListener(new View.OnClickListener() {
+        /*priceChanger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder pC = new AlertDialog.Builder(BossMap.this);
@@ -124,13 +124,13 @@ public class BossMap extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
                 input.setLayoutParams(lp);
-                String newp = input.getText().toString();
-                final long newPrice = Long.parseLong(newp);
 
                 //pC.setMessage("");
                 pC.setPositiveButton("Set", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String newp = input.getText().toString();
+                        double newPrice = Double.parseDouble(newp);
                         iLink.changePrice(newPrice);
                         dialog.cancel();
                     }
@@ -141,7 +141,7 @@ public class BossMap extends AppCompatActivity {
                 alertDialog.show();
 
             }
-        });
+        });*/
 
     }
 }

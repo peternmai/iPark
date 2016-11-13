@@ -33,6 +33,40 @@ public class CommentBoss extends AppCompatActivity {
     private ArrayList<commentObj> list = new ArrayList<>();
     private commentObj temp;
 
+    class commentObj {
+
+        String key, date, comment, rating, user;
+
+        commentObj() {
+            key = date = comment = rating = user = "";
+        }
+
+        public void setKey(String key) {
+            this.key = key;
+        }
+        public String getKey() { return this.key; }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public void setComment(String comment) {
+            this.comment = comment;
+        }
+
+        public void setRating(String rating) {
+            this.rating = rating;
+        }
+
+        public void setUser(String user) { this.user = user; }
+
+        @Override
+        public String toString() {
+            return String.format("\nUSER:  %s\t\t\t\t\t\t\t\tDATE:  %s\n\nCOMMENT: %s\nRATING: %s\n", user, date, comment, rating);
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,37 +166,4 @@ public class CommentBoss extends AppCompatActivity {
         editor.commit();
     }
 
-}
-
-class commentObj {
-
-    String key, date, comment, rating, user;
-
-    commentObj() {
-        key = date = comment = rating = user = "";
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-    public String getKey() { return this.key; }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-
-    public void setUser(String user) { this.user = user; }
-
-    @Override
-    public String toString() {
-        return String.format("\nUSER:  %s\t\t\t\t\t\t\t\tDATE:  %s\n\nCOMMENT: %s\nRATING: %s\n", user, date, comment, rating);
-    }
 }

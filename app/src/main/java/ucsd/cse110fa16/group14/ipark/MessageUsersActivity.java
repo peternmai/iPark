@@ -26,10 +26,9 @@ public class MessageUsersActivity extends AppCompatActivity {
         });
 
         msgSendBtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MessageUsersActivity.this, NavigationMenu.class);
+                Intent intent = new Intent(MessageUsersActivity.this, OwnerHomepage.class);
                 startActivity(intent);
             }
         });
