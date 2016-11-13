@@ -144,8 +144,8 @@ public class iLink {
         scheduleRef.setValue(generateNewInsertSpotReservationData(schedule, startTime,userName,endTime ));
     }
 
-    public static void changePrice(long newPrice) {
-        Firebase priceRef = new Firebase(parkingLot + "SpotDefaultPrice");
+    public static void changePrice(double newPrice) {
+        Firebase priceRef = new Firebase(parkingLot + "SpotDefaultPrice" + "/Price");
         priceRef.setValue(newPrice);
     }
 
@@ -351,7 +351,7 @@ public class iLink {
         final HashMap<String, String> map = new HashMap<>();
         fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
-            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterable<com.firebase.client.DataSnapshot> firstChildData = dataSnapshot.getChildren();
                 Iterator<DataSnapshot> iterator = firstChildData.iterator();
 
@@ -373,5 +373,7 @@ public class iLink {
         });
         return map;
     }
+
+
 
 }
