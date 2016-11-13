@@ -165,7 +165,7 @@ public class iLink {
      */
     public static String getSpot(long startTimeInSec, long endTimeInSec) {
 
-        getParkingLotStatus(startTimeInSec, endTimeInSec);
+        spotStatus = getParkingLotStatus(startTimeInSec, endTimeInSec);
 
         Vector<String> spotsAvailable = new Vector<String>();
         for(int i = 0; i < NUM_SPOTS; i++) {
@@ -195,7 +195,7 @@ public class iLink {
         String spotText = "Spot" + String.format("%03d", spot);
         System.out.println(spotText);
         if( spotStatus[spot] == AVAILABLE ) {
-            //TODO: changeLegalStatus(spotText, true);
+            changeLegalStatus(spotText, true);
             return true;
         }
         else
@@ -218,10 +218,7 @@ public class iLink {
     public static int[] getParkingLotStatus(final long startTime, final long endTime) {
 
 
-        // initialize the parking lot status
-        for (int i = 0; i < NUM_SPOTS; i++){
-            spotStatus[i] = OCCUPIED;
-        }
+
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
 
@@ -232,7 +229,10 @@ public class iLink {
                 Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
                 Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
 
-
+                // initialize the parking lot status
+                for (int i = 0; i < NUM_SPOTS; i++){
+                    spotStatus[i] = OCCUPIED;
+                }
                 //Getting individual parking spot
                 for( int count = 0; count < NUM_SPOTS; count++)
                 {
@@ -264,7 +264,7 @@ public class iLink {
                     }
 
                     // Getting parking spot status and storing it into spotStatus
-                    long curTimeInSec = getCurTimeInSec();
+                    //long curTimeInSec = getCurTimeInSec();
                     if(illegal)
                         spotStatus[count] = ILLEGAL;
                     else if(reserved)
