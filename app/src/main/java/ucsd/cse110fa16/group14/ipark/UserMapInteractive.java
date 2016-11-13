@@ -85,9 +85,9 @@ public class UserMapInteractive extends View {
         paints[iLink.AVAILABLE].setColor(Color.WHITE);
         paints[iLink.AVAILABLE].setStyle(Paint.Style.FILL);
 
-        paints[iLink.RESERVED] = new Paint();
-        paints[iLink.RESERVED].setColor(Color.YELLOW);
-        paints[iLink.RESERVED].setStyle(Paint.Style.FILL);
+        paints[iLink.OWNER_RESERVED] = new Paint();
+        paints[iLink.OWNER_RESERVED].setColor(Color.YELLOW);
+        paints[iLink.OWNER_RESERVED].setStyle(Paint.Style.FILL);
 
         paints[iLink.OCCUPIED] = new Paint();
         paints[iLink.OCCUPIED].setColor(Color.GREEN);
@@ -131,11 +131,8 @@ public class UserMapInteractive extends View {
         parkingLotDB.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
-                Date date = new Date();                               // given date
-                Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
-                calendar.setTime(date);                               // assigns calendar to given date
-                long curTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
-                parkingLotStatus = iLink.getParkingLotStatus(curTime, curTime);
+                long curTimeInSec = iLink.getCurTimeInSec();
+                parkingLotStatus = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
                 updateMapDisplay();
             }
 

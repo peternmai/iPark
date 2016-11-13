@@ -12,7 +12,6 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -28,6 +27,44 @@ public class UserReviewHistory extends AppCompatActivity {
     private ArrayList<ResObj> list = new ArrayList<>();
     private ResObj temp;
     private static FirebaseAuth auth;
+
+    class ResObj {
+
+        String key, date, clockIn, clockOut, rate, user;
+
+        ResObj() {
+
+            key = date = clockIn = clockOut = rate = user = "";
+        }
+
+        public void setKey(String key) {
+            this.key = key;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public void setClockIn(String clockIn) {
+            this.clockIn = clockIn;
+        }
+
+        public void setClockOut(String clockOut) {
+            this.clockOut = clockOut;
+        }
+
+        public void setRate(String rate) {
+            this.rate = rate;
+        }
+
+        public void setUser(String user) { this.user = user; }
+
+        @Override
+        public String toString() {
+            return String.format("\n%s\t\t\t\t\t\t\tDATE: %s\n\tTIME: %s - %s\n\tRATE: %s\n\n",
+                    key, date, clockIn, clockOut, rate);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,43 +125,5 @@ public class UserReviewHistory extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-}
-
-class ResObj {
-
-    String key, date, clockIn, clockOut, rate, user;
-
-    ResObj() {
-
-        key = date = clockIn = clockOut = rate = user = "";
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setClockIn(String clockIn) {
-        this.clockIn = clockIn;
-    }
-
-    public void setClockOut(String clockOut) {
-        this.clockOut = clockOut;
-    }
-
-    public void setRate(String rate) {
-        this.rate = rate;
-    }
-
-    public void setUser(String user) { this.user = user; }
-
-    @Override
-    public String toString() {
-        return String.format("\n%s\t\t\t\t\t\t\tDATE: %s\n\tTIME: %s - %s\n\tRATE: %s\n\n",
-                key, date, clockIn, clockOut, rate);
     }
 }

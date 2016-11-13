@@ -164,16 +164,7 @@ public class LoginPage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
                 signIn();
-
-                /* Will take care of this later
-                if (forgotPassword.isChecked()) {
-                    Intent intent = new Intent(LoginPage.this, ForgotPassword_1.class);
-                    startActivity(intent);
-                }
-                */
-
             }
         });
 
@@ -230,7 +221,7 @@ public class LoginPage extends AppCompatActivity {
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginPage.this, ForgotPassword_1.class);
+                Intent intent = new Intent(LoginPage.this, ForgotPassword.class);
                 startActivity(intent);
             }
         });

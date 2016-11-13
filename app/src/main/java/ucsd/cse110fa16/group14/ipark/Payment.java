@@ -81,10 +81,10 @@ public class Payment extends AppCompatActivity {
                 String clockOutTime = generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin"));
                 //Date date = new Date();
 
-                int clockInTimeInt = bundle.getInt("arriveHour") * 60 + bundle.getInt("arriveMin");
-                int clockOutTimeInt = bundle.getInt("departHour") * 60 + bundle.getInt("departMin");
+                long clockInTimeInSec = bundle.getInt("arriveHour") * 60 * 60 + bundle.getInt("arriveMin") * 60;
+                long clockOutTimeInSec = bundle.getInt("departHour") * 60 * 60+ bundle.getInt("departMin") * 60;
 
-                String spotAssign = iLink.getSpot(clockInTimeInt, clockOutTimeInt);
+                String spotAssign = iLink.getSpot(clockInTimeInSec, clockOutTimeInSec);
 
                 if( spotAssign == null ) {
                     AlertDialog.Builder respond = new AlertDialog.Builder(Payment.this);
@@ -129,7 +129,7 @@ public class Payment extends AppCompatActivity {
                     userChild.setValue(userName);
 
                     // TODO: Needs to change this. It makes a new object on firebase
-                    iLink.setOrder(spotAssign, clockInTimeInt, clockOutTimeInt);
+                    iLink.setOrder(spotAssign, clockInTimeInSec, clockOutTimeInSec);
 
                     //iLink.changeStartTime( spotAssign, clockInTimeInt );
                     //iLink.changeEndTime( spotAssign, clockOutTimeInt );

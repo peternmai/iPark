@@ -295,6 +295,8 @@ public class CountDownCheckOut extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // TODO: Report current spot
+
 
                 final String newSpotAssign = iLink.getSpot( (int)startTimeInSec/60, (int)endTimeInSec/60);
 
@@ -341,10 +343,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
 
                             pspot.setText( newSpotAssign );
-                            // TODO: These makes a new member on firebase
-                            // iLink.changeLegalStatus( newSpotAssign, true );
-                            // iLink.changeStartTime( newSpotAssign, startTimeInSec/60 );
-                            // iLink.changeStartTime( newSpotAssign, endTimeInSec/60 );
+                            iLink.setOrder(newSpotAssign, iLink.getCurTimeInSec(), endTimeInSec);
 
 
                             dialog.cancel();

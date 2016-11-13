@@ -75,20 +75,29 @@ public class BossMap extends AppCompatActivity {
                 AlertDialog.Builder hlp = new AlertDialog.Builder(BossMap.this);
                 hlp.setTitle("Parking Status");
 
-                int freeParking = 0;
-                int availableReserve = 1;
-                int occupied = 2;
-                int illegalParking = 3;
+                int ownerReserved = 0;
+                int available = 0;
+                int occupied = 0;
+                int illegalParking = 0;
 
-                CharSequence a = String.valueOf(freeParking);
-                CharSequence b = String.valueOf(availableReserve);
-                CharSequence c = String.valueOf(occupied);
-                CharSequence d = String.valueOf(illegalParking);
+                long curTimeInSec = iLink.getCurTimeInSec();
+                int parkingLotStatus [] = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
 
-                hlp.setMessage("Free parking: " + a +
-                        "\nAvailable reserve: " + b +
-                        "\nOccupied reserve: " + c +
-                        "\nIllegal parking: " + d + "\n");
+                for(int i = 0; i < iLink.NUM_SPOTS; i++ ) {
+                    if (parkingLotStatus[i] == iLink.AVAILABLE)
+                        available++;
+                    else if(parkingLotStatus[i] == iLink.OCCUPIED)
+                        occupied++;
+                    else if(parkingLotStatus[i] == iLink.OWNER_RESERVED)
+                        ownerReserved++;
+                    else
+                        illegalParking++;
+                }
+
+                hlp.setMessage("Available parking: " + available +
+                        "\nOccupied reserve: " + occupied +
+                        "\nOwner reserved: " + ownerReserved +
+                        "\nIllegal parking: " + illegalParking + "\n");
 
                 hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override

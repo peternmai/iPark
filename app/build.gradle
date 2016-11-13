@@ -1,8 +1,16 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
+
+    allprojects {
+        tasks.withType(JavaCompile) {
+            sourceCompatibility = "1.7"
+            targetCompatibility = "1.7"
+        }
+    }
 
     defaultConfig {
         applicationId "ucsd.cse110fa16.group14.ipark"
@@ -10,6 +18,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
