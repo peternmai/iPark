@@ -229,10 +229,7 @@ public class iLink {
                 Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
                 Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
 
-                // initialize the parking lot status
-                for (int i = 0; i < NUM_SPOTS; i++){
-                    spotStatus[i] = OCCUPIED;
-                }
+
                 //Getting individual parking spot
                 for( int count = 0; count < NUM_SPOTS; count++)
                 {
