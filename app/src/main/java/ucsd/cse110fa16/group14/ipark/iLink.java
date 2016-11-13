@@ -268,9 +268,9 @@ public class iLink {
                     if(illegal)
                         spotStatus[count] = ILLEGAL;
                     else if(reserved)
-                        spotStatus[count] = OWNER_RESERVED;git
+                        spotStatus[count] = OWNER_RESERVED;
                     else {
-                        if( checkSpotAvailability(schedule, curTimeInSec, curTimeInSec) == true )
+                        if( checkSpotAvailability(schedule, startTime, endTime) == true )
                             spotStatus[count] = AVAILABLE;
                         else
                             spotStatus[count] = OCCUPIED;
