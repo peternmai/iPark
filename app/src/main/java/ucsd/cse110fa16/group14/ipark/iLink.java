@@ -237,9 +237,7 @@ public class iLink {
                 for( int count = 0; count < NUM_SPOTS; count++)
                 {
                     // the index of this spot
-                    int index;
                     com.firebase.client.DataSnapshot node = iterator.next();
-                    index = Integer.valueOf(node.getKey().substring(4, 8));
 
                     // get the field variables of spot
                     Iterable<com.firebase.client.DataSnapshot> spotInfo = node.getChildren();
@@ -268,14 +266,14 @@ public class iLink {
                     // Getting parking spot status and storing it into spotStatus
                     long curTimeInSec = getCurTimeInSec();
                     if(illegal)
-                        spotStatus[index] = ILLEGAL;
+                        spotStatus[count] = ILLEGAL;
                     else if(reserved)
-                        spotStatus[index] = OWNER_RESERVED;
+                        spotStatus[count] = OWNER_RESERVED;git
                     else {
                         if( checkSpotAvailability(schedule, curTimeInSec, curTimeInSec) == true )
-                            spotStatus[index] = AVAILABLE;
+                            spotStatus[count] = AVAILABLE;
                         else
-                            spotStatus[index] = OCCUPIED;
+                            spotStatus[count] = OCCUPIED;
                     }
                 }
             }
