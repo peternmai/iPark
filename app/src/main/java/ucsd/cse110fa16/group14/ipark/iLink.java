@@ -40,16 +40,85 @@ public class iLink {
         gap = newGap;
     }
 
-    private static String generateNewInsertSpotReservationData( String curDataStr, long startTime, String userName, long endTime ){
-        if (curDataStr == null || startTime < 0 || endTime < 0 || userName == "" || userName == null)
-            return curDataStr;
+    private static String generateNewInsertSpotReservationData
+            (String curDataStr, long startTime, String userName, long endTime )
+    {
 
-        // add reservation in beginning
-        if (curDataStr == ""){
-            curDataStr = curDataStr + "" + startTime + " " + userName + " " + endTime;
-            return curDataStr;
+        if ( startTime < 0 || endTime < 0 || userName == "" || userName == null)
+        {
+            if (curDataStr == null || curDataStr == "" )return "";
+            else return curDataStr;
         }
 
+        if (curDataStr == null || curDataStr == "")
+        {
+            return Long.toString(startTime)+"/"+userName+"/"+Long.toString((endTime));
+        }
+
+        String[] orders = curDataStr.split("[ ]+");
+        int orderNum = orders.length;
+        // create a 2D array of startTime and endTime;
+        int [][] orderTime = new int[orderNum][2];
+
+        // parse each order and get startTime and endTime
+        for(int i = 0; i < orderNum; i++)
+        {
+            String[] currOrder = orders[i].split("[/]");
+            orderTime[i][0] = Integer.valueOf(currOrder[0]);
+            orderTime[i][1] = Integer.valueOf(currOrder[2]);
+        }
+
+        int stopIndex = 0;
+        for(stopIndex = 0; stopIndex < orderNum; stopIndex++)
+        {
+
+            if(endTime <= orderTime[stopIndex][0])
+            {
+                if (stopIndex == 0) break;
+                else if (startTime >= orderTime[stopIndex - 1][1])
+                    break;
+            }
+
+        }
+
+        String result = "";
+        // insert new order into schedule
+        for (int i = 0; i < orderNum; i++)
+        {
+            if (i == stopIndex )
+            {
+                if (i == 0)
+                {
+                    result = result + Long.toString(startTime)
+                            + "/" + userName + "/" + Long.toString(endTime);
+                }
+                else result = result + " " + Long.toString(startTime)
+                        + "/" + userName + "/" + Long.toString(endTime);
+
+                i--;
+            }
+            else
+            {
+                if (i == 0 )
+                {
+                    result = result + orders[i];
+                }
+                else result = result + " " + orders[i];
+            }
+
+        }
+
+        return result;
+
+
+
+        // add reservation in beginning
+        /*if (curDataStr == ""){
+            curDataStr = curDataStr + "" + startTime + " " + userName + " " + endTime;
+            return curDataStr;
+        }*/
+
+        /*
         List<String> split = new ArrayList<String>(Arrays.asList(curDataStr.split("\\s+")));
 
         int beg = -1;
@@ -89,16 +158,20 @@ public class iLink {
             sb.deleteCharAt(sb.length()-1);
             return sb.toString();
         }
-        return curDataStr;
+        return curDataStr;*/
+
+
     }
 
     private static boolean checkSpotAvailability(String curDataStr, long startTime, long endTime ){
-        if (curDataStr == null || startTime < 0 || endTime < 0)
+
+        // error input
+        if ( startTime < 0 || endTime < 0)
             return false;
         // no one reserve that specific spot
-        if (curDataStr == "")
+        if (curDataStr == null ||curDataStr == "")
             return true;
-        List<String> split = new ArrayList<String>(Arrays.asList(curDataStr.split("\\s+")));
+        /*List<String> split = new ArrayList<String>(Arrays.asList(curDataStr.split("\\s+")));
 
         // check if spot is available
         for (int i = 0; i < split.size(); i=i+3){
@@ -108,7 +181,55 @@ public class iLink {
                     (sTime < endTime && eTime > endTime) || (sTime > startTime && sTime < endTime))
                 return false;
         }
-        return true;
+        return true;*/
+
+        // split the schedule into an array of orders
+        String[] orders = curDataStr.split("[ ]+");
+
+        int orderNum = orders.length;
+        // create a 2D array of startTime and endTime;
+        int [][] orderTime = new int[orderNum][2];
+
+        // parse each order and get startTime and endTime
+        for(int i = 0; i < orderNum; i++)
+        {
+            orders[i] = "2012/trump/2016";
+            String[] currOrder = orders[i].split("[/]");
+            orderTime[i][0] = Integer.valueOf(currOrder[0]);
+            orderTime[i][1] = Integer.valueOf(currOrder[2]);
+        }
+
+        // compare and check
+        for(int i = 0; i < orderNum; i++){
+
+
+            if (endTime <= orderTime[i][0])
+            {
+                // endTime earlier than first order
+                if (i == 0)
+                {
+                    return true;
+                }
+                // startTime later than previous order
+                else if(startTime >= orderTime[i - 1][1])
+                {
+                    return true;
+                }
+            }
+
+            // if startTime later than last order
+            if (startTime >= orderTime[i][1])
+            {
+                if (i == orderNum - 1)
+                {
+                    return true;
+                }
+            }
+
+        }
+
+        return false;
+
     }
 
     public static Task changePassword(String username, String newPassword) {
@@ -141,7 +262,10 @@ public class iLink {
         HashMap<String, String> spotInfo = getChildInfo( "ParkingLot", spot);
         String schedule = spotInfo.get("Schedule");
 
-        scheduleRef.setValue(generateNewInsertSpotReservationData(schedule, startTime,userName,endTime ));
+        //scheduleRef.setValue("hah");
+
+        String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
+        if (newSchedule != null) scheduleRef.setValue(newSchedule);
     }
 
     public static void changePrice(long newPrice) {
@@ -242,7 +366,7 @@ public class iLink {
 
                     boolean illegal = false;
                     boolean reserved = false;
-                    String schedule = null;
+                    String schedule = "";
 
                     //Getting parking spot information from Firebase
                     while (iterator1.hasNext()) {
@@ -267,6 +391,7 @@ public class iLink {
                     else if(reserved)
                         spotStatus[count] = OWNER_RESERVED;
                     else {
+                        //System.out.println("1 ");
                         if( checkSpotAvailability(schedule, startTime, endTime) == true )
                             spotStatus[count] = AVAILABLE;
                         else
@@ -346,7 +471,7 @@ public class iLink {
     protected static HashMap<String, String> getChildInfo(String root, final String child) {
 
         String ref = "https://ipark-e243b.firebaseio.com/" + root +
-                "/" + child + "/";
+                "/" + child ;
         Firebase fReference = new Firebase(ref);
         final HashMap<String, String> map = new HashMap<>();
         fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {

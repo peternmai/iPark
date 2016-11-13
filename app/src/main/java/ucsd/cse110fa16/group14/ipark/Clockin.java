@@ -82,7 +82,7 @@ public class Clockin extends AppCompatActivity {
         minNumPick.setWrapSelectorWheel(true);
 
         // Initialize start time
-        hour = 1;
+        hour = 8;
         min = 0;
         ampm = 1;
 
@@ -120,11 +120,11 @@ public class Clockin extends AppCompatActivity {
                 hourEntered = hour;
                 minEntered = min;
 
-                if (hour == 12 && ampm == 1) {
+               /* if (hour == 12 && ampm == 1) {
                     hourEntered = 0;
-                }
+                }*/
 
-                if ((ampm == 2) && (hour != 12))
+                if ((ampm == 2) && hourEntered != 12)
                     hourEntered += 12;
 
                 Date date = new Date();                               // given date
@@ -136,6 +136,7 @@ public class Clockin extends AppCompatActivity {
                 System.out.println("Current Time: " + curHour + ":" + curMin);
                 System.out.println("Entered Time: " + hourEntered + ":" + minEntered);
 
+                if (curHour == 24) curHour -= 24;
                 if (hourEntered < curHour) {
                     AlertDialog.Builder invalidTimeAlert = new AlertDialog.Builder(Clockin.this);
                     invalidTimeAlert.setTitle("Invalid Time");

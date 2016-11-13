@@ -111,9 +111,9 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                 hourEntered = hour;
                 minEntered = min;
 
-                if (hour == 12 && ampm == 1) {
+               /* if (hour == 12 && ampm == 1) {
                     hourEntered = 0;
-                }
+                }*/
 
                 if ((ampm == 2) && (hour != 12))
                     hourEntered += 12;
