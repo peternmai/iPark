@@ -10,12 +10,44 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.Settings">
 
-    <Button
-        android:text="Button"
+    <TextView
+        android:text="Current Price:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="84dp"
+        android:id="@+id/textView31"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="61dp"
-        android:id="@+id/button5" />
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView31"
+        android:layout_toEndOf="@+id/textView31"
+        android:layout_marginStart="39dp"
+        android:id="@+id/currentPrice" />
+
+    <TextView
+        android:text="New Price: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:id="@+id/textView33"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_below="@+id/textView31"
+        android:layout_alignStart="@+id/textView31" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/NEWPRICE"
+        android:hint="Desired New Price"
+        android:layout_alignBaseline="@+id/textView33"
+        android:layout_alignBottom="@+id/textView33"
+        android:layout_toEndOf="@+id/textView31"
+        android:background="@drawable/lighter_border" />
 </RelativeLayout>
