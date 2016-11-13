@@ -75,20 +75,29 @@ public class BossMap extends AppCompatActivity {
                 AlertDialog.Builder hlp = new AlertDialog.Builder(BossMap.this);
                 hlp.setTitle("Parking Status");
 
-                int freeParking = 0;
-                int availableReserve = 1;
-                int occupied = 2;
-                int illegalParking = 3;
+                int ownerReserved = 0;
+                int available = 0;
+                int occupied = 0;
+                int illegalParking = 0;
 
-                CharSequence a = String.valueOf(freeParking);
-                CharSequence b = String.valueOf(availableReserve);
-                CharSequence c = String.valueOf(occupied);
-                CharSequence d = String.valueOf(illegalParking);
+                long curTimeInSec = iLink.getCurTimeInSec();
+                int parkingLotStatus [] = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
 
-                hlp.setMessage("Free parking: " + a +
-                        "\nAvailable reserve: " + b +
-                        "\nOccupied reserve: " + c +
-                        "\nIllegal parking: " + d + "\n");
+                for(int i = 0; i < iLink.NUM_SPOTS; i++ ) {
+                    if (parkingLotStatus[i] == iLink.AVAILABLE)
+                        available++;
+                    else if(parkingLotStatus[i] == iLink.OCCUPIED)
+                        occupied++;
+                    else if(parkingLotStatus[i] == iLink.OWNER_RESERVED)
+                        ownerReserved++;
+                    else
+                        illegalParking++;
+                }
+
+                hlp.setMessage("Available parking: " + available +
+                        "\nOccupied reserve: " + occupied +
+                        "\nOwner reserved: " + ownerReserved +
+                        "\nIllegal parking: " + illegalParking + "\n");
 
                 hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
@@ -103,42 +112,6 @@ public class BossMap extends AppCompatActivity {
 
             }
         });
-
-        /* change the price */
-        /*priceChanger.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder pC = new AlertDialog.Builder(BossMap.this);
-                pC.setTitle("Change Price");
-                final EditText input = new EditText(BossMap.this);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT);
-                input.setLayoutParams(lp);
-                String newp = input.getText().toString();
-                System.out.println("starting....");
-                final long newPrice = Long.parseLong(newp);
-                System.out.println("passed new parsignieawh");
-                //pC.setMessage("");
-                pC.setPositiveButton("Set", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        int[] data = iLink.getParkingLotStatus();
-                        for(int i = 0; i < data.length; i++){
-                            if(data[i]== 0){
-                                iLink.changePrice("Spot" + String.format("%03d", i),newPrice);
-                            }
-                        }
-                        dialog.cancel();
-                    }
-                });
-
-
-                AlertDialog alertDialog = pC.create();
-                alertDialog.show();
-
-            }
-        });*/
 
     }
 }
