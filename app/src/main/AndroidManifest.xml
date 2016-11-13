@@ -44,15 +44,10 @@
         <activity android:name=".ReportIllegal" />
         <activity android:name=".Emergency" />
         <activity android:name=".Settings" />
-        <activity
-            android:name=".NavigationMenu"
-            android:label="@string/title_activity_navigation_menu"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RecieveReports" />
         <activity android:name=".BossLogin" />
         <activity android:name=".ErrorReport" />
         <activity android:name=".ForgotPassword_1" />
-        <activity android:name=".AccessCode" />
         <activity android:name=".RecieveNewParking" />
         <activity android:name=".Resume" />
         <activity android:name=".UserHomepage" />
