@@ -165,7 +165,7 @@ public class iLink {
      */
     public static String getSpot(long startTimeInSec, long endTimeInSec) {
 
-        getParkingLotStatus(startTimeInSec, endTimeInSec);
+        spotStatus = getParkingLotStatus(startTimeInSec, endTimeInSec);
 
         Vector<String> spotsAvailable = new Vector<String>();
         for(int i = 0; i < NUM_SPOTS; i++) {
@@ -195,7 +195,7 @@ public class iLink {
         String spotText = "Spot" + String.format("%03d", spot);
         System.out.println(spotText);
         if( spotStatus[spot] == AVAILABLE ) {
-            //TODO: changeLegalStatus(spotText, true);
+            changeLegalStatus(spotText, true);
             return true;
         }
         else
@@ -218,10 +218,7 @@ public class iLink {
     public static int[] getParkingLotStatus(final long startTime, final long endTime) {
 
 
-        // initialize the parking lot status
-        for (int i = 0; i < NUM_SPOTS; i++){
-            spotStatus[i] = OCCUPIED;
-        }
+
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
 
@@ -237,9 +234,7 @@ public class iLink {
                 for( int count = 0; count < NUM_SPOTS; count++)
                 {
                     // the index of this spot
-                    int index;
                     com.firebase.client.DataSnapshot node = iterator.next();
-                    index = Integer.valueOf(node.getKey().substring(4, 8));
 
                     // get the field variables of spot
                     Iterable<com.firebase.client.DataSnapshot> spotInfo = node.getChildren();
@@ -266,16 +261,16 @@ public class iLink {
                     }
 
                     // Getting parking spot status and storing it into spotStatus
-                    long curTimeInSec = getCurTimeInSec();
+                    //long curTimeInSec = getCurTimeInSec();
                     if(illegal)
-                        spotStatus[index] = ILLEGAL;
+                        spotStatus[count] = ILLEGAL;
                     else if(reserved)
-                        spotStatus[index] = OWNER_RESERVED;
+                        spotStatus[count] = OWNER_RESERVED;
                     else {
-                        if( checkSpotAvailability(schedule, curTimeInSec, curTimeInSec) == true )
-                            spotStatus[index] = AVAILABLE;
+                        if( checkSpotAvailability(schedule, startTime, endTime) == true )
+                            spotStatus[count] = AVAILABLE;
                         else
-                            spotStatus[index] = OCCUPIED;
+                            spotStatus[count] = OCCUPIED;
                     }
                 }
             }
