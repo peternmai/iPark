@@ -104,8 +104,8 @@ public class BossMap extends AppCompatActivity {
             }
         });
 
-        /* change the price */
-        /*priceChanger.setOnClickListener(new View.OnClickListener() {
+        /*change the price */
+        priceChanger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder pC = new AlertDialog.Builder(BossMap.this);
@@ -116,19 +116,13 @@ public class BossMap extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT);
                 input.setLayoutParams(lp);
                 String newp = input.getText().toString();
-                System.out.println("starting....");
                 final long newPrice = Long.parseLong(newp);
-                System.out.println("passed new parsignieawh");
+
                 //pC.setMessage("");
                 pC.setPositiveButton("Set", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        int[] data = iLink.getParkingLotStatus();
-                        for(int i = 0; i < data.length; i++){
-                            if(data[i]== 0){
-                                iLink.changePrice("Spot" + String.format("%03d", i),newPrice);
-                            }
-                        }
+                        iLink.changePrice(newPrice);
                         dialog.cancel();
                     }
                 });
@@ -138,7 +132,7 @@ public class BossMap extends AppCompatActivity {
                 alertDialog.show();
 
             }
-        });*/
+        });
 
     }
 }

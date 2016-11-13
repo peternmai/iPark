@@ -146,8 +146,8 @@ public class iLink {
         scheduleRef.setValue(generateNewInsertSpotReservationData(schedule, startTime,userName,endTime ));
     }
 
-    public static void changePrice(String spot, long newPrice) {
-        Firebase priceRef = new Firebase(parkingLot + spot + "/Price");
+    public static void changePrice(long newPrice) {
+        Firebase priceRef = new Firebase(parkingLot + "SpotDefaultPrice");
         priceRef.setValue(newPrice);
     }
 
