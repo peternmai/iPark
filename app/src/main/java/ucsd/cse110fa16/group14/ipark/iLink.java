@@ -165,12 +165,8 @@ public class iLink {
      */
     public static String getSpot(long startTimeInSec, long endTimeInSec) {
 
-<<<<<<< HEAD
         getParkingLotStatus(startTimeInSec, endTimeInSec);
-=======
-        getParkingLotStatus(startTime, endTime);
 
->>>>>>> 6a121b3a1c7d533f3dc2bd4a2b7d27c8a40aa658
         Vector<String> spotsAvailable = new Vector<String>();
         for(int i = 0; i < NUM_SPOTS; i++) {
             if( spotStatus[i] == AVAILABLE ) {

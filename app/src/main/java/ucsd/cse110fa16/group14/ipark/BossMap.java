@@ -113,8 +113,6 @@ public class BossMap extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
-=======
         /*change the price */
         priceChanger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +143,5 @@ public class BossMap extends AppCompatActivity {
             }
         });
 
->>>>>>> 6a121b3a1c7d533f3dc2bd4a2b7d27c8a40aa658
     }
 }
