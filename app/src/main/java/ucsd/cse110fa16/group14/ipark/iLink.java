@@ -262,9 +262,19 @@ public class iLink {
         HashMap<String, String> spotInfo = getChildInfo( "ParkingLot", spot);
         String schedule = spotInfo.get("Schedule");
 
+        System.out.println("=================================");
+        System.out.println("Assigning New Parking Spot");
+        System.out.println("=================================");
+        System.out.println("  Current Schedule:  " + schedule);
+        System.out.println("  Assigned Spot:     " + spot);
+        System.out.println("  Start Time In Sec: " + startTime);
+        System.out.println("  End   Time In Sec: " + endTime);
+
+
         //scheduleRef.setValue("hah");
 
         String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
+        System.out.println("  New Schedule:      " + newSchedule);
         if (newSchedule != null) scheduleRef.setValue(newSchedule);
     }
 
