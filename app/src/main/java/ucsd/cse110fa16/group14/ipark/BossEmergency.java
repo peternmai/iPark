@@ -29,6 +29,33 @@ public class BossEmergency extends AppCompatActivity {
     private commentBoss temp;
     ImageButton home;
 
+    class commentBoss{
+
+        String date, emergencyType, parkingSpot, user;
+
+        commentBoss() {
+            date = emergencyType = parkingSpot = user = "";
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public void setEmergencyType(String comment) {
+            this.emergencyType = comment;
+        }
+
+        public void setParkingSpot(String rating) {
+            this.parkingSpot = rating;
+        }
+
+        public void setUser(String user) { this.user = user; }
+
+        @Override
+        public String toString() {
+            return String.format("\nUSER:  %s\t\t\t\t\t\t\t\tDATE:  %s\n\nEMERGENCY TYPE: %s\nPARKING SPOT: %s\n", user, date, emergencyType, parkingSpot);
+        }
+    }
     @Override
     protected void onPause() {
         super.onPause();
@@ -89,31 +116,5 @@ public class BossEmergency extends AppCompatActivity {
     }
 }
 
-class commentBoss{
 
-    String date, emergencyType, parkingSpot, user;
-
-    commentBoss() {
-        date = emergencyType = parkingSpot = user = "";
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setEmergencyType(String comment) {
-        this.emergencyType = comment;
-    }
-
-    public void setParkingSpot(String rating) {
-        this.parkingSpot = rating;
-    }
-
-    public void setUser(String user) { this.user = user; }
-
-    @Override
-    public String toString() {
-        return String.format("\nUSER:  %s\t\t\t\t\t\t\t\tDATE:  %s\n\nEMERGENCY TYPE: %s\nPARKING SPOT: %s\n", user, date, emergencyType, parkingSpot);
-    }
-}
 
