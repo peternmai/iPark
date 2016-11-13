@@ -39,7 +39,7 @@ public class BossMap extends AppCompatActivity {
         // help button and status of the parking lot
         Button helpButt = (Button) findViewById(R.id.help);
         Button statusButt = (Button) findViewById(R.id.status);
-        //Button priceChanger = (Button) findViewById(R.id.priceChanger);
+        Button priceChanger = (Button) findViewById(R.id.priceChanger);
 
 
 
