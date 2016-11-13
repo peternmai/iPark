@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.HashMap;
 
 public class Settings extends AppCompatActivity {
     @Override
@@ -22,17 +26,16 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        HashMap<String,String> price = new HashMap<>();
 
-        Button testButt = (Button) findViewById(R.id.button5);
+        TextView curr = (TextView) findViewById(R.id.currentPrice);
+        EditText newP = (EditText) findViewById(R.id.NEWPRICE);
+        long newPrice= Long.parseLong(newP.getText().toString());
+        price= iLink.getChildInfo("ParkingLot","SpotDefaultPrice");
 
-        testButt.setOnClickListener(new View.OnClickListener() {
+        curr.setText(price.get("Price"));
+        iLink.changePrice(newPrice);
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Settings.this, BossEmergency.class);
-                startActivity(intent);
 
-            }
-        });
     }
 }

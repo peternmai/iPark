@@ -113,5 +113,38 @@ public class BossMap extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
+=======
+        /*change the price */
+        priceChanger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder pC = new AlertDialog.Builder(BossMap.this);
+                pC.setTitle("Change Price");
+                final EditText input = new EditText(BossMap.this);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                input.setLayoutParams(lp);
+                String newp = input.getText().toString();
+                final long newPrice = Long.parseLong(newp);
+
+                //pC.setMessage("");
+                pC.setPositiveButton("Set", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        iLink.changePrice(newPrice);
+                        dialog.cancel();
+                    }
+                });
+
+
+                AlertDialog alertDialog = pC.create();
+                alertDialog.show();
+
+            }
+        });
+
+>>>>>>> 6a121b3a1c7d533f3dc2bd4a2b7d27c8a40aa658
     }
 }
