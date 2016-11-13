@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPassword_1 extends AppCompatActivity {
     private Button sendButton;
-    private Button backToLogin;
     private EditText emailField;
     private TextView caption;
     private FirebaseAuth auth;
@@ -36,7 +35,6 @@ public class ForgotPassword_1 extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password_1);
 
         sendButton = (Button) findViewById(R.id.send);
-        backToLogin = (Button) findViewById(R.id.back);
         emailField = (EditText) findViewById(R.id.emailField);
         caption = (TextView) findViewById(R.id.invalidEmailFP);
 
