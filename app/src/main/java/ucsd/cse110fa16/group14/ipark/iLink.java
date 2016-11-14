@@ -392,12 +392,9 @@ public class iLink {
 
     public static int[] getParkingLotStatus(final long startTime, final long endTime) {
 
-
-
-
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
 
-        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
+        parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot)
             {
@@ -465,6 +462,7 @@ public class iLink {
         return spotStatus;
     }
 
+    // Get current time: Ex. February 1, 2016 = 20160201
     private static long getCurrentDate() {
         Calendar now = Calendar.getInstance();
         int year  = now.get(Calendar.YEAR);
@@ -585,8 +583,8 @@ public class iLink {
         userSpotEndTime.setValue( endTime );
         userSpotStartTime.setValue( startTime );
 
-        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice/");
-        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
+        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice");
+        parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
                 Iterable<com.firebase.client.DataSnapshot> parkingLotPrice = dataSnapshot.getChildren();
@@ -603,10 +601,10 @@ public class iLink {
                         parkingLotRate = innerNode.getValue(Double.class);
                         break;
                     }
-                    Firebase userSpotRate = new Firebase(usersNode + userName + "/ReservationStatus/SpotRate");
-                    userSpotRate.setValue( parkingLotRate );
-                    System.out.println("Rate: " + parkingLotRate);
                 }
+                Firebase userSpotRate = new Firebase(usersNode + userName + "/ReservationStatus/SpotRate");
+                userSpotRate.setValue( parkingLotRate );
+                System.out.println("Rate: " + parkingLotRate);
             }
 
             @Override

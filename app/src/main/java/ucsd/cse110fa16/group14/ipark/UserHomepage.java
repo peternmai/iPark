@@ -122,7 +122,6 @@ public class UserHomepage extends AppCompatActivity {
                     intent.putExtra("departHour", 0);
                     intent.putExtra("departMin", 0);
                 }
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
