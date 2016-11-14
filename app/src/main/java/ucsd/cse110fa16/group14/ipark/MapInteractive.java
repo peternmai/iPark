@@ -66,6 +66,7 @@ public class MapInteractive extends View {
 
     Context activityContext;
     Rect activityRect;
+    int rectIndex;
 
     private void init(Context context) {
 
@@ -182,26 +183,40 @@ public class MapInteractive extends View {
         public void run() {
 
             // Reset color change
-            for (int i = 0; i < (paints.length - 1); i++)
-                changeRectColor(activityRect);
+            //for (int i = 0; i < (paints.length - 1); i++)
+              //  changeRectColor(activityRect);
 
             System.out.println("Long Press");
 
             AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
 
-            builder.setTitle("Advance Setting");
+            long curTimeInSec = iLink.getCurTimeInSec();
+            parkingLotStatus = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
+            builder.setTitle("Change spot status");
 
-            final EditText input = new EditText(activityContext);
-            input.setInputType(InputType.TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL);
-            builder.setView(input);
+            if (rectIndex == iLink.AVAILABLE){
+                builder.setMessage("    Change available spot to reserved?\n");
+            }
+            else if (rectIndex == iLink.OWNER_RESERVED){
+                builder.setMessage("    Change reserved spot to available?\n");
+            }
+            else if (rectIndex == iLink.ILLEGAL){
+                builder.setMessage("    Change illegal spot to available?\n");
+            }
+            else builder.setMessage("    Cannot change occupied.\n");
+            //final EditText input = new EditText(activityContext);
+            //input.setInputType(InputType.TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL);
+            //builder.setView(input);
 
-            builder.setMessage("Current Rate:  $2.50/hr\n" +
-                    "Enter New Parking Rate:");
-            builder.setCancelable(false);
+
+
+            //builder.setMessage("Current Rate:  $2.50/hr\n" +
+              //      "Enter New Parking Rate:");
+            //builder.setCancelable(false);
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    // Todo: handle the OK
+                    changeRectColor(activityRect);
 
                 }
             });
@@ -225,13 +240,17 @@ public class MapInteractive extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 handler.postDelayed(longPressed, 500);
+                int index = 0;
                 for (Rect rect : rectangle) {
                     if (rect.contains((int) x, (int) y)) {
                         System.out.println("Touched Rectangle, change color");
-                        changeRectColor(rect);
+                        //changeRectColor(rect);
                         activityRect = rect;
+                        rectIndex = index;
                     }
+                    index ++;
                 }
+
                 break;
             /*
             case MotionEvent.ACTION_MOVE:
@@ -262,16 +281,35 @@ public class MapInteractive extends View {
 
         //index in array of paint
         int idx = 0;
-        int newIdx;
+        int newIdx = idx;
         for (int i = 0; i < paints.length; i++) {
             if (paints[i] == p) {
                 idx = i;
             }
         }
 
+        String spotNum = "Spot"+ String.format("%03d", rectIndex);
 
-        //bad attempt at hashing
-        newIdx = (idx + 3) % 4;
+        // change reserve to available
+        if (idx == iLink.OWNER_RESERVED) {
+            newIdx = iLink.AVAILABLE;
+
+            iLink.changeReserveStatus(spotNum, false);
+
+        }
+        // change illegal to available
+        else if (idx == iLink.ILLEGAL) {
+            newIdx = iLink.AVAILABLE;
+
+            iLink.changeLegalStatus(spotNum, false);
+        }
+        // change available to reserve
+        else if (idx == iLink.AVAILABLE) {
+            newIdx = iLink.OWNER_RESERVED;
+
+            iLink.changeReserveStatus(spotNum, true);
+        }
+        // cannot change occupied
 
 
         recCol.put(r, paints[newIdx]);
