@@ -498,6 +498,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                 intent.putExtra("departHour", bundle.getInt("departHour"));
                 intent.putExtra("departMin", bundle.getInt("departMin"));
                 intent.putExtra("rate", bundle.getInt("rate"));
+                intent.putExtra("spotAssign", bundle.getString("spotAssign"));
                 startActivity(intent);
             }
         });
