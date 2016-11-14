@@ -17,25 +17,6 @@ public class User {
         this.owner = false;
     }
 
-    public User(String userType) {
-        userType = userType.toLowerCase();
-        if (userType == "owner") {
-            owner = true;
-        } else {
-            owner = false;
-        }
-    }
-
-    public User(String firstName, String lastName, String email, String license, String username, String password, boolean owner) {
-        Name name = new Name(firstName, lastName);
-        this.name = name;
-        this.email = email;
-        this.license = license;
-        this.username = username;
-        this.password = password;
-        this.owner = owner;
-    }
-
 
     protected class Name {
         String firstName;
@@ -46,57 +27,24 @@ public class User {
             this.lastName = lastName;
         }
 
-        protected Name(EditText firstName, EditText lastName) {
-            this.firstName = firstName.getText().toString();
-            this.lastName = lastName.getText().toString();
-        }
-
-        protected String getFirstName() {
-            return this.firstName;
-        }
-
-        protected String getLastName() {
-            return this.lastName;
-        }
-
         protected String fullName() {
             return (this.firstName + " " + this.lastName);
         }
     }
 
 
-    protected void setStringName(String firstName, String lastName) {
-        this.name = new Name(firstName, lastName);
-    }
-
     protected void setName(EditText firstName, EditText lastName) {
         this.name = new Name(firstName.getText().toString(), lastName.getText().toString());
-    }
-
-    protected String getName() {
-        return name.fullName();
     }
 
     protected String getEmail() {
         return this.email;
     }
 
-    protected void setStringEmail(String email) {
-        this.email = email;
-    }
-
     protected void setEmail(EditText email) {
         this.email = email.getText().toString().toLowerCase();
     }
 
-    protected String getLicense() {
-        return this.license;
-    }
-
-
-    protected void setStringLicense(String license) {
-        this.license = license;
-    }
 
     protected void setLicense(EditText license) {
         this.license = license.getText().toString();
@@ -107,10 +55,6 @@ public class User {
     }
 
 
-    protected void setStringUsername(String username) {
-        this.username = username;
-    }
-
     protected void setUsername(EditText username) {
         String userNameString = username.getText().toString();
         this.username = userNameString.toLowerCase();
@@ -120,19 +64,8 @@ public class User {
         return this.password;
     }
 
-    /*
-        protected void setPassword(String password){
-            this.password = password;
-        }
-    */
     protected void setPassword(EditText password) {
         this.password = password.getText().toString();
     }
 
-    protected boolean isOwner() {
-        if (this.owner)
-            return true;
-        else
-            return false;
-    }
 }

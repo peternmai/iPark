@@ -30,7 +30,11 @@ public class UserReviewHistory extends AppCompatActivity {
 
     class ResObj {
 
-        String key, date, clockIn, clockOut, rate, user;
+        String key;
+        String date;
+        String clockIn;
+        String clockOut;
+        String rate;
 
         ResObj() {
 
@@ -56,8 +60,6 @@ public class UserReviewHistory extends AppCompatActivity {
         public void setRate(String rate) {
             this.rate = rate;
         }
-
-        public void setUser(String user) { this.user = user; }
 
         @Override
         public String toString() {

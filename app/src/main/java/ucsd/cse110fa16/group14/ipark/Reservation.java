@@ -9,7 +9,6 @@ import android.widget.Button;
 
 
 public class Reservation extends AppCompatActivity {
-    private static Button cancel;
 
     @Override
     protected void onPause() {

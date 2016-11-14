@@ -10,29 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
-import com.firebase.client.utilities.Clock;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class Clockin extends AppCompatActivity {
 
-    private static HashSet<String> parking = new HashSet<>();
-    private static HashSet<String> spots = new HashSet<>();
-    protected static HashMap<String, String> parkSpotReserve = new HashMap<>();
     /*private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private RelativeLayout relativeLayout;
 */
 
     private int min, hour, curMin, curHour, ampm;
-
-    public void dialogEvent(View view) {
-
-    }
 
     @Override
     protected void onPause() {

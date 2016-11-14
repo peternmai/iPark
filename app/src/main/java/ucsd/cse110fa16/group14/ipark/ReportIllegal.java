@@ -11,11 +11,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class ReportIllegal extends AppCompatActivity {
-    private Context cContext;
-
-    public void ViewBreakout(Context context) {
-        this.cContext = context;
-    }
 
     @Override
     protected void onPause() {

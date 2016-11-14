@@ -32,7 +32,6 @@ import java.util.Stack;
 
 public class CountDownCheckOut extends AppCompatActivity {
 
-    private int mProgressStatus;
     static Stack<String> parkingspots = new Stack<>();
 
     Firebase root;
@@ -208,7 +207,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                 // Calculate total time parked and total to pay
                 totHours = tempDephHour - bundle.getInt("arriveHour");
                 totMins = tempDepMin - bundle.getInt("arriveMin");
-                totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
+                totPay = (totHours + (double) totMins / 60.0) * rate;
                 root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Rate").setValue(String.format("$%.2f", totPay));
 
                 intent.putExtra("rate", String.format("$%.2f", totPay));
@@ -376,7 +375,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                             // Calculate total time parked and total to pay
                             totHours = tempDephHour - bundle.getInt("arriveHour");
                             totMins = tempDepMin - bundle.getInt("arriveMin");
-                            totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
+                            totPay = (totHours + (double) totMins / 60.0) * rate;
                             tempHist.child("Rate").setValue(String.format("$%.2f", totPay));
 
                             tempRes.removeValue();
