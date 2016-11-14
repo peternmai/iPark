@@ -20,9 +20,7 @@ public class iLink {
     private static String usersNode = "https://ipark-e243b.firebaseio.com/Users/";
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
     private static FirebaseAuth auth;
-    private static long gap = 0;
-    private static int eStep = 2;
-    private static int sStep = 3;
+
 
     public static final int AVAILABLE = 0;
     public static final int OWNER_RESERVED = 1;
@@ -32,11 +30,12 @@ public class iLink {
     protected static double defaultPrice;
     protected static double userPrice;
     private static int[] spotStatus = new int[NUM_SPOTS];
-    //private static String schedule = "";
 
-    public static void setGap(long newGap){
+
+    /*public static void setGap(long newGap){
         gap = newGap;
     }
+    */
 
     private static String generateNewInsertSpotReservationData
             (String curDataStr, long startTime, String userName, long endTime )
@@ -172,8 +171,8 @@ public class iLink {
         if ( startTime < 0 || endTime < 0)
             return false;
         // no one reserve that specific spot
-        if (curDataStr == null ||curDataStr == "")
-            return true;
+        //if (curDataStr == null ||curDataStr == "")
+          //  return true;
         /*List<String> split = new ArrayList<String>(Arrays.asList(curDataStr.split("\\s+")));
 
         // check if spot is available
