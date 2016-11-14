@@ -244,9 +244,28 @@ public class CountDownCheckOut extends AppCompatActivity {
                     rate = 2.5;
 
                     if(startTimeInSec > getCurrentTimeInSec() ) {
-
-                        Toast.makeText(CountDownCheckOut.this, "You're too early!",
-                                Toast.LENGTH_LONG).show();
+                        AlertDialog.Builder Quest = new AlertDialog.Builder(CountDownCheckOut.this);
+                        Quest.setTitle("Cancel order?");
+                        Quest.setMessage(
+                                "Are you sure you want to cancel your your reservation?");
+                        Quest.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        Quest.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                Toast.makeText(CountDownCheckOut.this, "Order Cancelled", Toast.LENGTH_LONG).show();
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+                        AlertDialog alertDialog = Quest.create();
+                        alertDialog.show();
                     } else {
                         if (getCurrentTimeInSec() >= endTimeInSec) {
                             intent.putExtra("departHour", bundle.getInt("departHour"));
