@@ -402,7 +402,8 @@ public class CountDownCheckOut extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO: Report current spot
+
+                iLink.changeLegalStatus(bundle.getString("spotAssign"), true);
 
 
                 final String newSpotAssign = iLink.getSpot( (int)startTimeInSec/60, (int)endTimeInSec/60);
