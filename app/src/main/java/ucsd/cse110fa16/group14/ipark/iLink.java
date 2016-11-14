@@ -531,7 +531,7 @@ public class iLink {
             spot = "Spot" + String.format( "%03d", i );
             changeLegalStatus(spot, false);
             changeReserveStatus(spot, false);
-            changeSchedule(spot, "3500/testUser/4500");
+            changeSchedule(spot, "82800/testUser/86340");
         }
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/Users");
