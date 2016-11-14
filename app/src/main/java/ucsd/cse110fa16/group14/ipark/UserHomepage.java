@@ -83,16 +83,32 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, Clockin.class);
+
+                Intent thisIntent = getIntent();
+                if (thisIntent.hasExtra("arriveHour") && thisIntent.hasExtra("departHour")) {
+                    intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                    intent.putExtra("departHour", bundle.getInt("departHour"));
+                    intent.putExtra("departMin", bundle.getInt("departMin"));
+                } else {
+                    intent.putExtra("arriveHour", 0);
+                    intent.putExtra("arriveMin", 0);
+                    intent.putExtra("departHour", 0);
+                    intent.putExtra("departMin", 0);
+                }
+
                 startActivity(intent);
             }
         });
+
+        // Update the last time a user was logged in and active. In charge of resetting database
+        iLink.updateUserActivity();
 
         checkStatusButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, CountDownCheckOut.class);
-
 
                 Intent thisIntent = getIntent();
                 if (thisIntent.hasExtra("arriveHour") && thisIntent.hasExtra("departHour")) {

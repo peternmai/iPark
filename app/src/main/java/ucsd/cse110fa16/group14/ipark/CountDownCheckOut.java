@@ -82,6 +82,41 @@ public class CountDownCheckOut extends AppCompatActivity {
         final TextView timerText = (TextView) findViewById(R.id.Timer);
         final TextView pspot = (TextView) findViewById(R.id.textView26);
 
+        // Redirect user back to home page or clockin if they have not reserved a spot
+        if (bundle.getInt("departHour") == 0 && bundle.getInt("departMin") == 0) {
+            AlertDialog.Builder alertNotReserved = new AlertDialog.Builder(CountDownCheckOut.this);
+            alertNotReserved.setTitle("Hmmm... No order placed");
+            alertNotReserved.setMessage(" Would you like to place an order?");
+            alertNotReserved.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    Intent intent = new Intent(CountDownCheckOut.this, Clockin.class);
+                    intent.putExtra("arriveHour", 0);
+                    intent.putExtra("arriveMin", 0);
+                    intent.putExtra("departHour", 0);
+                    intent.putExtra("departMin", 0);
+                    startActivity(intent);
+
+                    dialog.cancel();
+                }
+
+            });
+            alertNotReserved.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
+                    startActivity(intent);
+
+                    dialog.cancel();
+                }
+
+            });
+            AlertDialog alertDialog = alertNotReserved.create();
+            alertDialog.show();
+        }
+
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
         root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName+"/History");

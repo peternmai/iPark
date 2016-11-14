@@ -304,6 +304,11 @@ public class iLink {
         priceRef.setValue(newPrice);
     }
 
+    public static void changeSchedule(String spot, String newScheduleData) {
+        Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
+        scheduleRef.setValue( newScheduleData );
+    }
+
     public static void changeLegalStatus(String spot, boolean newStatus) {
         Firebase legalRef = new Firebase(parkingLot + spot + "/Illegal");
         legalRef.setValue(newStatus);
@@ -443,6 +448,61 @@ public class iLink {
         System.out.println();
 
         return spotStatus;
+    }
+
+    // If last user activity was registered the day before, reset the map and user parking status
+    // If last user activity was earlier today, update the time to current time in seconds
+    public static void updateUserActivity() {
+        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/Users");
+        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
+
+                long lastActiveUserTime = 0;
+
+                //Getting parking spot information from Firebase
+                while (iterator.hasNext()) {
+                    com.firebase.client.DataSnapshot innerNode = iterator.next();
+                    String innerKey = innerNode.getKey();
+
+                    if (innerKey.equals("LastActiveUserTime"))  {
+                        lastActiveUserTime = innerNode.getValue(Long.class);
+                        break;
+                    }
+                }
+
+                // If last login was yesterday, reset the database
+                long curTimeInSec = getCurTimeInSec();
+                if( curTimeInSec < lastActiveUserTime )
+                    resetDataBaseForNewDay();
+
+                // Update lastActivityUserTime to now
+                Firebase lastActiveUserRef = new Firebase(usersNode + "LastActiveUserTime");
+                lastActiveUserRef.setValue( getCurTimeInSec() );
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+    }
+
+    private static void resetDataBaseForNewDay() {
+
+        String spot;
+
+        // Reset all parking spots
+        for(int i = 0; i < NUM_SPOTS; i++) {
+            spot = "Spot" + String.format( "%03d", i );
+            changeLegalStatus(spot, false);
+            changeReserveStatus(spot, false);
+            changeSchedule(spot, "");
+        }
+
+
     }
 
     /**
