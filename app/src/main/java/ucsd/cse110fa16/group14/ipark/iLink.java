@@ -171,8 +171,8 @@ public class iLink {
         if ( startTime < 0 || endTime < 0)
             return false;
         // no one reserve that specific spot
-        //if (curDataStr == null ||curDataStr == "")
-          //  return true;
+        if (curDataStr == null ||curDataStr == "")
+            return true;
         /*List<String> split = new ArrayList<String>(Arrays.asList(curDataStr.split("\\s+")));
 
         // check if spot is available
@@ -197,8 +197,13 @@ public class iLink {
         {
             //orders[i] = "2012/trump/2016";
             String[] currOrder = orders[i].split("[/]");
-            orderTime[i][0] = Integer.valueOf(currOrder[0]);
-            orderTime[i][1] = Integer.valueOf(currOrder[2]);
+            //System.out.println("what is the order: "+ orders[i]);
+            //System.out.println("length is "+ currOrder.length);
+            orderTime[i][0] = Integer.parseInt(currOrder[0]);
+            orderTime[i][1] = Integer.parseInt(currOrder[2]);
+
+            System.out.println("start from: "+startTime);
+            System.out.println("ends ar: "+endTime);
         }
 
         // compare and check
@@ -528,7 +533,7 @@ public class iLink {
             spot = "Spot" + String.format( "%03d", i );
             changeLegalStatus(spot, false);
             changeReserveStatus(spot, false);
-            changeSchedule(spot, "82800/testUser/86340");
+            changeSchedule(spot, "43200/testUser/86340");
         }
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/Users");
