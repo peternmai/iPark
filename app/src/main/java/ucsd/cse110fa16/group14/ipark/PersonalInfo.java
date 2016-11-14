@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class PersonalInfo extends AppCompatActivity {
         TextView license = (TextView) findViewById(R.id.license);
         TextView uName = (TextView) findViewById(R.id.username);
 
-        Button homeButt = (Button) findViewById(R.id.button19);
+        ImageButton homeButt = (ImageButton) findViewById(R.id.button19);
         Button changePasswordButt = (Button) findViewById(R.id.button21);
         Button helpButt = (Button) findViewById(R.id.help);
 
