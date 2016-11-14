@@ -265,6 +265,7 @@ public class iLink {
         auth = FirebaseAuth.getInstance();
         String userName = auth.getCurrentUser().getDisplayName();
 
+        updateUserReservationStatus( userName, spot, startTime, endTime );
         parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
