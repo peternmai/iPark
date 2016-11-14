@@ -319,7 +319,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                     final Firebase tempRes = root.child("Reservation").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
                     final Firebase tempHist = root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
 
-                    ValueEventListener listener;
+                    //ValueEventListener listener;
 
                     Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
