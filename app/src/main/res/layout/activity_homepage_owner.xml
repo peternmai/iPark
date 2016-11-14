@@ -42,18 +42,6 @@
         android:layout_centerHorizontal="true"
         android:textAlignment="center" />
 
-    <ImageButton
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        android:background="#FFFFFF"
-        app:srcCompat="@mipmap/report"
-        android:id="@+id/report"
-        android:layout_alignTop="@+id/compose"
-        android:layout_toStartOf="@+id/textView68" />
-
     <TextView
         android:text="Compose"
         android:layout_width="110dp"
@@ -65,32 +53,6 @@
         android:layout_below="@+id/compose"
         android:layout_alignStart="@+id/textView54"
         android:id="@+id/textView70"
-        android:textAlignment="center" />
-
-    <TextView
-        android:text="Report"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="#404040"
-        android:ems="4"
-        android:layout_below="@+id/report"
-        android:layout_alignStart="@+id/textView55"
-        android:id="@+id/textView71"
-        android:textAlignment="center" />
-
-    <TextView
-        android:text="Emergency"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="#404040"
-        android:ems="5"
-        android:layout_alignBottom="@+id/textView71"
-        android:layout_alignStart="@+id/textView68"
-        android:id="@+id/textView72"
-        android:layout_width="110dp"
         android:textAlignment="center" />
 
     <ImageButton
@@ -105,18 +67,6 @@
         android:id="@+id/compose"
         android:layout_below="@+id/textView54"
         android:layout_alignEnd="@+id/textView54" />
-
-    <ImageButton
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        android:background="#FFFFFF"
-        app:srcCompat="@mipmap/emergency1"
-        android:id="@+id/emergency1"
-        android:layout_above="@+id/textView72"
-        android:layout_toEndOf="@+id/report" />
 
     <ImageButton
         android:adjustViewBounds="true"
@@ -160,6 +110,20 @@
         android:layout_toEndOf="@+id/settings" />
 
     <TextView
+        android:text="Emergency"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#404040"
+        android:ems="5"
+        android:id="@+id/textView72"
+        android:layout_width="110dp"
+        android:textAlignment="center"
+        android:layout_alignBaseline="@+id/textView70"
+        android:layout_alignBottom="@+id/textView70"
+        android:layout_alignStart="@+id/emergency1" />
+
+    <TextView
         android:text="Logout"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
@@ -169,8 +133,9 @@
         android:ems="5"
         android:id="@+id/textView73"
         android:textAlignment="center"
-        android:layout_below="@+id/logout"
-        android:layout_alignStart="@+id/logout" />
+        android:layout_alignBaseline="@+id/textView72"
+        android:layout_alignBottom="@+id/textView72"
+        android:layout_toEndOf="@+id/textView55" />
 
     <ImageButton
         android:adjustViewBounds="true"
@@ -181,7 +146,19 @@
         android:background="#FFFFFF"
         app:srcCompat="@mipmap/logout_button"
         android:id="@+id/logout"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/textView71"
-        android:layout_toEndOf="@+id/textView71" />
+        android:layout_alignTop="@+id/emergency1"
+        android:layout_toEndOf="@+id/emergency1" />
+
+    <ImageButton
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:layout_width="110dp"
+        android:layout_height="120dp"
+        android:scaleType="fitCenter"
+        android:background="#FFFFFF"
+        app:srcCompat="@mipmap/emergency1"
+        android:id="@+id/emergency1"
+        android:layout_above="@+id/textView72"
+        android:layout_toEndOf="@+id/textView70" />
+
 </RelativeLayout>
