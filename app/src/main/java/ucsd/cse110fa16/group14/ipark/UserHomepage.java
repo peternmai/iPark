@@ -46,6 +46,15 @@ public class UserHomepage extends AppCompatActivity {
         // Update the last time a user was logged in and active. In charge of resetting database
         iLink.updateUserActivity();
 
+        // Update user reservation status
+        iLink.getUserReservationStatus();
+        final int arriveHour = (int) iLink.userReservationStartTime/60/60;
+        final int arriveMin  = (int) (iLink.userReservationStartTime/60)%60;
+        final int departHour = (int) iLink.userReservationEndTime/60/60;
+        final int departMin  = (int) (iLink.userReservationEndTime/60)%60;
+        final String assignedSpot = iLink.userReservationSpot;
+        double spotRate = iLink.userReservationSpotRate;
+
         mAuth = FirebaseAuth.getInstance();
 
         logoutButt.setOnClickListener(new View.OnClickListener() {
@@ -86,20 +95,11 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, Clockin.class);
-
-                Intent thisIntent = getIntent();
-                if (thisIntent.hasExtra("arriveHour") && thisIntent.hasExtra("departHour")) {
-                    intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
-                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
-                    intent.putExtra("departHour", bundle.getInt("departHour"));
-                    intent.putExtra("departMin", bundle.getInt("departMin"));
-                } else {
-                    intent.putExtra("arriveHour", 0);
-                    intent.putExtra("arriveMin", 0);
-                    intent.putExtra("departHour", 0);
-                    intent.putExtra("departMin", 0);
-                }
-
+                intent.putExtra("arriveHour", arriveHour);
+                intent.putExtra("arriveMin",arriveMin);
+                intent.putExtra("departHour", departHour);
+                intent.putExtra("departMin", departMin);
+                intent.putExtra("spotAssign", assignedSpot);
                 startActivity(intent);
             }
         });
@@ -109,19 +109,11 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, CountDownCheckOut.class);
-
-                Intent thisIntent = getIntent();
-                if (thisIntent.hasExtra("arriveHour") && thisIntent.hasExtra("departHour")) {
-                    intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
-                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
-                    intent.putExtra("departHour", bundle.getInt("departHour"));
-                    intent.putExtra("departMin", bundle.getInt("departMin"));
-                } else {
-                    intent.putExtra("arriveHour", 0);
-                    intent.putExtra("arriveMin", 0);
-                    intent.putExtra("departHour", 0);
-                    intent.putExtra("departMin", 0);
-                }
+                intent.putExtra("arriveHour", arriveHour);
+                intent.putExtra("arriveMin",arriveMin);
+                intent.putExtra("departHour", departHour);
+                intent.putExtra("departMin", departMin);
+                intent.putExtra("spotAssign", assignedSpot);
                 startActivity(intent);
             }
         });

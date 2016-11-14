@@ -125,6 +125,9 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                 if ((ampm == 2) && (hour != 12))
                     hourEntered += 12;
 
+                if((ampm == 1) && hourEntered == 12 )
+                    hourEntered = 0;
+
                 System.out.println("Current Time: " + bundle.getInt("arriveHour") + ":" + bundle.getInt("arriveMin"));
                 System.out.println("Entered Time: " + hourEntered + ":" + minEntered);
 

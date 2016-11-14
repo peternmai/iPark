@@ -328,6 +328,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                         Quest.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                iLink.resetUserReservation();
                                 Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 Toast.makeText(CountDownCheckOut.this, "Order Cancelled", Toast.LENGTH_LONG).show();

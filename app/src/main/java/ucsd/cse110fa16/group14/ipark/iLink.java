@@ -34,6 +34,12 @@ public class iLink {
     private static int[] spotStatus = new int[NUM_SPOTS];
     //private static String schedule = "";
 
+    // Used to access user's reservation data. Call getUserReservationStatus() beforehand
+    protected static String userReservationSpot = "";
+    protected static long userReservationStartTime = 0;
+    protected static long userReservationEndTime = 0;
+    protected static double userReservationSpotRate = 0;
+
     public static void setGap(long newGap){
         gap = newGap;
     }
@@ -377,7 +383,7 @@ public class iLink {
             return false;
     }
 
-    public static long getCurTimeInSec() {
+    protected static long getCurTimeInSec() {
         Date date = new Date();                               // given date
         Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
         calendar.setTime(date);                               // assigns calendar to given date
@@ -390,7 +396,7 @@ public class iLink {
     }
 
 
-    public static int[] getParkingLotStatus(final long startTime, final long endTime) {
+    protected static int[] getParkingLotStatus(final long startTime, final long endTime) {
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
 
@@ -462,6 +468,49 @@ public class iLink {
         return spotStatus;
     }
 
+    protected static void getUserReservationStatus() {
+
+        auth = FirebaseAuth.getInstance();
+        String userName = auth.getCurrentUser().getDisplayName();
+
+        String ref = "https://ipark-e243b.firebaseio.com/Users/" + userName + "/ReservationStatus" ;
+        Firebase fReference = new Firebase(ref);
+        fReference.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> firstChildData = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterator = firstChildData.iterator();
+                String innerKey;
+
+                while (iterator.hasNext()) {
+                    DataSnapshot data = iterator.next();
+                    innerKey = data.getKey();
+
+                    if (innerKey.equals("AssignedSpot") ) {
+                        userReservationSpot = data.getValue(String.class);
+                    }
+
+                    if (innerKey.equals("EndTime")) {
+                        userReservationEndTime = data.getValue(Long.class);
+                    }
+
+                    if (innerKey.equals("StartTime")) {
+                        userReservationStartTime = data.getValue(Long.class);
+                    }
+
+                    if (innerKey.equals("SpotRate")) {
+                        userReservationSpotRate = data.getValue(Double.class);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+    }
+
     // Get current time: Ex. February 1, 2016 = 20160201
     private static long getCurrentDate() {
         Calendar now = Calendar.getInstance();
@@ -481,7 +530,7 @@ public class iLink {
 
     // If last user activity was registered the day before, reset the map and user parking status
     // If last user activity was earlier today, update the time to current time in seconds
-    public static void updateUserActivity() {
+    protected static void updateUserActivity() {
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/Users");
         parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
             @Override
@@ -529,11 +578,11 @@ public class iLink {
             spot = "Spot" + String.format( "%03d", i );
             changeLegalStatus(spot, false);
             changeReserveStatus(spot, false);
-            changeSchedule(spot, "3500/testUser/4500");
+            changeSchedule(spot, "");
         }
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/Users");
-        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
+        parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
                 Iterable<com.firebase.client.DataSnapshot> user = dataSnapshot.getChildren();
@@ -568,6 +617,22 @@ public class iLink {
                 Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
             }
         });
+    }
+
+    protected static void resetUserReservation() {
+
+        auth = FirebaseAuth.getInstance();
+        String username = auth.getCurrentUser().getDisplayName();
+
+        Firebase userAssignedSpot   = new Firebase(usersNode + username + "/ReservationStatus/AssignedSpot");
+        Firebase userSpotEndTime    = new Firebase(usersNode + username + "/ReservationStatus/EndTime");
+        Firebase userSpotStartTime  = new Firebase(usersNode + username + "/ReservationStatus/StartTime");
+        Firebase userSpotRate       = new Firebase(usersNode + username + "/ReservationStatus/SpotRate");
+
+        userAssignedSpot.setValue("");
+        userSpotEndTime.setValue(0);
+        userSpotStartTime.setValue(0);
+        userSpotRate.setValue(0);
     }
 
     // Store user reservation details in under each user's ReservationStatus field

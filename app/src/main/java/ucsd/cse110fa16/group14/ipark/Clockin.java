@@ -64,6 +64,11 @@ public class Clockin extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(Clockin.this, CountDownCheckOut.class);
+                    intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                    intent.putExtra("departHour", bundle.getInt("departHour"));
+                    intent.putExtra("departMin", bundle.getInt("departMin"));
+                    intent.putExtra("spotAssign", bundle.getInt("assignedSpot"));
                     startActivity(intent);
                     dialog.cancel();
                 }
@@ -111,7 +116,7 @@ public class Clockin extends AppCompatActivity {
         minNumPick.setWrapSelectorWheel(true);
 
         // Initialize start time
-        hour = 8;
+        hour = 1;
         min = 0;
         ampm = 1;
 
@@ -155,6 +160,9 @@ public class Clockin extends AppCompatActivity {
 
                 if ((ampm == 2) && hourEntered != 12)
                     hourEntered += 12;
+
+                if((ampm == 1) && hourEntered == 12 )
+                    hourEntered = 0;
 
                 Date date = new Date();                               // given date
                 Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
