@@ -47,6 +47,7 @@ public class iLink {
             if (curDataStr == null || curDataStr == "" )return "";
             else return curDataStr;
         }
+        //System.out.println("test_1");
 
         if (curDataStr == null || curDataStr == "")
         {
@@ -54,6 +55,7 @@ public class iLink {
         }
 
         String[] orders = curDataStr.split("[ ]+");
+        //System.out.println("test_2");
         int orderNum = orders.length;
         // create a 2D array of startTime and endTime;
         int [][] orderTime = new int[orderNum][2];
@@ -66,7 +68,9 @@ public class iLink {
             orderTime[i][1] = Integer.valueOf(currOrder[2]);
         }
 
-        int stopIndex = 0;
+        //System.out.println("test_3");
+        int stopIndex;
+
         for(stopIndex = 0; stopIndex < orderNum; stopIndex++)
         {
 
@@ -78,6 +82,8 @@ public class iLink {
             }
 
         }
+
+        //System.out.println("test_4");
 
         String result = "";
         // insert new order into schedule
@@ -93,6 +99,8 @@ public class iLink {
                 else result = result + " " + Long.toString(startTime)
                         + "/" + userName + "/" + Long.toString(endTime);
 
+
+                stopIndex = i - 2;
                 i--;
             }
             else
@@ -104,6 +112,7 @@ public class iLink {
                 else result = result + " " + orders[i];
             }
 
+            //System.out.println(i+" ");
         }
 
         if (stopIndex == orderNum){
@@ -111,6 +120,7 @@ public class iLink {
                     + "/" + userName + "/" + Long.toString(endTime);
         }
 
+        //System.out.println("test_5");
         return result;
 
 
@@ -245,7 +255,7 @@ public class iLink {
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/" + spot);
 
-        Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
+        //Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
         auth = FirebaseAuth.getInstance();
         String userName = auth.getCurrentUser().getDisplayName();
 
