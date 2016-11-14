@@ -202,9 +202,6 @@ public class iLink {
             //System.out.println("length is "+ currOrder.length);
             orderTime[i][0] = Integer.parseInt(currOrder[0]);
             orderTime[i][1] = Integer.parseInt(currOrder[2]);
-
-            System.out.println("start from: "+startTime);
-            System.out.println("ends ar: "+endTime);
         }
 
         // compare and check

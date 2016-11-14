@@ -81,41 +81,6 @@ public class CountDownCheckOut extends AppCompatActivity {
         final TextView timerText = (TextView) findViewById(R.id.Timer);
         final TextView pspot = (TextView) findViewById(R.id.textView26);
 
-        // Redirect user back to home page or clockin if they have not reserved a spot
-        if (bundle.getInt("departHour") == 0 && bundle.getInt("departMin") == 0) {
-            AlertDialog.Builder alertNotReserved = new AlertDialog.Builder(CountDownCheckOut.this);
-            alertNotReserved.setTitle("Hmmm... No order placed");
-            alertNotReserved.setMessage(" Would you like to place an order?");
-            alertNotReserved.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    Intent intent = new Intent(CountDownCheckOut.this, Clockin.class);
-                    intent.putExtra("arriveHour", 0);
-                    intent.putExtra("arriveMin", 0);
-                    intent.putExtra("departHour", 0);
-                    intent.putExtra("departMin", 0);
-                    startActivity(intent);
-
-                    dialog.cancel();
-                }
-
-            });
-            alertNotReserved.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
-                    startActivity(intent);
-
-                    dialog.cancel();
-                }
-
-            });
-            AlertDialog alertDialog = alertNotReserved.create();
-            alertDialog.show();
-        }
-
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
         root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName);
@@ -174,46 +139,84 @@ public class CountDownCheckOut extends AppCompatActivity {
             }
 
             public void onFinish() {
-                timerText.setText("00:00:00");
-                timerText.setTextColor(Color.RED);
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                Date date = new Date();                               // given date
-                Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
-                calendar.setTime(date);                               // assigns calendar to given date
 
-                Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
-                intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
-                intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                // Redirect user back to home page or clockin if they have not reserved a spot
+                if ( (bundle.getInt("departHour") == 0) && (bundle.getInt("departMin") == 0)) {
+                    AlertDialog.Builder alertNotReserved = new AlertDialog.Builder(CountDownCheckOut.this);
+                    alertNotReserved.setTitle("Hmmm... No order placed");
+                    alertNotReserved.setMessage(" Would you like to place an order?");
+                    alertNotReserved.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                int tempDephHour, tempDepMin;
-                int totHours, totMins;
-                double totPay, rate;
-                rate = iLink.userPrice;
-                date = null;
-                try {
-                    date = sdf.parse(sdf.format(new Date()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                            Intent intent = new Intent(CountDownCheckOut.this, Clockin.class);
+                            intent.putExtra("arriveHour", 0);
+                            intent.putExtra("arriveMin", 0);
+                            intent.putExtra("departHour", 0);
+                            intent.putExtra("departMin", 0);
+                            startActivity(intent);
+
+                            dialog.cancel();
+                        }
+
+                    });
+                    alertNotReserved.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
+                            startActivity(intent);
+
+                            dialog.cancel();
+                        }
+
+                    });
+                    AlertDialog alertDialog = alertNotReserved.create();
+                    alertDialog.show();
                 }
+                else {
 
-                tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);
-                tempDepMin = calendar.get(Calendar.MINUTE);
+                    timerText.setText("00:00:00");
+                    timerText.setTextColor(Color.RED);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Date date = new Date();                               // given date
+                    Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
+                    calendar.setTime(date);                               // assigns calendar to given date
 
-                root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockout").setValue(
-                        generateTimeText(tempDephHour, tempDepMin));
+                    Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
+                    intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
 
-                intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
-                intent.putExtra("departMin", calendar.get(Calendar.MINUTE));
+                    int tempDephHour, tempDepMin;
+                    int totHours, totMins;
+                    double totPay, rate;
+                    rate = iLink.userPrice;
+                    date = null;
+                    try {
+                        date = sdf.parse(sdf.format(new Date()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
 
-                // Calculate total time parked and total to pay
-                totHours = tempDephHour - bundle.getInt("arriveHour");
-                totMins = tempDepMin - bundle.getInt("arriveMin");
-                totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
-                root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Rate").setValue(String.format("$%.2f", totPay));
+                    tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);
+                    tempDepMin = calendar.get(Calendar.MINUTE);
 
-                intent.putExtra("rate", String.format("$%.2f", totPay));
-                String spot = pspot.getText().toString();
-                startActivity(intent);
+                    root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockout").setValue(
+                            generateTimeText(tempDephHour, tempDepMin));
+
+                    intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
+                    intent.putExtra("departMin", calendar.get(Calendar.MINUTE));
+
+                    // Calculate total time parked and total to pay
+                    totHours = tempDephHour - bundle.getInt("arriveHour");
+                    totMins = tempDepMin - bundle.getInt("arriveMin");
+                    totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
+                    root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Rate").setValue(String.format("$%.2f", totPay));
+
+                    intent.putExtra("rate", String.format("$%.2f", totPay));
+                    String spot = pspot.getText().toString();
+                    startActivity(intent);
+                }
             }
         }.start();
 

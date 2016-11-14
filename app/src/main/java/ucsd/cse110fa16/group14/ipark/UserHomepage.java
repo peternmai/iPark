@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
@@ -47,6 +50,21 @@ public class UserHomepage extends AppCompatActivity {
         iLink.updateUserActivity();
 
         mAuth = FirebaseAuth.getInstance();
+
+        // Get user reservation status
+        String userName = mAuth.getCurrentUser().getDisplayName();
+        Firebase userReservationDB = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/ReservationStatus");
+        userReservationDB.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                iLink.getUserReservationStatus();
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
 
         logoutButt.setOnClickListener(new View.OnClickListener() {
 
@@ -87,11 +105,11 @@ public class UserHomepage extends AppCompatActivity {
             public void onClick(View v) {
                 // Update user reservation status
                 iLink.getUserReservationStatus();
-                final int arriveHour = (int) iLink.userReservationStartTime/60/60;
-                final int arriveMin  = (int) (iLink.userReservationStartTime/60)%60;
-                final int departHour = (int) iLink.userReservationEndTime/60/60;
-                final int departMin  = (int) (iLink.userReservationEndTime/60)%60;
-                final String assignedSpot = iLink.userReservationSpot;
+                int arriveHour = (int) iLink.userReservationStartTime/60/60;
+                int arriveMin  = (int) (iLink.userReservationStartTime/60)%60;
+                int departHour = (int) iLink.userReservationEndTime/60/60;
+                int departMin  = (int) (iLink.userReservationEndTime/60)%60;
+                String assignedSpot = iLink.userReservationSpot;
                 double spotRate = iLink.userReservationSpotRate;
 
                 Intent intent = new Intent(UserHomepage.this, Clockin.class);
@@ -110,11 +128,12 @@ public class UserHomepage extends AppCompatActivity {
             public void onClick(View v) {
                 // Update user reservation status
                 iLink.getUserReservationStatus();
-                final int arriveHour = (int) iLink.userReservationStartTime/60/60;
-                final int arriveMin  = (int) (iLink.userReservationStartTime/60)%60;
-                final int departHour = (int) iLink.userReservationEndTime/60/60;
-                final int departMin  = (int) (iLink.userReservationEndTime/60)%60;
-                final String assignedSpot = iLink.userReservationSpot;
+                System.out.println("Checking");
+                int arriveHour = (int) iLink.userReservationStartTime/60/60;
+                int arriveMin  = (int) (iLink.userReservationStartTime/60)%60;
+                int departHour = (int) iLink.userReservationEndTime/60/60;
+                int departMin  = (int) (iLink.userReservationEndTime/60)%60;
+                String assignedSpot = iLink.userReservationSpot;
                 double spotRate = iLink.userReservationSpotRate;
 
                 Intent intent = new Intent(UserHomepage.this, CountDownCheckOut.class);

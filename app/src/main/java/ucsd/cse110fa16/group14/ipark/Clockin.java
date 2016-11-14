@@ -68,7 +68,7 @@ public class Clockin extends AppCompatActivity {
                     intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
                     intent.putExtra("departHour", bundle.getInt("departHour"));
                     intent.putExtra("departMin", bundle.getInt("departMin"));
-                    intent.putExtra("spotAssign", bundle.getInt("assignedSpot"));
+                    intent.putExtra("spotAssign", bundle.getString("spotAssign"));
                     startActivity(intent);
                     dialog.cancel();
                 }
