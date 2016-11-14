@@ -385,7 +385,7 @@ public class iLink {
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
 
-        parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
+        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot)
             {

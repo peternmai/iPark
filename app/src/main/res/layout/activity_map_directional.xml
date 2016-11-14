@@ -11,10 +11,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.MapDirectional">
 
-    <ucsd.cse110fa16.group14.ipark.UserMapInteractive
+    <ucsd.cse110fa16.group14.ipark.UserMapInteractive android:layout_above="@+id/send"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/editText" />
+        android:layout_height="match_parent" />
 
     <Button
         android:text="Report"
@@ -67,5 +66,126 @@
         android:layout_width="150dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="1     2     3     4     5     6     7     8     9     10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView32"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="14dp" />
+
+    <TextView
+        android:text="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView59"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/textView32"
+        android:layout_toEndOf="@+id/textView32"
+        android:layout_alignStart="@+id/textView65" />
+
+    <TextView
+        android:text="5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView77"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/textView76"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/textView78" />
+
+    <TextView
+        android:text="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/textView69"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/textView65"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/textView79"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/textView78"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView82"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/textView80"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:text="10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText"
+        android:layout_toEndOf="@+id/textView32"
+        android:id="@+id/textView84"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:text="6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView78"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/textView77"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:id="@+id/textView76"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/textView69"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView81"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/textView79"
+        android:layout_alignEnd="@+id/textView84"
+        android:layout_alignStart="@+id/textView79" />
+
+    <TextView
+        android:text="9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView85"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_above="@+id/textView84"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="19dp" />
+
+    <TextView
+        android:text="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView65"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/textView59"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView81"
+        android:layout_alignStart="@+id/textView69" />
 
 </RelativeLayout>
