@@ -187,7 +187,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                 int tempDephHour, tempDepMin;
                 int totHours, totMins;
                 double totPay, rate;
-                rate = 2.5;
+                rate = iLink.userPrice;
                 date = null;
                 try {
                     date = sdf.parse(sdf.format(new Date()));
