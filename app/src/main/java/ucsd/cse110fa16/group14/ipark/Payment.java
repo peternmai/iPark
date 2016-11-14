@@ -128,11 +128,8 @@ public class Payment extends AppCompatActivity {
                     dateChild.setValue(sdf.format(date));
                     userChild.setValue(userName);
 
-                    // TODO: Needs to change this. It makes a new object on firebase
+                    // Set order for new parking spot
                     iLink.setOrder(spotAssign, clockInTimeInSec, clockOutTimeInSec);
-
-                    //iLink.changeStartTime( spotAssign, clockInTimeInt );
-                    //iLink.changeEndTime( spotAssign, clockOutTimeInt );
 
                     Intent intent = new Intent(Payment.this, CountDownCheckOut.class);
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));

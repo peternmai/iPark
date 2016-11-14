@@ -254,27 +254,49 @@ public class iLink {
     }
 
     // Place the order. Take in spot, startTime and endTime in seconds
-    public static void setOrder(String spot,  long startTime, long endTime) {
-        Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
+    public static void setOrder(final String spot, final long startTime, final long endTime) {
 
-        auth = FirebaseAuth.getInstance();
-        String userName = auth.getCurrentUser().getDisplayName();
-        String schedule = getSpotCurrentSchedule( spot );
+        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/" + spot);
+        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
 
-        System.out.println("=================================");
-        System.out.println("Assigning New Parking Spot");
-        System.out.println("=================================");
-        System.out.println("  Current Schedule:  " + schedule);
-        System.out.println("  Assigned Spot:     " + spot);
-        System.out.println("  Start Time In Sec: " + startTime);
-        System.out.println("  End   Time In Sec: " + endTime);
+                String schedule = "";
+                Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
+                auth = FirebaseAuth.getInstance();
+                String userName = auth.getCurrentUser().getDisplayName();
 
+                //Getting parking spot information from Firebase
+                while (iterator.hasNext()) {
+                    com.firebase.client.DataSnapshot innerNode = iterator.next();
+                    String innerKey = innerNode.getKey();
 
-        //scheduleRef.setValue("hah");
+                    if (innerKey.equals("Schedule"))  {
+                        schedule = innerNode.getValue(String.class);
+                    }
+                }
 
-        String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
-        System.out.println("  New Schedule:      " + newSchedule);
-        if (newSchedule != null) scheduleRef.setValue(newSchedule);
+                System.out.println("=================================");
+                System.out.println("Assigning New Parking Spot");
+                System.out.println("=================================");
+                System.out.println("  Current Schedule:  " + schedule);
+                System.out.println("  Assigned Spot:     " + spot);
+                System.out.println("  Start Time In Sec: " + startTime);
+                System.out.println("  End   Time In Sec: " + endTime);
+
+                // Update old schedule data field with new reservation data
+                String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
+                System.out.println("  New Schedule:      " + newSchedule);
+                if (newSchedule != null) scheduleRef.setValue(newSchedule);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
     }
 
     public static void changePrice(double newPrice) {
@@ -345,37 +367,6 @@ public class iLink {
         curTimeInSec += calendar.get(Calendar.SECOND);
 
         return curTimeInSec;
-    }
-
-    // Return the schedule at the specified spot
-    private static String scheduleV = "";
-    private static String getSpotCurrentSchedule(String spot) {
-        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/" + spot);
-
-        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
-            @Override
-            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
-                Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
-                Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
-
-                //Getting parking spot information from Firebase
-                while (iterator.hasNext()) {
-                    com.firebase.client.DataSnapshot innerNode = iterator.next();
-                    String innerKey = innerNode.getKey();
-
-                    if (innerKey.equals("Schedule"))  {
-                        scheduleV = innerNode.getValue(String.class);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
-            }
-        });
-
-        return scheduleV;
     }
 
 
