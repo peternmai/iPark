@@ -471,12 +471,12 @@ public class iLink {
         parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
-                Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
-                Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
+                Iterable<com.firebase.client.DataSnapshot> user = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> iterator = user.iterator();
 
                 long lastActiveUserTime = 0;
 
-                //Getting parking spot information from Firebase
+                //Getting last active user time from Firebase
                 while (iterator.hasNext()) {
                     com.firebase.client.DataSnapshot innerNode = iterator.next();
                     String innerKey = innerNode.getKey();
@@ -513,8 +513,46 @@ public class iLink {
             spot = "Spot" + String.format( "%03d", i );
             changeLegalStatus(spot, false);
             changeReserveStatus(spot, false);
-            changeSchedule(spot, "");
+            changeSchedule(spot, "3500/testUser/4500");
         }
+
+        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/Users");
+        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> user = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> userIter = user.iterator();
+
+                long lastActiveUserTime = 0;
+
+                //Getting each user
+                while (userIter.hasNext()) {
+                    com.firebase.client.DataSnapshot innerNode = userIter.next();
+                    String username = innerNode.getKey();
+
+                    if (username.equals("LastActiveUserTime"))  {
+                        lastActiveUserTime = innerNode.getValue(Long.class);
+                        continue;
+                    }
+
+                    Firebase userAssignedSpot   = new Firebase(usersNode + username + "/ReservationStatus/AssignedSpot");
+                    Firebase userSpotEndTime    = new Firebase(usersNode + username + "/ReservationStatus/EndTime");
+                    Firebase userSpotStartTime  = new Firebase(usersNode + username + "/ReservationStatus/StartTime");
+                    Firebase userSpotRate       = new Firebase(usersNode + username + "/ReservationStatus/SpotRate");
+
+                    userAssignedSpot.setValue("");
+                    userSpotEndTime.setValue(0);
+                    userSpotStartTime.setValue(0);
+                    userSpotRate.setValue(0);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+
 
 
     }
