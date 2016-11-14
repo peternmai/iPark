@@ -51,7 +51,10 @@ public class Payment extends AppCompatActivity {
         Button cancelButt = (Button) findViewById(R.id.button3);
         int totHours = 0;
         int totMins = 0;
-        double rate = 2.50;
+
+        double rate = iLink.defaultPrice; // Payment
+        iLink.userPrice = rate; // Payment
+
         double totPay = 0.00;
 
         // Calculate total time parked and total to pay

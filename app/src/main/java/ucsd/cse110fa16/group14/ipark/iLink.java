@@ -34,7 +34,10 @@ public class iLink {
     public static final int OCCUPIED = 2;
     public static final int ILLEGAL = 3;
     public static final int NUM_SPOTS = 80;
+    protected static double defaultPrice;
+    protected static double userPrice;
     private static int[] spotStatus = new int[NUM_SPOTS];
+    private static String schedule = "";
 
     public static void setGap(long newGap){
         gap = newGap;
@@ -106,6 +109,11 @@ public class iLink {
                 else result = result + " " + orders[i];
             }
 
+        }
+
+        if (stopIndex == orderNum){
+            result = result + " " + Long.toString(startTime)
+                    + "/" + userName + "/" + Long.toString(endTime);
         }
 
         return result;
@@ -257,16 +265,21 @@ public class iLink {
     public static void setOrder(final String spot, final long startTime, final long endTime) {
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/" + spot);
+
+        Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
+        auth = FirebaseAuth.getInstance();
+        String userName = auth.getCurrentUser().getDisplayName();
+
         parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
                 Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
                 Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
 
-                String schedule = "";
-                Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
-                auth = FirebaseAuth.getInstance();
-                String userName = auth.getCurrentUser().getDisplayName();
+                //String schedule = "";
+                //Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
+                //auth = FirebaseAuth.getInstance();
+                //String userName = auth.getCurrentUser().getDisplayName();
 
                 //Getting parking spot information from Firebase
                 while (iterator.hasNext()) {
@@ -281,19 +294,16 @@ public class iLink {
                 System.out.println("=================================");
                 System.out.println("Assigning New Parking Spot");
                 System.out.println("=================================");
-                System.out.println("  Current Schedule:  " + schedule);
-                System.out.println("  Assigned Spot:     " + spot);
-                System.out.println("  User Registering:  " + userName);
+                //System.out.println("  Current Schedule:  " + schedule);
+                //System.out.println("  Assigned Spot:     " + spot);
+                //System.out.println("  User Registering:  " + userName);
                 System.out.println("  Start Time In Sec: " + startTime);
                 System.out.println("  End   Time In Sec: " + endTime);
 
                 // Update old schedule data field with new reservation data
-                String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
-                System.out.println("  New Schedule:      " + newSchedule);
-                if (newSchedule != null) {
-                    scheduleRef.setValue(newSchedule);
-                    updateUserReservationStatus( userName, spot, startTime, endTime );
-                }
+                //String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
+                //System.out.println("  New Schedule:      " + newSchedule);
+                //if (newSchedule != null) scheduleRef.setValue(newSchedule);
             }
 
             @Override
@@ -301,6 +311,9 @@ public class iLink {
                 Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
             }
         });
+
+        String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
+        if (newSchedule != null) scheduleRef.setValue(newSchedule);
     }
 
     public static void changePrice(double newPrice) {
@@ -673,7 +686,33 @@ public class iLink {
         });
         return map;
     }
+    protected static double getDefaultPrice() {
 
+        String ref = "https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice" ;
+        Firebase fReference = new Firebase(ref);
+        fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> firstChildData = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterator = firstChildData.iterator();
+
+                while (iterator.hasNext()) {
+                    DataSnapshot data = iterator.next();
+
+                    if (data.getKey() == "Price") {
+                        double val = data.getValue(Double.class);
+                        defaultPrice = val;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+        return defaultPrice;
+    }
 
 
 }
