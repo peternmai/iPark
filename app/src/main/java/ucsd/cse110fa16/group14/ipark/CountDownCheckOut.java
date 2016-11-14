@@ -480,6 +480,11 @@ public class CountDownCheckOut extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
+                intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                intent.putExtra("departHour", bundle.getInt("departHour"));
+                intent.putExtra("departMin", bundle.getInt("departMin"));
+                intent.putExtra("rate", bundle.getInt("rate"));
                 startActivity(intent);
             }
         });
