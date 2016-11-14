@@ -15,10 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.ParseException;
@@ -190,7 +188,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                 int tempDephHour, tempDepMin;
                 int totHours, totMins;
                 double totPay, rate;
-                rate = 2.5;
+                rate = iLink.userPrice;
                 date = null;
                 try {
                     date = sdf.parse(sdf.format(new Date()));
@@ -385,6 +383,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                             intent.putExtra("rate", String.format("$%.2f", totPay));
                         }
                         String spot = pspot.getText().toString();
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         // TODO: This will add a new field rather than replace
                         //iLink.changeReserveStatus(spot, false);
                         startActivity(intent);
@@ -494,8 +493,12 @@ public class CountDownCheckOut extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
+                intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                intent.putExtra("departHour", bundle.getInt("departHour"));
+                intent.putExtra("departMin", bundle.getInt("departMin"));
+                intent.putExtra("rate", bundle.getInt("rate"));
                 startActivity(intent);
-
             }
         });
 

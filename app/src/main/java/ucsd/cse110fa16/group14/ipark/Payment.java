@@ -27,6 +27,7 @@ public class Payment extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+        iLink.getDefaultPrice();
         SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("lastActivity", getClass().getName());
@@ -51,7 +52,11 @@ public class Payment extends AppCompatActivity {
         Button cancelButt = (Button) findViewById(R.id.button3);
         int totHours = 0;
         int totMins = 0;
-        double rate = 2.50;
+
+        iLink.getDefaultPrice();
+        double rate = iLink.defaultPrice; // Payment
+        iLink.userPrice = rate; // Payment
+
         double totPay = 0.00;
 
         // Calculate total time parked and total to pay
@@ -63,12 +68,11 @@ public class Payment extends AppCompatActivity {
         TextView endTimeText = (TextView) findViewById(R.id.endTimeText);
         TextView totalPayText = (TextView) findViewById(R.id.totalToPay);
 
-        final TextView total = (TextView) findViewById(R.id.totalToPay);
-
         startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
         endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
         totalPayText.setText(String.format("$%.2f", totPay));
 
+        final TextView total = (TextView) findViewById(R.id.totalToPay);
 
         payButt.setOnClickListener(new View.OnClickListener() {
 
@@ -134,8 +138,8 @@ public class Payment extends AppCompatActivity {
                     intent.putExtra("departMin", bundle.getInt("departMin"));
                     intent.putExtra("spotAssign", spotAssign);
                     intent.putExtra("rate", rate);
-
                     startActivity(intent);
+                    finish();
                 }
             }
         });

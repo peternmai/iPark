@@ -43,6 +43,9 @@ public class UserHomepage extends AppCompatActivity {
         ImageButton reviewHistoryButt = (ImageButton) findViewById(R.id.reviewHistory);
         ImageButton helpButt = (ImageButton) findViewById(R.id.imageButton);
 
+        // Update the last time a user was logged in and active. In charge of resetting database
+        iLink.updateUserActivity();
+
         mAuth = FirebaseAuth.getInstance();
 
         logoutButt.setOnClickListener(new View.OnClickListener() {
@@ -101,9 +104,6 @@ public class UserHomepage extends AppCompatActivity {
             }
         });
 
-        // Update the last time a user was logged in and active. In charge of resetting database
-        iLink.updateUserActivity();
-
         checkStatusButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -152,8 +152,6 @@ public class UserHomepage extends AppCompatActivity {
                 //Get the hashMap with the details of a user
                 infoMap = iLink.getChildInfo("Users", currUser);
                 Intent intent = new Intent(UserHomepage.this, PersonalInfo.class);
-             //   Toast.makeText(UserHomepage.this, currUser,
-             //           Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

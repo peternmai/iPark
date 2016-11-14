@@ -19,14 +19,18 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
+        iLink.getDefaultPrice();
         SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
 
-
+    @Override
+    protected void onResume(){
+        super.onResume();
+        iLink.getDefaultPrice();
+    }
 
 
     @Override
@@ -34,10 +38,13 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_departure_time);
 
+        iLink.getDefaultPrice();
+
         Button homeButt = (Button) findViewById(R.id.button7);
         Button help = (Button) findViewById(R.id.button4);
         Button nextButt = (Button) findViewById(R.id.next);
         Button prevButt = (Button) findViewById(R.id.previous);
+
 
         // Get values stored from enter arrival time activity
         final Bundle bundle = getIntent().getExtras();
