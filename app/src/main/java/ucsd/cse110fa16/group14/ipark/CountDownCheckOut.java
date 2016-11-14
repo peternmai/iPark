@@ -481,7 +481,6 @@ public class CountDownCheckOut extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
                 startActivity(intent);
-
             }
         });
 
