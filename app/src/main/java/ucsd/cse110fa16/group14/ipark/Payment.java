@@ -79,7 +79,6 @@ public class Payment extends AppCompatActivity {
                 String rate = total.getText().toString();
                 String clockInTime = generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"));
                 String clockOutTime = generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin"));
-                //Date date = new Date();
 
                 long clockInTimeInSec = bundle.getInt("arriveHour") * 60 * 60 + bundle.getInt("arriveMin") * 60;
                 long clockOutTimeInSec = bundle.getInt("departHour") * 60 * 60+ bundle.getInt("departMin") * 60;
@@ -101,9 +100,6 @@ public class Payment extends AppCompatActivity {
                     alertDialog.show();
                 }
                 else {
-
-                    //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                    //sdf.format(date);
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                     Date date = null;
                     try {
@@ -112,9 +108,9 @@ public class Payment extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    Firebase histChild = root.child("History");
+                    Firebase resChild = root.child("Reservation");
 
-                    Firebase hasChild = histChild.child(date + " " + clockInTime);
+                    Firebase hasChild = resChild.child(date + " " + clockInTime);
 
                     Firebase rateChild = hasChild.child("Rate");
                     Firebase clockInChild = hasChild.child("Clockin");

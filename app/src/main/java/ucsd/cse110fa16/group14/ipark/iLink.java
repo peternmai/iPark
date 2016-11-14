@@ -613,7 +613,7 @@ public class iLink {
                 while (iterator.hasNext()) {
                     DataSnapshot data = iterator.next();
 
-                    if (data.getKey() != "History") {
+                    if (!data.hasChildren()) {
                         String key = data.getKey();
                         String val = data.getValue(String.class);
                         map.put(key, val);
