@@ -34,7 +34,10 @@ public class iLink {
     public static final int OCCUPIED = 2;
     public static final int ILLEGAL = 3;
     public static final int NUM_SPOTS = 80;
+    protected static double defaultPrice;
+    protected static double userPrice;
     private static int[] spotStatus = new int[NUM_SPOTS];
+    private static String schedule = "";
 
     public static void setGap(long newGap){
         gap = newGap;
@@ -262,7 +265,7 @@ public class iLink {
     public static void setOrder(final String spot, final long startTime, final long endTime) {
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/" + spot);
-        String schedule = "";
+
         Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
         auth = FirebaseAuth.getInstance();
         String userName = auth.getCurrentUser().getDisplayName();
@@ -641,7 +644,33 @@ public class iLink {
         });
         return map;
     }
+    protected static double getDefaultPrice() {
 
+        String ref = "https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice" ;
+        Firebase fReference = new Firebase(ref);
+        fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> firstChildData = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterator = firstChildData.iterator();
+
+                while (iterator.hasNext()) {
+                    DataSnapshot data = iterator.next();
+
+                    if (data.getKey() == "Price") {
+                        double val = data.getValue(Double.class);
+                        defaultPrice = val;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+        return defaultPrice;
+    }
 
 
 }

@@ -53,7 +53,10 @@ public class activity_review extends AppCompatActivity {
         final TextView startTimeText = (TextView) findViewById(R.id.textView8);
         final TextView endTimeText = (TextView) findViewById(R.id.textView10);
         final TextView priceText = (TextView) findViewById(R.id.textView2);
+        final TextView pricePerHour = (TextView) findViewById(R.id.textView5);
 
+        String priceInfo = String.format("$%.2f",iLink.userPrice)+ "/hour";
+        pricePerHour.setText(priceInfo);
 
         String clockInTime = generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"));
 
