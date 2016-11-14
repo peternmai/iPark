@@ -290,7 +290,10 @@ public class iLink {
                 // Update old schedule data field with new reservation data
                 String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
                 System.out.println("  New Schedule:      " + newSchedule);
-                if (newSchedule != null) scheduleRef.setValue(newSchedule);
+                if (newSchedule != null) {
+                    scheduleRef.setValue(newSchedule);
+                    updateUserReservationStatus( userName, spot, startTime, endTime );
+                }
             }
 
             @Override
@@ -491,6 +494,7 @@ public class iLink {
         });
     }
 
+    // Reset each parking lot and user reservation data field to its default value
     private static void resetDataBaseForNewDay() {
 
         String spot;
@@ -539,9 +543,50 @@ public class iLink {
                 Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
             }
         });
+    }
 
+    // Store user reservation details in under each user's ReservationStatus field
+    private static void updateUserReservationStatus(final String userName, String spot, long startTime, long endTime) {
 
+        System.out.println(spot + " " + startTime + " " + endTime );
 
+        Firebase userAssignedSpot   = new Firebase(usersNode + userName + "/ReservationStatus/AssignedSpot");
+        Firebase userSpotEndTime    = new Firebase(usersNode + userName + "/ReservationStatus/EndTime");
+        Firebase userSpotStartTime  = new Firebase(usersNode + userName + "/ReservationStatus/StartTime");
+
+        userAssignedSpot.setValue( spot );
+        userSpotEndTime.setValue( endTime );
+        userSpotStartTime.setValue( startTime );
+
+        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice/");
+        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> parkingLotPrice = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> parkingLotPriceIter = parkingLotPrice.iterator();
+
+                double parkingLotRate = 0;
+
+                //Getting each user
+                while (parkingLotPriceIter.hasNext()) {
+                    com.firebase.client.DataSnapshot innerNode = parkingLotPriceIter.next();
+                    String parkingLotData = innerNode.getKey();
+
+                    if (parkingLotData.equals("Price"))  {
+                        parkingLotRate = innerNode.getValue(Double.class);
+                        break;
+                    }
+                    Firebase userSpotRate = new Firebase(usersNode + userName + "/ReservationStatus/SpotRate");
+                    userSpotRate.setValue( parkingLotRate );
+                    System.out.println("Rate: " + parkingLotRate);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
     }
 
     /**

@@ -43,6 +43,9 @@ public class UserHomepage extends AppCompatActivity {
         ImageButton reviewHistoryButt = (ImageButton) findViewById(R.id.reviewHistory);
         ImageButton helpButt = (ImageButton) findViewById(R.id.imageButton);
 
+        // Update the last time a user was logged in and active. In charge of resetting database
+        iLink.updateUserActivity();
+
         mAuth = FirebaseAuth.getInstance();
 
         logoutButt.setOnClickListener(new View.OnClickListener() {
@@ -100,9 +103,6 @@ public class UserHomepage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // Update the last time a user was logged in and active. In charge of resetting database
-        iLink.updateUserActivity();
 
         checkStatusButt.setOnClickListener(new View.OnClickListener() {
 
