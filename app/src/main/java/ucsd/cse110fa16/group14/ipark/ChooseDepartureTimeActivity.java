@@ -19,20 +19,25 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
+        iLink.getDefaultPrice();
         SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
 
-
+    @Override
+    protected void onResume(){
+        super.onResume();
+        iLink.getDefaultPrice();
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_departure_time);
+
         iLink.getDefaultPrice();
 
         Button homeButt = (Button) findViewById(R.id.button7);
