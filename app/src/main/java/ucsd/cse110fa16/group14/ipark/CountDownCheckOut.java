@@ -34,6 +34,7 @@ public class CountDownCheckOut extends AppCompatActivity {
 
     private int mProgressStatus;
     static Stack<String> parkingspots = new Stack<>();
+
     Firebase root;
     private static FirebaseAuth auth;
 
@@ -117,7 +118,7 @@ public class CountDownCheckOut extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
-        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName+"/History");
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName);
 
         startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
         endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
@@ -198,7 +199,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                 tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);
                 tempDepMin = calendar.get(Calendar.MINUTE);
 
-                root.child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockout").setValue(
+                root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockout").setValue(
                         generateTimeText(tempDephHour, tempDepMin));
 
                 intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
@@ -208,7 +209,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                 totHours = tempDephHour - bundle.getInt("arriveHour");
                 totMins = tempDepMin - bundle.getInt("arriveMin");
                 totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
-                root.child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Rate").setValue(String.format("$%.2f", totPay));
+                root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Rate").setValue(String.format("$%.2f", totPay));
 
                 intent.putExtra("rate", String.format("$%.2f", totPay));
                 String spot = pspot.getText().toString();
@@ -301,9 +302,24 @@ public class CountDownCheckOut extends AppCompatActivity {
                     alertDialog.show();
                 }
                 else {
-                    Date date = new Date();                               // given date
+                    Date tempDate = new Date();                               // given date
                     Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
-                    calendar.setTime(date);                               // assigns calendar to given date
+                    calendar.setTime(tempDate);                               // assigns calendar to given date
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    tempDate = null;
+                    try {
+                        tempDate = sdf.parse(sdf.format(new Date()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    final Date date = tempDate;
+
+                    final Firebase tempRes = root.child("Reservation").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
+                    final Firebase tempHist = root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
+
+                    ValueEventListener listener;
 
                     Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
@@ -318,7 +334,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                         AlertDialog.Builder Quest = new AlertDialog.Builder(CountDownCheckOut.this);
                         Quest.setTitle("Cancel order?");
                         Quest.setMessage(
-                                "Are you sure you want to cancel your your reservation?");
+                                "Are you sure you want to cancel your reservation?");
                         Quest.setPositiveButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -329,7 +345,9 @@ public class CountDownCheckOut extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
+
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                tempRes.removeValue();
                                 Toast.makeText(CountDownCheckOut.this, "Order Cancelled", Toast.LENGTH_LONG).show();
                                 startActivity(intent);
                                 finish();
@@ -343,20 +361,13 @@ public class CountDownCheckOut extends AppCompatActivity {
                             intent.putExtra("departMin", bundle.getInt("departMin"));
                             intent.putExtra("rate", bundle.getInt("rate"));
                         } else {
-
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                            date = null;
-                            try {
-                                date = sdf.parse(sdf.format(new Date()));
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-
                             tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);
                             tempDepMin = calendar.get(Calendar.MINUTE);
 
-                            root.child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockout").setValue(
-                                    generateTimeText(tempDephHour, tempDepMin));
+                            tempHist.child("Clockin").setValue(generateTimeText(bundle.getInt("arriveHour"),bundle.getInt("arriveMin")));
+                            tempHist.child("Clockout").setValue(generateTimeText(tempDephHour, tempDepMin));
+                            tempHist.child("Date").setValue(sdf.format(date));
+                            tempHist.child("User").setValue(userName);
 
                             intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
                             intent.putExtra("departMin", calendar.get(Calendar.MINUTE));
@@ -365,7 +376,9 @@ public class CountDownCheckOut extends AppCompatActivity {
                             totHours = tempDephHour - bundle.getInt("arriveHour");
                             totMins = tempDepMin - bundle.getInt("arriveMin");
                             totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
-                            root.child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Rate").setValue(String.format("$%.2f", totPay));
+                            tempHist.child("Rate").setValue(String.format("$%.2f", totPay));
+
+                            tempRes.removeValue();
 
                             intent.putExtra("rate", String.format("$%.2f", totPay));
                         }
@@ -566,5 +579,4 @@ public class CountDownCheckOut extends AppCompatActivity {
             }
         });
     }
-
 }
