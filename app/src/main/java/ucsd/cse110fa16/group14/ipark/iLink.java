@@ -283,6 +283,7 @@ public class iLink {
                 System.out.println("=================================");
                 System.out.println("  Current Schedule:  " + schedule);
                 System.out.println("  Assigned Spot:     " + spot);
+                System.out.println("  User Registering:  " + userName);
                 System.out.println("  Start Time In Sec: " + startTime);
                 System.out.println("  End   Time In Sec: " + endTime);
 
