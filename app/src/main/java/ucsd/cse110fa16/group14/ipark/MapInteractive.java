@@ -21,12 +21,8 @@ import android.widget.EditText;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
 
@@ -45,8 +41,6 @@ public class MapInteractive extends View {
 
     private static int[] parkingLotStatus;
 
-    //Canvas
-    Canvas cv;
     //different color states of parking spots
     Paint[] paints = new Paint[4];// green, yellow, red, white;
 
@@ -58,8 +52,6 @@ public class MapInteractive extends View {
     int height;
     int gap;
 
-    //holds the index of the color of the rectangle
-    int colorIndex = 0;
     //top left space's position
     int x_tl;
     int y_tl;
@@ -176,7 +168,6 @@ public class MapInteractive extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        cv = canvas;
 
         for (Map.Entry<Rect, Paint> r : recCol.entrySet()) {
             Rect key = r.getKey();

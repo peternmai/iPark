@@ -44,7 +44,6 @@ public class CommentBoss extends AppCompatActivity {
         public void setKey(String key) {
             this.key = key;
         }
-        public String getKey() { return this.key; }
 
         public void setDate(String date) {
             this.date = date;
