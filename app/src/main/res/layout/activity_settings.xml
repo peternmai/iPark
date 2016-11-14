@@ -17,7 +17,6 @@
         android:layout_marginTop="45dp"
         android:id="@+id/textView33"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_below="@+id/currentPrice"
         android:layout_toStartOf="@+id/NEWPRICE"
         android:layout_marginEnd="13dp" />
 

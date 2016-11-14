@@ -27,6 +27,7 @@ public class UserHomepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
         final Bundle bundle = getIntent().getExtras();
+
        // final String username = getIntent().hasExtra("Username")?bundle.getString("Username"):"abhi";
 
 
