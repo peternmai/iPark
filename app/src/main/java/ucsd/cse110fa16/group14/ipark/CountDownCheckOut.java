@@ -177,6 +177,44 @@ public class CountDownCheckOut extends AppCompatActivity {
             public void onFinish() {
                 timerText.setText("00:00:00");
                 timerText.setTextColor(Color.RED);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                Date date = new Date();                               // given date
+                Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
+                calendar.setTime(date);                               // assigns calendar to given date
+
+                Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
+                intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
+                intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+
+                int tempDephHour, tempDepMin;
+                int totHours, totMins;
+                double totPay, rate;
+                rate = 2.5;
+                date = null;
+                try {
+                    date = sdf.parse(sdf.format(new Date()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);
+                tempDepMin = calendar.get(Calendar.MINUTE);
+
+                root.child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockout").setValue(
+                        generateTimeText(tempDephHour, tempDepMin));
+
+                intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
+                intent.putExtra("departMin", calendar.get(Calendar.MINUTE));
+
+                // Calculate total time parked and total to pay
+                totHours = tempDephHour - bundle.getInt("arriveHour");
+                totMins = tempDepMin - bundle.getInt("arriveMin");
+                totPay = ((double) (totHours + ((double) ((double) totMins / 60.0)))) * rate;
+                root.child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Rate").setValue(String.format("$%.2f", totPay));
+
+                intent.putExtra("rate", String.format("$%.2f", totPay));
+                String spot = pspot.getText().toString();
+                startActivity(intent);
             }
         }.start();
 
