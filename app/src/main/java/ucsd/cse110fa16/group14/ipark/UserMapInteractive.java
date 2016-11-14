@@ -98,11 +98,8 @@ public class UserMapInteractive extends View {
         paints[iLink.ILLEGAL].setStyle(Paint.Style.FILL);
 
         Firebase parkingLotDB = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
-        Date date = new Date();                               // given date
-        Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
-        calendar.setTime(date);                               // assigns calendar to given date
-        long curTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
-        parkingLotStatus = iLink.getParkingLotStatus(curTime, curTime);
+        long curTimeInSec = iLink.getCurTimeInSec();
+        parkingLotStatus = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
 
         //initialize the rectangles & map
         for (int i = 0; i < numSpaces; i++) {

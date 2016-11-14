@@ -193,7 +193,7 @@ public class iLink {
         // parse each order and get startTime and endTime
         for(int i = 0; i < orderNum; i++)
         {
-            orders[i] = "2012/trump/2016";
+            //orders[i] = "2012/trump/2016";
             String[] currOrder = orders[i].split("[/]");
             orderTime[i][0] = Integer.valueOf(currOrder[0]);
             orderTime[i][1] = Integer.valueOf(currOrder[2]);
@@ -259,8 +259,7 @@ public class iLink {
 
         auth = FirebaseAuth.getInstance();
         String userName = auth.getCurrentUser().getDisplayName();
-        HashMap<String, String> spotInfo = getChildInfo( "ParkingLot", spot);
-        String schedule = spotInfo.get("Schedule");
+        String schedule = getSpotCurrentSchedule( spot );
 
         System.out.println("=================================");
         System.out.println("Assigning New Parking Spot");
@@ -348,6 +347,37 @@ public class iLink {
         return curTimeInSec;
     }
 
+    // Return the schedule at the specified spot
+    private static String scheduleV = "";
+    private static String getSpotCurrentSchedule(String spot) {
+        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/" + spot);
+
+        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
+
+                //Getting parking spot information from Firebase
+                while (iterator.hasNext()) {
+                    com.firebase.client.DataSnapshot innerNode = iterator.next();
+                    String innerKey = innerNode.getKey();
+
+                    if (innerKey.equals("Schedule"))  {
+                        scheduleV = innerNode.getValue(String.class);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+
+        return scheduleV;
+    }
+
 
     public static int[] getParkingLotStatus(final long startTime, final long endTime) {
 
@@ -401,7 +431,7 @@ public class iLink {
                     else if(reserved)
                         spotStatus[count] = OWNER_RESERVED;
                     else {
-                        //System.out.println("1 ");
+                        //System.out.println("Spot " + count + ": " + startTime + " " + endTime + " " + schedule);
                         if( checkSpotAvailability(schedule, startTime, endTime) == true )
                             spotStatus[count] = AVAILABLE;
                         else
