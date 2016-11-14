@@ -211,6 +211,7 @@ public class iLink {
             //System.out.println("what is the order: "+ orders[i]);
             //System.out.println("length is "+ currOrder.length);
             orderTime[i][0] = Integer.parseInt(currOrder[0]);
+            System.out.println("\nPRINTING CURR ORDER 2: " + " " +currOrder[2]+"\n\n");
             orderTime[i][1] = Integer.parseInt(currOrder[2]);
         }
 
