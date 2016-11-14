@@ -32,7 +32,7 @@ public class iLink {
     protected static double defaultPrice;
     protected static double userPrice;
     private static int[] spotStatus = new int[NUM_SPOTS];
-    private static String schedule = "";
+    //private static String schedule = "";
 
     public static void setGap(long newGap){
         gap = newGap;
@@ -266,16 +266,18 @@ public class iLink {
         String userName = auth.getCurrentUser().getDisplayName();
 
         updateUserReservationStatus( userName, spot, startTime, endTime );
-        parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
+        parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener()
+        {
+
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
                 Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
                 Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
 
-                //String schedule = "";
-                //Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
-                //auth = FirebaseAuth.getInstance();
-                //String userName = auth.getCurrentUser().getDisplayName();
+                String schedule = "";
+                Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
+                auth = FirebaseAuth.getInstance();
+                String userName = auth.getCurrentUser().getDisplayName();
 
                 //Getting parking spot information from Firebase
                 while (iterator.hasNext()) {
@@ -297,9 +299,9 @@ public class iLink {
                 System.out.println("  End   Time In Sec: " + endTime);
 
                 // Update old schedule data field with new reservation data
-                //String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
-                //System.out.println("  New Schedule:      " + newSchedule);
-                //if (newSchedule != null) scheduleRef.setValue(newSchedule);
+                String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
+                System.out.println("  New Schedule:      " + newSchedule);
+                if (newSchedule != null) scheduleRef.setValue(newSchedule);
             }
 
             @Override
@@ -308,8 +310,8 @@ public class iLink {
             }
         });
 
-        String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
-        if (newSchedule != null) scheduleRef.setValue(newSchedule);
+        //String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
+        //if (newSchedule != null) scheduleRef.setValue(newSchedule);
     }
 
     public static void changePrice(double newPrice) {
