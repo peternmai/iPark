@@ -266,7 +266,7 @@ public class iLink {
                 String schedule = "";
                 Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
                 auth = FirebaseAuth.getInstance();
-                String userName = auth.getCurrentUser().getUid();
+                String userName = auth.getCurrentUser().getDisplayName();
 
                 //Getting parking spot information from Firebase
                 while (iterator.hasNext()) {
