@@ -1,8 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
 import android.util.Log;
-import android.widget.NumberPicker;
-import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -10,14 +8,11 @@ import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
@@ -644,6 +639,7 @@ public class iLink {
         });
         return map;
     }
+
     protected static double getDefaultPrice() {
 
         String ref = "https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice" ;

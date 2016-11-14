@@ -152,8 +152,6 @@ public class UserHomepage extends AppCompatActivity {
                 //Get the hashMap with the details of a user
                 infoMap = iLink.getChildInfo("Users", currUser);
                 Intent intent = new Intent(UserHomepage.this, PersonalInfo.class);
-             //   Toast.makeText(UserHomepage.this, currUser,
-             //           Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

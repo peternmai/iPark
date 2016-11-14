@@ -52,7 +52,7 @@ public class Payment extends AppCompatActivity {
         int totHours = 0;
         int totMins = 0;
 
-        double rate = iLink.defaultPrice; // Payment
+        final double rate = iLink.defaultPrice; // Payment
         iLink.userPrice = rate; // Payment
 
         double totPay = 0.00;
@@ -79,7 +79,7 @@ public class Payment extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                String rate = total.getText().toString();
+                String rate2 = Double.toString(rate);
                 String clockInTime = generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"));
                 String clockOutTime = generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin"));
                 //Date date = new Date();
@@ -125,7 +125,7 @@ public class Payment extends AppCompatActivity {
                     Firebase dateChild = hasChild.child("Date");
                     Firebase userChild = hasChild.child("User");
 
-                    rateChild.setValue(rate);
+                    rateChild.setValue(rate2);
                     clockInChild.setValue(clockInTime);
                     clockOutChild.setValue(clockOutTime);
                     dateChild.setValue(sdf.format(date));
@@ -140,7 +140,7 @@ public class Payment extends AppCompatActivity {
                     intent.putExtra("departHour", bundle.getInt("departHour"));
                     intent.putExtra("departMin", bundle.getInt("departMin"));
                     intent.putExtra("spotAssign", spotAssign);
-                    intent.putExtra("rate", rate);
+                    intent.putExtra("rate", rate2);
 
                     startActivity(intent);
                 }
