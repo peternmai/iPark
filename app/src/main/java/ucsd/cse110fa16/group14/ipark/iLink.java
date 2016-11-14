@@ -20,9 +20,7 @@ public class iLink {
     private static String usersNode = "https://ipark-e243b.firebaseio.com/Users/";
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
     private static FirebaseAuth auth;
-    private static long gap = 0;
-    private static int eStep = 2;
-    private static int sStep = 3;
+
 
     public static final int AVAILABLE = 0;
     public static final int OWNER_RESERVED = 1;
@@ -32,17 +30,13 @@ public class iLink {
     protected static double defaultPrice;
     protected static double userPrice;
     private static int[] spotStatus = new int[NUM_SPOTS];
-    //private static String schedule = "";
+
 
     // Used to access user's reservation data. Call getUserReservationStatus() beforehand
     protected static String userReservationSpot = "";
     protected static long userReservationStartTime = 0;
     protected static long userReservationEndTime = 0;
     protected static double userReservationSpotRate = 0;
-
-    public static void setGap(long newGap){
-        gap = newGap;
-    }
 
     private static String generateNewInsertSpotReservationData
             (String curDataStr, long startTime, String userName, long endTime )
@@ -204,8 +198,13 @@ public class iLink {
         {
             //orders[i] = "2012/trump/2016";
             String[] currOrder = orders[i].split("[/]");
-            orderTime[i][0] = Integer.valueOf(currOrder[0]);
-            orderTime[i][1] = Integer.valueOf(currOrder[2]);
+            //System.out.println("what is the order: "+ orders[i]);
+            //System.out.println("length is "+ currOrder.length);
+            orderTime[i][0] = Integer.parseInt(currOrder[0]);
+            orderTime[i][1] = Integer.parseInt(currOrder[2]);
+
+            System.out.println("start from: "+startTime);
+            System.out.println("ends ar: "+endTime);
         }
 
         // compare and check
@@ -748,7 +747,7 @@ public class iLink {
                 while (iterator.hasNext()) {
                     DataSnapshot data = iterator.next();
 
-                    if (data.getKey() != "History") {
+                    if (!data.hasChildren()) {
                         String key = data.getKey();
                         String val = data.getValue(String.class);
                         map.put(key, val);
