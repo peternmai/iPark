@@ -194,13 +194,15 @@ public class MapInteractive extends View {
             parkingLotStatus = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
             builder.setTitle("Change spot status");
 
-            if (rectIndex == iLink.AVAILABLE){
+            int myInx = parkingLotStatus[rectIndex];
+
+            if (myInx == iLink.AVAILABLE){
                 builder.setMessage("    Change available spot to reserved?\n");
             }
-            else if (rectIndex == iLink.OWNER_RESERVED){
+            else if (myInx == iLink.OWNER_RESERVED){
                 builder.setMessage("    Change reserved spot to available?\n");
             }
-            else if (rectIndex == iLink.ILLEGAL){
+            else if (myInx == iLink.ILLEGAL){
                 builder.setMessage("    Change illegal spot to available?\n");
             }
             else builder.setMessage("    Cannot change occupied.\n");
@@ -281,12 +283,13 @@ public class MapInteractive extends View {
 
         //index in array of paint
         int idx = 0;
-        int newIdx = idx;
+        int newIdx ;
         for (int i = 0; i < paints.length; i++) {
             if (paints[i] == p) {
                 idx = i;
             }
         }
+        newIdx = idx;
 
         String spotNum = "Spot"+ String.format("%03d", rectIndex);
 
