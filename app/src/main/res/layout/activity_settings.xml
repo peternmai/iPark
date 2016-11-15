@@ -10,16 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ucsd.cse110fa16.group14.ipark.Settings">
 
-    <TextView
-        android:text="New Price: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:id="@+id/textView33"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_toStartOf="@+id/NEWPRICE"
-        android:layout_marginEnd="13dp" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,12 +21,41 @@
         android:layout_alignBottom="@+id/textView33"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:text="New Price: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="82dp"
+        android:id="@+id/textView33"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginEnd="13dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/NEWPRICE" />
+
     <Button
         android:text="CHANGE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="62dp"
         android:id="@+id/change"
-        android:layout_below="@+id/textView33"
-        android:layout_toEndOf="@+id/textView33" />
+        android:layout_below="@+id/NEWPRICE"
+        android:layout_alignStart="@+id/textView33"
+        android:layout_marginStart="96dp" />
+
+    <TextView
+        android:text="Current Price:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/NEWPRICE"
+        android:layout_alignStart="@+id/textView33"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/textView29"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView29"
+        android:layout_toEndOf="@+id/change"
+        android:id="@+id/currentPrice" />
 </RelativeLayout>

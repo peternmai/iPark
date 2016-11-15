@@ -17,10 +17,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class OwnerHomepage extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage_owner);
+
 
         ImageButton map1 = (ImageButton) findViewById(R.id.map1);
         ImageButton settings = (ImageButton) findViewById(R.id.settings);
@@ -45,7 +47,9 @@ public class OwnerHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OwnerHomepage.this, Settings.class);
+                iLink.getDefaultPrice();
                 startActivity(intent);
+
             }
         });
 

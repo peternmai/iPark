@@ -30,28 +30,39 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         final HashMap<String,String> price;
 
+        iLink.getDefaultPrice();
         //final TextView curr = (TextView) findViewById(R.id.currentPrice);
         final EditText newP = (EditText) findViewById(R.id.NEWPRICE);
         Button change = (Button) findViewById(R.id.change);
+        final TextView currP = (TextView) findViewById(R.id.currentPrice);
 
 
-        price = iLink.getChildInfo("ParkingLot","SpotDefaultPrice");
+
+        //price = iLink.getChildInfo("ParkingLot","SpotDefaultPrice");
         //if(!price.containsKey("Price")) System.out.println("This IS here, Yuri");
-        //curr.setText(price.get("Price"));
+        String defaultP= Double.toString(OwnerHomepage.currPrice);
+        currP.setText(defaultP);
 
         change.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 String n = newP.getText().toString();
-                double newPrice= Double.parseDouble(n);
+                final double newPrice= Double.parseDouble(n);
                 iLink.changePrice(newPrice);
+
+                double neww = iLink.getDefaultPrice();
+                System.out.println("HEY " + neww);
+                //currP.setText(Double.toString(iLink.defaultPrice));
 
                 AlertDialog.Builder updated = new AlertDialog.Builder(Settings.this);
                 updated.setTitle("Help Information");
-                updated.setMessage("Current Price is Now: $" + price.get("Price"));
+                updated.setMessage("Current Price is Now: $" + newPrice);
                 updated.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        TextView currPP = (TextView) findViewById(R.id.currentPrice);
+                        currPP.setText(Double.toString(newPrice));
+                        currP.setText(Double.toString(newPrice));
                         dialog.cancel();
                     }
                 });
@@ -60,8 +71,16 @@ public class Settings extends AppCompatActivity {
                 AlertDialog alertDialog = updated.create();
                 alertDialog.show();
 
+
             }
         });
 
+
+    }
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(Settings.this, OwnerHomepage.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
