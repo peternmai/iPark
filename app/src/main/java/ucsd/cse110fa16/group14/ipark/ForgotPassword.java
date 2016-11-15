@@ -38,7 +38,7 @@ public class ForgotPassword extends AppCompatActivity {
 
         sendButton = (Button) findViewById(R.id.send);
         emailField = (EditText) findViewById(R.id.emailField);
-        caption = (TextView) findViewById(R.id.invalidEmailFP);
+        caption = (TextView) findViewById(R.id.invalidEmailTV);
         ImageButton home = (ImageButton) findViewById(R.id.imageButton2);
 
            /* return to home page */
@@ -46,8 +46,13 @@ public class ForgotPassword extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ForgotPassword.this, UserHomepage.class);
-                startActivity(intent);
+                if (auth.getCurrentUser() != null) {
+                    Intent intent = new Intent(ForgotPassword.this, UserHomepage.class);
+                    startActivity(intent);
+                } else{
+                    Intent intent = new Intent(ForgotPassword.this, LoginPage.class);
+                    startActivity(intent);
+                }
             }
         });
 
