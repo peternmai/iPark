@@ -40,7 +40,7 @@ public class Settings extends AppCompatActivity {
 
         //price = iLink.getChildInfo("ParkingLot","SpotDefaultPrice");
         //if(!price.containsKey("Price")) System.out.println("This IS here, Yuri");
-        String defaultP= Double.toString(OwnerHomepage.currPrice);
+        String defaultP= Double.toString(iLink.getDefaultPrice());
         currP.setText(defaultP);
 
         change.setOnClickListener(new View.OnClickListener(){
