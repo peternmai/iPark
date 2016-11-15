@@ -2,12 +2,10 @@ package ucsd.cse110fa16.group14.ipark;
 
 import android.util.Log;
 
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
@@ -676,12 +674,12 @@ public class iLink {
      * @param child username, spot, or the whole date/time thing
      * @return the map with child's values. Example: (username, admin),(email, www123@gmail.com)
      */
-    protected static HashMap<String, Object> getChildInfo(String root, final String child) {
+    protected static HashMap<String, String> getChildInfo(String root, final String child) {
 
         String ref = "https://ipark-e243b.firebaseio.com/" + root +
                 "/" + child ;
         Firebase fReference = new Firebase(ref);
-        final HashMap<String, Object> map = new HashMap<>();
+        final HashMap<String, String> map = new HashMap<>();
         fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -692,7 +690,7 @@ public class iLink {
                     DataSnapshot data = iterator.next();
                     if (!data.hasChildren()) {
                         String key = data.getKey();
-                        Object val = data.getValue();
+                        String val = data.getValue(String.class);
                         map.put(key, val);
                     }
                 }
