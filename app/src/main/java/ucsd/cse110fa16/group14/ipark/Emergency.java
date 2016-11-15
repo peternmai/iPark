@@ -94,7 +94,11 @@ public class Emergency extends AppCompatActivity {
 
                 emergencyType.setValue(selectedbButton);
                 dateChild.setValue(sdf.format(date));
-                parkingNumChild.setValue(parkingNumber);
+                if(parkingNumber.isEmpty()) {
+                    parkingNumChild.setValue("N/A");
+                } else {
+                    parkingNumChild.setValue(parkingNumber);
+                }
                 userChild.setValue(userName);
                 //////////////////////////////////////////////////////////
 
