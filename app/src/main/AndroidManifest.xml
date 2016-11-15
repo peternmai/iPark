@@ -45,6 +45,7 @@
         <activity android:name=".Emergency" />
         <activity android:name=".Settings" />
         <activity android:name=".RecieveReports" />
+        <activity android:name =".Messages" />
         <activity android:name=".BossLogin" />
         <activity android:name=".ErrorReport" />
         <activity android:name=".ForgotPassword" />

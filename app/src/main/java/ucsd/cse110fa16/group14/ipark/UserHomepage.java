@@ -45,6 +45,7 @@ public class UserHomepage extends AppCompatActivity {
         ImageButton personalInfoButt = (ImageButton) findViewById(R.id.personalInfo);
         ImageButton reviewHistoryButt = (ImageButton) findViewById(R.id.reviewHistory);
         ImageButton helpButt = (ImageButton) findViewById(R.id.imageButton);
+        ImageButton mail = (ImageButton) findViewById(R.id.imageButton5);
 
         // Update the last time a user was logged in and active. In charge of resetting database
         iLink.updateUserActivity();
@@ -151,6 +152,15 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, MapDirectional.class);
+                startActivity(intent);
+            }
+        });
+
+        mail.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserHomepage.this, Messages.class);
                 startActivity(intent);
             }
         });
