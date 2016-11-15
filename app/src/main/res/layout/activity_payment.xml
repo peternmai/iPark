@@ -129,4 +129,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:id="@+id/currentPrice"
+        android:text="Current rate is $  .  /hour"
+        android:textSize="18sp"
+        android:layout_above="@+id/MessageTotaltoPay"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
