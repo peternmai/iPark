@@ -2,9 +2,11 @@ package ucsd.cse110fa16.group14.ipark;
 
 import android.util.Log;
 
+import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -27,8 +29,10 @@ public class iLink {
     public static final int OCCUPIED = 2;
     public static final int ILLEGAL = 3;
     public static final int NUM_SPOTS = 80;
+
     protected static double defaultPrice;
     protected static double userPrice;
+
     private static int[] spotStatus = new int[NUM_SPOTS];
 
 
@@ -672,12 +676,12 @@ public class iLink {
      * @param child username, spot, or the whole date/time thing
      * @return the map with child's values. Example: (username, admin),(email, www123@gmail.com)
      */
-    protected static HashMap<String, String> getChildInfo(String root, final String child) {
+    protected static HashMap<String, Object> getChildInfo(String root, final String child) {
 
         String ref = "https://ipark-e243b.firebaseio.com/" + root +
                 "/" + child ;
         Firebase fReference = new Firebase(ref);
-        final HashMap<String, String> map = new HashMap<>();
+        final HashMap<String, Object> map = new HashMap<>();
         fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -686,10 +690,9 @@ public class iLink {
 
                 while (iterator.hasNext()) {
                     DataSnapshot data = iterator.next();
-
                     if (!data.hasChildren()) {
                         String key = data.getKey();
-                        String val = data.getValue(String.class);
+                        Object val = data.getValue();
                         map.put(key, val);
                     }
                 }
@@ -704,23 +707,13 @@ public class iLink {
     }
 
     protected static double getDefaultPrice() {
-
-        String ref = "https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice" ;
+        String ref = "https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice/Price" ;
         Firebase fReference = new Firebase(ref);
-        fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
+        fReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterable<com.firebase.client.DataSnapshot> firstChildData = dataSnapshot.getChildren();
-                Iterator<DataSnapshot> iterator = firstChildData.iterator();
-
-                while (iterator.hasNext()) {
-                    DataSnapshot data = iterator.next();
-
-                    if (data.getKey() == "Price") {
-                        double val = data.getValue(Double.class);
-                        defaultPrice = val;
-                    }
-                }
+                Double val = dataSnapshot.getValue(Double.class);
+                defaultPrice = val;
             }
 
             @Override

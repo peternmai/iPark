@@ -41,6 +41,8 @@ public class ForgotPassword extends AppCompatActivity {
         caption = (TextView) findViewById(R.id.invalidEmailTV);
         ImageButton home = (ImageButton) findViewById(R.id.imageButton2);
 
+        auth = FirebaseAuth.getInstance();
+
            /* return to home page */
         home.setOnClickListener(new View.OnClickListener() {
 
@@ -55,8 +57,6 @@ public class ForgotPassword extends AppCompatActivity {
                 }
             }
         });
-
-        auth = FirebaseAuth.getInstance();
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
