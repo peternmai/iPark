@@ -40,19 +40,6 @@
         android:textAlignment="center"
         android:textColor="#404040" />
 
-    <ImageButton
-        app:srcCompat="@mipmap/logout_button"
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:layout_width="110dp"
-        tools:background="@android:color/background_light"
-        android:layout_height="120dp"
-        android:scaleType="fitCenter"
-        android:id="@+id/logoutButton"
-        android:layout_above="@+id/textView43"
-        android:layout_alignParentEnd="true"
-        android:background="#FFFFFF" />
-
     <TextView
         android:text="Logout"
         android:layout_width="wrap_content"
@@ -229,6 +216,33 @@
         android:textAlignment="center"
         android:layout_below="@+id/imageButton"
         android:layout_alignStart="@+id/textView38" />
+
+    <ImageButton
+        app:srcCompat="@mipmap/logout_button"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:layout_width="110dp"
+        tools:background="@android:color/background_light"
+        android:layout_height="120dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/logoutButton"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/textView38"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        app:srcCompat="@mipmap/mail1"
+        android:layout_width="70dp"
+        tools:background="@android:color/background_light"
+        android:layout_height="70dp"
+        android:background="#FFFFFF"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/imageButton5"
+        android:layout_marginEnd="12dp"
+        android:layout_below="@+id/textView42"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
