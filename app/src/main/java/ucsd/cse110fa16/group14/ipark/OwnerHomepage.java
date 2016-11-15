@@ -1,5 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,7 +48,11 @@ public class OwnerHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OwnerHomepage.this, Settings.class);
-                iLink.getDefaultPrice();
+                ProgressDialog progress = new ProgressDialog(OwnerHomepage.this);
+                progress.show();
+                iLink.defaultPrice = iLink.getDefaultPrice();
+                progress.setMessage("Loading....");
+                progress.dismiss();
                 startActivity(intent);
 
             }

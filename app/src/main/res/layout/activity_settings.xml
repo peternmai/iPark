@@ -25,37 +25,52 @@
         android:text="New Price: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="137dp"
         android:id="@+id/textView33"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_marginEnd="13dp"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/NEWPRICE" />
-
-    <Button
-        android:text="CHANGE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
-        android:id="@+id/change"
-        android:layout_below="@+id/NEWPRICE"
-        android:layout_alignStart="@+id/textView33"
-        android:layout_marginStart="96dp" />
+        android:layout_toStartOf="@+id/NEWPRICE"
+        android:layout_marginEnd="10dp" />
 
     <TextView
         android:text="Current Price:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/NEWPRICE"
-        android:layout_alignStart="@+id/textView33"
-        android:layout_marginBottom="24dp"
         android:id="@+id/textView29"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginBottom="28dp"
+        android:layout_above="@+id/NEWPRICE"
+        android:layout_alignStart="@+id/textView33" />
+
+    <TextView
+        android:text="Price Settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView65"
+        android:textSize="26sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:textColor="@android:color/black"
+        android:textStyle="normal|bold" />
+
+    <Button
+        android:text="CHANGE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="67dp"
+        android:id="@+id/change"
+        android:layout_below="@+id/NEWPRICE"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/currentPrice"
+        android:textSize="20sp"
         android:layout_alignBottom="@+id/textView29"
-        android:layout_toEndOf="@+id/change"
-        android:id="@+id/currentPrice" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/holo_red_light"
+        android:textStyle="normal|bold" />
+
 </RelativeLayout>
