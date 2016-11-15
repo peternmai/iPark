@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class LoginPage extends AppCompatActivity {
     private ProgressDialog progress;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
+    private CheckBox rememberMe;
 
 
     @Override
@@ -121,10 +123,16 @@ public class LoginPage extends AppCompatActivity {
         forgotPass = (TextView) findViewById(R.id.forget);
         usernameField = (EditText) findViewById(R.id.userName);
         passwordField = (EditText) findViewById(R.id.password);
+        rememberMe = (CheckBox) findViewById(R.id.checkBox2);
 
         //forgotPassword = (CheckBox) findViewById(R.id.checkBox);
 
         progress = new ProgressDialog(this);
+
+        if(iLink.wantUsernameRemembered){
+            rememberMe.setChecked(true);
+            usernameField.setText(iLink.savedUsername);
+        }
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -133,13 +141,13 @@ public class LoginPage extends AppCompatActivity {
                 if (firebaseAuth.getCurrentUser() != null) {
 
                     String username = firebaseAuth.getCurrentUser().getEmail();
-                    String admin = "www123@gmail.com";
+                    //String admin = "www123@gmail.com";
                     /*Intent intent = username.equals("admin") ?
                             new Intent(LoginPage.this, OwnerHomepage.class):
                             new Intent(LoginPage.this, UserHomepage.class) ;*/
 
                     Intent intent;
-                    if (username.equals(admin))
+                    if (username.equals("admin"))
                         intent = new Intent(LoginPage.this, OwnerHomepage.class);
                     else intent = new Intent(LoginPage.this, UserHomepage.class);
 
@@ -159,11 +167,17 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
+
         //Sign in when log in button is pressed
         loginButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
+                if(rememberMe.isChecked()){
+                    iLink.savedUsername = usernameField.getText().toString();
+                    iLink.wantUsernameRemembered = true;
+                }else{
+                    iLink.wantUsernameRemembered = false;
+                }
                 signIn();
             }
         });
@@ -177,11 +191,6 @@ public class LoginPage extends AppCompatActivity {
                 hlp.setMessage("\t\t\t\tIn case you forgot your password, please " +
                                 "click \"Forgot password\" to reset it.\n"
                         + "\n Please create a new iPark account if you are a new user."
-                        //   "\t\t\t\tClick 'CHECKOUT' to sign out and end your reservation.\n"+
-                        // "\t\t\t\tClick 'REPORT' if there is a car in your spot, " +
-                        //"and you will receive a new parking space.\n"
-                        //+ "\t\t\t\tClick 'MAP' to view the map of parking lot.\n" +
-                        //  "\t\t\t\tClick 'EMERGENCY' in case of any emergency."
                 );
                 hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
@@ -264,16 +273,15 @@ public class LoginPage extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
                             passwordField.setText("");
                         } else {
-                            progress.dismiss();
                             Toast.makeText(LoginPage.this, "Sign in successful",
                                     Toast.LENGTH_LONG).show();
                             Intent intent;
-                            if (email.equals("www123@gmail.com")) {
+                            if (username.equals("admin")) {
                                 intent = new Intent(LoginPage.this, OwnerHomepage.class);
                             } else {
                                 intent = new Intent(LoginPage.this, UserHomepage.class);
                             }
-
+                            progress.dismiss();
                             intent.putExtra("Username", username);
                             startActivity(intent);
                         }

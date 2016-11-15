@@ -31,6 +31,9 @@ public class iLink {
     protected static double defaultPrice;
     protected static double userPrice;
 
+    protected static String savedUsername;
+    protected static boolean wantUsernameRemembered;
+
     private static int[] spotStatus = new int[NUM_SPOTS];
 
 
