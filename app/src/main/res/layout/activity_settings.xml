@@ -71,6 +71,7 @@
         android:layout_alignBottom="@+id/textView29"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/holo_red_light"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:paddingLeft="14dp" />
 
 </RelativeLayout>
