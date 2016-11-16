@@ -71,17 +71,17 @@ public class UserMapInteractive extends View {
         setBackgroundColor(Color.LTGRAY);
 
         //initialize the paint colors
-        paints[iLink.AVAILABLE] = new Paint();
-        paints[iLink.AVAILABLE].setColor(Color.WHITE);
-        paints[iLink.AVAILABLE].setStyle(Paint.Style.FILL);
-
         paints[iLink.OWNER_RESERVED] = new Paint();
-        paints[iLink.OWNER_RESERVED].setColor(Color.YELLOW);
+        paints[iLink.OWNER_RESERVED].setColor(Color.WHITE);
         paints[iLink.OWNER_RESERVED].setStyle(Paint.Style.FILL);
 
         paints[iLink.OCCUPIED] = new Paint();
-        paints[iLink.OCCUPIED].setColor(Color.GREEN);
+        paints[iLink.OCCUPIED].setColor(Color.YELLOW);
         paints[iLink.OCCUPIED].setStyle(Paint.Style.FILL);
+
+        paints[iLink.AVAILABLE] = new Paint();
+        paints[iLink.AVAILABLE].setColor(Color.GREEN);
+        paints[iLink.AVAILABLE].setStyle(Paint.Style.FILL);
 
         paints[iLink.ILLEGAL] = new Paint();
         paints[iLink.ILLEGAL].setColor(Color.RED);

@@ -200,6 +200,10 @@ public class CountDownCheckOut extends AppCompatActivity {
                     tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);
                     tempDepMin = calendar.get(Calendar.MINUTE);
 
+                    root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockin").setValue(
+                            generateTimeText(bundle.getInt("arriveHour"),bundle.getInt("arriveMin")));
+                    root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("User").setValue(userName);
+                    root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Date").setValue(sdf.format(date));
                     root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockout").setValue(
                             generateTimeText(tempDephHour, tempDepMin));
 
@@ -214,6 +218,9 @@ public class CountDownCheckOut extends AppCompatActivity {
 
                     intent.putExtra("rate", String.format("$%.2f", totPay));
                     String spot = pspot.getText().toString();
+
+                    root.child("Reservation").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).removeValue();
+
                     startActivity(intent);
                 }
             }

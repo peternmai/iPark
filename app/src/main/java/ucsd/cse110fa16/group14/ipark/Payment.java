@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Payment extends AppCompatActivity {
 
@@ -67,6 +68,11 @@ public class Payment extends AppCompatActivity {
         TextView startTimeText = (TextView) findViewById(R.id.startTimeText);
         TextView endTimeText = (TextView) findViewById(R.id.endTimeText);
         TextView totalPayText = (TextView) findViewById(R.id.totalToPay);
+        TextView currPrice = (TextView) findViewById(R.id.currentPrice);
+
+
+        double currentPrice = iLink.getDefaultPrice();
+        currPrice.setText("Current rate is: " + currentPrice + "/hour");
 
         startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
         endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));

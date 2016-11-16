@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:clickable="true"
@@ -15,16 +16,6 @@
         android:id="@+id/help"
         android:background="@mipmap/help"
         android:layout_width="50dp" />
-
-    <Button
-        android:text="HOME"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button19"
-        android:layout_marginBottom="52dp"
-        android:layout_marginStart="17dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Email: "
@@ -59,16 +50,6 @@
         android:textSize="20sp"
         android:textStyle="normal|bold" />
 
-    <Button
-        android:text="Change Password"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button21"
-        android:layout_marginEnd="19dp"
-        android:layout_alignBaseline="@+id/button19"
-        android:layout_alignBottom="@+id/button19"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,29 +69,6 @@
         android:text="emailID@domain.com"
         android:layout_above="@+id/textView49"
         android:layout_alignStart="@+id/nameTV" />
-
-    <TextView
-        android:text="Name:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        android:id="@+id/textView47"
-        android:textSize="20sp"
-        android:textStyle="normal|bold"
-        android:layout_below="@+id/help"
-        android:layout_alignStart="@+id/button19" />
-
-    <TextView
-        android:text="Your Personal Information"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView28"
-        android:textSize="22sp"
-        android:layout_marginEnd="27dp"
-        android:layout_alignBottom="@+id/help"
-        android:layout_toStartOf="@+id/help"
-        android:textColor="@android:color/black"
-        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -133,5 +91,52 @@
         android:layout_above="@+id/textView48"
         android:layout_toEndOf="@+id/textView75"
         android:layout_marginStart="11dp" />
+
+    <Button
+        android:text="Change Password"
+        android:layout_width="160dp"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:id="@+id/button21"
+        android:background="#e6f2ff"
+        android:layout_below="@+id/textView75"
+        android:layout_alignStart="@+id/textView75"
+        android:layout_marginTop="55dp" />
+
+    <TextView
+        android:text="       PERSONAL INFORMATION"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:id="@+id/textView28"
+        android:textSize="25sp"
+        android:background="#e6f2ff"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_below="@+id/help"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:id="@+id/textView47"
+        android:textSize="20sp"
+        android:textStyle="normal|bold"
+        android:layout_marginStart="28dp"
+        android:layout_below="@+id/textView28"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/home1"
+        android:background="#FFFFFF"
+        android:id="@+id/button19"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="12dp" />
 
 </RelativeLayout>

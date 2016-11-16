@@ -39,11 +39,12 @@ public class activity_review extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
-        iLink.resetUserReservation();
 
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
         root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName+"/History");
+
+        iLink.resetUserReservation();
 
         Button commentButt = (Button) findViewById(R.id.button);
         Button nopButt = (Button) findViewById(R.id.button3);

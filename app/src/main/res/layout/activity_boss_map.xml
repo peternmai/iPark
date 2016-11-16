@@ -9,95 +9,22 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ucsd.cse110fa16.group14.ipark.BossMap">
+    tools:context="ucsd.cse110fa16.group14.ipark.BossMap"><![CDATA[
 
-    <Button
-        android:layout_height="wrap_content"
-        android:id="@+id/help"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:background="@mipmap/help"
-        tools:ignore="HardcodedText"
-        android:layout_width="50dp" />
 
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        tools:ignore="HardcodedText"
-        android:id="@+id/status"
-        android:background="@android:drawable/sym_def_app_icon" /><![CDATA[
 
     //android:layout_below="@+id/textView29"
         //android:layout_alignEnd="@+id/textView29" />
 
 
 
+
+
+
+
     ]]>
 
-    <TextView
-        android:text="2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView31"
-        android:layout_alignEnd="@+id/textView31"
-        android:layout_marginTop="24dp"
-        android:id="@+id/textView34" />
 
-    <TextView
-        android:text="3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView34"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp"
-        android:id="@+id/textView35" />
-
-    <TextView
-        android:text="4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView35"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp"
-        android:id="@+id/textView36" />
-
-    <TextView
-        android:text="5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView36"
-        android:layout_alignEnd="@+id/textView36"
-        android:layout_marginTop="23dp"
-        android:id="@+id/textView46" />
-
-    <TextView
-        android:text="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView7"
-        android:layout_below="@+id/textView32"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:text="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:id="@+id/textView31"
-        android:layout_below="@+id/textView7"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView46"
-        android:layout_marginTop="29dp"
-        android:id="@+id/textView60"
-        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="  0    1     2     3     4     5     6     7     8    9"
@@ -109,21 +36,134 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
 
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        tools:ignore="HardcodedText"
+        android:id="@+id/status"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/help"
+        android:layout_marginStart="236dp"
+        android:layout_marginBottom="441dp"
+        android:background="@android:drawable/sym_def_app_icon" />
+
+
+    <Button
+        android:layout_height="wrap_content"
+        android:id="@+id/help"
+        android:background="@mipmap/help"
+        tools:ignore="HardcodedText"
+        android:layout_width="50dp"
+        android:layout_alignParentStart="true" />
+
     <ucsd.cse110fa16.group14.ipark.MapInteractive
-        android:id="@+id/map"
-        android:layout_alignTop="@+id/textView7"
-        android:layout_centerHorizontal="true"
-        android:layout_width="300dp"
-        android:layout_height="380dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/help"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView32" />
 
     <TextView
-        android:text="7"
+        android:text="20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView64"
-        android:layout_alignBottom="@+id/map"
+        android:layout_below="@+id/textView31"
+        android:layout_alignEnd="@+id/textView31"
+        android:layout_marginTop="24dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:id="@+id/textView31"
+        android:layout_below="@+id/textView7"
+        android:textSize="18sp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="30"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView60"
+        android:layout_above="@+id/textView64"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="49dp" />
+
+        android:layout_marginTop="15dp"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:text="40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView36"
+        android:layout_above="@+id/textView46"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="38dp" />
+
+    <TextView
+        android:text="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView35"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView34"
+        android:layout_below="@+id/textView31"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp" />
+
+
+    <TextView
+        android:text="50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView36"
+        android:layout_alignEnd="@+id/textView36"
+        android:layout_marginTop="16dp"
+        android:id="@+id/textView46"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="70"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:id="@+id/textView64"
+        android:textSize="18sp"
+        android:layout_below="@+id/textView61"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:id="@+id/textView61"
+        android:textSize="18sp"
+        android:layout_below="@+id/textView46"
+        android:layout_alignParentStart="true" />
+
+
+
+    <TextView
+        android:text="00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:textSize="18sp"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/textView32"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

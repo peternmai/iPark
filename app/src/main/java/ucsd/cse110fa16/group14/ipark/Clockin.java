@@ -10,12 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
+import com.firebase.client.utilities.Clock;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Clockin extends AppCompatActivity {
-
+    private boolean hasReservation;
     /*private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private RelativeLayout relativeLayout;
@@ -43,12 +45,20 @@ public class Clockin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clockin);
         final Bundle bundle = getIntent().getExtras();
-
+        hasReservation = false;
         // Redirect user back to home page or status page if they HAVE reserved a spot
         if (bundle.getInt("departHour") != 0 || bundle.getInt("departMin") != 0) {
+            hasReservation = true;
             AlertDialog.Builder alertNotReserved = new AlertDialog.Builder(Clockin.this);
             alertNotReserved.setTitle("Already placed an order");
             alertNotReserved.setMessage(" Would you like to see your reservation status?");
+            alertNotReserved.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialogInterface) {
+                    Intent intent = new Intent(Clockin.this,UserHomepage.class);
+                    startActivity(intent);
+                }
+            });
             alertNotReserved.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

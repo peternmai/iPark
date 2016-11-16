@@ -1,5 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,16 +18,18 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class OwnerHomepage extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage_owner);
 
+
         ImageButton map1 = (ImageButton) findViewById(R.id.map1);
         ImageButton settings = (ImageButton) findViewById(R.id.settings);
         ImageButton reviews = (ImageButton) findViewById(R.id.reviews);
         ImageButton compose = (ImageButton) findViewById(R.id.compose);
-        ImageButton report = (ImageButton) findViewById(R.id.report);
+       // ImageButton report = (ImageButton) findViewById(R.id.report);
         ImageButton emergency = (ImageButton) findViewById(R.id.emergency1);
         ImageButton logout = (ImageButton) findViewById(R.id.logout);
 
@@ -45,7 +48,13 @@ public class OwnerHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OwnerHomepage.this, Settings.class);
+                ProgressDialog progress = new ProgressDialog(OwnerHomepage.this);
+                progress.show();
+                iLink.defaultPrice = iLink.getDefaultPrice();
+                progress.setMessage("Loading....");
+                progress.dismiss();
                 startActivity(intent);
+
             }
         });
 
@@ -67,7 +76,7 @@ public class OwnerHomepage extends AppCompatActivity {
             }
         });
 
-        report.setOnClickListener(new View.OnClickListener() {
+      /*  report.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -75,7 +84,7 @@ public class OwnerHomepage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+*/
         emergency.setOnClickListener(new View.OnClickListener() {
 
             @Override
