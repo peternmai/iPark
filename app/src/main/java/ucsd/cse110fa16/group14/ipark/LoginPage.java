@@ -36,7 +36,6 @@ public class LoginPage extends AppCompatActivity {
     private Button loginButton;
     private Button help;
     private TextView forgotPass;
-    //private CheckBox rememberMe;
     private ProgressDialog progress;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
@@ -139,11 +138,7 @@ public class LoginPage extends AppCompatActivity {
                 //User is singed in
                 if (firebaseAuth.getCurrentUser() != null) {
 
-                    String username = firebaseAuth.getCurrentUser().getEmail();
-                    //String admin = "www123@gmail.com";
-                    /*Intent intent = username.equals("admin") ?
-                            new Intent(LoginPage.this, OwnerHomepage.class):
-                            new Intent(LoginPage.this, UserHomepage.class) ;*/
+                    String username = firebaseAuth.getCurrentUser().getDisplayName();
 
                     Intent intent;
                     if (username.equals("admin"))
@@ -200,23 +195,11 @@ public class LoginPage extends AppCompatActivity {
                     }
                 });
 
-                //hlp.setNegativeButton("No", null);
                 AlertDialog alertDialog = hlp.create();
                 alertDialog.show();
 
             }
         });
-
-
-        /*usernameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    hideKeyboard(v);
-                }
-            }
-        });*/
-
 
         passwordField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
