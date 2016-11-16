@@ -393,6 +393,10 @@ public class CountDownCheckOut extends AppCompatActivity {
                             intent.putExtra("rate", String.format("$%.2f", totPay));
                         }
                         String spot = pspot.getText().toString();
+
+                        // checkout and remove order in firebase
+                        iLink.checkout(spot, startTimeInSec);
+
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         // TODO: This will add a new field rather than replace
                         //iLink.changeReserveStatus(spot, false);

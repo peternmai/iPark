@@ -255,7 +255,7 @@ public class iLink {
     }
 
 
-    private static void checkout (final String spot, final long startTime){
+    public static void checkout (final String spot, final long startTime){
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/" + spot);
 
