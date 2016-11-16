@@ -176,6 +176,7 @@ public class iLink {
 
     }
 
+
     private static boolean checkSpotAvailability(String curDataStr, long startTime, long endTime ){
 
         // error input
@@ -245,6 +246,98 @@ public class iLink {
         }
 
         return false;
+
+    }
+
+
+    private static void checkout (final String spot, final long startTime){
+
+        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/" + spot);
+
+        parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
+
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
+
+                String schedule = "";
+                Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
+                while (iterator.hasNext()) {
+                    com.firebase.client.DataSnapshot innerNode = iterator.next();
+                    String innerKey = innerNode.getKey();
+
+                    if (innerKey.equals("Schedule"))  {
+                        schedule = innerNode.getValue(String.class);
+                        break;
+                    }
+                }
+
+                String newSchedule = remove (schedule, startTime);
+                //System.out.println("  New Schedule:      " + newSchedule);
+                if (newSchedule != null) scheduleRef.setValue(newSchedule);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+
+
+    }
+
+    private static String remove(String curDataStr, long startTime){
+
+
+        //System.out.println("test_1");
+
+        String result = "";
+        if (curDataStr == null || curDataStr == "")
+        {
+            return result;
+        }
+
+        if ( startTime < 0 )
+        {
+            return curDataStr;
+        }
+
+        String[] orders = curDataStr.split("[ ]+");
+
+        int orderNum = orders.length;
+        // create a 2D array of startTime and endTime;
+        int [] orderTime = new int[orderNum];
+
+        int stopIndex = 0;
+        // parse each order and get startTime and endTime
+        for(stopIndex = 0; stopIndex < orderNum; stopIndex++)
+        {
+            //orders[i] = "2012/trump/2016";
+            String[] currOrder = orders[stopIndex].split("[/]");
+            //System.out.println("what is the order: "+ orders[i]);
+            //System.out.println("length is "+ currOrder.length);
+            if (Integer.parseInt(currOrder[0]) == startTime)
+            {
+                break;
+            }
+
+        }
+
+        if(stopIndex == orderNum) return result;
+        else
+        {
+            for(int i = (stopIndex + 1); i < orderNum; i++ )
+            {
+                result = result+orders[i];
+                if (i != (orderNum - 1))
+                {
+                    result = result + " ";
+                }
+            }
+
+            return result;
+        }
 
     }
 
