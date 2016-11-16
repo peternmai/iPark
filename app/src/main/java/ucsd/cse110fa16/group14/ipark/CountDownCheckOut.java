@@ -170,6 +170,14 @@ public class CountDownCheckOut extends AppCompatActivity {
                         }
 
                     });
+                    alertNotReserved.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialogInterface) {
+                            Intent intent = new Intent(CountDownCheckOut.this,UserHomepage.class);
+                            startActivity(intent);
+                        }
+                    });
+
                     AlertDialog alertDialog = alertNotReserved.create();
                     alertDialog.show();
                 }
