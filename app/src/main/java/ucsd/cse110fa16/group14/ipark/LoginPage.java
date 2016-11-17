@@ -24,7 +24,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
- * Created by Mag on 10/10/2016.
+ * Created by Mag on 10/10/2016.=
  */
 
 public class LoginPage extends AppCompatActivity {
@@ -63,6 +63,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        auth = FirebaseAuth.getInstance();
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -70,10 +71,16 @@ public class LoginPage extends AppCompatActivity {
                 //User is singed in
                 if (firebaseAuth.getCurrentUser() != null) {
                     String username = firebaseAuth.getCurrentUser().getDisplayName();
+
                     Intent intent;
-                    if (username.equals("admin"))
+                    if (username.equals("admin")) {
                         intent = new Intent(LoginPage.this, OwnerHomepage.class);
-                    else intent = new Intent(LoginPage.this, UserHomepage.class);
+                    } else if (username.equals("")) {
+                        intent = new Intent(LoginPage.this, LoginPage.class);
+                        auth.signOut();
+                    } else {
+                        intent = new Intent(LoginPage.this, UserHomepage.class);
+                    }
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -125,8 +132,8 @@ public class LoginPage extends AppCompatActivity {
 
         saveLogin = loginPref.getBoolean("saveLogin", false);
 
-        if(saveLogin == true){
-            usernameField.setText(loginPref.getString("username",""));
+        if (saveLogin == true) {
+            usernameField.setText(loginPref.getString("username", ""));
             rememberMe.setChecked(true);
         }
 
@@ -166,11 +173,11 @@ public class LoginPage extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(rememberMe.isChecked()){
+                if (rememberMe.isChecked()) {
                     loginPrefEditor.putBoolean("saveLogin", true);
                     loginPrefEditor.putString("username", usernameField.getText().toString());
                     loginPrefEditor.commit();
-                }else{
+                } else {
                     loginPrefEditor.clear();
                     loginPrefEditor.commit();
                 }
@@ -185,7 +192,7 @@ public class LoginPage extends AppCompatActivity {
                 AlertDialog.Builder hlp = new AlertDialog.Builder(LoginPage.this);
                 hlp.setTitle("Help Information");
                 hlp.setMessage("\t\t\t\tIn case you forgot your password, please " +
-                                "click \"Forgot password\" to reset it.\n"
+                        "click \"Forgot password\" to reset it.\n"
                         + "\n Please create a new iPark account if you are a new user."
                 );
                 hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
