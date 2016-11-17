@@ -9,14 +9,6 @@
     tools:context="ucsd.cse110fa16.group14.ipark.PersonalInfo"
     >
 
-    <Button
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/help"
-        android:background="@mipmap/help"
-        android:layout_width="50dp" />
-
     <TextView
         android:text="Email: "
         android:layout_width="wrap_content"
@@ -92,41 +84,28 @@
         android:layout_toEndOf="@+id/textView75"
         android:layout_marginStart="11dp" />
 
-    <Button
-        android:text="Change Password"
-        android:layout_width="160dp"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"
-        android:id="@+id/button21"
-        android:background="#e6f2ff"
-        android:layout_below="@+id/textView75"
-        android:layout_alignStart="@+id/textView75"
-        android:layout_marginTop="55dp" />
-
-    <TextView
-        android:text="       PERSONAL INFORMATION"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/textView28"
-        android:textSize="25sp"
-        android:background="#e6f2ff"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:layout_below="@+id/help"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:text="Name:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="60dp"
         android:id="@+id/textView47"
         android:textSize="20sp"
         android:textStyle="normal|bold"
         android:layout_marginStart="28dp"
         android:layout_below="@+id/textView28"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Change Password"
+        android:layout_width="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:id="@+id/button21"
+        android:layout_above="@+id/button19"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -135,8 +114,26 @@
         android:background="#FFFFFF"
         android:id="@+id/button19"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="12dp" />
+        android:layout_alignStart="@+id/textView75" />
+
+    <Button
+        android:layout_height="50dp"
+        android:id="@+id/help"
+        android:background="@mipmap/help"
+        android:layout_width="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/nameTV" />
+
+    <TextView
+        android:text="PERSONAL INFORMATION"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/textView28"
+        android:textSize="25sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -30,8 +30,8 @@ public class MessageUsersActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
 
-        Button msgCancelBtn = (Button) findViewById(R.id.msgCancel);
-        Button msgSendBtn = (Button) findViewById(R.id.msgSend);
+        Button msgCancelBtn = (Button) findViewById(R.id.send);
+        Button msgSendBtn = (Button) findViewById(R.id.cancel);
         final EditText editText = (EditText) findViewById(R.id.editText27);
 
         msgCancelBtn.setOnClickListener(new View.OnClickListener() {
