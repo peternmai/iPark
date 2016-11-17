@@ -57,7 +57,15 @@ public class Settings extends AppCompatActivity {
                     AlertDialog.Builder updated = new AlertDialog.Builder(Settings.this);
                     updated.setTitle("Help Information");
                     updated.setMessage("Current Price is Now: $" + newPrice);
-                    updated.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    updated.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            newP.setText("");
+                            dialog.cancel();
+                        }
+                    });
+                    updated.setNegativeButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             currP.setText(String.format("$%.2f",newPrice));

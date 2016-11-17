@@ -20,7 +20,8 @@
         android:background="@drawable/lighter_border"
         android:layout_alignBottom="@+id/textView33"
         android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/currentPrice" />
+        android:layout_alignStart="@+id/currentPrice"
+        android:paddingLeft="10dp" />
 
     <TextView
         android:text="Price Settings"
