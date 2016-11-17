@@ -1,5 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 
 public class MapDirectional extends AppCompatActivity {
@@ -95,7 +97,11 @@ public class MapDirectional extends AppCompatActivity {
                 }
                 else {
                     int report_num = Integer.parseInt(report_num_text);
+                    ProgressDialog progress = new ProgressDialog(MapDirectional.this);
+                    progress.show();
+                    progress.setMessage("Reporting....");
                     reportSuccess = iLink.reportOther(report_num);
+                    progress.dismiss();
 
                     if( reportSuccess ) {
                         InputMethodManager inputManager = (InputMethodManager)
@@ -114,7 +120,7 @@ public class MapDirectional extends AppCompatActivity {
                                 dialog.cancel();
                             }
                         });
-
+                        reportSpotTextEdit.setText("");
                         AlertDialog alertDialog = respond.create();
                         alertDialog.show();
                     }
@@ -128,7 +134,7 @@ public class MapDirectional extends AppCompatActivity {
                                 dialog.cancel();
                             }
                         });
-
+                        reportSpotTextEdit.setText("");
                         AlertDialog alertDialog = respond.create();
                         alertDialog.show();
                     }

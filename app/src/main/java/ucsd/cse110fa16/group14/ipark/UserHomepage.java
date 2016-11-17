@@ -156,8 +156,8 @@ public class UserHomepage extends AppCompatActivity {
                 ProgressDialog progress = new ProgressDialog(UserHomepage.this);
                 progress.show();
                 progress.setMessage("Loading....");
-                progress.dismiss();
                 startActivity(intent);
+                progress.dismiss();
             }
         });
 

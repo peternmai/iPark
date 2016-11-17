@@ -64,25 +64,6 @@ public class LoginPage extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         auth = FirebaseAuth.getInstance();
-
-        authListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                //User is singed in
-                if (firebaseAuth.getCurrentUser() != null) {
-                    String username = firebaseAuth.getCurrentUser().getDisplayName();
-
-                    Intent intent;
-                    if (username.equals("admin")) {
-                        intent = new Intent(LoginPage.this, OwnerHomepage.class);
-                    } else {
-                        intent = new Intent(LoginPage.this, UserHomepage.class);
-                    }
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }
-            }
-        };
     }
 
     @Override
@@ -111,8 +92,6 @@ public class LoginPage extends AppCompatActivity {
         data.getData();
 
 
-        auth = FirebaseAuth.getInstance();
-
         // the buttons
         //registerButton = (Button) findViewById(R.id.registerButton);
         loginButton = (Button) findViewById(R.id.loginButton);
@@ -134,6 +113,7 @@ public class LoginPage extends AppCompatActivity {
             rememberMe.setChecked(true);
         }
 
+        auth = FirebaseAuth.getInstance();
         progress = new ProgressDialog(this);
 
         authListener = new FirebaseAuth.AuthStateListener() {
@@ -142,12 +122,15 @@ public class LoginPage extends AppCompatActivity {
                 //User is singed in
                 if (firebaseAuth.getCurrentUser() != null) {
 
-                    String username = firebaseAuth.getCurrentUser().getDisplayName();
+                    String username = firebaseAuth.getCurrentUser().getEmail();
+                    String admin = "admin@ipark.com";
+                    /*Intent intent = username.equals("admin") ?
+                            new Intent(LoginPage.this, OwnerHomepage.class):
+                            new Intent(LoginPage.this, UserHomepage.class) ;*/
 
                     Intent intent;
-                    if (username.equals("admin"))
-                        intent = new Intent(LoginPage.this, OwnerHomepage.class);
-                    else intent = new Intent(LoginPage.this, UserHomepage.class);
+                    if(username.equals(admin)) intent = new Intent(LoginPage.this, OwnerHomepage.class);
+                    else intent = new Intent(LoginPage.this, UserHomepage.class) ;
 
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
@@ -264,7 +247,7 @@ public class LoginPage extends AppCompatActivity {
                             Toast.makeText(LoginPage.this, "Sign in successful",
                                     Toast.LENGTH_LONG).show();
                             Intent intent;
-                            if (username.equals("admin")) {
+                            if (email.equals("admin@ipark.com")) {
                                 intent = new Intent(LoginPage.this, OwnerHomepage.class);
                             } else {
                                 intent = new Intent(LoginPage.this, UserHomepage.class);
@@ -280,4 +263,5 @@ public class LoginPage extends AppCompatActivity {
     }
 
 }
+
 

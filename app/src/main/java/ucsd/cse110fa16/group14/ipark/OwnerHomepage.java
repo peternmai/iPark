@@ -24,7 +24,7 @@ public class OwnerHomepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage_owner);
 
-
+        final ProgressDialog progress = new ProgressDialog(OwnerHomepage.this);
         ImageButton map1 = (ImageButton) findViewById(R.id.map1);
         ImageButton settings = (ImageButton) findViewById(R.id.settings);
         ImageButton reviews = (ImageButton) findViewById(R.id.reviews);
@@ -39,7 +39,10 @@ public class OwnerHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OwnerHomepage.this, BossMap.class);
+                progress.show();
+                progress.setMessage("Loading....");
                 startActivity(intent);
+                progress.dismiss();
             }
         });
 
@@ -52,8 +55,8 @@ public class OwnerHomepage extends AppCompatActivity {
                 progress.show();
                 iLink.defaultPrice = iLink.getDefaultPrice();
                 progress.setMessage("Loading....");
-                progress.dismiss();
                 startActivity(intent);
+                progress.dismiss();
 
             }
         });

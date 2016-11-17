@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
@@ -39,8 +40,10 @@ public class BossMap extends AppCompatActivity {
         // help button and status of the parking lot
         Button helpButt = (Button) findViewById(R.id.help);
         Button statusButt = (Button) findViewById(R.id.status);
+        TextView verticalNums = (TextView) findViewById(R.id.verticalIndices);
         //Button priceChanger = (Button) findViewById(R.id.priceChanger);
-
+        String text = "\t00\r10\r\t20\n\t30\n\n\r40\n\r50\n\r60\n\n70";
+        verticalNums.setText(text);
 
 
         /* information page */
