@@ -36,7 +36,7 @@ public class BossMap extends AppCompatActivity {
         Button statusButt = (Button) findViewById(R.id.status);
         TextView verticalNums = (TextView) findViewById(R.id.verticalIndices);
         //Button priceChanger = (Button) findViewById(R.id.priceChanger);
-        String text = "\t00\r10\r\t20\n\t30\n\n\r40\n\r50\n\r60\n\n70";
+        String text = "\r\n00\r"+"\t10\r"+"\n20\r"+"\n30\r"+"\n\n40\r"+"\t50\r"+"\n60\r"+"\n70";
         verticalNums.setText(text);
 
 
