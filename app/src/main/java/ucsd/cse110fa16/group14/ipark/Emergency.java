@@ -100,6 +100,7 @@ public class Emergency extends AppCompatActivity {
                     parkingNumChild.setValue(parkingNumber);
                 }
                 userChild.setValue(userName);
+                parkingNum.setText("");
                 //////////////////////////////////////////////////////////
 
             }

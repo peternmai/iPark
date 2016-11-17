@@ -122,7 +122,7 @@
         android:ems="10"
         android:layout_marginBottom="22dp"
         android:id="@+id/parkingNumber"
-        android:hint="ENTIER PARKING NUMBER"
+        android:hint="ENTER PARKING NUMBER"
         android:layout_height="60dp"
         android:layout_above="@+id/button23"
         android:layout_centerHorizontal="true" />
