@@ -108,8 +108,8 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="CANCEL"
-        android:id="@+id/button3"
+        android:text="CONFIRM"
+        android:id="@+id/confirm"
         android:textAlignment="center"
         android:textSize="18sp"
         android:layout_width="160dp"
@@ -118,8 +118,8 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="CONFIRM"
-        android:id="@+id/button"
+        android:text="CANCEL"
+        android:id="@+id/cancel"
         android:textSize="18sp"
         android:textAlignment="center"
         android:paddingLeft="0dp"

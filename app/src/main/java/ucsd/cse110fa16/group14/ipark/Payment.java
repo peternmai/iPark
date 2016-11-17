@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 
 public class Payment extends AppCompatActivity {
 
@@ -49,7 +48,7 @@ public class Payment extends AppCompatActivity {
         root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName);
         //***************************************************************
 
-        Button payButt = (Button) findViewById(R.id.button);
+        Button payButt = (Button) findViewById(R.id.cancel);
         Button cancelButt = (Button) findViewById(R.id.button3);
         int totHours = 0;
         int totMins = 0;

@@ -36,7 +36,7 @@
 
     <Button
         android:text="RESERVE"
-        android:id="@+id/button"
+        android:id="@+id/cancel"
         android:layout_height="75dp"
         android:textSize="18sp"
         android:layout_width="175dp"
@@ -54,7 +54,7 @@
         android:id="@+id/button3"
         android:textAlignment="center"
         android:textSize="18sp"
-        android:layout_alignBottom="@+id/button"
+        android:layout_alignBottom="@+id/cancel"
         android:layout_alignParentEnd="true" />
 
     <View
