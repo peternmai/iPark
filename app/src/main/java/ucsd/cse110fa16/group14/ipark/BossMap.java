@@ -49,10 +49,14 @@ public class BossMap extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder hlp = new AlertDialog.Builder(BossMap.this);
                 hlp.setTitle("Instruction");
-                hlp.setMessage("\t\t\t\tClick to change parking spot status.\n" +
-                        "\t\t\t\tLong press to show detail information of parking spot.\n" +
-                        "\t\t\t\tFree parking in white, available reserved parking in green, " +
-                        "occupied reserved parking in yellow, illegal parking in red.\n");
+                hlp.setMessage(
+                        //"\t\t\t\tLong press to show detail information of parking spot.\n" +
+                        "Green  - Available\n" +
+                        "Yellow - Occupied\n"  +
+                        "White  - Owner Reserve\n" +
+                        "Red     -  Illegal\n"   +
+                                "Long press spots on the map to change status.\n"
+                        );
                 hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -68,7 +72,10 @@ public class BossMap extends AppCompatActivity {
         });
 
 
-        /* status of parking lot */
+
+
+
+        /* status of parking lot*/
         statusButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +86,10 @@ public class BossMap extends AppCompatActivity {
                 int available = 0;
                 int occupied = 0;
                 int illegalParking = 0;
+                String availStr = "";
+                String occupyStr = "";
+                String reserveStr = "";
+                String illegalStr = "";
 
                 long curTimeInSec = iLink.getCurTimeInSec();
                 int parkingLotStatus [] = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
@@ -94,10 +105,15 @@ public class BossMap extends AppCompatActivity {
                         illegalParking++;
                 }
 
-                hlp.setMessage("Available parking: " + available +
-                        "\nOccupied reserve: " + occupied +
-                        "\nOwner reserved: " + ownerReserved +
-                        "\nIllegal parking: " + illegalParking + "\n");
+                availStr = String.format("%02d", available);
+                occupyStr = String.format("%02d", occupied);
+                reserveStr = String.format("%02d", ownerReserved);
+                illegalStr = String.format("%02d", illegalParking);
+
+                hlp.setMessage("Available parking: " + availStr +
+                             "\nOccupied:              " + occupyStr +
+                             "\nOwner reserved:   " + reserveStr +
+                             "\nIllegal parking:      " + illegalStr + "\n");
 
                 hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
@@ -112,6 +128,8 @@ public class BossMap extends AppCompatActivity {
 
             }
         });
+
+
 
         /*change the price */
         /*priceChanger.setOnClickListener(new View.OnClickListener() {
