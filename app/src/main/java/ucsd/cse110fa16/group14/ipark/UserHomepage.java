@@ -1,5 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -152,6 +153,10 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserHomepage.this, MapDirectional.class);
+                ProgressDialog progress = new ProgressDialog(UserHomepage.this);
+                progress.show();
+                progress.setMessage("Loading....");
+                progress.dismiss();
                 startActivity(intent);
             }
         });

@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
-import com.firebase.client.utilities.Clock;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;

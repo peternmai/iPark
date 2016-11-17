@@ -36,12 +36,13 @@ public class LoginPage extends AppCompatActivity {
     private Button loginButton;
     private Button help;
     private TextView forgotPass;
-    //private CheckBox rememberMe;
     private ProgressDialog progress;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
     private CheckBox rememberMe;
-
+    private SharedPreferences loginPref;
+    private SharedPreferences.Editor loginPrefEditor;
+    private Boolean saveLogin;
 
     @Override
     protected void onPause() {
@@ -68,15 +69,9 @@ public class LoginPage extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 //User is singed in
                 if (firebaseAuth.getCurrentUser() != null) {
-                    String username = firebaseAuth.getCurrentUser().getEmail();
-                    String admin = "www123@gmail.com";
-
-                    /*Intent intent = username.equals("admin") ?
-                            new Intent(LoginPage.this, OwnerHomepage.class):
-                            new Intent(LoginPage.this, UserHomepage.class) ;*/
-
+                    String username = firebaseAuth.getCurrentUser().getDisplayName();
                     Intent intent;
-                    if (username.equals(admin))
+                    if (username.equals("admin"))
                         intent = new Intent(LoginPage.this, OwnerHomepage.class);
                     else intent = new Intent(LoginPage.this, UserHomepage.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -97,7 +92,6 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
@@ -126,13 +120,17 @@ public class LoginPage extends AppCompatActivity {
         rememberMe = (CheckBox) findViewById(R.id.checkBox2);
 
         //forgotPassword = (CheckBox) findViewById(R.id.checkBox);
+        loginPref = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        loginPrefEditor = loginPref.edit();
+
+        saveLogin = loginPref.getBoolean("saveLogin", false);
+
+        if(saveLogin == true){
+            usernameField.setText(loginPref.getString("username",""));
+            rememberMe.setChecked(true);
+        }
 
         progress = new ProgressDialog(this);
-
-        if(iLink.wantUsernameRemembered){
-            rememberMe.setChecked(true);
-            usernameField.setText(iLink.savedUsername);
-        }
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -140,11 +138,7 @@ public class LoginPage extends AppCompatActivity {
                 //User is singed in
                 if (firebaseAuth.getCurrentUser() != null) {
 
-                    String username = firebaseAuth.getCurrentUser().getEmail();
-                    //String admin = "www123@gmail.com";
-                    /*Intent intent = username.equals("admin") ?
-                            new Intent(LoginPage.this, OwnerHomepage.class):
-                            new Intent(LoginPage.this, UserHomepage.class) ;*/
+                    String username = firebaseAuth.getCurrentUser().getDisplayName();
 
                     Intent intent;
                     if (username.equals("admin"))
@@ -173,10 +167,12 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(rememberMe.isChecked()){
-                    iLink.savedUsername = usernameField.getText().toString();
-                    iLink.wantUsernameRemembered = true;
+                    loginPrefEditor.putBoolean("saveLogin", true);
+                    loginPrefEditor.putString("username", usernameField.getText().toString());
+                    loginPrefEditor.commit();
                 }else{
-                    iLink.wantUsernameRemembered = false;
+                    loginPrefEditor.clear();
+                    loginPrefEditor.commit();
                 }
                 signIn();
             }
@@ -199,23 +195,11 @@ public class LoginPage extends AppCompatActivity {
                     }
                 });
 
-                //hlp.setNegativeButton("No", null);
                 AlertDialog alertDialog = hlp.create();
                 alertDialog.show();
 
             }
         });
-
-
-        /*usernameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    hideKeyboard(v);
-                }
-            }
-        });*/
-
 
         passwordField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
