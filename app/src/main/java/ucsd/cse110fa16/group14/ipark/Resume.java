@@ -15,9 +15,9 @@ public class Resume extends AppCompatActivity {
         try {
             SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
             activityClass = Class.forName(
-                    prefs.getString("lastActivity", LoginScreenActivity.class.getName()));
+                    prefs.getString("lastActivity", LoginPage.class.getName()));
         } catch (ClassNotFoundException ex) {
-            activityClass = LoginScreenActivity.class;
+            activityClass = LoginPage.class;
         }
 
         startActivity(new Intent(this, activityClass));
