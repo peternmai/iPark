@@ -19,6 +19,8 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -45,5 +47,8 @@ dependencies {
     compile 'com.google.firebase:firebase-crash:9.6.0'
     compile 'com.google.firebase:firebase-auth:9.6.0'
     compile 'com.google.firebase:firebase-auth:9.6.0'
+
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+
 }
 apply plugin: 'com.google.gms.google-services'

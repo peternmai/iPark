@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,31 +59,17 @@ public class Emergency extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
 
-
         /* emergency sent */
         sendButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder hlp = new AlertDialog.Builder(Emergency.this);
-                hlp.setTitle("Emergency Reported");
-
-                hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                AlertDialog alertDialog = hlp.create();
-                alertDialog.show();
-
-                //////////////////////////////////////////////////////
                 int selectedButton = radioGroup.getCheckedRadioButtonId();
                 selected = (RadioButton) findViewById(selectedButton);
-                String selectedbButton = selected.getText().toString();
-                String parkingNumber = parkingNum.getText().toString();
 
+                String selectedbButton = "N/A";
+
+                String parkingNumber = "N/A";
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 sdf.format(date);
@@ -92,17 +80,27 @@ public class Emergency extends AppCompatActivity {
                 Firebase parkingNumChild = hasChild.child("ParkingNumber");
                 Firebase userChild = hasChild.child("User");
 
-                emergencyType.setValue(selectedbButton);
-                dateChild.setValue(sdf.format(date));
-                if (parkingNumber.isEmpty()) {
-                    parkingNumChild.setValue("N/A");
-                } else {
-                    parkingNumChild.setValue(parkingNumber);
-                }
-                userChild.setValue(userName);
-                parkingNum.setText("");
-                //////////////////////////////////////////////////////////
+                try {
+                    selectedbButton = selected.getText().toString();
+                    parkingNumber = parkingNum.getText().toString();
 
+                    emergencyType.setValue(selectedbButton);
+                    dateChild.setValue(sdf.format(date));
+                    if (parkingNumber.isEmpty()) {
+                        parkingNumChild.setValue("N/A");
+                    } else {
+                        parkingNumChild.setValue(parkingNumber);
+                    }
+                    userChild.setValue(userName);
+                    parkingNum.setText("");
+                    Toast.makeText(Emergency.this, "Thank you for reporting this emergency!",
+                            Toast.LENGTH_LONG).show();
+
+                }
+                catch (NullPointerException e) {
+                    Toast.makeText(Emergency.this, "Select an option.",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 

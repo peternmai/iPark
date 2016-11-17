@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -27,6 +28,8 @@ public class BossEmergency extends AppCompatActivity {
     private ArrayList<commentBoss> list = new ArrayList<>();
     private commentBoss temp;
     ImageButton home;
+
+    private PopupWindow myPopUp;
 
     class commentBoss {
 
@@ -114,6 +117,8 @@ public class BossEmergency extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
     }
 }
