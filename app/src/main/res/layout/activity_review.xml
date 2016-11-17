@@ -48,7 +48,7 @@
 
     <Button
         android:text="nope"
-        android:id="@+id/button3"
+        android:id="@+id/nopeButton"
         android:textAlignment="center"
         android:textSize="18sp"
         tools:ignore="HardcodedText,RtlHardcoded"
@@ -62,7 +62,7 @@
 
     <Button
         android:text="comment"
-        android:id="@+id/cancel"
+        android:id="@+id/commentButton"
         android:textSize="18sp"
         android:textAlignment="center"
         android:paddingLeft="0dp"

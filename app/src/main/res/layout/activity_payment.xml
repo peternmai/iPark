@@ -119,7 +119,7 @@
 
     <Button
         android:text="CANCEL"
-        android:id="@+id/cancel"
+        android:id="@+id/commentButton"
         android:textSize="18sp"
         android:textAlignment="center"
         android:paddingLeft="0dp"

@@ -23,7 +23,7 @@ public class ErrorReport extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_error_report);
 
-        Button checkIn = (Button) findViewById(R.id.cancel);
+        Button checkIn = (Button) findViewById(R.id.commentButton);
 
         checkIn.setOnClickListener(new View.OnClickListener() {
             @Override

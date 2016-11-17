@@ -31,7 +31,7 @@ public class MessageUsersActivity extends AppCompatActivity {
         final String userName = auth.getCurrentUser().getDisplayName();
 
         Button msgCancelBtn = (Button) findViewById(R.id.send);
-        Button msgSendBtn = (Button) findViewById(R.id.cancel);
+        Button msgSendBtn = (Button) findViewById(R.id.commentButton);
         final EditText editText = (EditText) findViewById(R.id.editText27);
 
         msgCancelBtn.setOnClickListener(new View.OnClickListener() {

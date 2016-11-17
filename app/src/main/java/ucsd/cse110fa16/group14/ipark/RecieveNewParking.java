@@ -23,7 +23,7 @@ public class RecieveNewParking extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recieve_new_parking);
 
-        Button checkIn = (Button) findViewById(R.id.cancel);
+        Button checkIn = (Button) findViewById(R.id.commentButton);
 
         checkIn.setOnClickListener(new View.OnClickListener() {
             @Override

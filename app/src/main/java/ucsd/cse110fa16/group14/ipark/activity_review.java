@@ -46,8 +46,8 @@ public class activity_review extends AppCompatActivity {
 
         iLink.resetUserReservation();
 
-        Button commentButt = (Button) findViewById(R.id.cancel);
-        Button nopButt = (Button) findViewById(R.id.confirm);
+        Button commentButt = (Button) findViewById(R.id.commentButton);
+        Button nopButt = (Button) findViewById(R.id.nopeButton);
 
         // Get values passed on from previous activity
         final Bundle bundle = getIntent().getExtras();

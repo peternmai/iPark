@@ -49,7 +49,7 @@ public class Payment extends AppCompatActivity {
         //***************************************************************
 
         Button payButt = (Button) findViewById(R.id.confirm);
-        Button cancelButt = (Button) findViewById(R.id.cancel);
+        Button cancelButt = (Button) findViewById(R.id.commentButton);
         int totHours = 0;
         int totMins = 0;
 

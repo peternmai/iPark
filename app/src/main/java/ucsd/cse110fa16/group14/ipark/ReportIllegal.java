@@ -1,6 +1,5 @@
 package ucsd.cse110fa16.group14.ipark;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,7 +27,7 @@ public class ReportIllegal extends AppCompatActivity {
         setContentView(R.layout.activity_report_illegal);
 
         Button reportButt = (Button) findViewById(R.id.reportButton);
-        Button cancelButt = (Button) findViewById(R.id.cancel);
+        Button cancelButt = (Button) findViewById(R.id.commentButton);
 
 
         cancelButt.setOnClickListener(new View.OnClickListener() {
