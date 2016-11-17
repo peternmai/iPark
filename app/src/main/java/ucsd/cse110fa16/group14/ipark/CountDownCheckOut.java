@@ -63,12 +63,12 @@ public class CountDownCheckOut extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count_down_check_out);
 
-        final Button checkoutButt = (Button) findViewById(R.id.button6);
-        final Button reportButt = (Button) findViewById(R.id.button2);
-        Button emergencyButt = (Button) findViewById(R.id.emer);
-        Button mapButt = (Button) findViewById(R.id.button22);
-        Button help = (Button) findViewById(R.id.button16);
-        Button homeButt = (Button) findViewById(R.id.button17);
+        final Button checkoutButt = (Button) findViewById(R.id.countdownCheckoutButton);
+        final Button reportButt = (Button) findViewById(R.id.countdownReportButton);
+        Button emergencyButt = (Button) findViewById(R.id.countdownEmergencyButton);
+        Button mapButt = (Button) findViewById(R.id.countdownMapButton);
+        Button help = (Button) findViewById(R.id.countdownHelpButton);
+        Button homeButt = (Button) findViewById(R.id.countdownHomeButton);
         //Button getSpot = (Button) findViewById(R.id.getSpot);
         // Get values passed on from previous activity
         final Bundle bundle = getIntent().getExtras();
@@ -82,7 +82,7 @@ public class CountDownCheckOut extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
-        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName);
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName);
 
         startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
         endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
@@ -140,7 +140,7 @@ public class CountDownCheckOut extends AppCompatActivity {
             public void onFinish() {
 
                 // Redirect user back to home page or clockin if they have not reserved a spot
-                if ( (bundle.getInt("departHour") == 0) && (bundle.getInt("departMin") == 0)) {
+                if ((bundle.getInt("departHour") == 0) && (bundle.getInt("departMin") == 0)) {
                     AlertDialog.Builder alertNotReserved = new AlertDialog.Builder(CountDownCheckOut.this);
                     alertNotReserved.setTitle("Hmmm... No order placed");
                     alertNotReserved.setMessage(" Would you like to place an order?");
@@ -168,20 +168,10 @@ public class CountDownCheckOut extends AppCompatActivity {
 
                             dialog.cancel();
                         }
-
                     });
-                    alertNotReserved.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public void onCancel(DialogInterface dialogInterface) {
-                            Intent intent = new Intent(CountDownCheckOut.this,UserHomepage.class);
-                            startActivity(intent);
-                        }
-                    });
-
                     AlertDialog alertDialog = alertNotReserved.create();
                     alertDialog.show();
-                }
-                else {
+                } else {
 
                     timerText.setText("00:00:00");
                     timerText.setTextColor(Color.RED);
@@ -209,7 +199,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                     tempDepMin = calendar.get(Calendar.MINUTE);
 
                     root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockin").setValue(
-                            generateTimeText(bundle.getInt("arriveHour"),bundle.getInt("arriveMin")));
+                            generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
                     root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("User").setValue(userName);
                     root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Date").setValue(sdf.format(date));
                     root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockout").setValue(
@@ -317,8 +307,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                     });
                     AlertDialog alertDialog = respond.create();
                     alertDialog.show();
-                }
-                else {
+                } else {
                     Date tempDate = new Date();                               // given date
                     Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
                     calendar.setTime(tempDate);                               // assigns calendar to given date
@@ -347,7 +336,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                     double totPay, rate;
                     rate = 2.5;
 
-                    if(startTimeInSec > getCurrentTimeInSec() ) {
+                    if (startTimeInSec > getCurrentTimeInSec()) {
                         AlertDialog.Builder Quest = new AlertDialog.Builder(CountDownCheckOut.this);
                         Quest.setTitle("Cancel order?");
                         Quest.setMessage(
@@ -382,7 +371,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                             tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);
                             tempDepMin = calendar.get(Calendar.MINUTE);
 
-                            tempHist.child("Clockin").setValue(generateTimeText(bundle.getInt("arriveHour"),bundle.getInt("arriveMin")));
+                            tempHist.child("Clockin").setValue(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
                             tempHist.child("Clockout").setValue(generateTimeText(tempDephHour, tempDepMin));
                             tempHist.child("Date").setValue(sdf.format(date));
                             tempHist.child("User").setValue(userName);
@@ -425,9 +414,9 @@ public class CountDownCheckOut extends AppCompatActivity {
                 iLink.changeLegalStatus(bundle.getString("spotAssign"), true);
 
 
-                final String newSpotAssign = iLink.getSpot( (int)startTimeInSec/60, (int)endTimeInSec/60);
+                final String newSpotAssign = iLink.getSpot((int) startTimeInSec / 60, (int) endTimeInSec / 60);
 
-                if( newSpotAssign == null ) {
+                if (newSpotAssign == null) {
                     AlertDialog.Builder respond = new AlertDialog.Builder(CountDownCheckOut.this);
                     respond.setTitle("Successful Report | No Spots Available");
                     respond.setMessage("Your report has been successfully recorded.\n" +
@@ -455,8 +444,7 @@ public class CountDownCheckOut extends AppCompatActivity {
 
                     AlertDialog alertDialog = respond.create();
                     alertDialog.show();
-                }
-                else {
+                } else {
 
                     AlertDialog.Builder respond = new AlertDialog.Builder(CountDownCheckOut.this);
                     respond.setTitle("Successful Report");
@@ -469,7 +457,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            pspot.setText( newSpotAssign );
+                            pspot.setText(newSpotAssign);
                             iLink.setOrder(newSpotAssign, iLink.getCurTimeInSec(), endTimeInSec);
 
 

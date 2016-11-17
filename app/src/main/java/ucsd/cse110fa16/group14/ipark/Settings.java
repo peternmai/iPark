@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.HashMap;
-
 public class Settings extends AppCompatActivity {
     @Override
     protected void onPause() {
@@ -41,7 +39,7 @@ public class Settings extends AppCompatActivity {
         //price = iLink.getChildInfo("ParkingLot","SpotDefaultPrice");
         //if(!price.containsKey("Price")) System.out.println("This IS here, Yuri");
         double priceVal = iLink.defaultPrice;
-        currP.setText(String.format("$%.2f",priceVal));
+        currP.setText(String.format("$%.2f", priceVal));
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +66,7 @@ public class Settings extends AppCompatActivity {
                     updated.setNegativeButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            currP.setText(String.format("$%.2f",newPrice));
+                            currP.setText(String.format("$%.2f", newPrice));
                             newP.setText("");
                             dialog.cancel();
                         }

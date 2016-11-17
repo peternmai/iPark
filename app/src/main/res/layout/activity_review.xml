@@ -62,7 +62,7 @@
 
     <Button
         android:text="comment"
-        android:id="@+id/commentButton"
+        android:id="@+id/paymentCancelButton"
         android:textSize="18sp"
         android:textAlignment="center"
         android:paddingLeft="0dp"

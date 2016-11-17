@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 
 
 public class MapDirectional extends AppCompatActivity {
@@ -80,7 +79,7 @@ public class MapDirectional extends AppCompatActivity {
                 String report_num_text = reportSpotTextEdit.getText().toString().trim();
                 boolean reportSuccess;
 
-                if( report_num_text.isEmpty() ) {
+                if (report_num_text.isEmpty()) {
 
                     AlertDialog.Builder respond = new AlertDialog.Builder(MapDirectional.this);
                     respond.setTitle("Report Failed");
@@ -94,8 +93,7 @@ public class MapDirectional extends AppCompatActivity {
 
                     AlertDialog alertDialog = respond.create();
                     alertDialog.show();
-                }
-                else {
+                } else {
                     int report_num = Integer.parseInt(report_num_text);
                     ProgressDialog progress = new ProgressDialog(MapDirectional.this);
                     progress.show();
@@ -103,7 +101,7 @@ public class MapDirectional extends AppCompatActivity {
                     reportSuccess = iLink.reportOther(report_num);
                     progress.dismiss();
 
-                    if( reportSuccess ) {
+                    if (reportSuccess) {
                         InputMethodManager inputManager = (InputMethodManager)
                                 getSystemService(Context.INPUT_METHOD_SERVICE);
                         inputManager.hideSoftInputFromWindow((null == getCurrentFocus()) ?
@@ -123,8 +121,7 @@ public class MapDirectional extends AppCompatActivity {
                         reportSpotTextEdit.setText("");
                         AlertDialog alertDialog = respond.create();
                         alertDialog.show();
-                    }
-                    else {
+                    } else {
                         AlertDialog.Builder respond = new AlertDialog.Builder(MapDirectional.this);
                         respond.setTitle("Report Failed");
                         respond.setMessage("Invalid parking spot number entered. Cannot report specified parking spot.");
@@ -139,7 +136,6 @@ public class MapDirectional extends AppCompatActivity {
                         alertDialog.show();
                     }
                 }
-
 
 
             }

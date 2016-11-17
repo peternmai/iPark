@@ -42,11 +42,11 @@ public class activity_review extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
-        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName+"/History");
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/History");
 
         iLink.resetUserReservation();
 
-        Button commentButt = (Button) findViewById(R.id.commentButton);
+        Button commentButt = (Button) findViewById(R.id.paymentCancelButton);
         Button nopButt = (Button) findViewById(R.id.nopeButton);
 
         // Get values passed on from previous activity
@@ -57,7 +57,7 @@ public class activity_review extends AppCompatActivity {
         final TextView priceText = (TextView) findViewById(R.id.textView2);
         final TextView pricePerHour = (TextView) findViewById(R.id.textView5);
 
-        String priceInfo = String.format("$%.2f",iLink.userPrice)+ "/hour";
+        String priceInfo = String.format("$%.2f", iLink.userPrice) + "/hour";
         pricePerHour.setText(priceInfo);
 
         String clockInTime = generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"));

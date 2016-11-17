@@ -72,7 +72,7 @@ public class comment extends AppCompatActivity {
                 Firebase keyChild = hasChild.child("Key");
                 Firebase userChild = hasChild.child("User");
 
-                if(comment.isEmpty()) {
+                if (comment.isEmpty()) {
                     commentChild.setValue("No comment left by the user.");
                 } else {
                     commentChild.setValue(comment);

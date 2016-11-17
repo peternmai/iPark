@@ -35,6 +35,8 @@ public class Clockin extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Intent intent = new Intent(Clockin.this, UserHomepage.class);
+        startActivity(intent);
     }
 
 
@@ -50,13 +52,6 @@ public class Clockin extends AppCompatActivity {
             AlertDialog.Builder alertNotReserved = new AlertDialog.Builder(Clockin.this);
             alertNotReserved.setTitle("Already placed an order");
             alertNotReserved.setMessage(" Would you like to see your reservation status?");
-            alertNotReserved.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialogInterface) {
-                    Intent intent = new Intent(Clockin.this,UserHomepage.class);
-                    startActivity(intent);
-                }
-            });
             alertNotReserved.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -158,7 +153,7 @@ public class Clockin extends AppCompatActivity {
                 if ((ampm == 2) && hourEntered != 12)
                     hourEntered += 12;
 
-                if((ampm == 1) && hourEntered == 12 )
+                if ((ampm == 1) && hourEntered == 12)
                     hourEntered = 0;
 
                 Date date = new Date();                               // given date

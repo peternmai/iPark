@@ -45,11 +45,11 @@ public class Payment extends AppCompatActivity {
         //**************************************************************
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
-        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName);
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName);
         //***************************************************************
 
         Button payButt = (Button) findViewById(R.id.confirm);
-        Button cancelButt = (Button) findViewById(R.id.commentButton);
+        Button cancelButt = (Button) findViewById(R.id.paymentCancelButton);
         int totHours = 0;
         int totMins = 0;
 
@@ -90,11 +90,11 @@ public class Payment extends AppCompatActivity {
                 String clockOutTime = generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin"));
 
                 long clockInTimeInSec = bundle.getInt("arriveHour") * 60 * 60 + bundle.getInt("arriveMin") * 60;
-                long clockOutTimeInSec = bundle.getInt("departHour") * 60 * 60+ bundle.getInt("departMin") * 60;
+                long clockOutTimeInSec = bundle.getInt("departHour") * 60 * 60 + bundle.getInt("departMin") * 60;
 
                 String spotAssign = iLink.getSpot(clockInTimeInSec, clockOutTimeInSec);
 
-                if( spotAssign == null ) {
+                if (spotAssign == null) {
                     AlertDialog.Builder respond = new AlertDialog.Builder(Payment.this);
                     respond.setTitle("PARKING LOT FULL");
                     respond.setMessage("Sorry, all spots are currently full. Please try again later.");
@@ -107,8 +107,7 @@ public class Payment extends AppCompatActivity {
 
                     AlertDialog alertDialog = respond.create();
                     alertDialog.show();
-                }
-                else {
+                } else {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                     Date date = null;
                     try {

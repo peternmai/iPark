@@ -7,13 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.firebase.client.Firebase;
-
-import java.util.HashMap;
 
 /**
  * Created by Mag on 10/14/2016.
@@ -55,11 +49,11 @@ public class BossMap extends AppCompatActivity {
                 hlp.setMessage(
                         //"\t\t\t\tLong press to show detail information of parking spot.\n" +
                         "Green  - Available\n" +
-                        "Yellow - Occupied\n"  +
-                        "White  - Owner Reserve\n" +
-                        "Red     -  Illegal\n"   +
+                                "Yellow - Occupied\n" +
+                                "White  - Owner Reserve\n" +
+                                "Red     -  Illegal\n" +
                                 "Long press spots on the map to change status.\n"
-                        );
+                );
                 hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -95,14 +89,14 @@ public class BossMap extends AppCompatActivity {
                 String illegalStr = "";
 
                 long curTimeInSec = iLink.getCurTimeInSec();
-                int parkingLotStatus [] = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
+                int parkingLotStatus[] = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
 
-                for(int i = 0; i < iLink.NUM_SPOTS; i++ ) {
+                for (int i = 0; i < iLink.NUM_SPOTS; i++) {
                     if (parkingLotStatus[i] == iLink.AVAILABLE)
                         available++;
-                    else if(parkingLotStatus[i] == iLink.OCCUPIED)
+                    else if (parkingLotStatus[i] == iLink.OCCUPIED)
                         occupied++;
-                    else if(parkingLotStatus[i] == iLink.OWNER_RESERVED)
+                    else if (parkingLotStatus[i] == iLink.OWNER_RESERVED)
                         ownerReserved++;
                     else
                         illegalParking++;
@@ -114,9 +108,9 @@ public class BossMap extends AppCompatActivity {
                 illegalStr = String.format("%02d", illegalParking);
 
                 hlp.setMessage("Available parking: " + availStr +
-                             "\nOccupied:              " + occupyStr +
-                             "\nOwner reserved:   " + reserveStr +
-                             "\nIllegal parking:      " + illegalStr + "\n");
+                        "\nOccupied:              " + occupyStr +
+                        "\nOwner reserved:   " + reserveStr +
+                        "\nIllegal parking:      " + illegalStr + "\n");
 
                 hlp.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override

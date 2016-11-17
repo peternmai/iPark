@@ -111,7 +111,7 @@ public class UserMapInteractive extends View {
                 }
             }
 
-            recCol.put(r, paints[ parkingLotStatus[i] ]);
+            recCol.put(r, paints[parkingLotStatus[i]]);
         }
 
         // Update parking lot status
@@ -169,8 +169,8 @@ public class UserMapInteractive extends View {
 
     void updateMapDisplay() {
 
-        for( int i = 0; i < numSpaces; i++) {
-            recCol.put(rectangle[i], paints[ parkingLotStatus[i] ]);
+        for (int i = 0; i < numSpaces; i++) {
+            recCol.put(rectangle[i], paints[parkingLotStatus[i]]);
             invalidate();
         }
 

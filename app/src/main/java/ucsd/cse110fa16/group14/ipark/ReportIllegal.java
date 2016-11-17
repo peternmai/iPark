@@ -27,7 +27,7 @@ public class ReportIllegal extends AppCompatActivity {
         setContentView(R.layout.activity_report_illegal);
 
         Button reportButt = (Button) findViewById(R.id.reportButton);
-        Button cancelButt = (Button) findViewById(R.id.commentButton);
+        Button cancelButt = (Button) findViewById(R.id.paymentCancelButton);
 
 
         cancelButt.setOnClickListener(new View.OnClickListener() {

@@ -23,7 +23,7 @@
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:text="03:50:03"
+        android:text="00:00:00"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/TimeRemainingTitle"
@@ -95,17 +95,17 @@
         android:background="#606060"
         android:id="@+id/view1"
         android:layout_width="match_parent"
-        android:layout_above="@+id/button6" />
+        android:layout_above="@+id/countdownCheckoutButton" />
 
     <Button
         android:text="EMERGENCY"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="false"
-        android:id="@+id/emer"
+        android:id="@+id/countdownEmergencyButton"
         tools:ignore="HardcodedText"
         android:backgroundTint="#CC0000"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/countdownReportButton"
         android:layout_alignParentStart="true"
         tools:targetApi="lollipop"
         android:textColor="#FFFFFF"
@@ -113,7 +113,7 @@
 
     <Button
         android:layout_height="40dp"
-        android:id="@+id/button16"
+        android:id="@+id/countdownHelpButton"
         android:background="@mipmap/help"
         android:layout_width="40dp"
         android:layout_alignBaseline="@+id/TimeRemainingTitle"
@@ -125,19 +125,19 @@
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="false"
-        android:id="@+id/button17"
+        android:id="@+id/countdownHomeButton"
         tools:ignore="HardcodedText"
         android:backgroundTint="#0080FF"
         tools:targetApi="lollipop"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/countdownReportButton"
         android:layout_alignParentEnd="true" />
 
     <Button
         android:text="CheckOut"
         android:layout_height="wrap_content"
-        android:id="@+id/button6"
+        android:id="@+id/countdownCheckoutButton"
         android:layout_marginBottom="61dp"
         tools:ignore="HardcodedText"
         android:layout_width="100dp"
@@ -149,7 +149,7 @@
     <Button
         android:text="Map"
         android:layout_height="wrap_content"
-        android:id="@+id/button22"
+        android:id="@+id/countdownMapButton"
         tools:ignore="HardcodedText"
         android:layout_width="100dp"
         android:layout_below="@+id/view1"
@@ -160,10 +160,10 @@
     <Button
         android:text="Report "
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
+        android:id="@+id/countdownReportButton"
         tools:ignore="HardcodedText"
-        android:layout_alignBaseline="@+id/button6"
-        android:layout_alignBottom="@+id/button6"
+        android:layout_alignBaseline="@+id/countdownCheckoutButton"
+        android:layout_alignBottom="@+id/countdownCheckoutButton"
         android:layout_alignParentStart="true"
         android:layout_width="100dp"
         android:textAllCaps="false"

@@ -63,7 +63,7 @@ public class DriverRegistration extends AppCompatActivity {
         Button reset = (Button) findViewById(R.id.resetButton);
         Button help = (Button) findViewById(R.id.help);
         final TextView invalidUser = (TextView) findViewById(R.id.invalidUsernameTV);
-        final TextView invalidEmail = (TextView) findViewById(R.id.invalidEmailTV);
+        final TextView invalidEmail = (TextView) findViewById(R.id.selectAudience);
         final CheckBox notRobot = (CheckBox) findViewById(R.id.notARobot);
 
         final String msg1 = invalidUser.getText().toString();

@@ -32,7 +32,7 @@ public class UserHomepage extends AppCompatActivity {
         setContentView(R.layout.activity_user_homepage);
         final Bundle bundle = getIntent().getExtras();
 
-       // final String username = getIntent().hasExtra("Username")?bundle.getString("Username"):"abhi";
+        // final String username = getIntent().hasExtra("Username")?bundle.getString("Username"):"abhi";
 
 
         //Toast.makeText(UserHomepage.this, bundle.getString("Username"),
@@ -107,16 +107,16 @@ public class UserHomepage extends AppCompatActivity {
             public void onClick(View v) {
                 // Update user reservation status
                 iLink.getUserReservationStatus();
-                int arriveHour = (int) iLink.userReservationStartTime/60/60;
-                int arriveMin  = (int) (iLink.userReservationStartTime/60)%60;
-                int departHour = (int) iLink.userReservationEndTime/60/60;
-                int departMin  = (int) (iLink.userReservationEndTime/60)%60;
+                int arriveHour = (int) iLink.userReservationStartTime / 60 / 60;
+                int arriveMin = (int) (iLink.userReservationStartTime / 60) % 60;
+                int departHour = (int) iLink.userReservationEndTime / 60 / 60;
+                int departMin = (int) (iLink.userReservationEndTime / 60) % 60;
                 String assignedSpot = iLink.userReservationSpot;
                 double spotRate = iLink.userReservationSpotRate;
 
                 Intent intent = new Intent(UserHomepage.this, Clockin.class);
                 intent.putExtra("arriveHour", arriveHour);
-                intent.putExtra("arriveMin",arriveMin);
+                intent.putExtra("arriveMin", arriveMin);
                 intent.putExtra("departHour", departHour);
                 intent.putExtra("departMin", departMin);
                 intent.putExtra("spotAssign", assignedSpot);
@@ -131,16 +131,16 @@ public class UserHomepage extends AppCompatActivity {
                 // Update user reservation status
                 iLink.getUserReservationStatus();
                 System.out.println("Checking");
-                int arriveHour = (int) iLink.userReservationStartTime/60/60;
-                int arriveMin  = (int) (iLink.userReservationStartTime/60)%60;
-                int departHour = (int) iLink.userReservationEndTime/60/60;
-                int departMin  = (int) (iLink.userReservationEndTime/60)%60;
+                int arriveHour = (int) iLink.userReservationStartTime / 60 / 60;
+                int arriveMin = (int) (iLink.userReservationStartTime / 60) % 60;
+                int departHour = (int) iLink.userReservationEndTime / 60 / 60;
+                int departMin = (int) (iLink.userReservationEndTime / 60) % 60;
                 String assignedSpot = iLink.userReservationSpot;
                 double spotRate = iLink.userReservationSpotRate;
 
                 Intent intent = new Intent(UserHomepage.this, CountDownCheckOut.class);
                 intent.putExtra("arriveHour", arriveHour);
-                intent.putExtra("arriveMin",arriveMin);
+                intent.putExtra("arriveMin", arriveMin);
                 intent.putExtra("departHour", departHour);
                 intent.putExtra("departMin", departMin);
                 intent.putExtra("spotAssign", assignedSpot);

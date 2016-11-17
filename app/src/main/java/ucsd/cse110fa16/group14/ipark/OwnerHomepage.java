@@ -29,7 +29,7 @@ public class OwnerHomepage extends AppCompatActivity {
         ImageButton settings = (ImageButton) findViewById(R.id.settings);
         ImageButton reviews = (ImageButton) findViewById(R.id.reviews);
         ImageButton compose = (ImageButton) findViewById(R.id.compose);
-       // ImageButton report = (ImageButton) findViewById(R.id.report);
+        // ImageButton report = (ImageButton) findViewById(R.id.report);
         ImageButton emergency = (ImageButton) findViewById(R.id.emergency1);
         ImageButton logout = (ImageButton) findViewById(R.id.logout);
 

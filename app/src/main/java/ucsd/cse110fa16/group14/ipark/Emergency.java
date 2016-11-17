@@ -53,7 +53,7 @@ public class Emergency extends AppCompatActivity {
         Button helpButt = (Button) findViewById(R.id.button28);
 
         radioGroup = (RadioGroup) findViewById(R.id.emergencyRadioGroup);
-        final EditText parkingNum = (EditText)findViewById(R.id.parkingNumber);
+        final EditText parkingNum = (EditText) findViewById(R.id.parkingNumber);
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
 
@@ -94,7 +94,7 @@ public class Emergency extends AppCompatActivity {
 
                 emergencyType.setValue(selectedbButton);
                 dateChild.setValue(sdf.format(date));
-                if(parkingNumber.isEmpty()) {
+                if (parkingNumber.isEmpty()) {
                     parkingNumChild.setValue("N/A");
                 } else {
                     parkingNumChild.setValue(parkingNumber);

@@ -41,30 +41,26 @@ public class iLink {
     protected static double userReservationSpotRate = 0;
 
     private static String generateNewInsertSpotReservationData
-            (String curDataStr, long startTime, String userName, long endTime )
-    {
+            (String curDataStr, long startTime, String userName, long endTime) {
 
-        if ( startTime < 0 || endTime < 0 || userName == "" || userName == null)
-        {
-            if (curDataStr == null || curDataStr == "" )return "";
+        if (startTime < 0 || endTime < 0 || userName == "" || userName == null) {
+            if (curDataStr == null || curDataStr == "") return "";
             else return curDataStr;
         }
         //System.out.println("test_1");
 
-        if (curDataStr == null || curDataStr == "")
-        {
-            return Long.toString(startTime)+"/"+userName+"/"+Long.toString((endTime));
+        if (curDataStr == null || curDataStr == "") {
+            return Long.toString(startTime) + "/" + userName + "/" + Long.toString((endTime));
         }
 
         String[] orders = curDataStr.split("[ ]+");
         //System.out.println("test_2");
         int orderNum = orders.length;
         // create a 2D array of startTime and endTime;
-        int [][] orderTime = new int[orderNum][2];
+        int[][] orderTime = new int[orderNum][2];
 
         // parse each order and get startTime and endTime
-        for(int i = 0; i < orderNum; i++)
-        {
+        for (int i = 0; i < orderNum; i++) {
             String[] currOrder = orders[i].split("[/]");
             orderTime[i][0] = Integer.valueOf(currOrder[0]);
             orderTime[i][1] = Integer.valueOf(currOrder[2]);
@@ -73,11 +69,9 @@ public class iLink {
         //System.out.println("test_3");
         int stopIndex;
 
-        for(stopIndex = 0; stopIndex < orderNum; stopIndex++)
-        {
+        for (stopIndex = 0; stopIndex < orderNum; stopIndex++) {
 
-            if(endTime <= orderTime[stopIndex][0])
-            {
+            if (endTime <= orderTime[stopIndex][0]) {
                 if (stopIndex == 0) break;
                 else if (startTime >= orderTime[stopIndex - 1][1])
                     break;
@@ -89,42 +83,33 @@ public class iLink {
 
         String result = "";
         // insert new order into schedule
-        for (int i = 0; i < orderNum; i++)
-        {
-            if (i == stopIndex )
-            {
-                if (i == 0)
-                {
+        for (int i = 0; i < orderNum; i++) {
+            if (i == stopIndex) {
+                if (i == 0) {
                     result = result + Long.toString(startTime)
                             + "/" + userName + "/" + Long.toString(endTime);
-                }
-                else result = result + " " + Long.toString(startTime)
+                } else result = result + " " + Long.toString(startTime)
                         + "/" + userName + "/" + Long.toString(endTime);
 
 
                 stopIndex = i - 2;
                 i--;
-            }
-            else
-            {
-                if (i == 0 )
-                {
+            } else {
+                if (i == 0) {
                     result = result + orders[i];
-                }
-                else result = result + " " + orders[i];
+                } else result = result + " " + orders[i];
             }
 
             //System.out.println(i+" ");
         }
 
-        if (stopIndex == orderNum){
+        if (stopIndex == orderNum) {
             result = result + " " + Long.toString(startTime)
                     + "/" + userName + "/" + Long.toString(endTime);
         }
 
         //System.out.println("test_5");
         return result;
-
 
 
         // add reservation in beginning
@@ -179,13 +164,13 @@ public class iLink {
     }
 
 
-    private static boolean checkSpotAvailability(String curDataStr, long startTime, long endTime ){
+    private static boolean checkSpotAvailability(String curDataStr, long startTime, long endTime) {
 
         // error input
-        if ( startTime < 0 || endTime < 0)
+        if (startTime < 0 || endTime < 0)
             return false;
         // no one reserve that specific spot
-        if (curDataStr == null ||curDataStr == "")
+        if (curDataStr == null || curDataStr == "")
             return true;
         /*List<String> split = new ArrayList<String>(Arrays.asList(curDataStr.split("\\s+")));
 
@@ -204,11 +189,10 @@ public class iLink {
 
         int orderNum = orders.length;
         // create a 2D array of startTime and endTime;
-        int [][] orderTime = new int[orderNum][2];
+        int[][] orderTime = new int[orderNum][2];
 
         // parse each order and get startTime and endTime
-        for(int i = 0; i < orderNum; i++)
-        {
+        for (int i = 0; i < orderNum; i++) {
             //orders[i] = "2012/trump/2016";
             String[] currOrder = orders[i].split("[/]");
             //System.out.println("what is the order: "+ orders[i]);
@@ -219,28 +203,23 @@ public class iLink {
         }
 
         // compare and check
-        for(int i = 0; i < orderNum; i++){
+        for (int i = 0; i < orderNum; i++) {
 
 
-            if (endTime <= orderTime[i][0])
-            {
+            if (endTime <= orderTime[i][0]) {
                 // endTime earlier than first order
-                if (i == 0)
-                {
+                if (i == 0) {
                     return true;
                 }
                 // startTime later than previous order
-                else if(startTime >= orderTime[i - 1][1])
-                {
+                else if (startTime >= orderTime[i - 1][1]) {
                     return true;
                 }
             }
 
             // if startTime later than last order
-            if (startTime >= orderTime[i][1])
-            {
-                if (i == orderNum - 1)
-                {
+            if (startTime >= orderTime[i][1]) {
+                if (i == orderNum - 1) {
                     return true;
                 }
             }
@@ -252,7 +231,7 @@ public class iLink {
     }
 
 
-    public static void checkout (final String spot, final long startTime){
+    public static void checkout(final String spot, final long startTime) {
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/" + spot);
 
@@ -269,13 +248,13 @@ public class iLink {
                     com.firebase.client.DataSnapshot innerNode = iterator.next();
                     String innerKey = innerNode.getKey();
 
-                    if (innerKey.equals("Schedule"))  {
+                    if (innerKey.equals("Schedule")) {
                         schedule = innerNode.getValue(String.class);
                         break;
                     }
                 }
 
-                String newSchedule = remove (schedule, startTime);
+                String newSchedule = remove(schedule, startTime);
                 //System.out.println("  New Schedule:      " + newSchedule);
                 if (newSchedule != null) scheduleRef.setValue(newSchedule);
             }
@@ -289,19 +268,17 @@ public class iLink {
 
     }
 
-    private static String remove(String curDataStr, long startTime){
+    private static String remove(String curDataStr, long startTime) {
 
 
         //System.out.println("test_1");
 
         String result = "";
-        if (curDataStr == null || curDataStr == "")
-        {
+        if (curDataStr == null || curDataStr == "") {
             return result;
         }
 
-        if ( startTime < 0 )
-        {
+        if (startTime < 0) {
             return curDataStr;
         }
 
@@ -309,31 +286,26 @@ public class iLink {
 
         int orderNum = orders.length;
         // create a 2D array of startTime and endTime;
-        int [] orderTime = new int[orderNum];
+        int[] orderTime = new int[orderNum];
 
         int stopIndex = 0;
         // parse each order and get startTime and endTime
-        for(stopIndex = 0; stopIndex < orderNum; stopIndex++)
-        {
+        for (stopIndex = 0; stopIndex < orderNum; stopIndex++) {
             //orders[i] = "2012/trump/2016";
             String[] currOrder = orders[stopIndex].split("[/]");
             //System.out.println("what is the order: "+ orders[i]);
             //System.out.println("length is "+ currOrder.length);
-            if (Integer.parseInt(currOrder[0]) == startTime)
-            {
+            if (Integer.parseInt(currOrder[0]) == startTime) {
                 break;
             }
 
         }
 
-        if(stopIndex == orderNum) return result;
-        else
-        {
-            for(int i = (stopIndex + 1); i < orderNum; i++ )
-            {
-                result = result+orders[i];
-                if (i != (orderNum - 1))
-                {
+        if (stopIndex == orderNum) return result;
+        else {
+            for (int i = (stopIndex + 1); i < orderNum; i++) {
+                result = result + orders[i];
+                if (i != (orderNum - 1)) {
                     result = result + " ";
                 }
             }
@@ -352,9 +324,8 @@ public class iLink {
         auth = FirebaseAuth.getInstance();
         String userName = auth.getCurrentUser().getDisplayName();
 
-        updateUserReservationStatus( userName, spot, startTime, endTime );
-        parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener()
-        {
+        updateUserReservationStatus(userName, spot, startTime, endTime);
+        parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
 
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
@@ -371,7 +342,7 @@ public class iLink {
                     com.firebase.client.DataSnapshot innerNode = iterator.next();
                     String innerKey = innerNode.getKey();
 
-                    if (innerKey.equals("Schedule"))  {
+                    if (innerKey.equals("Schedule")) {
                         schedule = innerNode.getValue(String.class);
                     }
                 }
@@ -386,7 +357,7 @@ public class iLink {
                 System.out.println("  End   Time In Sec: " + endTime);
 
                 // Update old schedule data field with new reservation data
-                String newSchedule = generateNewInsertSpotReservationData(schedule, startTime,userName,endTime );
+                String newSchedule = generateNewInsertSpotReservationData(schedule, startTime, userName, endTime);
                 System.out.println("  New Schedule:      " + newSchedule);
                 if (newSchedule != null) scheduleRef.setValue(newSchedule);
             }
@@ -408,7 +379,7 @@ public class iLink {
 
     public static void changeSchedule(String spot, String newScheduleData) {
         Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
-        scheduleRef.setValue( newScheduleData );
+        scheduleRef.setValue(newScheduleData);
     }
 
     public static void changeLegalStatus(String spot, boolean newStatus) {
@@ -430,37 +401,36 @@ public class iLink {
         spotStatus = getParkingLotStatus(startTimeInSec, endTimeInSec);
 
         Vector<String> spotsAvailable = new Vector<String>();
-        for(int i = 0; i < NUM_SPOTS; i++) {
-            if( spotStatus[i] == AVAILABLE ) {
-                spotsAvailable.add( "Spot" + String.format("%03d", i) );
+        for (int i = 0; i < NUM_SPOTS; i++) {
+            if (spotStatus[i] == AVAILABLE) {
+                spotsAvailable.add("Spot" + String.format("%03d", i));
             }
         }
 
-        if( spotsAvailable.size() == 0 )
+        if (spotsAvailable.size() == 0)
             return null;
 
         Random rand = new Random();
-        int spotAssign = rand.nextInt( spotsAvailable.size() );
+        int spotAssign = rand.nextInt(spotsAvailable.size());
 
-        return spotsAvailable.elementAt( spotAssign );
+        return spotsAvailable.elementAt(spotAssign);
     }
 
     // TODO: This function inserts a new data field rather than updates
     public static boolean reportOther(int spot) {
 
         // If reporting invalid spot, return false
-        if( spot < 0 || spot >= NUM_SPOTS )
+        if (spot < 0 || spot >= NUM_SPOTS)
             return false;
 
         // Can only report parking spots that should be open
         //getParkingLotStatus();
         String spotText = "Spot" + String.format("%03d", spot);
         System.out.println(spotText);
-        if( spotStatus[spot] == AVAILABLE ) {
+        if (spotStatus[spot] == AVAILABLE) {
             changeLegalStatus(spotText, true);
             return true;
-        }
-        else
+        } else
             return false;
     }
 
@@ -483,15 +453,13 @@ public class iLink {
 
         parkingLotLink.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
-            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
                 Iterable<com.firebase.client.DataSnapshot> parkingSpot = dataSnapshot.getChildren();
                 Iterator<com.firebase.client.DataSnapshot> iterator = parkingSpot.iterator();
 
 
                 //Getting individual parking spot
-                for( int count = 0; count < NUM_SPOTS; count++)
-                {
+                for (int count = 0; count < NUM_SPOTS; count++) {
                     // the index of this spot
                     com.firebase.client.DataSnapshot node = iterator.next();
 
@@ -508,26 +476,26 @@ public class iLink {
                         com.firebase.client.DataSnapshot innerNode = iterator1.next();
                         String innerKey = innerNode.getKey();
 
-                        if (innerKey.equals("Schedule"))  {
+                        if (innerKey.equals("Schedule")) {
                             schedule = innerNode.getValue(String.class);
                         }
-                        if(innerKey.equals("Illegal"))  {
+                        if (innerKey.equals("Illegal")) {
                             illegal = ((innerNode.getValue(boolean.class)));
                         }
-                        if(innerKey.equals("OwnerReserved")) {
+                        if (innerKey.equals("OwnerReserved")) {
                             reserved = ((innerNode.getValue(boolean.class)));
                         }
                     }
 
                     // Getting parking spot status and storing it into spotStatus
                     //long curTimeInSec = getCurTimeInSec();
-                    if(illegal)
+                    if (illegal)
                         spotStatus[count] = ILLEGAL;
-                    else if(reserved)
+                    else if (reserved)
                         spotStatus[count] = OWNER_RESERVED;
                     else {
                         //System.out.println("Spot " + count + ": " + startTime + " " + endTime + " " + schedule);
-                        if( checkSpotAvailability(schedule, startTime, endTime) == true )
+                        if (checkSpotAvailability(schedule, startTime, endTime) == true)
                             spotStatus[count] = AVAILABLE;
                         else
                             spotStatus[count] = OCCUPIED;
@@ -542,7 +510,7 @@ public class iLink {
         });
 
         System.out.print("ParkingLotStatus: ");
-        for(int i = 0; i < NUM_SPOTS; i++)
+        for (int i = 0; i < NUM_SPOTS; i++)
             System.out.print(spotStatus[i]);
         System.out.println();
 
@@ -554,7 +522,7 @@ public class iLink {
         auth = FirebaseAuth.getInstance();
         String userName = auth.getCurrentUser().getDisplayName();
 
-        String ref = "https://ipark-e243b.firebaseio.com/Users/" + userName + "/ReservationStatus" ;
+        String ref = "https://ipark-e243b.firebaseio.com/Users/" + userName + "/ReservationStatus";
         Firebase fReference = new Firebase(ref);
         fReference.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
             @Override
@@ -567,7 +535,7 @@ public class iLink {
                     DataSnapshot data = iterator.next();
                     innerKey = data.getKey();
 
-                    if (innerKey.equals("AssignedSpot") ) {
+                    if (innerKey.equals("AssignedSpot")) {
                         userReservationSpot = data.getValue(String.class);
                     }
 
@@ -595,18 +563,18 @@ public class iLink {
     // Get current time: Ex. February 1, 2016 = 20160201
     private static long getCurrentDate() {
         Calendar now = Calendar.getInstance();
-        int year  = now.get(Calendar.YEAR);
+        int year = now.get(Calendar.YEAR);
         int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
-        int day   = now.get(Calendar.DAY_OF_MONTH);
+        int day = now.get(Calendar.DAY_OF_MONTH);
 
-        String yearStr  = String.format("%04d", year );
-        String monthStr = String.format("%02d", month );
-        String dayStr   = String.format("%02d", day );
+        String yearStr = String.format("%04d", year);
+        String monthStr = String.format("%02d", month);
+        String dayStr = String.format("%02d", day);
 
         // Generate currentDateString. Ex. February 1st, 2016 = 20160201
         String currentDateStr = yearStr + monthStr + dayStr;
 
-        return Long.parseLong( currentDateStr );
+        return Long.parseLong(currentDateStr);
     }
 
     // If last user activity was registered the day before, reset the map and user parking status
@@ -626,7 +594,7 @@ public class iLink {
                     com.firebase.client.DataSnapshot innerNode = iterator.next();
                     String innerKey = innerNode.getKey();
 
-                    if (innerKey.equals("LastActiveUserDate"))  {
+                    if (innerKey.equals("LastActiveUserDate")) {
                         lastActiveUserDate = innerNode.getValue(Long.class);
                         break;
                     }
@@ -634,12 +602,12 @@ public class iLink {
 
                 // If last login was yesterday, reset the database
                 long currentDate = getCurrentDate();
-                if( lastActiveUserDate < currentDate )
+                if (lastActiveUserDate < currentDate)
                     resetDataBaseForNewDay();
 
                 // Update lastActivityUserTime to now
                 Firebase lastActiveUserRef = new Firebase(usersNode + "LastActiveUserDate");
-                lastActiveUserRef.setValue( getCurrentDate() );
+                lastActiveUserRef.setValue(getCurrentDate());
             }
 
             @Override
@@ -655,8 +623,8 @@ public class iLink {
         String spot;
 
         // Reset all parking spots
-        for(int i = 0; i < NUM_SPOTS; i++) {
-            spot = "Spot" + String.format( "%03d", i );
+        for (int i = 0; i < NUM_SPOTS; i++) {
+            spot = "Spot" + String.format("%03d", i);
             changeLegalStatus(spot, false);
             changeReserveStatus(spot, false);
             changeSchedule(spot, "");
@@ -676,15 +644,15 @@ public class iLink {
                     com.firebase.client.DataSnapshot innerNode = userIter.next();
                     String username = innerNode.getKey();
 
-                    if (username.equals("LastActiveUserDate"))  {
+                    if (username.equals("LastActiveUserDate")) {
                         lastActiveUserDate = innerNode.getValue(Long.class);
                         continue;
                     }
 
-                    Firebase userAssignedSpot   = new Firebase(usersNode + username + "/ReservationStatus/AssignedSpot");
-                    Firebase userSpotEndTime    = new Firebase(usersNode + username + "/ReservationStatus/EndTime");
-                    Firebase userSpotStartTime  = new Firebase(usersNode + username + "/ReservationStatus/StartTime");
-                    Firebase userSpotRate       = new Firebase(usersNode + username + "/ReservationStatus/SpotRate");
+                    Firebase userAssignedSpot = new Firebase(usersNode + username + "/ReservationStatus/AssignedSpot");
+                    Firebase userSpotEndTime = new Firebase(usersNode + username + "/ReservationStatus/EndTime");
+                    Firebase userSpotStartTime = new Firebase(usersNode + username + "/ReservationStatus/StartTime");
+                    Firebase userSpotRate = new Firebase(usersNode + username + "/ReservationStatus/SpotRate");
 
                     userAssignedSpot.setValue("");
                     userSpotEndTime.setValue(0);
@@ -705,10 +673,10 @@ public class iLink {
         auth = FirebaseAuth.getInstance();
         String username = auth.getCurrentUser().getDisplayName();
 
-        Firebase userAssignedSpot   = new Firebase(usersNode + username + "/ReservationStatus/AssignedSpot");
-        Firebase userSpotEndTime    = new Firebase(usersNode + username + "/ReservationStatus/EndTime");
-        Firebase userSpotStartTime  = new Firebase(usersNode + username + "/ReservationStatus/StartTime");
-        Firebase userSpotRate       = new Firebase(usersNode + username + "/ReservationStatus/SpotRate");
+        Firebase userAssignedSpot = new Firebase(usersNode + username + "/ReservationStatus/AssignedSpot");
+        Firebase userSpotEndTime = new Firebase(usersNode + username + "/ReservationStatus/EndTime");
+        Firebase userSpotStartTime = new Firebase(usersNode + username + "/ReservationStatus/StartTime");
+        Firebase userSpotRate = new Firebase(usersNode + username + "/ReservationStatus/SpotRate");
 
         userAssignedSpot.setValue("");
         userSpotEndTime.setValue(0);
@@ -719,15 +687,15 @@ public class iLink {
     // Store user reservation details in under each user's ReservationStatus field
     private static void updateUserReservationStatus(final String userName, String spot, long startTime, long endTime) {
 
-        System.out.println(spot + " " + startTime + " " + endTime );
+        System.out.println(spot + " " + startTime + " " + endTime);
 
-        Firebase userAssignedSpot   = new Firebase(usersNode + userName + "/ReservationStatus/AssignedSpot");
-        Firebase userSpotEndTime    = new Firebase(usersNode + userName + "/ReservationStatus/EndTime");
-        Firebase userSpotStartTime  = new Firebase(usersNode + userName + "/ReservationStatus/StartTime");
+        Firebase userAssignedSpot = new Firebase(usersNode + userName + "/ReservationStatus/AssignedSpot");
+        Firebase userSpotEndTime = new Firebase(usersNode + userName + "/ReservationStatus/EndTime");
+        Firebase userSpotStartTime = new Firebase(usersNode + userName + "/ReservationStatus/StartTime");
 
-        userAssignedSpot.setValue( spot );
-        userSpotEndTime.setValue( endTime );
-        userSpotStartTime.setValue( startTime );
+        userAssignedSpot.setValue(spot);
+        userSpotEndTime.setValue(endTime);
+        userSpotStartTime.setValue(startTime);
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice");
         parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
@@ -743,13 +711,13 @@ public class iLink {
                     com.firebase.client.DataSnapshot innerNode = parkingLotPriceIter.next();
                     String parkingLotData = innerNode.getKey();
 
-                    if (parkingLotData.equals("Price"))  {
+                    if (parkingLotData.equals("Price")) {
                         parkingLotRate = innerNode.getValue(Double.class);
                         break;
                     }
                 }
                 Firebase userSpotRate = new Firebase(usersNode + userName + "/ReservationStatus/SpotRate");
-                userSpotRate.setValue( parkingLotRate );
+                userSpotRate.setValue(parkingLotRate);
                 System.out.println("Rate: " + parkingLotRate);
             }
 
@@ -770,7 +738,7 @@ public class iLink {
     protected static HashMap<String, String> getChildInfo(String root, final String child) {
 
         String ref = "https://ipark-e243b.firebaseio.com/" + root +
-                "/" + child ;
+                "/" + child;
         Firebase fReference = new Firebase(ref);
         final HashMap<String, String> map = new HashMap<>();
         fReference.addValueEventListener(new com.firebase.client.ValueEventListener() {
@@ -798,7 +766,7 @@ public class iLink {
     }
 
     protected static double getDefaultPrice() {
-        String ref = "https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice/Price" ;
+        String ref = "https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice/Price";
         Firebase fReference = new Firebase(ref);
         fReference.addValueEventListener(new ValueEventListener() {
             @Override

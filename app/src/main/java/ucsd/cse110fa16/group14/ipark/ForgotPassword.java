@@ -38,7 +38,7 @@ public class ForgotPassword extends AppCompatActivity {
 
         sendButton = (Button) findViewById(R.id.send);
         emailField = (EditText) findViewById(R.id.emailField);
-        caption = (TextView) findViewById(R.id.invalidEmailTV);
+        caption = (TextView) findViewById(R.id.selectAudience);
         ImageButton home = (ImageButton) findViewById(R.id.imageButton2);
 
         auth = FirebaseAuth.getInstance();
@@ -51,7 +51,7 @@ public class ForgotPassword extends AppCompatActivity {
                 if (auth.getCurrentUser() != null) {
                     Intent intent = new Intent(ForgotPassword.this, UserHomepage.class);
                     startActivity(intent);
-                } else{
+                } else {
                     Intent intent = new Intent(ForgotPassword.this, LoginPage.class);
                     startActivity(intent);
                 }

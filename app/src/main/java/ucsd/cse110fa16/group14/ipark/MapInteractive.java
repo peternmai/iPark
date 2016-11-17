@@ -9,22 +9,18 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Handler;
-import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
 
 /**
  * Created by jasonallen/Peter on 10/8/16.
@@ -128,7 +124,7 @@ public class MapInteractive extends View {
                 }
             }
 
-            recCol.put(r, paints[ parkingLotStatus[i] ]);
+            recCol.put(r, paints[parkingLotStatus[i]]);
         }
 
         // Update parking lot status
@@ -184,7 +180,7 @@ public class MapInteractive extends View {
 
             // Reset color change
             //for (int i = 0; i < (paints.length - 1); i++)
-              //  changeRectColor(activityRect);
+            //  changeRectColor(activityRect);
 
             System.out.println("Long Press");
 
@@ -196,24 +192,20 @@ public class MapInteractive extends View {
 
             int myInx = parkingLotStatus[rectIndex];
 
-            if (myInx == iLink.AVAILABLE){
+            if (myInx == iLink.AVAILABLE) {
                 builder.setMessage("    Change available spot to reserved?\n");
-            }
-            else if (myInx == iLink.OWNER_RESERVED){
+            } else if (myInx == iLink.OWNER_RESERVED) {
                 builder.setMessage("    Change reserved spot to available?\n");
-            }
-            else if (myInx == iLink.ILLEGAL){
+            } else if (myInx == iLink.ILLEGAL) {
                 builder.setMessage("    Change illegal spot to available?\n");
-            }
-            else builder.setMessage("    Cannot change occupied.\n");
+            } else builder.setMessage("    Cannot change occupied.\n");
             //final EditText input = new EditText(activityContext);
             //input.setInputType(InputType.TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL);
             //builder.setView(input);
 
 
-
             //builder.setMessage("Current Rate:  $2.50/hr\n" +
-              //      "Enter New Parking Rate:");
+            //      "Enter New Parking Rate:");
             //builder.setCancelable(false);
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -250,7 +242,7 @@ public class MapInteractive extends View {
                         activityRect = rect;
                         rectIndex = index;
                     }
-                    index ++;
+                    index++;
                 }
 
                 break;
@@ -270,8 +262,8 @@ public class MapInteractive extends View {
 
     void updateMapDisplay() {
 
-        for( int i = 0; i < numSpaces; i++) {
-            recCol.put(rectangle[i], paints[ parkingLotStatus[i] ]);
+        for (int i = 0; i < numSpaces; i++) {
+            recCol.put(rectangle[i], paints[parkingLotStatus[i]]);
             invalidate();
         }
 
@@ -283,7 +275,7 @@ public class MapInteractive extends View {
 
         //index in array of paint
         int idx = 0;
-        int newIdx ;
+        int newIdx;
         for (int i = 0; i < paints.length; i++) {
             if (paints[i] == p) {
                 idx = i;
@@ -291,7 +283,7 @@ public class MapInteractive extends View {
         }
         newIdx = idx;
 
-        String spotNum = "Spot"+ String.format("%03d", rectIndex);
+        String spotNum = "Spot" + String.format("%03d", rectIndex);
 
         // change reserve to available
         if (idx == iLink.OWNER_RESERVED) {

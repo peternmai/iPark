@@ -1,11 +1,8 @@
 package ucsd.cse110fa16.group14.ipark;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.firebase.client.DataSnapshot;
@@ -49,7 +46,9 @@ public class Messages extends AppCompatActivity {
             this.comment = comment;
         }
 
-        public void setUser(String user) { this.user = user; }
+        public void setUser(String user) {
+            this.user = user;
+        }
 
         @Override
         public String toString() {

@@ -46,7 +46,9 @@ public class UserReviewHistory extends AppCompatActivity {
             this.key = key;
         }
 
-        public void setUser(String user) {this.user = user;}
+        public void setUser(String user) {
+            this.user = user;
+        }
 
         public void setDate(String date) {
             this.date = date;
@@ -84,7 +86,7 @@ public class UserReviewHistory extends AppCompatActivity {
         String userName = auth.getCurrentUser().getDisplayName();
         //Task task = auth.getCurrentUser().updatePassword(newPassword);
         //root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+bundle.getString("Username")+"/History");
-        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+userName+"/History");
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/History");
 
         final ArrayAdapter<ResObj> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 

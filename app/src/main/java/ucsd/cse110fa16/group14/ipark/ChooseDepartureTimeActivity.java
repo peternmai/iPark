@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 
 
-
 public class ChooseDepartureTimeActivity extends AppCompatActivity {
 
     private int min, hour, ampm;
@@ -27,7 +26,7 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         iLink.getDefaultPrice();
     }
@@ -123,7 +122,7 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                 if ((ampm == 2) && (hour != 12))
                     hourEntered += 12;
 
-                if((ampm == 1) && hourEntered == 12 )
+                if ((ampm == 1) && hourEntered == 12)
                     hourEntered = 0;
 
                 System.out.println("Current Time: " + bundle.getInt("arriveHour") + ":" + bundle.getInt("arriveMin"));

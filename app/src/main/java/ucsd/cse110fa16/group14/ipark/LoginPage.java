@@ -129,8 +129,9 @@ public class LoginPage extends AppCompatActivity {
                             new Intent(LoginPage.this, UserHomepage.class) ;*/
 
                     Intent intent;
-                    if(username.equals(admin)) intent = new Intent(LoginPage.this, OwnerHomepage.class);
-                    else intent = new Intent(LoginPage.this, UserHomepage.class) ;
+                    if (username.equals(admin))
+                        intent = new Intent(LoginPage.this, OwnerHomepage.class);
+                    else intent = new Intent(LoginPage.this, UserHomepage.class);
 
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

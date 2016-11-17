@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -29,7 +28,7 @@ public class BossEmergency extends AppCompatActivity {
     private commentBoss temp;
     ImageButton home;
 
-    class commentBoss{
+    class commentBoss {
 
         String date, emergencyType, parkingSpot, user;
 
@@ -49,13 +48,16 @@ public class BossEmergency extends AppCompatActivity {
             this.parkingSpot = rating;
         }
 
-        public void setUser(String user) { this.user = user; }
+        public void setUser(String user) {
+            this.user = user;
+        }
 
         @Override
         public String toString() {
             return String.format("\nUSER:  %s\t\t\t\t\t\t\t\tDATE:  %s\n\nEMERGENCY TYPE: %s\nPARKING SPOT: %s\n", user, date, emergencyType, parkingSpot);
         }
     }
+
     @Override
     protected void onPause() {
         super.onPause();
