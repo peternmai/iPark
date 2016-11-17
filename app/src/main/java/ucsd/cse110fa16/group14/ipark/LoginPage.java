@@ -75,9 +75,6 @@ public class LoginPage extends AppCompatActivity {
                     Intent intent;
                     if (username.equals("admin")) {
                         intent = new Intent(LoginPage.this, OwnerHomepage.class);
-                    } else if (username.equals("")) {
-                        intent = new Intent(LoginPage.this, LoginPage.class);
-                        auth.signOut();
                     } else {
                         intent = new Intent(LoginPage.this, UserHomepage.class);
                     }
