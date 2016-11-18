@@ -57,7 +57,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_height="60dp"
-        android:background="#FF6666"
+        android:background="#222222"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -73,8 +73,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_height="60dp"
-        android:background="#7F00FF"
-        android:textColor="#FFFFFF" />
+        android:background="#E0E0E0"
+        android:textColor="#444444" />
 
     <TextView
         android:text=""
