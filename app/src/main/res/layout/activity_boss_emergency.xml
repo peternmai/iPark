@@ -16,7 +16,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/home1"
+        app:srcCompat="@mipmap/new_home"
         android:background="#FFFFFF"
         android:layout_marginEnd="33dp"
         android:id="@+id/homeBBB"
