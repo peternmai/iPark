@@ -50,7 +50,7 @@ public class PopUp extends Activity {
 
         @Override
         public String toString() {
-            return String.format("***EMERGENCY ALERT***\nUSER:  %s\t\t\tDATE:  %s\nEMERGENCY TYPE: %s\nPARKING SPOT: %s\n", user, date, emergencyType, parkingSpot);
+            return String.format("\n***EMERGENCY ALERT***\n\nUSER:  %s\t\t\tDATE:  %s\n\nEMERGENCY TYPE: %s\nPARKING SPOT: %s\n", user, date, emergencyType, parkingSpot);
         }
 
     }
@@ -67,7 +67,7 @@ public class PopUp extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.8));
+        getWindow().setLayout((int)(width*.8),(int)(height*.3));
 
         listView = (ListView) findViewById(R.id.listViewWindow);
         root = new Firebase("https://ipark-e243b.firebaseio.com/NewEmergency");
