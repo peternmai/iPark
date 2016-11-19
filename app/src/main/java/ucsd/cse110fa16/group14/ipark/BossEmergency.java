@@ -29,8 +29,6 @@ public class BossEmergency extends AppCompatActivity {
     private commentBoss temp;
     ImageButton home;
 
-    private PopupWindow myPopUp;
-
     class commentBoss {
 
         String date, emergencyType, parkingSpot, user;
@@ -78,7 +76,7 @@ public class BossEmergency extends AppCompatActivity {
 
         home = (ImageButton) findViewById(R.id.homeBBB);
         listView = (ListView) findViewById(R.id.list_view_emergency);
-        root = new Firebase("https://ipark-e243b.firebaseio.com/Emergency");
+        root = new Firebase("https://ipark-e243b.firebaseio.com/EmergencyHistory");
         final ArrayAdapter<commentBoss> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
         listView.setAdapter(arrayAdapter);

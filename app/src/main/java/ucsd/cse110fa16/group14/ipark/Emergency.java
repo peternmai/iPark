@@ -27,7 +27,7 @@ import java.util.Date;
 public class Emergency extends AppCompatActivity {
 
     private Firebase root;
-    Firebase hasChild;
+    Firebase newEmergChild, emergHistChild;
     RadioGroup radioGroup;
     RadioButton selected;
     private static FirebaseAuth auth;
@@ -47,7 +47,9 @@ public class Emergency extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency);
 
-        root = new Firebase("https://ipark-e243b.firebaseio.com/Emergency");
+        root = new Firebase("https://ipark-e243b.firebaseio.com");
+        final Firebase newEmerg = root.child("NewEmergency");
+        final Firebase emergHist = root.child("EmergencyHistory");
         final Bundle bundle = getIntent().getExtras();
 
         Button sendButt = (Button) findViewById(R.id.button25);
@@ -74,24 +76,37 @@ public class Emergency extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 sdf.format(date);
 
-                hasChild = root.child(date + " ");
-                Firebase emergencyType = hasChild.child("EmergencyType");
-                Firebase dateChild = hasChild.child("Date");
-                Firebase parkingNumChild = hasChild.child("ParkingNumber");
-                Firebase userChild = hasChild.child("User");
+                newEmergChild = newEmerg.child(date.toString());
+                emergHistChild = emergHist.child(date.toString());
+                Firebase newEmEmergencyType = newEmergChild.child("EmergencyType");
+                Firebase emHistEmergencyType = emergHistChild.child("EmergencyType");
+                Firebase newEmDateChild = newEmergChild.child("Date");
+                Firebase emHistDateChild = emergHistChild.child("Date");
+                Firebase newEmParkingNumChild = newEmergChild.child("ParkingNumber");
+                Firebase emHistParkingNumChild = emergHistChild.child("ParkingNumber");
+                Firebase newEmUserChild = newEmergChild.child("User");
+                Firebase emHistUserChild = emergHistChild.child("User");
+
+
 
                 try {
                     selectedbButton = selected.getText().toString();
                     parkingNumber = parkingNum.getText().toString();
 
-                    emergencyType.setValue(selectedbButton);
-                    dateChild.setValue(sdf.format(date));
+                    newEmEmergencyType.setValue(selectedbButton);
+                    emHistEmergencyType.setValue(selectedbButton);
+                    newEmDateChild.setValue(sdf.format(date));
+                    emHistDateChild.setValue(sdf.format(date));
+
                     if (parkingNumber.isEmpty()) {
-                        parkingNumChild.setValue("N/A");
+                        newEmParkingNumChild.setValue("N/A");
+                        emHistParkingNumChild.setValue("N/A");
                     } else {
-                        parkingNumChild.setValue(parkingNumber);
+                        newEmParkingNumChild.setValue(parkingNumber);
+                        emHistParkingNumChild.setValue(parkingNumber);
                     }
-                    userChild.setValue(userName);
+                    newEmUserChild.setValue(userName);
+                    emHistUserChild.setValue(userName);
                     parkingNum.setText("");
                     Toast.makeText(Emergency.this, "Thank you for reporting this emergency!",
                             Toast.LENGTH_LONG).show();
