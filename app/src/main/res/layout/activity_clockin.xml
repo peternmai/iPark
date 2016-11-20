@@ -2,6 +2,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_clockin"
     android:layout_width="match_parent"
@@ -68,38 +69,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:text="NEXT"
-        android:id="@+id/next"
-        android:layout_height="75dp"
-        android:textSize="18sp"
-        android:layout_width="160dp"
-        android:textAlignment="center"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        tools:ignore="HardcodedText"
-        android:onClick="showDialog"
-        android:textColor="#202020"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:background="#9B9295" />
-
-    <Button
-        android:text="HOME"
-        android:id="@+id/button8"
-        android:layout_height="75dp"
-        android:textSize="18sp"
-        android:layout_width="160dp"
-        android:textAlignment="center"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        tools:ignore="HardcodedText"
-        android:onClick="showDialog"
-        android:textColor="#FFFFFF"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:background="#8D5B68" />
-
     <TextView
         android:text="ARRIVAL TIME"
         android:layout_width="match_parent"
@@ -113,6 +82,32 @@
         tools:ignore="HardcodedText"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="NEXT"
+        android:id="@+id/next"
+        android:layout_height="75dp"
+        android:textSize="18sp"
+        android:layout_width="160dp"
+        android:textAlignment="center"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        tools:ignore="HardcodedText"
+        android:onClick="showDialog"
+        android:textColor="#202020"
+        android:background="#9B9295"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/new_home"
+        android:id="@+id/imageButton3"
+        android:background="@mipmap/help"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/button4" />
 
 
 </RelativeLayout>

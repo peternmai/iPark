@@ -55,19 +55,6 @@
         android:layout_alignParentStart="true"
         android:layout_width="150dp" />
 
-    <Button
-        android:text="HOME"
-        android:id="@+id/button14"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="normal|bold"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:background="#4F17E9"
-        android:layout_width="150dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="  0    1     2     3     4     5     6     7     8    9"
         android:layout_width="wrap_content"
@@ -157,5 +144,18 @@
         android:textSize="18sp"
         android:layout_below="@+id/textView46"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="HOME"
+        android:id="@+id/button14"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:background="#4F17E9"
+        android:layout_width="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

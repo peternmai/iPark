@@ -62,6 +62,7 @@ public class DriverRegistration extends AppCompatActivity {
         final Button submit = (Button) findViewById(R.id.submit_registration);
         Button reset = (Button) findViewById(R.id.resetButton);
         Button help = (Button) findViewById(R.id.help);
+        Button home = (Button) findViewById(R.id.registrationHomeButton);
         final TextView invalidUser = (TextView) findViewById(R.id.invalidUsernameTV);
         final TextView invalidEmail = (TextView) findViewById(R.id.selectAudience);
         final CheckBox notRobot = (CheckBox) findViewById(R.id.notARobot);
@@ -118,6 +119,13 @@ public class DriverRegistration extends AppCompatActivity {
         });
         */
 
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DriverRegistration.this, LoginPage.class);
+                startActivity(intent);
+            }
+        });
 
         username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

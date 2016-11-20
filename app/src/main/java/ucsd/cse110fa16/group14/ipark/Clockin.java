@@ -80,7 +80,7 @@ public class Clockin extends AppCompatActivity {
         }
 
 
-        Button homeButt = (Button) findViewById(R.id.button8);
+        Button homeButt = (Button) findViewById(R.id.imageButton3);
         Button help = (Button) findViewById(R.id.button4);
         Button nextButt = (Button) findViewById(R.id.next);
 
