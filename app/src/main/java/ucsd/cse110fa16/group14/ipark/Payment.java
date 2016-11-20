@@ -71,7 +71,7 @@ public class Payment extends AppCompatActivity {
 
 
         double currentPrice = iLink.getDefaultPrice();
-        currPrice.setText("Current rate is: " + currentPrice + "/hour");
+        currPrice.setText("Current rate is: " + "$" + currentPrice + "/hour");
 
         startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
         endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
