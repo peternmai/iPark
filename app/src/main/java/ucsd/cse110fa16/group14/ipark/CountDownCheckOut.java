@@ -112,13 +112,13 @@ public class CountDownCheckOut extends AppCompatActivity {
                     millisUntilFinished -= (endTimeInSec - startTimeInSec) * 1000;
                     title.setText("Time Until Start");
                     timerText.setTextColor(Color.RED);
-                    checkoutButt.setText("CANCEL");
+                    checkoutButt.setText("Cancel");
                     reportButt.setEnabled(false);
                 } else {
                     title.setText("Time Remaining");
                     timerText.setTextColor(Color.BLUE);
                     reportButt.setEnabled(true);
-                    checkoutButt.setText("CHECKOUT");
+                    checkoutButt.setText("CheckOut");
                     mProgress.setProgress(0);
                 }
 

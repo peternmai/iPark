@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,7 +63,7 @@ public class DriverRegistration extends AppCompatActivity {
         final Button submit = (Button) findViewById(R.id.submit_registration);
         Button reset = (Button) findViewById(R.id.resetButton);
         Button help = (Button) findViewById(R.id.help);
-        Button home = (Button) findViewById(R.id.registrationHomeButton);
+        ImageButton home = (ImageButton) findViewById(R.id.registrationHomeButton);
         final TextView invalidUser = (TextView) findViewById(R.id.invalidUsernameTV);
         final TextView invalidEmail = (TextView) findViewById(R.id.selectAudience);
         final CheckBox notRobot = (CheckBox) findViewById(R.id.notARobot);

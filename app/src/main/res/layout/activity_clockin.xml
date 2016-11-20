@@ -103,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/new_home"
-        android:id="@+id/imageButton3"
+        android:id="@+id/clockinHomeButton"
         android:background="@mipmap/help"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"

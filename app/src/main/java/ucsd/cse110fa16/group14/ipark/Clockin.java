@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 
 import java.util.Calendar;
@@ -80,7 +81,7 @@ public class Clockin extends AppCompatActivity {
         }
 
 
-        Button homeButt = (Button) findViewById(R.id.imageButton3);
+        ImageButton homeButt = (ImageButton) findViewById(R.id.clockinHomeButton);
         Button help = (Button) findViewById(R.id.button4);
         Button nextButt = (Button) findViewById(R.id.next);
 
