@@ -145,12 +145,12 @@
     <EditText
         android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/userPassword"
         android:hint="Password"
         android:layout_below="@+id/userName"
         android:layout_alignStart="@+id/userName"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:inputType="text" />
 
 </RelativeLayout>
