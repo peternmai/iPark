@@ -29,7 +29,6 @@ public class ReportIllegal extends AppCompatActivity {
         Button reportButt = (Button) findViewById(R.id.reportButton);
         Button cancelButt = (Button) findViewById(R.id.paymentCancelButton);
 
-
         cancelButt.setOnClickListener(new View.OnClickListener() {
 
             @Override

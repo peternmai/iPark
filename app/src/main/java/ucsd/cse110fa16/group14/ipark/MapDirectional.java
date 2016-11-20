@@ -13,8 +13,20 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 
 public class MapDirectional extends AppCompatActivity {
+    Firebase root;
+    private static FirebaseAuth auth;
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -32,10 +44,15 @@ public class MapDirectional extends AppCompatActivity {
 
         final Bundle bundle = getIntent().getExtras();
 
+        auth = FirebaseAuth.getInstance();
+        final String userName = auth.getCurrentUser().getDisplayName();
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName);
+
         Button emergencyButt = (Button) findViewById(R.id.button9);
         Button homeButt = (Button) findViewById(R.id.button14);
         Button reportButt = (Button) findViewById(R.id.send);
         final EditText reportSpotTextEdit = (EditText) findViewById(R.id.editText);
+
 
         /* click emergency */
         emergencyButt.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +119,22 @@ public class MapDirectional extends AppCompatActivity {
                     progress.dismiss();
 
                     if (reportSuccess) {
+                        Date tempDate = new Date();                               // given date
+                        Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
+                        calendar.setTime(tempDate);
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                        tempDate = null;
+                        try {
+                            tempDate = sdf.parse(sdf.format(new Date()));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        Date date = tempDate;
+                        int tempHour = calendar.get(Calendar.HOUR_OF_DAY);
+                        int tempMin = calendar.get(Calendar.MINUTE);
+                        final Firebase tempHist = root.child("History").child("Report: " + date + " "
+                                + generateTimeText(tempHour, tempMin));
                         InputMethodManager inputManager = (InputMethodManager)
                                 getSystemService(Context.INPUT_METHOD_SERVICE);
                         inputManager.hideSoftInputFromWindow((null == getCurrentFocus()) ?
@@ -121,6 +154,13 @@ public class MapDirectional extends AppCompatActivity {
                         reportSpotTextEdit.setText("");
                         AlertDialog alertDialog = respond.create();
                         alertDialog.show();
+
+                        tempHist.child("Date").setValue(sdf.format(date));
+                        tempHist.child("Time").setValue(generateTimeText(tempHour, tempMin));
+                        tempHist.child("Spot").setValue("" + report_num);
+                        tempHist.child("User").setValue(userName);
+
+
                     } else {
                         AlertDialog.Builder respond = new AlertDialog.Builder(MapDirectional.this);
                         respond.setTitle("Report Failed");
@@ -164,5 +204,25 @@ public class MapDirectional extends AppCompatActivity {
                 startActivity(intent);
             }
         });*/
+    }
+
+    private String generateTimeText(int hour, int min) {
+        String timeText;
+        String am_pm_Text = (hour < 12) ? "AM" : "PM";
+
+        // Format hour
+        if (hour <= 12) {
+            if (hour == 0)
+                hour += 12;
+            timeText = String.format("%02d", hour);
+        } else {
+            timeText = String.format("%02d", (hour - 12));
+        }
+
+        // Add colon, min, and AM/PM sign
+        timeText = (timeText + ":" + String.format("%02d", min) + " " + am_pm_Text);
+
+
+        return timeText;
     }
 }

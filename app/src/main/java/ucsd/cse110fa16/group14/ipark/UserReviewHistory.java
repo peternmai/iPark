@@ -27,6 +27,9 @@ public class UserReviewHistory extends AppCompatActivity {
     private ArrayList<ResObj> list = new ArrayList<>();
     private ResObj temp;
     private static FirebaseAuth auth;
+    private ListView reportView;
+    private ArrayList<RepoObj> list2 = new ArrayList<>();
+    private RepoObj temp2;
 
     class ResObj {
 
@@ -73,6 +76,33 @@ public class UserReviewHistory extends AppCompatActivity {
         }
     }
 
+    class RepoObj{
+        String key;
+        String date;
+        String user;
+        String spot;
+        String time;
+
+        RepoObj(){
+            key = date = spot = user = "";
+        }
+
+        public void setKey(String key) { this.key = key; }
+
+        public void setUser(String user) { this.user = user; }
+
+        public void setDate(String date) { this. date = date; }
+
+        public void setSpot(String spot) { this.spot = spot; }
+
+        public void setTime(String time) { this.time = time; }
+        @Override
+        public String toString() {
+            return String.format("\n%s\t\t\t\t\t\t\tDATE: %s\n\tTIME: %s\n\t Spot: %s\n\n",
+                    key, date, time, spot);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +111,7 @@ public class UserReviewHistory extends AppCompatActivity {
         final Bundle bundle = getIntent().getExtras();
 
         listView = (ListView) findViewById(R.id.list_view);
+        reportView = (ListView) findViewById(R.id.listView2);
 
         auth = FirebaseAuth.getInstance();
         String userName = auth.getCurrentUser().getDisplayName();
@@ -89,28 +120,46 @@ public class UserReviewHistory extends AppCompatActivity {
         root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/History");
 
         final ArrayAdapter<ResObj> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        final ArrayAdapter<RepoObj> repoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list2);
 
         listView.setAdapter(arrayAdapter);
+        reportView.setAdapter(repoAdapter);
+
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 int ctr = 1;
+                int num = 1;
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    temp = new ResObj();
+                    if (child.hasChild("Spot")){
+                        temp2 = new RepoObj();
+                        temp2.setKey("REPORT " + num + ":");
+                        temp2.setDate(child.child("Date").getValue(String.class));
+                        temp2.setSpot(child.child("Spot").getValue(String.class));
+                        temp2.setUser(child.child("User").getValue(String.class));
+                        temp2.setTime(child.child("Time").getValue(String.class));
+                        list2.add(temp2);
+                        num++;
 
-                    temp.setKey("RESERVATION " + ctr + ":");
-                    temp.setDate(child.child("Date").getValue(String.class));
-                    temp.setRate(child.child("Rate").getValue(String.class));
-                    temp.setClockIn(child.child("Clockin").getValue(String.class));
-                    temp.setClockOut(child.child("Clockout").getValue(String.class));
-                    temp.setUser(child.child("User").getValue(String.class));
+                        repoAdapter.notifyDataSetChanged();
+                    }
+                    else {
+                        temp = new ResObj();
 
-                    list.add(temp);
+                        temp.setKey("RESERVATION " + ctr + ":");
+                        temp.setDate(child.child("Date").getValue(String.class));
+                        temp.setRate(child.child("Rate").getValue(String.class));
+                        temp.setClockIn(child.child("Clockin").getValue(String.class));
+                        temp.setClockOut(child.child("Clockout").getValue(String.class));
+                        temp.setUser(child.child("User").getValue(String.class));
 
-                    ctr++;
-                    arrayAdapter.notifyDataSetChanged();
+                        list.add(temp);
+
+                        ctr++;
+                        arrayAdapter.notifyDataSetChanged();
+                    }
                 }
 
             }
