@@ -176,4 +176,16 @@
         android:layout_height="30dp"
         android:layout_width="40dp" />
 
+    <TextView
+        android:text="Parking Lot Requires Your Attention"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/AttentionNotification"
+        android:layout_height="wrap_content"
+        android:background="#f00"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textStyle="normal|bold" />
+
 </RelativeLayout>

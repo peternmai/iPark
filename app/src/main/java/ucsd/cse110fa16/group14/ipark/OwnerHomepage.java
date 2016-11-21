@@ -46,6 +46,7 @@ public class OwnerHomepage extends AppCompatActivity {
 
         // Update illegal parking bubble on map
         final TextView illegalBubble = (TextView) findViewById(R.id.bubble);
+        final TextView notificationAlert = (TextView) findViewById(R.id.AttentionNotification);
         long curTimeInSec = iLink.getCurTimeInSec();
         final int [] parkingLotStatus = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
         Firebase parkingLotDB = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
@@ -62,11 +63,14 @@ public class OwnerHomepage extends AppCompatActivity {
                       illegalCount++;
 
                 if( illegalCount != 0 ) {
+                    notificationAlert.setVisibility(View.VISIBLE);
                     illegalBubble.setVisibility(View.VISIBLE);
                     illegalBubble.setText( String.valueOf(illegalCount) );
                 }
-                else
+                else {
                     illegalBubble.setVisibility(View.GONE);
+                    notificationAlert.setVisibility(View.GONE);
+                }
             }
 
             @Override
