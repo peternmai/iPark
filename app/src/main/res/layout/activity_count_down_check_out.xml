@@ -113,18 +113,6 @@
         android:textSize="18sp" />
 
     <Button
-        android:text="Report "
-        android:layout_height="wrap_content"
-        android:id="@+id/countdownReportButton"
-        tools:ignore="HardcodedText"
-        android:layout_alignBaseline="@+id/countdownCheckoutButton"
-        android:layout_alignBottom="@+id/countdownCheckoutButton"
-        android:layout_alignParentStart="true"
-        android:textAllCaps="false"
-        android:background="#E0E0E0"
-        android:layout_width="160dp" />
-
-    <Button
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerInParent="false"
@@ -152,10 +140,11 @@
         android:layout_marginBottom="60dp"
         tools:ignore="HardcodedText"
         android:textAllCaps="false"
-        android:background="#E0E0E0"
+        android:background="@drawable/my_border_solid"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_width="160dp" />
+        android:layout_width="160dp"
+        android:textSize="18sp" />
 
     <Button
         android:text="Map"
@@ -163,11 +152,23 @@
         android:id="@+id/countdownMapButton"
         tools:ignore="HardcodedText"
         android:textAllCaps="false"
-        android:background="#E0E0E0"
-        android:layout_alignBaseline="@+id/countdownEmergencyButton"
+        android:background="@drawable/my_border_solid"
         android:layout_alignBottom="@+id/countdownEmergencyButton"
         android:layout_alignParentEnd="true"
         android:layout_width="160dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/countdownReportButton" />
+
+    <Button
+        android:text="Report "
+        android:layout_height="wrap_content"
+        android:id="@+id/countdownReportButton"
+        tools:ignore="HardcodedText"
+        android:textAllCaps="false"
+        android:background="@drawable/my_border_solid"
+        android:layout_width="160dp"
+        android:layout_below="@+id/view1"
+        android:layout_alignParentStart="true"
         android:textSize="18sp" />
 
 </RelativeLayout>

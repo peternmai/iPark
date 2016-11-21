@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,17 +22,10 @@
 
     <ListView
         android:id="@+id/list_view"
-        android:layout_width="350dp"
-        android:layout_height="187dp"
+        android:layout_width="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <ListView
-        android:id="@+id/listView2"
-        android:layout_width="249dp"
-        android:layout_height="103dp"
-        android:layout_below="@+id/list_view"
-        android:layout_weight="0.92" />
+        android:layout_centerHorizontal="true"
+        android:layout_height="360dp" />
 
 
     <ImageButton
@@ -41,7 +34,17 @@
         app:srcCompat="@mipmap/new_home"
         android:background="#FFFFFF"
         android:id="@+id/homeB"
+        android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/textView44"
-        android:layout_marginBottom="18dp" />
-</TableLayout>
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/next"
+        android:layout_marginEnd="37dp"
+        android:id="@+id/next"
+        android:layout_alignTop="@+id/homeB"
+        android:layout_alignParentEnd="true"
+        android:background="@mipmap/next" />
+</RelativeLayout>

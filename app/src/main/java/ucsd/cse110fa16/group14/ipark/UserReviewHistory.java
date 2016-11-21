@@ -1,6 +1,7 @@
 package ucsd.cse110fa16.group14.ipark;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -27,9 +28,16 @@ public class UserReviewHistory extends AppCompatActivity {
     private ArrayList<ResObj> list = new ArrayList<>();
     private ResObj temp;
     private static FirebaseAuth auth;
-    private ListView reportView;
-    private ArrayList<RepoObj> list2 = new ArrayList<>();
-    private RepoObj temp2;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("lastActivity", getClass().getName());
+        editor.commit();
+    }
 
     class ResObj {
 
@@ -76,32 +84,6 @@ public class UserReviewHistory extends AppCompatActivity {
         }
     }
 
-    class RepoObj{
-        String key;
-        String date;
-        String user;
-        String spot;
-        String time;
-
-        RepoObj(){
-            key = date = spot = user = "";
-        }
-
-        public void setKey(String key) { this.key = key; }
-
-        public void setUser(String user) { this.user = user; }
-
-        public void setDate(String date) { this. date = date; }
-
-        public void setSpot(String spot) { this.spot = spot; }
-
-        public void setTime(String time) { this.time = time; }
-        @Override
-        public String toString() {
-            return String.format("\n%s\t\t\t\t\t\t\tDATE: %s\n\tTIME: %s\n\t Spot: %s\n\n",
-                    key, date, time, spot);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +93,6 @@ public class UserReviewHistory extends AppCompatActivity {
         final Bundle bundle = getIntent().getExtras();
 
         listView = (ListView) findViewById(R.id.list_view);
-        reportView = (ListView) findViewById(R.id.listView2);
 
         auth = FirebaseAuth.getInstance();
         String userName = auth.getCurrentUser().getDisplayName();
@@ -120,32 +101,17 @@ public class UserReviewHistory extends AppCompatActivity {
         root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/History");
 
         final ArrayAdapter<ResObj> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-        final ArrayAdapter<RepoObj> repoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list2);
 
         listView.setAdapter(arrayAdapter);
-        reportView.setAdapter(repoAdapter);
 
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 int ctr = 1;
-                int num = 1;
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    if (child.hasChild("Spot")){
-                        temp2 = new RepoObj();
-                        temp2.setKey("REPORT " + num + ":");
-                        temp2.setDate(child.child("Date").getValue(String.class));
-                        temp2.setSpot(child.child("Spot").getValue(String.class));
-                        temp2.setUser(child.child("User").getValue(String.class));
-                        temp2.setTime(child.child("Time").getValue(String.class));
-                        list2.add(temp2);
-                        num++;
-
-                        repoAdapter.notifyDataSetChanged();
-                    }
-                    else {
+                    if (child.hasChild("Rate")){
                         temp = new ResObj();
 
                         temp.setKey("RESERVATION " + ctr + ":");
@@ -172,12 +138,22 @@ public class UserReviewHistory extends AppCompatActivity {
 
 
         ImageButton homeButton = (ImageButton) findViewById(R.id.homeB);
+        ImageButton nextButton = (ImageButton) findViewById(R.id.next);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserReviewHistory.this, UserHomepage.class);
+                startActivity(intent);
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserReviewHistory.this, UserReviewHistoryPage2.class);
                 startActivity(intent);
             }
         });

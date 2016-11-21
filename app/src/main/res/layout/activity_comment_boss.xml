@@ -47,7 +47,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/home"
+        app:srcCompat="@mipmap/new_home"
         android:background="#FFFFFF"
         android:id="@+id/homeBB"
         android:layout_below="@+id/list_view2"

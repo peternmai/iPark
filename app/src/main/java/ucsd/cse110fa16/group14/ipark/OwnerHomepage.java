@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
@@ -41,6 +43,41 @@ public class OwnerHomepage extends AppCompatActivity {
         // ImageButton report = (ImageButton) findViewById(R.id.report);
         ImageButton emergency = (ImageButton) findViewById(R.id.emergency1);
         ImageButton logout = (ImageButton) findViewById(R.id.logout);
+
+        // Update illegal parking bubble on map
+        final TextView illegalBubble = (TextView) findViewById(R.id.bubble);
+        final TextView notificationAlert = (TextView) findViewById(R.id.AttentionNotification);
+        long curTimeInSec = iLink.getCurTimeInSec();
+        final int [] parkingLotStatus = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
+        Firebase parkingLotDB = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
+        parkingLotDB.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+
+                long curTimeInSec = iLink.getCurTimeInSec();
+                final int [] parkingLotStatus = iLink.getParkingLotStatus(curTimeInSec, curTimeInSec);
+
+                int illegalCount = 0;
+                for( int i = 0; i < parkingLotStatus.length; i++ )
+                  if( parkingLotStatus[i] == iLink.ILLEGAL )
+                      illegalCount++;
+
+                if( illegalCount != 0 ) {
+                    notificationAlert.setVisibility(View.VISIBLE);
+                    illegalBubble.setVisibility(View.VISIBLE);
+                    illegalBubble.setText( String.valueOf(illegalCount) );
+                }
+                else {
+                    illegalBubble.setVisibility(View.GONE);
+                    notificationAlert.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
 
         root.addListenerForSingleValueEvent(new ValueEventListener() {
 

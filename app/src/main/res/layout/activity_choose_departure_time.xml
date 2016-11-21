@@ -50,22 +50,14 @@
         android:descendantFocusability="blocksDescendants" />
 
     <Button
-        android:text="Cancel"
-        android:id="@+id/button7"
-        android:textSize="18sp"
-        android:layout_width="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_height="60dp" />
-
-    <Button
         android:text="PREV"
         android:layout_height="60dp"
         android:id="@+id/previous"
         android:textSize="18sp"
         android:layout_width="100dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="#9B9295" />
 
     <Button
         android:text="NEXT"
@@ -79,7 +71,8 @@
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="#9B9295" />
 
     <Button
         android:id="@+id/button4"
@@ -105,5 +98,15 @@
         tools:ignore="HardcodedText"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Cancel"
+        android:id="@+id/button7"
+        android:textSize="18sp"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#ACA3A6" />
 
 </RelativeLayout>

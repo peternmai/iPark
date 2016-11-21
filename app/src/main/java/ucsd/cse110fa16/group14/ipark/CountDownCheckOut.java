@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -112,13 +113,13 @@ public class CountDownCheckOut extends AppCompatActivity {
                     millisUntilFinished -= (endTimeInSec - startTimeInSec) * 1000;
                     title.setText("Time Until Start");
                     timerText.setTextColor(Color.RED);
-                    checkoutButt.setText("CANCEL");
+                    checkoutButt.setText("Cancel");
                     reportButt.setEnabled(false);
                 } else {
                     title.setText("Time Remaining");
                     timerText.setTextColor(Color.BLUE);
                     reportButt.setEnabled(true);
-                    checkoutButt.setText("CHECKOUT");
+                    checkoutButt.setText("CheckOut");
                     mProgress.setProgress(0);
                 }
 
@@ -167,6 +168,18 @@ public class CountDownCheckOut extends AppCompatActivity {
                             startActivity(intent);
 
                             dialog.cancel();
+                        }
+                    });
+                    //Handle when back is pressed
+                    alertNotReserved.setOnKeyListener(new AlertDialog.OnKeyListener() {
+
+                        @Override
+                        public boolean onKey(DialogInterface arg0, int keyCode,
+                                             KeyEvent event) {
+                            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                                finish();
+                            }
+                            return true;
                         }
                     });
                     AlertDialog alertDialog = alertNotReserved.create();

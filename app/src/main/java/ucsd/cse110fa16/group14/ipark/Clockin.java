@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 
 import java.util.Calendar;
@@ -75,12 +77,24 @@ public class Clockin extends AppCompatActivity {
                 }
 
             });
+            //Handle when back is pressed
+            alertNotReserved.setOnKeyListener(new AlertDialog.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface arg0, int keyCode,
+                                     KeyEvent event) {
+
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        finish();
+                    }
+                    return true;
+                }
+            });
             AlertDialog alertDialog = alertNotReserved.create();
             alertDialog.show();
         }
 
 
-        Button homeButt = (Button) findViewById(R.id.button8);
+        ImageButton homeButt = (ImageButton) findViewById(R.id.clockinHomeButton);
         Button help = (Button) findViewById(R.id.button4);
         Button nextButt = (Button) findViewById(R.id.next);
 
