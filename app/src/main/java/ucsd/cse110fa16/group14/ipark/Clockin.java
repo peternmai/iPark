@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -75,6 +76,18 @@ public class Clockin extends AppCompatActivity {
                     dialog.cancel();
                 }
 
+            });
+            //Handle when back is pressed
+            alertNotReserved.setOnKeyListener(new AlertDialog.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface arg0, int keyCode,
+                                     KeyEvent event) {
+
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        finish();
+                    }
+                    return true;
+                }
             });
             AlertDialog alertDialog = alertNotReserved.create();
             alertDialog.show();
