@@ -160,7 +160,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                     AlertDialog.Builder alertNotReserved = new AlertDialog.Builder(CountDownCheckOut.this);
                     alertNotReserved.setTitle("Hmmm... No order placed");
                     alertNotReserved.setMessage(" Would you like to place an order?");
-                    alertNotReserved.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    alertNotReserved.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -175,7 +175,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                         }
 
                     });
-                    alertNotReserved.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    alertNotReserved.setPositiveButton("No", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -359,7 +359,7 @@ public class CountDownCheckOut extends AppCompatActivity {
 
                     //ValueEventListener listener;
 
-                    Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
+                    final Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
                     intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
 
@@ -403,6 +403,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                         AlertDialog alertDialog = Quest.create();
                         alertDialog.show();
                     } else {
+
                         if (getCurrentTimeInSec() >= endTimeInSec) {
                             intent.putExtra("departHour", bundle.getInt("departHour"));
                             intent.putExtra("departMin", bundle.getInt("departMin"));
@@ -429,22 +430,37 @@ public class CountDownCheckOut extends AppCompatActivity {
 
                             intent.putExtra("rate", String.format("$%.2f", totPay));
                         }
-                        //String spot = pspot.getText().toString();
 
-                        // checkout and remove order in firebase
+                        AlertDialog.Builder Quest = new AlertDialog.Builder(CountDownCheckOut.this);
+                        Quest.setTitle("Checkout confirmation");
+                        Quest.setMessage(
+                                "Are you sure you want to checkout early?");
+                        Quest.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        Quest.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                        if (myTimer != null)
-                        {
-                            System.out.println("cancel timer");
-                            myTimer.cancel();
-                        }
+                                // checkout and remove order in firebase
 
-                        iLink.checkout(spot, startTimeInSec);
+                                if (myTimer != null) {
+                                    System.out.println("cancel timer");
+                                    myTimer.cancel();
+                                }
 
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        // TODO: This will add a new field rather than replace
-                        //iLink.changeReserveStatus(spot, false);
-                        startActivity(intent);
+                                iLink.checkout(spot, startTimeInSec);
+
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                            }
+                         });
+                        AlertDialog alertDialog = Quest.create();
+                        alertDialog.show();
+
                     }
                 }
 
