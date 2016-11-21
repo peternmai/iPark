@@ -161,4 +161,19 @@
         android:layout_above="@+id/textView72"
         android:layout_toEndOf="@+id/textView70" />
 
+    <TextView
+        android:text="1"
+        android:background="@drawable/bg_red"
+        android:id="@+id/bubble"
+        android:layout_alignTop="@+id/map1"
+        android:layout_alignStart="@+id/map1"
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="23sp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:textStyle="normal|bold"
+        android:layout_height="30dp"
+        android:layout_width="40dp" />
+
 </RelativeLayout>

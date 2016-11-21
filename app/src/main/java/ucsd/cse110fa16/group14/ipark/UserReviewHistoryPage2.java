@@ -108,21 +108,12 @@ public class UserReviewHistoryPage2 extends AppCompatActivity {
         });
 
         ImageButton homeButton = (ImageButton) findViewById(R.id.imageButton3);
-        ImageButton prevButton = (ImageButton) findViewById(R.id.imageButton4);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserReviewHistoryPage2.this, UserHomepage.class);
-                startActivity(intent);
-            }
-        });
-
-        prevButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserReviewHistoryPage2.this, UserReviewHistory.class);
                 startActivity(intent);
             }
         });

@@ -38,12 +38,4 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/prev"
-        android:id="@+id/imageButton4"
-        android:layout_below="@+id/list_view"
-        android:layout_alignEnd="@+id/textView44" />
-
 </RelativeLayout>
