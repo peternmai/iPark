@@ -23,18 +23,16 @@
         <!-- ======= -->
         <!-- <activity android:name=".FoundSpaceAndReserve" /> -->
 
-        <activity android:name=".DriverRegistration"
-            />
+        <activity android:name=".DriverRegistration" />
         <!-- >>>>>>> 6e2eecc5cfbcfd58750e585524413a7a3e4366be -->
         <activity android:name=".Payment" />
         <activity android:name=".Clockin" />
         <activity android:name=".activity_review" />
         <activity android:name=".CountDownCheckOut" />
-        <activity android:name=".PersonalInfo" /><![CDATA[
+        <activity android:name=".PersonalInfo" />
         =======
 
         >>>>>>> d616484625deada12c4b671e2a9ea916f5f9369b
-        ]]>
         <activity android:name=".CommentBoss" />
         <activity android:name=".BossEmergency" />
         <activity android:name=".BossMap" />
@@ -44,12 +42,11 @@
         <activity android:name=".ReportIllegal" />
         <activity android:name=".Emergency" />
         <activity android:name=".Settings" />
-        <activity android:name=".PopUp"
-            android:theme="@style/AppTheme.CustomTheme"
-            />
-
+        <activity
+            android:name=".PopUp"
+            android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".RecieveReports" />
-        <activity android:name =".Messages" />
+        <activity android:name=".Messages" />
         <activity android:name=".ErrorReport" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".RecieveNewParking" />
@@ -60,7 +57,8 @@
         <activity android:name=".MessageUsersActivity" />
         <activity android:name=".HELP_USER" />
         <activity android:name=".OwnerHomepage" />
-        <activity android:name=".ChooseDepartureTimeActivity"></activity>
+        <activity android:name=".ChooseDepartureTimeActivity" />
+        <activity android:name=".UserReviewHistoryPage2"></activity>
     </application>
 
 </manifest>
