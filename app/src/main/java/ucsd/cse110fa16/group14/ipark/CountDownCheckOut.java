@@ -38,6 +38,7 @@ public class CountDownCheckOut extends AppCompatActivity {
     private int barStatus;
     private Handler myHandler;
 
+    private CountDownTimer myTimer;
     Firebase root;
     private static FirebaseAuth auth;
 
@@ -108,7 +109,7 @@ public class CountDownCheckOut extends AppCompatActivity {
 
 
         // Updates the timer every 1 second from current time
-        new CountDownTimer((endTimeInSec - curTimeInSec) * 1000, 1000) {
+        myTimer = new CountDownTimer((endTimeInSec - curTimeInSec) * 1000, 1000) {
 
             public void onTick(long millisUntilFinished)
             {
@@ -323,6 +324,8 @@ public class CountDownCheckOut extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+
                 if (bundle.getInt("departHour") == 0 && bundle.getInt("departMin") == 0) {
                     AlertDialog.Builder respond = new AlertDialog.Builder(CountDownCheckOut.this);
                     respond.setTitle("Have not placed an order");
@@ -381,6 +384,11 @@ public class CountDownCheckOut extends AppCompatActivity {
                         Quest.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                if (myTimer != null)
+                                {
+                                    System.out.println("cancel timer");
+                                    myTimer.cancel();
+                                }
                                 iLink.resetUserReservation();
                                 iLink.checkout( spot ,startTimeInSec);
                                 Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
@@ -424,6 +432,13 @@ public class CountDownCheckOut extends AppCompatActivity {
                         //String spot = pspot.getText().toString();
 
                         // checkout and remove order in firebase
+
+                        if (myTimer != null)
+                        {
+                            System.out.println("cancel timer");
+                            myTimer.cancel();
+                        }
+
                         iLink.checkout(spot, startTimeInSec);
 
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -432,6 +447,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }
+
 
             }
         });
