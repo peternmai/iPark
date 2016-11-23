@@ -50,7 +50,7 @@ public class PopUp extends Activity {
 
         @Override
         public String toString() {
-            return String.format("\n***EMERGENCY ALERT***\n\nUSER:  %s\t\t\tDATE:  %s\n\nEMERGENCY TYPE: %s\nPARKING SPOT: %s\n", user, date, emergencyType, parkingSpot);
+            return String.format("\nEMERGENCY ALERT\n_-_-_-_-_-_-_-_-_-_-_-_-_-\n\nUSER:  %s\t\t\tDATE:  %s\n\nEMERGENCY TYPE: %s\nPARKING SPOT: %s\n", user, date, emergencyType, parkingSpot);
         }
 
     }

@@ -43,7 +43,8 @@ public class comment extends AppCompatActivity {
 
         root = new Firebase("https://ipark-e243b.firebaseio.com/Comments");
         auth = FirebaseAuth.getInstance();
-        final String userName = auth.getCurrentUser().getDisplayName();
+        //final String userName = auth.getCurrentUser().getDisplayName();
+        final String userName = auth.getCurrentUser() != null ? auth.getCurrentUser().getDisplayName():"maggie";
 
 
         final EditText userComment = (EditText) findViewById(R.id.userComment);
