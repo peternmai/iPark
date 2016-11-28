@@ -26,7 +26,10 @@ import com.google.firebase.auth.FirebaseAuth;
 /**
  * Created by Mag on 10/10/2016.=
  */
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class LoginPage extends AppCompatActivity {
 
     private EditText usernameField;

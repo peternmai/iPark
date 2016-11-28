@@ -30,7 +30,10 @@ import java.util.Stack;
 
 //import android.support.v7.app.ActionBar;
 //import android.view.MenuItem;
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class CountDownCheckOut extends AppCompatActivity {
 
     static Stack<String> parkingspots = new Stack<>();

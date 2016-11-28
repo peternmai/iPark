@@ -15,7 +15,10 @@ import android.widget.NumberPicker;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class Clockin extends AppCompatActivity {
     private boolean hasReservation;
     /*private PopupWindow popupWindow;

@@ -19,7 +19,7 @@
         android:layout_marginBottom="20dp"/>
 
     <TextView
-        android:text="HISTORY"
+        android:text="REPORT HISTORY"
         android:textSize="25dp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
         android:id="@+id/imageButton4"
         android:background="@mipmap/next"
         android:layout_alignBottom="@+id/imageButton3"
-        android:layout_alignEnd="@+id/textView44"
-        android:layout_marginEnd="21dp" />
+        android:layout_toStartOf="@+id/imageButton3"
+        android:layout_marginEnd="48dp" />
 
 </RelativeLayout>

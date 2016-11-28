@@ -17,7 +17,10 @@ import java.util.HashMap;
  * Created by Mag on 10/19/2016.
  * Edited by Abhi on 11/4/2016.
  */
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class PersonalInfo extends AppCompatActivity {
 
     private HashMap<String, String> infoMap = UserHomepage.infoMap;
