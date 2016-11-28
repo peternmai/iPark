@@ -41,7 +41,7 @@ public class CountDownCheckOut extends AppCompatActivity {
     private int barStatus;
     private Handler myHandler;
 
-    private CountDownTimer myTimer;
+    private CountDownTimer myTimer = null;
     Firebase root;
     private static FirebaseAuth auth;
 
@@ -112,6 +112,10 @@ public class CountDownCheckOut extends AppCompatActivity {
 
 
         // Updates the timer every 1 second from current time
+        if (myTimer != null)
+        {
+            myTimer.cancel();
+        }
         myTimer = new CountDownTimer((endTimeInSec - curTimeInSec) * 1000, 1000) {
 
             public void onTick(long millisUntilFinished)
