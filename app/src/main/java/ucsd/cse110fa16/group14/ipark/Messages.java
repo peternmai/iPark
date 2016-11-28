@@ -1,5 +1,6 @@
 package ucsd.cse110fa16.group14.ipark;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
@@ -106,5 +107,13 @@ public class Messages extends AppCompatActivity {
 
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Messages.this, UserHomepage.class);
+        startActivity(intent);
+    }
+
+
 
 }

@@ -32,8 +32,8 @@ public class MessageUsersActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         final String userName = auth.getCurrentUser().getDisplayName();
 
-        Button msgCancelBtn = (Button) findViewById(R.id.send);
-        Button msgSendBtn = (Button) findViewById(R.id.paymentCancelButton);
+        Button msgCancelBtn = (Button) findViewById(R.id.paymentCancelButton);
+        Button msgSendBtn = (Button) findViewById(R.id.send);
         final EditText editText = (EditText) findViewById(R.id.editText27);
 
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
