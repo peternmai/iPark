@@ -90,6 +90,8 @@ public class Emergency extends AppCompatActivity {
                 Firebase newEmUserChild = newEmergChild.child("User");
                 Firebase emHistUserChild = emergHistChild.child("User");
 
+                iLink.alertOwnerOfNewEmergency();
+
 
 
                 try {
