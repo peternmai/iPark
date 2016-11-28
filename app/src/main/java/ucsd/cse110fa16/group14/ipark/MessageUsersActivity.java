@@ -65,6 +65,9 @@ public class MessageUsersActivity extends AppCompatActivity {
                 keyChild.setValue(date + " ");
                 userChild.setValue(userName);
 
+                // Notify users of new messages
+                iLink.alertUserNewMessages();
+
                 Intent intent = new Intent(MessageUsersActivity.this, OwnerHomepage.class);
                 startActivity(intent);
             }

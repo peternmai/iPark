@@ -69,6 +69,22 @@ public class UserHomepage extends AppCompatActivity {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
                 iLink.getUserReservationStatus();
+
+                if( iLink.newMessages == true ) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(UserHomepage.this);
+                    alert.setTitle("Alert!!");
+                    alert.setMessage(
+                            "You have new important unread message(s)!");
+                    alert.setPositiveButton("Read Messages", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(UserHomepage.this, Messages.class);
+                            startActivity(intent);
+                        }
+                    });
+                    AlertDialog alertDialog = alert.create();
+                    alertDialog.show();
+                }
             }
 
             @Override

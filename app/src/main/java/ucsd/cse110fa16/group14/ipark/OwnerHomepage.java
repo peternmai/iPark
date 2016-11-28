@@ -79,6 +79,35 @@ public class OwnerHomepage extends AppCompatActivity {
             }
         });
 
+        Firebase ownerStatus = new Firebase("https://ipark-e243b.firebaseio.com/OwnerStatus");
+        ownerStatus.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+
+                iLink.getOwnerStatus();
+
+                int illegalCount = 0;
+                for( int i = 0; i < parkingLotStatus.length; i++ )
+                    if( parkingLotStatus[i] == iLink.ILLEGAL )
+                        illegalCount++;
+
+                if( illegalCount != 0 ) {
+                    notificationAlert.setVisibility(View.VISIBLE);
+                    illegalBubble.setVisibility(View.VISIBLE);
+                    illegalBubble.setText( String.valueOf(illegalCount) );
+                }
+                else {
+                    illegalBubble.setVisibility(View.GONE);
+                    notificationAlert.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+
         root.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
