@@ -12,6 +12,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -167,6 +168,7 @@ public class UserMapInteractive extends View {
 
     }
 
+
     void updateMapDisplay() {
 
         for (int i = 0; i < numSpaces; i++) {
@@ -175,5 +177,6 @@ public class UserMapInteractive extends View {
         }
 
     }
+
 
 }

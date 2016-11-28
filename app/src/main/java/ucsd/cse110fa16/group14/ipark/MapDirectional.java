@@ -59,6 +59,20 @@ public class MapDirectional extends AppCompatActivity {
         Button reportButt = (Button) findViewById(R.id.send);
         final EditText reportSpotTextEdit = (EditText) findViewById(R.id.editText);
 
+        /* Cannot make it work
+        View userMap = findViewById(R.id.myMap);
+
+        userMap.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                hideKeyboard(v);
+
+            }
+        });
+
+        */
+
         reportSpotTextEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
