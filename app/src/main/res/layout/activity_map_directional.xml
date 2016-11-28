@@ -9,6 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+
     tools:context="ucsd.cse110fa16.group14.ipark.MapDirectional">
 
     <ucsd.cse110fa16.group14.ipark.UserMapInteractive android:layout_above="@+id/send"

@@ -12,6 +12,8 @@ import org.junit.runner.RunWith;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -22,47 +24,48 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 @LargeTest
 
 public class EmergencyTest {
+    // ** if test does not pass when you run it, try running it again. Gradle is being hard to work with **
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @Rule
     public ActivityTestRule<Emergency> mActivityRule = new ActivityTestRule<>(
             Emergency.class);
 
+    // expected outcome: user sends an emergency report successfully
+    // results: test passed
     @Test
-    public void sendAnEmergencyReport() {
+    public void sendAnEmergencyReport() throws InterruptedException{
+        auth.signInWithEmailAndPassword("sr_misty@yahoo.com", "password");
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // click on the Personal Safety radio Button
         onView(withId(R.id.personalSafety)).perform(click());
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // type parking number in parkingNumber EditText
         onView(withId(R.id.parkingNumber))
-                .perform(typeText("Spot000"), ViewActions.closeSoftKeyboard());
+                .perform(typeText("Spot011"), ViewActions.closeSoftKeyboard());
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // click on the Send button
         onView(withId(R.id.button25)).perform(click());
-
-        // expected outcome: user sends an emergency report successfully
-        // results: test passed
-    }
-
-    @Test
-    public void cancelAnemergencyReport() {
-
-        // type parking number in parkingNumber EditText
-        onView(withId(R.id.hour))
-                .perform(typeText("5"), ViewActions.closeSoftKeyboard());
-
-        // type parking number in parkingNumber EditText
-        onView(withId(R.id.min))
-                .perform(typeText("20"), ViewActions.closeSoftKeyboard());
-
-        // type parking number in parkingNumber EditText
-        onView(withId(R.id.amPM))
-                .perform(typeText("PM"), ViewActions.closeSoftKeyboard());
-
-        // click on the Cancel button
-        onView(withId(R.id.next)).perform(click());
-
-        // expected outcome: fire report is canceled and user is send back to homepage
-        // results: test passed
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

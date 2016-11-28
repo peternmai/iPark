@@ -53,8 +53,17 @@ public class UserHomepage extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        String userName = "";
+
         // Get user reservation status
-        String userName = mAuth.getCurrentUser().getDisplayName();
+        if (mAuth.getCurrentUser() != null) {
+            userName = mAuth.getCurrentUser().getDisplayName();
+        }
+        else
+        {
+            Intent intent = new Intent(UserHomepage.this, LoginPage.class);
+            startActivity(intent);
+        }
         Firebase userReservationDB = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/ReservationStatus");
         userReservationDB.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override

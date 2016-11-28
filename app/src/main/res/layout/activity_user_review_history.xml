@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:text="HISTORY"
+        android:text="RESERVATION HISTORY"
         android:textSize="25dp"
         android:textStyle="bold"
         android:layout_width="wrap_content"

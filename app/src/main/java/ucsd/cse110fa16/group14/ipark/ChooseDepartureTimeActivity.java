@@ -10,7 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class ChooseDepartureTimeActivity extends AppCompatActivity {
 
     private int min, hour, ampm;

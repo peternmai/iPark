@@ -88,6 +88,10 @@ public class iLink {
                 if (i == 0) {
                     result = result + Long.toString(startTime)
                             + "/" + userName + "/" + Long.toString(endTime);
+                    if (orderNum > 0)
+                    {
+                        result = result + " ";
+                    }
                 } else result = result + " " + Long.toString(startTime)
                         + "/" + userName + "/" + Long.toString(endTime);
 
@@ -110,55 +114,6 @@ public class iLink {
 
         //System.out.println("test_5");
         return result;
-
-
-        // add reservation in beginning
-        /*if (curDataStr == ""){
-            curDataStr = curDataStr + "" + startTime + " " + userName + " " + endTime;
-            return curDataStr;
-        }*/
-
-        /*
-        List<String> split = new ArrayList<String>(Arrays.asList(curDataStr.split("\\s+")));
-
-        int beg = -1;
-
-        // find space to put in reservation
-        for (int i = 0; i < split.size(); i = i + sStep) {
-            if (i == 0){
-                long csTime = Long.parseLong(split.get(0));
-                if (csTime > startTime && csTime >= endTime){
-                    beg = 0;
-                    break;
-                }
-            }
-            long peTime = Long.parseLong(split.get(i + eStep));
-            if ((i + sStep) >= split.size()){
-                beg = i + sStep;
-                break;
-            }
-            long nsTime = Long.parseLong(split.get(i + sStep));
-            if (peTime + gap <= startTime && nsTime >= endTime){
-                beg = i + sStep;
-                break;
-            }
-        }
-
-        // add reservation
-        if (beg >= 0){
-            split.add(beg, "" + startTime);
-            split.add(beg + 1, "" + userName);
-            split.add(beg + eStep, "" + endTime);
-            //create string
-            StringBuilder sb = new StringBuilder();
-            for (String s : split) {
-                sb.append(s);
-                sb.append(" ");
-            }
-            sb.deleteCharAt(sb.length()-1);
-            return sb.toString();
-        }
-        return curDataStr;*/
 
 
     }

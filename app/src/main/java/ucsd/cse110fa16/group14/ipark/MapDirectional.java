@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.view.inputmethod.InputMethodManager;
+import android.content.Context;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +24,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-
+/*
+Sources:
+  http://www.codebind.com/android-tutorials-and-examples/android-studio-android-alert-dialog-example/
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class MapDirectional extends AppCompatActivity {
     Firebase root;
     private static FirebaseAuth auth;
@@ -53,6 +59,14 @@ public class MapDirectional extends AppCompatActivity {
         Button reportButt = (Button) findViewById(R.id.send);
         final EditText reportSpotTextEdit = (EditText) findViewById(R.id.editText);
 
+        reportSpotTextEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
 
         /* click emergency */
         emergencyButt.setOnClickListener(new View.OnClickListener() {
@@ -224,5 +238,10 @@ public class MapDirectional extends AppCompatActivity {
 
 
         return timeText;
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

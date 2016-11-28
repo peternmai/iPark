@@ -5,11 +5,18 @@
     tools:context="ucsd.cse110fa16.group14.ipark.PopUp"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <ListView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:id="@+id/listViewWindow" />
+        android:layout_height="400dp">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/listViewWindow" />
+
+    </ScrollView>
+
 </RelativeLayout>

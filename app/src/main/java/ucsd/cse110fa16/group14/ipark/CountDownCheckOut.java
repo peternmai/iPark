@@ -30,11 +30,18 @@ import java.util.Stack;
 
 //import android.support.v7.app.ActionBar;
 //import android.view.MenuItem;
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class CountDownCheckOut extends AppCompatActivity {
 
     static Stack<String> parkingspots = new Stack<>();
+    private ProgressBar myBar;
+    private int barStatus;
+    private Handler myHandler;
 
+    private CountDownTimer myTimer;
     Firebase root;
     private static FirebaseAuth auth;
 
@@ -70,10 +77,12 @@ public class CountDownCheckOut extends AppCompatActivity {
         Button mapButt = (Button) findViewById(R.id.countdownMapButton);
         Button help = (Button) findViewById(R.id.countdownHelpButton);
         Button homeButt = (Button) findViewById(R.id.countdownHomeButton);
+        //ProgressBar myBar = (ProgressBar) findViewById(R.id.ProgressBar);
+        int progressStatus = 0;
         //Button getSpot = (Button) findViewById(R.id.getSpot);
         // Get values passed on from previous activity
         final Bundle bundle = getIntent().getExtras();
-        final Handler mHandler = new Handler();
+        //final Handler myHandler = new Handler();
 
         TextView startTimeText = (TextView) findViewById(R.id.StartTime);
         TextView endTimeText = (TextView) findViewById(R.id.EndTime);
@@ -98,29 +107,38 @@ public class CountDownCheckOut extends AppCompatActivity {
         final long endTimeInSec = ((bundle.getInt("departHour") * 60) + bundle.getInt("departMin")) * 60;
 
         // Set initial condition of progress bar
-        final ProgressBar mProgress = (ProgressBar) findViewById(R.id.ProgressBar);
-        mProgress.setMax((int) (startTimeInSec - endTimeInSec));
+        myBar = (ProgressBar) findViewById(R.id.ProgressBar);
+        myBar.setMax((int) (endTimeInSec - startTimeInSec));
 
 
         // Updates the timer every 1 second from current time
-        new CountDownTimer((endTimeInSec - curTimeInSec) * 1000, 1000) {
+        myTimer = new CountDownTimer((endTimeInSec - curTimeInSec) * 1000, 1000) {
 
-            public void onTick(long millisUntilFinished) {
+            public void onTick(long millisUntilFinished)
+            {
+
+
 
                 // Display a countdown until start
                 boolean beforeStartTime = false;
-                if ((millisUntilFinished / 1000) > (endTimeInSec - startTimeInSec)) {
+                // current time is before start
+                if ((millisUntilFinished / 1000) > (endTimeInSec - startTimeInSec))
+                {
                     millisUntilFinished -= (endTimeInSec - startTimeInSec) * 1000;
                     title.setText("Time Until Start");
                     timerText.setTextColor(Color.RED);
                     checkoutButt.setText("Cancel");
                     reportButt.setEnabled(false);
-                } else {
+                    myBar.setProgress(0);
+                }
+                // current time is in the reservation state
+                else
+                {
                     title.setText("Time Remaining");
                     timerText.setTextColor(Color.BLUE);
                     reportButt.setEnabled(true);
                     checkoutButt.setText("CheckOut");
-                    mProgress.setProgress(0);
+
                 }
 
                 // Display a countdown until time's up (after time start)
@@ -145,7 +163,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                     AlertDialog.Builder alertNotReserved = new AlertDialog.Builder(CountDownCheckOut.this);
                     alertNotReserved.setTitle("Hmmm... No order placed");
                     alertNotReserved.setMessage(" Would you like to place an order?");
-                    alertNotReserved.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    alertNotReserved.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -160,7 +178,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                         }
 
                     });
-                    alertNotReserved.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    alertNotReserved.setPositiveButton("No", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -237,28 +255,30 @@ public class CountDownCheckOut extends AppCompatActivity {
             }
         }.start();
 
-        /* CODE NOT WORKING
+        // CODE NOT WORKING
         // Update status bar once start time has begun
+        barStatus = 0;
+        myHandler = new Handler();
         new Thread(new Runnable() {
             public void run() {
-                while (   mProgressStatus < 100) {
+                while ( barStatus < 100) {
 
                     // If start timer hasn't start, progress bar at 100%. Else calculate percentage
                     if( getCurrentTimeInSec() < startTimeInSec )
-                        mProgressStatus = 0;
+                        barStatus = 0;
                     else
-                        mProgressStatus = (int) ( getCurrentTimeInSec() - startTimeInSec );
+                        barStatus = (int) ( getCurrentTimeInSec() - startTimeInSec );
 
 
                     // Update the progress bar
-                    mHandler.post(new Runnable() {
+                    myHandler.post(new Runnable() {
                         public void run() {
-                            mProgress.setProgress(mProgressStatus);
+                            myBar.setProgress(barStatus);
                         }
                     });
                 }
             }
-        }).start(); */
+        }).start();
 
 
 
@@ -307,6 +327,8 @@ public class CountDownCheckOut extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+
                 if (bundle.getInt("departHour") == 0 && bundle.getInt("departMin") == 0) {
                     AlertDialog.Builder respond = new AlertDialog.Builder(CountDownCheckOut.this);
                     respond.setTitle("Have not placed an order");
@@ -340,7 +362,7 @@ public class CountDownCheckOut extends AppCompatActivity {
 
                     //ValueEventListener listener;
 
-                    Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
+                    final Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
                     intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
 
@@ -348,7 +370,9 @@ public class CountDownCheckOut extends AppCompatActivity {
                     int totHours, totMins;
                     double totPay, rate;
                     rate = 2.5;
+                    final String spot = pspot.getText().toString();
 
+                    // cancel order
                     if (startTimeInSec > getCurrentTimeInSec()) {
                         AlertDialog.Builder Quest = new AlertDialog.Builder(CountDownCheckOut.this);
                         Quest.setTitle("Cancel order?");
@@ -363,7 +387,13 @@ public class CountDownCheckOut extends AppCompatActivity {
                         Quest.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                if (myTimer != null)
+                                {
+                                    System.out.println("cancel timer");
+                                    myTimer.cancel();
+                                }
                                 iLink.resetUserReservation();
+                                iLink.checkout( spot ,startTimeInSec);
                                 Intent intent = new Intent(CountDownCheckOut.this, UserHomepage.class);
 
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -376,6 +406,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                         AlertDialog alertDialog = Quest.create();
                         alertDialog.show();
                     } else {
+
                         if (getCurrentTimeInSec() >= endTimeInSec) {
                             intent.putExtra("departHour", bundle.getInt("departHour"));
                             intent.putExtra("departMin", bundle.getInt("departMin"));
@@ -402,17 +433,40 @@ public class CountDownCheckOut extends AppCompatActivity {
 
                             intent.putExtra("rate", String.format("$%.2f", totPay));
                         }
-                        String spot = pspot.getText().toString();
 
-                        // checkout and remove order in firebase
-                        iLink.checkout(spot, startTimeInSec);
+                        AlertDialog.Builder Quest = new AlertDialog.Builder(CountDownCheckOut.this);
+                        Quest.setTitle("Checkout confirmation");
+                        Quest.setMessage(
+                                "Are you sure you want to checkout early?");
+                        Quest.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        Quest.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        // TODO: This will add a new field rather than replace
-                        //iLink.changeReserveStatus(spot, false);
-                        startActivity(intent);
+                                // checkout and remove order in firebase
+
+                                if (myTimer != null) {
+                                    System.out.println("cancel timer");
+                                    myTimer.cancel();
+                                }
+
+                                iLink.checkout(spot, startTimeInSec);
+
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                            }
+                         });
+                        AlertDialog alertDialog = Quest.create();
+                        alertDialog.show();
+
                     }
                 }
+
 
             }
         });

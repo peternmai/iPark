@@ -17,7 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class comment extends AppCompatActivity {
 
     private Firebase root;
@@ -43,7 +46,8 @@ public class comment extends AppCompatActivity {
 
         root = new Firebase("https://ipark-e243b.firebaseio.com/Comments");
         auth = FirebaseAuth.getInstance();
-        final String userName = auth.getCurrentUser().getDisplayName();
+        //final String userName = auth.getCurrentUser().getDisplayName();
+        final String userName = auth.getCurrentUser() != null ? auth.getCurrentUser().getDisplayName():"maggie";
 
 
         final EditText userComment = (EditText) findViewById(R.id.userComment);

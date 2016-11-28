@@ -43,10 +43,12 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/ProgressBar"
         android:progressTint="?attr/actionModeSplitBackground"
+        android:indeterminate="false"
+        android:progress="1"
+
         tools:ignore="UnusedAttribute" />
 
     <TextView
-        android:text="12:21 PM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ProgressBar"
@@ -56,7 +58,6 @@
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:text="6:00 PM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ProgressBar"

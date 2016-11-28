@@ -17,7 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class activity_review extends AppCompatActivity {
 
 
