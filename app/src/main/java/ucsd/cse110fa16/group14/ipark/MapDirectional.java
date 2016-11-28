@@ -24,7 +24,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-
+/*
+Sources:
+  http://www.codebind.com/android-tutorials-and-examples/android-studio-android-alert-dialog-example/
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class MapDirectional extends AppCompatActivity {
     Firebase root;
     private static FirebaseAuth auth;

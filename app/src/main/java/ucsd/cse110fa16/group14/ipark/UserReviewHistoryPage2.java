@@ -17,7 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class UserReviewHistoryPage2 extends AppCompatActivity {
     private static FirebaseAuth auth;
     private ListView reportView;

@@ -23,7 +23,10 @@ import java.util.Date;
 /**
  * Created by Dennis on 10/31/2016.
  */
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class Emergency extends AppCompatActivity {
 
     private Firebase root;

@@ -31,7 +31,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
-
+/*
+Sources:
+  http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+ */
 public class DriverRegistration extends AppCompatActivity {
 
     private static HashSet<String> users = new HashSet<>();
