@@ -175,6 +175,7 @@ public class MapInteractive extends View {
     }
 
     final Handler handler = new Handler();
+
     Runnable longPressed = new Runnable() {
         public void run() {
 
