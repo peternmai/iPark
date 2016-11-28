@@ -39,6 +39,9 @@ public class iLink {
     protected static long userReservationStartTime = 0;
     protected static long userReservationEndTime = 0;
     protected static double userReservationSpotRate = 0;
+    protected static boolean newMessages = false;
+
+    protected static boolean newEmergencyMessages = false;
 
     private static String generateNewInsertSpotReservationData
             (String curDataStr, long startTime, String userName, long endTime) {
@@ -505,6 +508,37 @@ public class iLink {
                     if (innerKey.equals("SpotRate")) {
                         userReservationSpotRate = data.getValue(Double.class);
                     }
+                    if (innerKey.equals("NewMessages") ) {
+                        newMessages = data.getValue(Boolean.class);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+    }
+
+    protected static void getOwnerStatus() {
+
+        String ref = "https://ipark-e243b.firebaseio.com/OwnerStatus";
+        Firebase fReference = new Firebase(ref);
+        fReference.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> firstChildData = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterator = firstChildData.iterator();
+                String innerKey;
+
+                while (iterator.hasNext()) {
+                    DataSnapshot data = iterator.next();
+                    innerKey = data.getKey();
+
+                    if (innerKey.equals("NewEmergencyMessages")) {
+                        newEmergencyMessages = data.getValue(Boolean.class);
+                    }
                 }
             }
 
@@ -572,6 +606,11 @@ public class iLink {
         });
     }
 
+    protected static void alertOwnerOfNewEmergency() {
+        Firebase newEmergency = new Firebase("https://ipark-e243b.firebaseio.com/OwnerStatus/NewEmergencyMessages");
+        newEmergency.setValue(true);
+    }
+
     // Reset each parking lot and user reservation data field to its default value
     private static void resetDataBaseForNewDay() {
 
@@ -622,6 +661,40 @@ public class iLink {
             }
         });
     }
+
+    protected static void alertUserNewMessages() {
+
+        Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/Users");
+        parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                Iterable<com.firebase.client.DataSnapshot> user = dataSnapshot.getChildren();
+                Iterator<com.firebase.client.DataSnapshot> userIter = user.iterator();
+
+                long lastActiveUserDate = 0;
+
+                //Getting each user
+                while (userIter.hasNext()) {
+                    com.firebase.client.DataSnapshot innerNode = userIter.next();
+                    String username = innerNode.getKey();
+
+                    if (username.equals("LastActiveUserDate")) {
+                        lastActiveUserDate = innerNode.getValue(Long.class);
+                        continue;
+                    }
+
+                    Firebase newMessagesField = new Firebase(usersNode + username + "/ReservationStatus/NewMessages");
+                    newMessagesField.setValue(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
+            }
+        });
+    }
+
 
     protected static void resetUserReservation() {
 

@@ -61,6 +61,12 @@ public class Messages extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
 
+        auth = FirebaseAuth.getInstance();
+        String userName = auth.getCurrentUser().getDisplayName();
+
+        Firebase resetRead = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName +"/ReservationStatus/NewMessages");
+        resetRead.setValue(false);
+
         ListView messages = (ListView) findViewById(R.id.list_view_messages);
 
         root = new Firebase("https://ipark-e243b.firebaseio.com/Messages");

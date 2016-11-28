@@ -77,6 +77,9 @@ public class BossEmergency extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boss_emergency);
 
+        Firebase resetEmergencyRead = new Firebase("https://ipark-e243b.firebaseio.com/OwnerStatus/NewEmergencyMessages");
+        resetEmergencyRead.setValue(false);
+
         home = (ImageButton) findViewById(R.id.homeBBB);
         listView = (ListView) findViewById(R.id.list_view_emergency);
         root = new Firebase("https://ipark-e243b.firebaseio.com/EmergencyHistory");
