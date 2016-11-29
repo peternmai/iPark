@@ -1,6 +1,7 @@
 package ucsd.cse110fa16.group14.ipark;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
@@ -55,6 +56,16 @@ public class Messages extends AppCompatActivity {
         public String toString() {
             return String.format("\nFROM:  %s\t\t\t\t\t\t\t\tDATE:  %s\n\nMESSAGE: %s\n", user, date, comment);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("lastActivity", getClass().getName());
+        editor.commit();
     }
 
     @Override
