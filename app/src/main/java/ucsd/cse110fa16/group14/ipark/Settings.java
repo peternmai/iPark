@@ -33,11 +33,9 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        //final TextView curr = (TextView) findViewById(R.id.currentPrice);
         final EditText newP = (EditText) findViewById(R.id.NEWPRICE);
         Button change = (Button) findViewById(R.id.change);
         final TextView currP = (TextView) findViewById(R.id.currentPrice);
-
 
         //price = iLink.getChildInfo("ParkingLot","SpotDefaultPrice");
         //if(!price.containsKey("Price")) System.out.println("This IS here, Yuri");
@@ -81,8 +79,6 @@ public class Settings extends AppCompatActivity {
                 hideKeyboard(v);
             }
         });
-
-
     }
 
     @Override

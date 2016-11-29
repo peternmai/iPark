@@ -101,7 +101,6 @@ public class UserReviewHistoryPage2 extends AppCompatActivity {
                         repoAdapter.notifyDataSetChanged();
                     }
                 }
-
             }
 
             @Override

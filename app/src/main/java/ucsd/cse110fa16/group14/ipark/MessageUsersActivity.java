@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MessageUsersActivity extends AppCompatActivity {
-
     private Firebase root;
     Firebase hasChild;
     private static FirebaseAuth auth;
@@ -27,11 +26,9 @@ public class MessageUsersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_message_users);
 
         final Bundle bundle = getIntent().getExtras();
-
         root = new Firebase("https://ipark-e243b.firebaseio.com/Messages");
         auth = FirebaseAuth.getInstance();
-        final String userName = auth.getCurrentUser().getDisplayName();
-
+        final String userName = auth.getCurrentUser().getDisplayName();  // get current user
         Button msgCancelBtn = (Button) findViewById(R.id.paymentCancelButton);
         Button msgSendBtn = (Button) findViewById(R.id.send);
         final EditText editText = (EditText) findViewById(R.id.editText27);
@@ -58,20 +55,21 @@ public class MessageUsersActivity extends AppCompatActivity {
         msgSendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String comment = editText.getText().toString(); // get the user's comment
 
-                String comment = editText.getText().toString();
-
+                // get the current date
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 sdf.format(date);
 
+                // create child fields for a message
                 hasChild = root.child(date + " ");
-
                 Firebase commentChild = hasChild.child("Comment");
                 Firebase dateChild = hasChild.child("Date");
                 Firebase keyChild = hasChild.child("Key");
                 Firebase userChild = hasChild.child("User");
 
+                // populate message in Firebase
                 commentChild.setValue(comment);
                 dateChild.setValue(sdf.format(date));
                 keyChild.setValue(date + " ");
@@ -80,6 +78,7 @@ public class MessageUsersActivity extends AppCompatActivity {
                 // Notify users of new messages
                 iLink.alertUserNewMessages();
 
+                // send user to the Owner Homepage
                 Intent intent = new Intent(MessageUsersActivity.this, OwnerHomepage.class);
                 startActivity(intent);
             }

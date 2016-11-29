@@ -21,11 +21,6 @@ Sources:
  */
 public class Clockin extends AppCompatActivity {
     private boolean hasReservation;
-    /*private PopupWindow popupWindow;
-    private LayoutInflater layoutInflater;
-    private RelativeLayout relativeLayout;
-*/
-
     private int min, hour, curMin, curHour, ampm;
 
     @Override
@@ -40,6 +35,7 @@ public class Clockin extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        // if back button is pressed, send user to User Homepage
         Intent intent = new Intent(Clockin.this, UserHomepage.class);
         startActivity(intent);
     }
@@ -51,6 +47,7 @@ public class Clockin extends AppCompatActivity {
         setContentView(R.layout.activity_clockin);
         final Bundle bundle = getIntent().getExtras();
         hasReservation = false;
+
         // Redirect user back to home page or status page if they HAVE reserved a spot
         if (bundle.getInt("departHour") != 0 || bundle.getInt("departMin") != 0) {
             hasReservation = true;
@@ -111,7 +108,6 @@ public class Clockin extends AppCompatActivity {
         minNumPick.setMinValue(0);
         amPmPick.setMinValue(1);
 
-
         //Specify the maximum value/number
         hourNumPick.setMaxValue(12);
         minNumPick.setMaxValue(59);
@@ -128,7 +124,6 @@ public class Clockin extends AppCompatActivity {
         hour = 1;
         min = 0;
         ampm = 1;
-
 
         //Set a value change listener for hourNumPick
         hourNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -215,7 +210,6 @@ public class Clockin extends AppCompatActivity {
                     intent.putExtra("arriveMin", minEntered);
                     startActivity(intent);
                 }
-
             }
             //@Override
             //public void onClick(View v) {
@@ -225,7 +219,6 @@ public class Clockin extends AppCompatActivity {
 
             //}
         });
-
 
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,7 +237,6 @@ public class Clockin extends AppCompatActivity {
                 });
                 AlertDialog alertDialog = hlp.create();
                 alertDialog.show();
-
             }
         });
 
@@ -255,39 +247,7 @@ public class Clockin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Clockin.this, UserHomepage.class);
                 startActivity(intent);
-
             }
         });
-
-
     }
-
-    /*public void showDialog(View v) {
-
-                AlertDialog.Builder altial = new AlertDialog.Builder(Clockin.this);
-                altial.setMessage("$2.50/hr").setCancelable(false)
-                        .setPositiveButton("Okay, charge me!", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(Clockin.this, Payment.class);
-                                startActivity(intent);
-
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert = altial.create();
-                alert.setTitle("Current Rate:");
-                alert.show();
-
-
-
-
-        }*/
 }

@@ -15,10 +15,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-/**
- * Created by maggie on 11/14/16.
- */
-
 public class Messages extends AppCompatActivity {
 
     Firebase hasChild;
@@ -28,14 +24,15 @@ public class Messages extends AppCompatActivity {
     private ArrayList<adminMessages> list = new ArrayList<>();
     private adminMessages temp;
 
+    // inner class used to retrieve data from Firebase for to display in the Messages layout
     class adminMessages {
-
         String key, date, comment, user;
 
         adminMessages() {
             key = date = comment = user = "";
         }
 
+        // setter methods
         public void setKey(String key) {
             this.key = key;
         }
@@ -74,40 +71,27 @@ public class Messages extends AppCompatActivity {
         setContentView(R.layout.activity_messages);
 
         auth = FirebaseAuth.getInstance();
-        String userName = auth.getCurrentUser().getDisplayName();
-
+        String userName = auth.getCurrentUser().getDisplayName(); // get current user's username
         Firebase resetRead = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName +"/ReservationStatus/NewMessages");
         resetRead.setValue(false);
-
         ListView messages = (ListView) findViewById(R.id.list_view_messages);
-
         root = new Firebase("https://ipark-e243b.firebaseio.com/Messages");
         final ArrayAdapter<adminMessages> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-
         messages.setAdapter(arrayAdapter);
 
+        // populate adminMessages and add to list for display by array adapter
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // int ctr = 1;
-
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                for ( DataSnapshot child : dataSnapshot.getChildren()) {
                     temp = new adminMessages();
 
-                    //****************************************************
                     temp.setKey(child.child("Key").getValue(String.class));
-                    //*****************************************************
-
-                    //temp.setKey("Comment " );
                     temp.setDate(child.child("Date").getValue(String.class));
                     temp.setComment(child.child("Comment").getValue(String.class));
                     temp.setUser(child.child("User").getValue(String.class));
-
                     list.add(temp);
-
-                    //ctr++;
                     arrayAdapter.notifyDataSetChanged();
-
                 }
             }
 
@@ -115,7 +99,6 @@ public class Messages extends AppCompatActivity {
             public void onCancelled(FirebaseError firebaseError) {
 
             }
-
         });
     }
 

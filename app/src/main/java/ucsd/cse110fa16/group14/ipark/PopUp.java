@@ -15,7 +15,7 @@ import com.firebase.client.ValueEventListener;
 import java.util.ArrayList;
 
 /**
- * Created by maggie on 11/18/16.
+ *  Used for the emergency popup window in Owner Homepage
  */
 public class PopUp extends Activity {
 
@@ -24,14 +24,15 @@ public class PopUp extends Activity {
     private ArrayList<PopUp.emergency> list = new ArrayList<>();
     private PopUp.emergency temp;
 
+    // inner class used to retrieve data from Firebase for display in the Owner Homepage
     class emergency {
-
         String date, emergencyType, parkingSpot, user;
 
         emergency() {
             date = emergencyType = parkingSpot = user = "";
         }
 
+        // setter methods
         public void setDate(String date) {
             this.date = date;
         }
@@ -58,30 +59,26 @@ public class PopUp extends Activity {
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-
         setContentView(R.layout.popup);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
+        int width = dm.widthPixels;    // width of popup window
+        int height = dm.heightPixels;  // height of popup window
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.3));
+        getWindow().setLayout((int)(width*.8),(int)(height*.3));  // size of popup window
 
         listView = (ListView) findViewById(R.id.listViewWindow);
         root = new Firebase("https://ipark-e243b.firebaseio.com/NewEmergency");
-
         final ArrayAdapter<PopUp.emergency> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-
         listView.setAdapter(arrayAdapter);
 
+        // populate emergency objects and add to list for display by array adapter
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-
                         temp = new emergency();
 
                         temp.setDate(child.child("Date").getValue(String.class));
@@ -91,7 +88,6 @@ public class PopUp extends Activity {
 
                         list.add(temp);
                         arrayAdapter.notifyDataSetChanged();
-
                 }
             }
 
@@ -101,7 +97,5 @@ public class PopUp extends Activity {
             }
 
         });
-
-
     }
 }

@@ -21,10 +21,8 @@ Sources:
   http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
  */
 public class Payment extends AppCompatActivity {
-
     private Firebase root;
     private static FirebaseAuth auth;
-
 
     @Override
     protected void onPause() {
@@ -44,13 +42,9 @@ public class Payment extends AppCompatActivity {
 
         // Get values passed on from previous activity
         final Bundle bundle = getIntent().getExtras();
-
-        //**************************************************************
         auth = FirebaseAuth.getInstance();
-        final String userName = auth.getCurrentUser().getDisplayName();
+        final String userName = auth.getCurrentUser().getDisplayName(); // get the current user
         root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName);
-        //***************************************************************
-
         Button payButt = (Button) findViewById(R.id.confirm);
         Button cancelButt = (Button) findViewById(R.id.paymentCancelButton);
         int totHours = 0;
@@ -59,7 +53,6 @@ public class Payment extends AppCompatActivity {
         iLink.getDefaultPrice();
         double rate = iLink.defaultPrice; // Payment
         iLink.userPrice = rate; // Payment
-
         double totPay = 0.00;
 
         // Calculate total time parked and total to pay
@@ -72,23 +65,24 @@ public class Payment extends AppCompatActivity {
         TextView totalPayText = (TextView) findViewById(R.id.totalToPay);
         TextView currPrice = (TextView) findViewById(R.id.currentPrice);
 
-
         double currentPrice = iLink.getDefaultPrice();
         currPrice.setText("Current rate is: " + "$" + currentPrice + "/hour");
 
+        // generate the Clockin and Clockout times
         startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
         endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
-        totalPayText.setText(String.format("$%.2f", totPay));
 
+        // format total amount to pay
+        totalPayText.setText(String.format("$%.2f", totPay));
         final TextView total = (TextView) findViewById(R.id.totalToPay);
 
         payButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-
                 String rate = total.getText().toString();
+
+                // generate the Clockin and Clockout time
                 String clockInTime = generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"));
                 String clockOutTime = generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin"));
 
@@ -111,6 +105,7 @@ public class Payment extends AppCompatActivity {
                     AlertDialog alertDialog = respond.create();
                     alertDialog.show();
                 } else {
+                    // get the current date
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                     Date date = null;
                     try {
@@ -120,15 +115,16 @@ public class Payment extends AppCompatActivity {
                     }
 
                     Firebase resChild = root.child("Reservation");
-
                     Firebase hasChild = resChild.child(date + " " + clockInTime);
 
+                    // create child fields for reservation in Firebase
                     Firebase rateChild = hasChild.child("Rate");
                     Firebase clockInChild = hasChild.child("Clockin");
                     Firebase clockOutChild = hasChild.child("Clockout");
                     Firebase dateChild = hasChild.child("Date");
                     Firebase userChild = hasChild.child("User");
 
+                    // populate reservation in Firebase
                     rateChild.setValue(rate);
                     clockInChild.setValue(clockInTime);
                     clockOutChild.setValue(clockOutTime);
@@ -159,8 +155,6 @@ public class Payment extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 
     // Take in hour in 24 hour format and minute

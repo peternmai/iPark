@@ -22,7 +22,6 @@ Sources:
   http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
  */
 public class comment extends AppCompatActivity {
-
     private Firebase root;
     Firebase hasChild;
     private static FirebaseAuth auth;
@@ -46,9 +45,9 @@ public class comment extends AppCompatActivity {
 
         root = new Firebase("https://ipark-e243b.firebaseio.com/Comments");
         auth = FirebaseAuth.getInstance();
-        //final String userName = auth.getCurrentUser().getDisplayName();
-        final String userName = auth.getCurrentUser() != null ? auth.getCurrentUser().getDisplayName():"maggie";
 
+        // get the current user's username, default: maggie
+        final String userName = auth.getCurrentUser() != null ? auth.getCurrentUser().getDisplayName():"maggie";
 
         final EditText userComment = (EditText) findViewById(R.id.userComment);
         final RatingBar rating = (RatingBar) findViewById(R.id.rating);
@@ -61,26 +60,32 @@ public class comment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // get the User's comment and rating
                 String comment = userComment.getText().toString();
                 String rate = String.valueOf(rating.getRating());
 
+                // get the current date
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 sdf.format(date);
 
                 hasChild = root.child(date + " ");
 
+                // create necessary children in Firebase for current comment
                 Firebase commentChild = hasChild.child("Comment");
                 Firebase dateChild = hasChild.child("Date");
                 Firebase rateChild = hasChild.child("Rating");
                 Firebase keyChild = hasChild.child("Key");
                 Firebase userChild = hasChild.child("User");
 
+                // if the comment box left empty, set to message
                 if (comment.isEmpty()) {
                     commentChild.setValue("No comment left by the user.");
                 } else {
                     commentChild.setValue(comment);
                 }
+
+                // setting the values in Firebase for the comment
                 dateChild.setValue(sdf.format(date));
                 rateChild.setValue(rate);
                 keyChild.setValue(date + " ");
@@ -88,7 +93,6 @@ public class comment extends AppCompatActivity {
 
                 Toast.makeText(comment.this, "Thank you for your input!",
                         Toast.LENGTH_LONG).show();
-
 
                 Intent intent = new Intent(comment.this, UserHomepage.class);
                 startActivity(intent);
@@ -99,11 +103,11 @@ public class comment extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // if cancelButton is pressed, send user to User Homepage
                 Intent intent = new Intent(comment.this, UserHomepage.class);
                 startActivity(intent);
             }
         });
-
 
         userComment.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

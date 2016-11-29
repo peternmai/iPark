@@ -22,11 +22,8 @@ Sources:
   http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
  */
 public class activity_review extends AppCompatActivity {
-
-
     private Firebase root;
     private static FirebaseAuth auth;
-
 
     @Override
     protected void onPause() {
@@ -44,6 +41,8 @@ public class activity_review extends AppCompatActivity {
         setContentView(R.layout.activity_review);
 
         auth = FirebaseAuth.getInstance();
+
+        // get the current user's username and firebase path to their history
         final String userName = auth.getCurrentUser().getDisplayName();
         root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/History");
 
@@ -63,8 +62,9 @@ public class activity_review extends AppCompatActivity {
         String priceInfo = String.format("$%.2f", iLink.userPrice) + "/hour";
         pricePerHour.setText(priceInfo);
 
-        String clockInTime = generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"));
+        String clockInTime = generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"));  // get the clock in time
 
+        // set up the current date to pull correct Firebase record
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = null;
         try {
@@ -73,10 +73,10 @@ public class activity_review extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        // get the correct values for Clockin, Clockout and Rate from Firebase
         root.child(date + " " + clockInTime).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 startTimeText.setText(dataSnapshot.child("Clockin").getValue(String.class));
                 endTimeText.setText(dataSnapshot.child("Clockout").getValue(String.class));
                 priceText.setText(dataSnapshot.child("Rate").getValue(String.class));
@@ -92,6 +92,7 @@ public class activity_review extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // if commentButt pressed, send user to the Comment page
                 Intent intent = new Intent(activity_review.this, comment.class);
                 startActivity(intent);
             }
@@ -101,6 +102,7 @@ public class activity_review extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // if nopButt pressed, send user to the User Homepage
                 Intent intent = new Intent(activity_review.this, UserHomepage.class);
                 startActivity(intent);
             }

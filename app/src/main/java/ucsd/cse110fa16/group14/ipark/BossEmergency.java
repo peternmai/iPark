@@ -16,30 +16,27 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
-
-/**
- * Created by Mag on 10/13/2016.
- */
 /*
 Sources:
   http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
  */
 public class BossEmergency extends AppCompatActivity {
-
     private Firebase root;
     private ListView listView;
     private ArrayList<commentBoss> list = new ArrayList<>();
     private commentBoss temp;
     ImageButton home;
 
+    // inner class used to retrieve data from Firebase for display in the Emergency layout
     class commentBoss {
-
         String date, emergencyType, parkingSpot, user;
 
+        // constructor
         commentBoss() {
             date = emergencyType = parkingSpot = user = "";
         }
 
+        // setter methods
         public void setDate(String date) {
             this.date = date;
         }
@@ -77,6 +74,7 @@ public class BossEmergency extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boss_emergency);
 
+        // reset new emergency messages flag to false
         Firebase resetEmergencyRead = new Firebase("https://ipark-e243b.firebaseio.com/OwnerStatus/NewEmergencyMessages");
         resetEmergencyRead.setValue(false);
 
@@ -84,17 +82,14 @@ public class BossEmergency extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list_view_emergency);
         root = new Firebase("https://ipark-e243b.firebaseio.com/EmergencyHistory");
         final ArrayAdapter<commentBoss> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-
         listView.setAdapter(arrayAdapter);
 
+        // Display the correct values for Date, EmergenctType, ParkingNumber and User from firebase
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // int ctr = 1;
-
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     temp = new commentBoss();
-
                     temp.setDate(child.child("Date").getValue(String.class));
                     temp.setEmergencyType(child.child("EmergencyType").getValue(String.class));
                     temp.setParkingSpot(child.child("ParkingNumber").getValue(String.class));
@@ -102,7 +97,6 @@ public class BossEmergency extends AppCompatActivity {
 
                     list.add(temp);
                     arrayAdapter.notifyDataSetChanged();
-
                 }
             }
 
@@ -121,9 +115,6 @@ public class BossEmergency extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
     }
 }
 

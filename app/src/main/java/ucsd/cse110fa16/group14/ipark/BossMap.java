@@ -8,10 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-/**
- * Created by Mag on 10/14/2016.
- */
 /*
 Sources:
   http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
@@ -70,10 +66,6 @@ public class BossMap extends AppCompatActivity {
 
             }
         });
-
-
-
-
 
         /* status of parking lot*/
         statusButt.setOnClickListener(new View.OnClickListener() {

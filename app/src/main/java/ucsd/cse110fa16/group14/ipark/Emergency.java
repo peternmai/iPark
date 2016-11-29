@@ -62,7 +62,7 @@ public class Emergency extends AppCompatActivity {
         radioGroup = (RadioGroup) findViewById(R.id.emergencyRadioGroup);
         final EditText parkingNum = (EditText) findViewById(R.id.parkingNumber);
         auth = FirebaseAuth.getInstance();
-        final String userName = auth.getCurrentUser().getDisplayName();
+        final String userName = auth.getCurrentUser().getDisplayName();  // get current user's username
 
         /* emergency sent */
         sendButt.setOnClickListener(new View.OnClickListener() {
@@ -71,14 +71,15 @@ public class Emergency extends AppCompatActivity {
             public void onClick(View v) {
                 int selectedButton = radioGroup.getCheckedRadioButtonId();
                 selected = (RadioButton) findViewById(selectedButton);
-
                 String selectedbButton = "N/A";
-
                 String parkingNumber = "N/A";
+
+                // get the current date
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 sdf.format(date);
 
+                // creating child fields for twin emergency records simultaneously
                 newEmergChild = newEmerg.child(date.toString());
                 emergHistChild = emergHist.child(date.toString());
                 Firebase newEmEmergencyType = newEmergChild.child("EmergencyType");
@@ -95,6 +96,7 @@ public class Emergency extends AppCompatActivity {
                     selectedbButton = selected.getText().toString();
                     parkingNumber = parkingNum.getText().toString();
 
+                    // entering emergency records
                     newEmEmergencyType.setValue(selectedbButton);
                     emHistEmergencyType.setValue(selectedbButton);
                     newEmDateChild.setValue(sdf.format(date));
@@ -107,12 +109,13 @@ public class Emergency extends AppCompatActivity {
                         newEmParkingNumChild.setValue(parkingNumber);
                         emHistParkingNumChild.setValue(parkingNumber);
                     }
-                    newEmUserChild.setValue(userName);
-                    emHistUserChild.setValue(userName);
+                    newEmUserChild.setValue(userName);  // set username for new emergency
+                    emHistUserChild.setValue(userName); // set username for emergency history
                     parkingNum.setText("");
+
+                    // display message after reporting an emergency
                     Toast.makeText(Emergency.this, "Thank you for reporting this emergency!",
                             Toast.LENGTH_LONG).show();
-
                 }
                 catch (NullPointerException e) {
                     Toast.makeText(Emergency.this, "Select an option.",
@@ -171,7 +174,6 @@ public class Emergency extends AppCompatActivity {
 
 
         });
-
 
     }
 }
