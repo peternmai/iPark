@@ -38,7 +38,7 @@ public class LoginTest {
     public void performLogin() throws InterruptedException{
 
         try {
-            Thread.sleep(500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class LoginTest {
         onView(withId(R.id.userName))
                 .perform(typeText("mag"), ViewActions.closeSoftKeyboard());
         try {
-            Thread.sleep(500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -56,14 +56,14 @@ public class LoginTest {
         onView(withId(R.id.password))
                 .perform(typeText("password"), ViewActions.closeSoftKeyboard());
         try {
-            Thread.sleep(500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         auth.signInWithEmailAndPassword("mchemele@ucsd.edu", "password");
         try {
-            Thread.sleep(500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -71,7 +71,7 @@ public class LoginTest {
         // click on the login button
         onView(withId(R.id.loginButton)).perform(click());
         try {
-            Thread.sleep(500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
