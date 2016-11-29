@@ -45,7 +45,6 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
         Button nextButt = (Button) findViewById(R.id.next);
         Button prevButt = (Button) findViewById(R.id.previous);
 
-
         // Get values stored from enter arrival time activity
         final Bundle bundle = getIntent().getExtras();
 
@@ -58,7 +57,6 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
         hourNumPick.setMinValue(1);
         minNumPick.setMinValue(0);
         amPmPick.setMinValue(1);
-
 
         //Specify the maximum value/number
         hourNumPick.setMaxValue(12);
@@ -76,7 +74,6 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
         hour = 1;
         min = 0;
         ampm = 1;
-
 
         //Set a value change listener for hourNumPick
         hourNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -102,12 +99,10 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
             }
         });
 
-
         // disable enter feature of numberPicker
         hourNumPick.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         minNumPick.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         amPmPick.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-
 
         // Check to ensure time enter is valid before going (after start time)
         nextButt.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +165,6 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                     intent.putExtra("departMin", minEntered);
                     startActivity(intent);
                 }
-
             }
             //@Override
             //public void onClick(View v) {
@@ -201,7 +195,6 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
                 //hlp.setNegativeButton("No", null);
                 AlertDialog alertDialog = hlp.create();
                 alertDialog.show();
-
             }
         });
 
@@ -210,9 +203,9 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // if homeButt is pressed, send user to User Homepage
                 Intent intent = new Intent(ChooseDepartureTimeActivity.this, UserHomepage.class);
                 startActivity(intent);
-
             }
         });
 
@@ -221,7 +214,6 @@ public class ChooseDepartureTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-
             }
         });
     }

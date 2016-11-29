@@ -40,7 +40,6 @@ public class OwnerHomepage extends AppCompatActivity {
         ImageButton settings = (ImageButton) findViewById(R.id.settings);
         ImageButton reviews = (ImageButton) findViewById(R.id.reviews);
         ImageButton compose = (ImageButton) findViewById(R.id.compose);
-        // ImageButton report = (ImageButton) findViewById(R.id.report);
         ImageButton emergency = (ImageButton) findViewById(R.id.emergency1);
         ImageButton logout = (ImageButton) findViewById(R.id.logout);
 
@@ -80,7 +79,6 @@ public class OwnerHomepage extends AppCompatActivity {
         });
 
         root.addListenerForSingleValueEvent(new ValueEventListener() {
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild("NewEmergency")) {
@@ -147,15 +145,6 @@ public class OwnerHomepage extends AppCompatActivity {
             }
         });
 
-      /*  report.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OwnerHomepage.this, MessageUsersActivity.class);
-                startActivity(intent);
-            }
-        });
-*/
         emergency.setOnClickListener(new View.OnClickListener() {
 
             @Override

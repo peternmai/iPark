@@ -27,9 +27,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.Stack;
-
-//import android.support.v7.app.ActionBar;
-//import android.view.MenuItem;
 /*
 Sources:
   http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
@@ -77,12 +74,10 @@ public class CountDownCheckOut extends AppCompatActivity {
         Button mapButt = (Button) findViewById(R.id.countdownMapButton);
         Button help = (Button) findViewById(R.id.countdownHelpButton);
         Button homeButt = (Button) findViewById(R.id.countdownHomeButton);
-        //ProgressBar myBar = (ProgressBar) findViewById(R.id.ProgressBar);
         int progressStatus = 0;
-        //Button getSpot = (Button) findViewById(R.id.getSpot);
+
         // Get values passed on from previous activity
         final Bundle bundle = getIntent().getExtras();
-        //final Handler myHandler = new Handler();
 
         TextView startTimeText = (TextView) findViewById(R.id.StartTime);
         TextView endTimeText = (TextView) findViewById(R.id.EndTime);
@@ -91,15 +86,16 @@ public class CountDownCheckOut extends AppCompatActivity {
         final TextView pspot = (TextView) findViewById(R.id.textView26);
 
         auth = FirebaseAuth.getInstance();
-        final String userName = auth.getCurrentUser().getDisplayName();
+
+        final String userName = auth.getCurrentUser().getDisplayName(); // get the current user's username
         root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName);
 
+        // format the clockin and clockout times
         startTimeText.setText(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
         endTimeText.setText(generateTimeText(bundle.getInt("departHour"), bundle.getInt("departMin")));
 
         getParkingLotData();
         pspot.setText(bundle.getString("spotAssign"));
-
 
         // Express current, start, and end time in seconds
         final long curTimeInSec = getCurrentTimeInSec();
@@ -110,7 +106,6 @@ public class CountDownCheckOut extends AppCompatActivity {
         myBar = (ProgressBar) findViewById(R.id.ProgressBar);
         myBar.setMax((int) (endTimeInSec - startTimeInSec));
 
-
         // Updates the timer every 1 second from current time
         if (myTimer != null)
         {
@@ -120,11 +115,9 @@ public class CountDownCheckOut extends AppCompatActivity {
 
             public void onTick(long millisUntilFinished)
             {
-
-
-
                 // Display a countdown until start
                 boolean beforeStartTime = false;
+
                 // current time is before start
                 if ((millisUntilFinished / 1000) > (endTimeInSec - startTimeInSec))
                 {
@@ -215,6 +208,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                     Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
                     calendar.setTime(date);                               // assigns calendar to given date
 
+                    // send user to the activity_review page
                     Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
                     intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
                     intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
@@ -224,15 +218,18 @@ public class CountDownCheckOut extends AppCompatActivity {
                     double totPay, rate;
                     rate = iLink.userPrice;
                     date = null;
+
+                    // set the correct date
                     try {
                         date = sdf.parse(sdf.format(new Date()));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
 
-                    tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);
-                    tempDepMin = calendar.get(Calendar.MINUTE);
+                    tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);  // get current hour
+                    tempDepMin = calendar.get(Calendar.MINUTE);         // get current minute
 
+                    // populate Firebase with Clockin, Clockout, User and Date data
                     root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockin").setValue(
                             generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
                     root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("User").setValue(userName);
@@ -240,6 +237,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                     root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Clockout").setValue(
                             generateTimeText(tempDephHour, tempDepMin));
 
+                    // carry hour and minute to the next layout
                     intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
                     intent.putExtra("departMin", calendar.get(Calendar.MINUTE));
 
@@ -248,12 +246,11 @@ public class CountDownCheckOut extends AppCompatActivity {
                     totMins = tempDepMin - bundle.getInt("arriveMin");
                     totPay = (totHours + (double) totMins / 60.0) * rate;
                     root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).child("Rate").setValue(String.format("$%.2f", totPay));
-
                     intent.putExtra("rate", String.format("$%.2f", totPay));
-                    String spot = pspot.getText().toString();
+                    String spot = pspot.getText().toString(); // get a parking spot
 
+                    //?
                     root.child("Reservation").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin"))).removeValue();
-
                     startActivity(intent);
                 }
             }
@@ -285,20 +282,6 @@ public class CountDownCheckOut extends AppCompatActivity {
         }).start();
 
 
-
-
-       /* getSpot.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                String spot = parkingspots.pop();
-                pspot.setText(spot);
-                System.out.println(spot);
-                iLink.changeReserveStatus(spot, true);
-            }
-        });*/
-
-
         /* information page */
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -318,7 +301,6 @@ public class CountDownCheckOut extends AppCompatActivity {
                     }
                 });
 
-                //hlp.setNegativeButton("No", null);
                 AlertDialog alertDialog = hlp.create();
                 alertDialog.show();
 
@@ -331,8 +313,6 @@ public class CountDownCheckOut extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-
                 if (bundle.getInt("departHour") == 0 && bundle.getInt("departMin") == 0) {
                     AlertDialog.Builder respond = new AlertDialog.Builder(CountDownCheckOut.this);
                     respond.setTitle("Have not placed an order");
@@ -348,9 +328,10 @@ public class CountDownCheckOut extends AppCompatActivity {
                     alertDialog.show();
                 } else {
                     Date tempDate = new Date();                               // given date
-                    Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
+                    Calendar calendar = GregorianCalendar.getInstance();      // creates a new calendar instance
                     calendar.setTime(tempDate);                               // assigns calendar to given date
 
+                    // get the current date
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                     tempDate = null;
                     try {
@@ -361,14 +342,14 @@ public class CountDownCheckOut extends AppCompatActivity {
 
                     final Date date = tempDate;
 
+                    // generate Firebase path for current reservation to be changed to History record
                     final Firebase tempRes = root.child("Reservation").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
                     final Firebase tempHist = root.child("History").child(date + " " + generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
 
-                    //ValueEventListener listener;
-
+                    // send user to the activity_review page
                     final Intent intent = new Intent(CountDownCheckOut.this, activity_review.class);
-                    intent.putExtra("arriveHour", bundle.getInt("arriveHour"));
-                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));
+                    intent.putExtra("arriveHour", bundle.getInt("arriveHour")); // carry hour to next layout
+                    intent.putExtra("arriveMin", bundle.getInt("arriveMin"));   // carry minute to next layout
 
                     int tempDephHour, tempDepMin;
                     int totHours, totMins;
@@ -412,18 +393,21 @@ public class CountDownCheckOut extends AppCompatActivity {
                     } else {
 
                         if (getCurrentTimeInSec() >= endTimeInSec) {
+                            // carry current info to next layout
                             intent.putExtra("departHour", bundle.getInt("departHour"));
                             intent.putExtra("departMin", bundle.getInt("departMin"));
                             intent.putExtra("rate", bundle.getInt("rate"));
                         } else {
-                            tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);
-                            tempDepMin = calendar.get(Calendar.MINUTE);
+                            tempDephHour = calendar.get(Calendar.HOUR_OF_DAY);  // get hour
+                            tempDepMin = calendar.get(Calendar.MINUTE);         // get minute
 
+                            // converting reservation record to history record
                             tempHist.child("Clockin").setValue(generateTimeText(bundle.getInt("arriveHour"), bundle.getInt("arriveMin")));
                             tempHist.child("Clockout").setValue(generateTimeText(tempDephHour, tempDepMin));
                             tempHist.child("Date").setValue(sdf.format(date));
                             tempHist.child("User").setValue(userName);
 
+                            // carry hour and minute info to next layout
                             intent.putExtra("departHour", calendar.get(Calendar.HOUR_OF_DAY));
                             intent.putExtra("departMin", calendar.get(Calendar.MINUTE));
 
@@ -438,6 +422,7 @@ public class CountDownCheckOut extends AppCompatActivity {
                             intent.putExtra("rate", String.format("$%.2f", totPay));
                         }
 
+                        // early checkout
                         AlertDialog.Builder Quest = new AlertDialog.Builder(CountDownCheckOut.this);
                         Quest.setTitle("Checkout confirmation");
                         Quest.setMessage(
@@ -453,7 +438,6 @@ public class CountDownCheckOut extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 // checkout and remove order in firebase
-
                                 if (myTimer != null) {
                                     System.out.println("cancel timer");
                                     myTimer.cancel();
@@ -470,8 +454,6 @@ public class CountDownCheckOut extends AppCompatActivity {
 
                     }
                 }
-
-
             }
         });
 
@@ -483,7 +465,6 @@ public class CountDownCheckOut extends AppCompatActivity {
             public void onClick(View v) {
 
                 iLink.changeLegalStatus(bundle.getString("spotAssign"), true);
-
 
                 final String newSpotAssign = iLink.getSpot((int) startTimeInSec / 60, (int) endTimeInSec / 60);
 
@@ -531,12 +512,10 @@ public class CountDownCheckOut extends AppCompatActivity {
                             pspot.setText(newSpotAssign);
                             iLink.setOrder(newSpotAssign, iLink.getCurTimeInSec(), endTimeInSec);
 
-
                             dialog.cancel();
                         }
 
                     });
-
 
                     AlertDialog alertDialog = respond.create();
                     alertDialog.show();
@@ -552,10 +531,8 @@ public class CountDownCheckOut extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, MapDirectional.class);
                 startActivity(intent);
-
             }
         });
-
 
         /* emergency call */
         emergencyButt.setOnClickListener(new View.OnClickListener() {
@@ -564,10 +541,8 @@ public class CountDownCheckOut extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownCheckOut.this, Emergency.class);
                 startActivity(intent);
-
             }
         });
-
 
         /* go back to home page */
         homeButt.setOnClickListener(new View.OnClickListener() {
@@ -603,7 +578,6 @@ public class CountDownCheckOut extends AppCompatActivity {
         // Add colon, min, and AM/PM sign
         timeText = (timeText + ":" + String.format("%02d", min) + " " + am_pm_Text);
 
-
         return timeText;
     }
 
@@ -617,7 +591,6 @@ public class CountDownCheckOut extends AppCompatActivity {
 
         return ((curHour * 60) + curMin) * 60 + curSec;
     }
-
 
     protected void getParkingLotData() {
 
@@ -634,7 +607,6 @@ public class CountDownCheckOut extends AppCompatActivity {
                 while (iterator.hasNext()) {
                     com.firebase.client.DataSnapshot node = iterator.next();
                     String uname = node.getKey();
-                    //parkingspots.add(uname);
 
                     Iterable<com.firebase.client.DataSnapshot> userInfo = node.getChildren();
                     Iterator<com.firebase.client.DataSnapshot> iterator1 = userInfo.iterator();

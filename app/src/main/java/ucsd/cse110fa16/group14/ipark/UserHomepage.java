@@ -17,10 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 
-/**
- * Created by Mag on 10/19/2016.
- */
-
 public class UserHomepage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -31,12 +27,6 @@ public class UserHomepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
         final Bundle bundle = getIntent().getExtras();
-
-        // final String username = getIntent().hasExtra("Username")?bundle.getString("Username"):"abhi";
-
-
-        //Toast.makeText(UserHomepage.this, bundle.getString("Username"),
-        //        Toast.LENGTH_LONG).show();
 
         ImageButton logoutButt = (ImageButton) findViewById(R.id.logoutButton);
         ImageButton reserveButt = (ImageButton) findViewById(R.id.reserveButton);
@@ -192,6 +182,7 @@ public class UserHomepage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // if mail button pressed, send user to Message page
                 Intent intent = new Intent(UserHomepage.this, Messages.class);
                 startActivity(intent);
             }
@@ -201,6 +192,7 @@ public class UserHomepage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // if emergencyButt pressed, send user to Emergency page
                 Intent intent = new Intent(UserHomepage.this, Emergency.class);
                 startActivity(intent);
             }
@@ -210,7 +202,8 @@ public class UserHomepage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String currUser = mAuth.getCurrentUser().getDisplayName();
+                String currUser = mAuth.getCurrentUser().getDisplayName(); // get the current user
+
                 //Get the hashMap with the details of a user
                 infoMap = iLink.getChildInfo("Users", currUser);
                 Intent intent = new Intent(UserHomepage.this, PersonalInfo.class);
@@ -222,6 +215,7 @@ public class UserHomepage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // if reviewHistory button pressed, send user to UserReviewHistory page
                 Intent intent = new Intent(UserHomepage.this, UserReviewHistory.class);
                 startActivity(intent);
             }
@@ -231,12 +225,11 @@ public class UserHomepage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // if helpButt pressed, send user to HELP_USER page
                 Intent intent = new Intent(UserHomepage.this, HELP_USER.class);
                 startActivity(intent);
             }
         });
-
-
     }
 
     @Override

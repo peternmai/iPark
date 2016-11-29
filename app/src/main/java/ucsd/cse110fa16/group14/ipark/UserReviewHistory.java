@@ -16,16 +16,11 @@ import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
-
-/**
- * Created by Mag on 10/19/2016.
- */
 /*
 Sources:
   http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
  */
 public class UserReviewHistory extends AppCompatActivity {
-
     private Firebase root;
     private ListView listView;
     private ArrayList<ResObj> list = new ArrayList<>();
@@ -42,20 +37,14 @@ public class UserReviewHistory extends AppCompatActivity {
         editor.commit();
     }
 
+    // inner class used to retrieve data from Firebase for display in the User Review layout
     class ResObj {
-
-        String key;
-        String date;
-        String clockIn;
-        String clockOut;
-        String rate;
-        String user;
-
+        String key, date, clockIn, clockOut, rate, user;
         ResObj() {
-
             key = date = clockIn = clockOut = rate = user = "";
         }
 
+        // setter methods
         public void setKey(String key) {
             this.key = key;
         }
@@ -94,25 +83,18 @@ public class UserReviewHistory extends AppCompatActivity {
         setContentView(R.layout.activity_user_review_history);
 
         final Bundle bundle = getIntent().getExtras();
-
         listView = (ListView) findViewById(R.id.list_view);
-
         auth = FirebaseAuth.getInstance();
-        String userName = auth.getCurrentUser().getDisplayName();
-        //Task task = auth.getCurrentUser().updatePassword(newPassword);
-        //root = new Firebase("https://ipark-e243b.firebaseio.com/Users/"+bundle.getString("Username")+"/History");
-        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/History");
-
+        String userName = auth.getCurrentUser().getDisplayName();    // get current user's username
+        root = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/History");     // set up path for History
         final ArrayAdapter<ResObj> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-
         listView.setAdapter(arrayAdapter);
 
+        // populate ResObjs and add to list for display by array adapter
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 int ctr = 1;
-
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     if (child.hasChild("Rate")){
                         temp = new ResObj();
@@ -147,6 +129,7 @@ public class UserReviewHistory extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // if homeButton pressed, send user to User Homepage
                 Intent intent = new Intent(UserReviewHistory.this, UserHomepage.class);
                 startActivity(intent);
             }
@@ -156,6 +139,7 @@ public class UserReviewHistory extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // if nextButton send, send user to UserReviewHistory2 page
                 Intent intent = new Intent(UserReviewHistory.this, UserReviewHistoryPage2.class);
                 startActivity(intent);
             }
