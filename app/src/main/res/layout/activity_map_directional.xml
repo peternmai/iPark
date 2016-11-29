@@ -16,7 +16,10 @@
 
     <ucsd.cse110fa16.group14.ipark.UserMapInteractive android:layout_above="@+id/send"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/myMap"
+        android:clickable="true"
+        android:focusableInTouchMode="true" />
 
     <Button
         android:text="Report"
@@ -43,7 +46,8 @@
         android:layout_marginBottom="13dp"
         android:layout_width="230dp"
         android:inputType="number"
-        android:paddingLeft="10dp" />
+        android:paddingLeft="10dp"
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:text="EMERGENCY"
@@ -125,7 +129,6 @@
         android:id="@+id/textView7"
         android:textSize="18sp"
         android:layout_below="@+id/textView32"
-        android:layout_marginTop="12dp"
         android:layout_alignParentStart="true" />
 
     <TextView

@@ -50,7 +50,12 @@
         <activity android:name=".ErrorReport" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".RecieveNewParking" />
-        <activity android:name=".Resume" />
+        <activity android:name=".Resume">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            </intent-filter>
+        </activity>
         <activity android:name=".UserHomepage" />
         <activity android:name=".History_2_user" />
         <activity android:name=".UserReviewHistory" />

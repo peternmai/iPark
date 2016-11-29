@@ -64,6 +64,8 @@ public class UserHomepage extends AppCompatActivity {
             Intent intent = new Intent(UserHomepage.this, LoginPage.class);
             startActivity(intent);
         }
+
+
         Firebase userReservationDB = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/ReservationStatus");
         userReservationDB.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
@@ -75,7 +77,7 @@ public class UserHomepage extends AppCompatActivity {
                     alert.setTitle("Alert!!");
                     alert.setMessage(
                             "You have new important unread message(s)!");
-                    alert.setPositiveButton("Read Messages", new DialogInterface.OnClickListener() {
+                    alert.setNegativeButton("Read Messages", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(UserHomepage.this, Messages.class);

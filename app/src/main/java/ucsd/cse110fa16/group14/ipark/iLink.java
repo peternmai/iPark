@@ -41,8 +41,6 @@ public class iLink {
     protected static double userReservationSpotRate = 0;
     protected static boolean newMessages = false;
 
-    protected static boolean newEmergencyMessages = false;
-
     private static String generateNewInsertSpotReservationData
             (String curDataStr, long startTime, String userName, long endTime) {
 
@@ -521,34 +519,6 @@ public class iLink {
         });
     }
 
-    protected static void getOwnerStatus() {
-
-        String ref = "https://ipark-e243b.firebaseio.com/OwnerStatus";
-        Firebase fReference = new Firebase(ref);
-        fReference.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterable<com.firebase.client.DataSnapshot> firstChildData = dataSnapshot.getChildren();
-                Iterator<DataSnapshot> iterator = firstChildData.iterator();
-                String innerKey;
-
-                while (iterator.hasNext()) {
-                    DataSnapshot data = iterator.next();
-                    innerKey = data.getKey();
-
-                    if (innerKey.equals("NewEmergencyMessages")) {
-                        newEmergencyMessages = data.getValue(Boolean.class);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
-            }
-        });
-    }
-
     // Get current time: Ex. February 1, 2016 = 20160201
     private static long getCurrentDate() {
         Calendar now = Calendar.getInstance();
@@ -606,11 +576,6 @@ public class iLink {
         });
     }
 
-    protected static void alertOwnerOfNewEmergency() {
-        Firebase newEmergency = new Firebase("https://ipark-e243b.firebaseio.com/OwnerStatus/NewEmergencyMessages");
-        newEmergency.setValue(true);
-    }
-
     // Reset each parking lot and user reservation data field to its default value
     private static void resetDataBaseForNewDay() {
 
@@ -663,7 +628,7 @@ public class iLink {
     }
 
     protected static void alertUserNewMessages() {
-
+        System.out.println("Alerting");
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/Users");
         parkingLotLink.addListenerForSingleValueEvent(new com.firebase.client.ValueEventListener() {
             @Override
@@ -684,6 +649,7 @@ public class iLink {
                     }
 
                     Firebase newMessagesField = new Firebase(usersNode + username + "/ReservationStatus/NewMessages");
+                    System.out.println("alert "+username);
                     newMessagesField.setValue(true);
                 }
             }

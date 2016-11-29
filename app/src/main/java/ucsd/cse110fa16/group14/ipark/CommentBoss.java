@@ -73,7 +73,7 @@ public class CommentBoss extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list_view2);
 
         ImageButton home = (ImageButton) findViewById(R.id.homeBB);
-        ImageButton next = (ImageButton) findViewById(R.id.nextBB);
+        //ImageButton next = (ImageButton) findViewById(R.id.nextBB);
 
         home.setOnClickListener(new View.OnClickListener() {
 
