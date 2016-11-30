@@ -48,45 +48,6 @@ public class LoginPage extends AppCompatActivity {
     private Boolean saveLogin;
 
     @Override
-    protected void onPause() {
-        super.onPause();
-
-        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("lastActivity", getClass().getName());
-        editor.commit();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        auth.addAuthStateListener(authListener);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        auth = FirebaseAuth.getInstance();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (authListener != null) {
-            auth.removeAuthStateListener(authListener);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (authListener != null) {
-            auth.removeAuthStateListener(authListener);
-        }
-        auth.signOut();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
@@ -105,7 +66,7 @@ public class LoginPage extends AppCompatActivity {
         passwordField = (EditText) findViewById(R.id.password);
         rememberMe = (CheckBox) findViewById(R.id.checkBox2);
 
-        //forgotPassword = (CheckBox) findViewById(R.id.checkBox);
+
         loginPref = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefEditor = loginPref.edit();
 
@@ -119,6 +80,7 @@ public class LoginPage extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         progress = new ProgressDialog(this);
 
+        //Source: https://firebase.google.com/docs/auth/android/password-auth
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -127,9 +89,6 @@ public class LoginPage extends AppCompatActivity {
 
                     String username = firebaseAuth.getCurrentUser().getEmail();
                     String admin = "admin@ipark.com";
-                    /*Intent intent = username.equals("admin") ?
-                            new Intent(LoginPage.this, OwnerHomepage.class):
-                            new Intent(LoginPage.this, UserHomepage.class) ;*/
 
                     Intent intent;
                     if (username.equals(admin))
@@ -212,6 +171,46 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("lastActivity", getClass().getName());
+        editor.commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        auth = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (authListener != null) {
+            auth.removeAuthStateListener(authListener);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (authListener != null) {
+            auth.removeAuthStateListener(authListener);
+        }
+        auth.signOut();
+    }
+
+
     private void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =
                 (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -223,6 +222,8 @@ public class LoginPage extends AppCompatActivity {
      * and looks for the corresponding email in the database.
      * Then it logs in using the email found and the password
      * entered in the text field.
+     *
+     * Source: https://firebase.google.com/docs/auth/android/password-auth
      */
     private void signIn() {
         final String username = usernameField.getText().toString();

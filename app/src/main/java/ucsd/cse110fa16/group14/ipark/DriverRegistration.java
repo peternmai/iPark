@@ -328,7 +328,7 @@ public class DriverRegistration extends AppCompatActivity {
 
     /**
      * Creates an account in firebase database as well as gives access to login.
-     *
+     * Source: https://firebase.google.com/docs/auth/android/password-auth
      * @param mail email to use
      * @param pass password to use
      */
