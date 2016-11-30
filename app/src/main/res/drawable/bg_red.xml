@@ -1,3 +1,6 @@
+<!--
+Source: http://stackoverflow.com/questions/10316354/how-to-make-text-view-shape-circle-and-set-different-background-color-based-on-c
+-->
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 

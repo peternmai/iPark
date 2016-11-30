@@ -22,6 +22,8 @@ import java.util.Map;
 
 /**
  * Created by Peter on 10/16/2016.
+ * Part of these codes were made with reference to Android/Java's canvas API
+ * Source: https://developer.android.com/reference/android/graphics/Canvas.html
  */
 
 

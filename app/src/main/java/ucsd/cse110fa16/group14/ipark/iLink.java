@@ -16,6 +16,11 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Vector;
 
+/**
+ * Part of these codes are made with references to the Firebase API
+ * https://firebase.google.com/docs/database/android/read-and-write
+ */
+
 public class iLink {
     private static String usersNode = "https://ipark-e243b.firebaseio.com/Users/";
     private static String parkingLot = "https://ipark-e243b.firebaseio.com/ParkingLot/";
@@ -391,7 +396,7 @@ public class iLink {
         return spotsAvailable.elementAt(spotAssign);
     }
 
-    // TODO: This function inserts a new data field rather than updates
+    // Report other user
     public static boolean reportOther(int spot) {
 
         // If reporting invalid spot, return false
@@ -409,6 +414,7 @@ public class iLink {
             return false;
     }
 
+    // Returns the current time in seconds
     protected static long getCurTimeInSec() {
         Date date = new Date();                               // given date
         Calendar calendar = GregorianCalendar.getInstance();  // creates a new calendar instance
@@ -422,6 +428,7 @@ public class iLink {
     }
 
 
+    // Get the parking lot status for a given time and store it in an array
     protected static int[] getParkingLotStatus(final long startTime, final long endTime) {
 
         Firebase parkingLotLink = new Firebase("https://ipark-e243b.firebaseio.com/ParkingLot");
@@ -492,6 +499,7 @@ public class iLink {
         return spotStatus;
     }
 
+    // Get user reservation status (spot, start time, end time, etc)
     protected static void getUserReservationStatus() {
 
         auth = FirebaseAuth.getInstance();
