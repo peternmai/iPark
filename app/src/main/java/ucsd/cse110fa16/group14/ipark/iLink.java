@@ -226,7 +226,6 @@ public class iLink {
 
     private static String remove(String curDataStr, long startTime) {
 
-
         //System.out.println("test_1");
 
         String result = "";
@@ -303,6 +302,7 @@ public class iLink {
                     }
                 }
 
+                //TODO: Remove the print statements
                 System.out.println("=================================");
                 System.out.println("Assigning New Parking Spot");
                 System.out.println("=================================");
@@ -328,21 +328,40 @@ public class iLink {
         //if (newSchedule != null) scheduleRef.setValue(newSchedule);
     }
 
+    /**
+     * Changes the price in Firebase
+     * @param newPrice new price
+     */
     public static void changePrice(double newPrice) {
         Firebase priceRef = new Firebase(parkingLot + "SpotDefaultPrice" + "/Price");
         priceRef.setValue(newPrice);
     }
 
+    /**
+     * Changes the Schedule in firebase
+     * @param spot Spot whose schedule needs ot be changed
+     * @param newScheduleData new schedule
+     */
     public static void changeSchedule(String spot, String newScheduleData) {
         Firebase scheduleRef = new Firebase(parkingLot + spot + "/Schedule");
         scheduleRef.setValue(newScheduleData);
     }
 
+    /**
+     * Changes legal status in firebase
+     * @param spot spot whose status needs to be changed
+     * @param newStatus boolean to set the new status
+     */
     public static void changeLegalStatus(String spot, boolean newStatus) {
         Firebase legalRef = new Firebase(parkingLot + spot + "/Illegal");
         legalRef.setValue(newStatus);
     }
 
+    /**
+     * Changes reserve status in firebase
+     * @param spot spot whose status needs to be changed
+     * @param newStatus boolean to set the new status
+     */
     public static void changeReserveStatus(String spot, boolean newStatus) {
         Firebase reserveRef = new Firebase(parkingLot + spot + "/OwnerReserved");
         reserveRef.setValue(newStatus);
@@ -759,6 +778,10 @@ public class iLink {
         return map;
     }
 
+    /**
+     * Gets the default price of parking spots from firebase
+     * @return current price from firebase
+     */
     protected static double getDefaultPrice() {
         String ref = "https://ipark-e243b.firebaseio.com/ParkingLot/SpotDefaultPrice/Price";
         Firebase fReference = new Firebase(ref);
