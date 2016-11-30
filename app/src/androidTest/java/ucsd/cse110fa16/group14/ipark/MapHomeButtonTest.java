@@ -47,7 +47,7 @@ public class MapHomeButtonTest {
             e.printStackTrace();
         }
 
-        // click on the send button to report
+        // click on the home button
         onView(withId(R.id.button14)).perform(click());
         try {
             Thread.sleep(500);
