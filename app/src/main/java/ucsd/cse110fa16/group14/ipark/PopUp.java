@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 /**
  *  Used for the emergency popup window in Owner Homepage
+ *  sources: https://www.youtube.com/watch?v=tOn5HsQPhUY&t=6s
+ *  https://www.youtube.com/watch?v=fn5OlqQuOCk
  */
 public class PopUp extends Activity {
 

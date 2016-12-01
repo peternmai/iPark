@@ -19,6 +19,7 @@ import java.util.ArrayList;
 /*
 Sources:
   http://stackoverflow.com/questions/2441203/how-to-make-an-android-app-return-to-the-last-open-activity-when-relaunched
+  https://www.youtube.com/watch?v=tOn5HsQPhUY&t=6s
  */
 public class UserReviewHistory extends AppCompatActivity {
     private Firebase root;
