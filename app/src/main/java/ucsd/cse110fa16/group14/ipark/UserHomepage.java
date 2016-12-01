@@ -55,7 +55,7 @@ public class UserHomepage extends AppCompatActivity {
             startActivity(intent);
         }
 
-
+/*
         Firebase userReservationDB = new Firebase("https://ipark-e243b.firebaseio.com/Users/" + userName + "/ReservationStatus");
         userReservationDB.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
@@ -84,6 +84,7 @@ public class UserHomepage extends AppCompatActivity {
                 Log.v("NO ACCESS ERROR", "Could not connect to Firebase");
             }
         });
+        */
 
         logoutButt.setOnClickListener(new View.OnClickListener() {
 
