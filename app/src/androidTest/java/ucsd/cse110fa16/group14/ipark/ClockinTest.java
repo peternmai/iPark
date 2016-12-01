@@ -45,77 +45,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @LargeTest
 public class ClockinTest {
     private FirebaseAuth auth = FirebaseAuth.getInstance();
+
+    @Rule
     public ActivityTestRule<UserHomepage> mActivityTestRule = new ActivityTestRule<>(UserHomepage.class);
-    /*
-    >>>>>>> 9db19ce
-    =======
-        @Rule
-        public ActivityTestRule<Clockin> mActivityTestRule = new ActivityTestRule<>(Clockin.class);
-    >>>>>>> fix conflict with mapreport
-        @Test
-        public void clickHome() throws InterruptedException {
-            auth.signInWithEmailAndPassword("mchemele@ucsd.edu", "password");
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-    <<<<<<< HEAD
-    <<<<<<< HEAD
-    =======
-            onView(withId(R.id.reserveButton))
-                    .perform(click());
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-    >>>>>>> 9db19ce
-    =======
-    >>>>>>> fix conflict with mapreport
-            onView(withId(R.id.clockinHomeButton))
-                    .perform(click());
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        @Test
-        public void clickHelp() throws InterruptedException {
-            auth.signInWithEmailAndPassword("mchemele@ucsd.edu", "password");
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-    <<<<<<< HEAD
-    <<<<<<< HEAD
-    =======
-            onView(withId(R.id.reserveButton))
-                    .perform(click());
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-    >>>>>>> 9db19ce
-    =======
-    >>>>>>> fix conflict with mapreport
-            onView(withId(R.id.button4))
-                    .perform(click());
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    <<<<<<< HEAD
-    <<<<<<< HEAD
-        @Test
-        public void selectArrival() throws InterruptedException {
-    =======
-    */
+
     @Test
     public void selectReserve() throws InterruptedException {
         auth.signInWithEmailAndPassword("mchemele@ucsd.edu", "password");
