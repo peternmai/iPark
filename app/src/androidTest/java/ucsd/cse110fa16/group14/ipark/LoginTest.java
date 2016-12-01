@@ -75,5 +75,6 @@ public class LoginTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        auth.signOut();
     }
 }
