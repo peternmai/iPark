@@ -35,7 +35,7 @@ public class MapReportTest {
     public ActivityTestRule<MapDirectional> mActivityRule = new ActivityTestRule<>(
             MapDirectional.class);
 
-    // expected outcome: owner is able to click on different buttons on the homepage
+    // expected outcome: user is able to make a report
     // results: test passed
     @Test
     public void clickingHome() throws InterruptedException {

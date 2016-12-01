@@ -55,46 +55,5 @@ public class OwnerHomepageTest {
             e.printStackTrace();
         }
 
-        // click on the Price Settings button
-        onView(withId(R.id.settings)).perform(click());
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // click on the Reviews button
-        onView(withId(R.id.reviews)).perform(click());
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // click on the Compose button
-        onView(withId(R.id.compose)).perform(click());
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
-        // click on the Emergency button
-        onView(withId(R.id.emergency1)).perform(click());
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
-        // click on the logout button
-        onView(withId(R.id.logout)).perform(click());
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
