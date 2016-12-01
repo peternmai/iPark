@@ -18,7 +18,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class MessageTest {
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     @Rule
-    public ActivityTestRule<UserReviewHistory> mActivityTestRule = new ActivityTestRule<>(UserReviewHistory.class);
+    public ActivityTestRule<UserHomepage> mActivityTestRule = new ActivityTestRule<>(UserHomepage.class);
     
     @Test
     public void clickMessage() throws InterruptedException {
