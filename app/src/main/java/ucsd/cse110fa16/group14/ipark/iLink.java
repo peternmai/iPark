@@ -491,10 +491,12 @@ public class iLink {
             }
         });
 
+        /**
         System.out.print("ParkingLotStatus: ");
         for (int i = 0; i < NUM_SPOTS; i++)
             System.out.print(spotStatus[i]);
         System.out.println();
+         **/
 
         return spotStatus;
     }
