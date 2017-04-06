@@ -74,7 +74,7 @@ happens when a user tries to see reservation status before reserving, arriving a
 reservation and realizing parking spot is taken, as well as the reservation status and
 early check out page.
 
-![Parking Reservation](/doc/demo/ParkingReservation.gif?raw=true)
+![Parking Reservation](/doc/demo/ParkingReservation_Small.gif?raw=true)
 
 #### Live Parking Lot Information
 This shows the live map displayed on both the parking lot management's (left) and customer's
